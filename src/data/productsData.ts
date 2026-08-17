@@ -1,0 +1,238 @@
+export interface ProductItem {
+  id: string;
+  category: "radiology" | "equipment" | "furniture" | "sterilization" | "consumables";
+  categoryLabel: string;
+  name: string;
+  tagline: string;
+  description: string;
+  supplier: string;
+  country: string;
+  specs: { label: string; value: string }[];
+  features: string[];
+  image: string;
+  featured?: boolean;
+}
+
+export const PRODUCT_CATEGORIES = [
+  { id: "all", label: "All Ecosystem" },
+  { id: "radiology", label: "Radiology Systems" },
+  { id: "equipment", label: "Medical Equipment" },
+  { id: "furniture", label: "Hospital Furniture" },
+  { id: "sterilization", label: "Central Sterilization" },
+  { id: "consumables", label: "Consumables & Parts" },
+];
+
+export const PRODUCTS_DATA: ProductItem[] = [
+  {
+    id: "ct-scan-pro",
+    category: "radiology",
+    categoryLabel: "Radiology",
+    name: "Lonwin Multi-Slice CT Scanner",
+    tagline: "Ultra-low dose high-resolution computed tomography",
+    description: "State-of-the-art multi-slice CT system featuring fast volumetric scanning, AI-assisted anatomical positioning, and ultra-high spatial resolution for cardiac, neurological, and trauma diagnostics.",
+    supplier: "LONWIN",
+    country: "China",
+    specs: [
+      { label: "Detector Slices", value: "32 / 64 Slices" },
+      { label: "Spatial Resolution", value: "0.24 mm" },
+      { label: "Gantry Aperture", value: "75 cm" },
+      { label: "Dose Reduction", value: "Up to 60% AIDR" },
+    ],
+    features: [
+      "AI-driven automatic patient positioning system",
+      "Sub-millimeter volumetric isotropic acquisition",
+      "Integrated dual-energy spectral imaging capabilities",
+      "Real-time dose tracking and radiation protocol guard",
+    ],
+    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80",
+    featured: true,
+  },
+  {
+    id: "mri-3t-system",
+    category: "radiology",
+    categoryLabel: "Radiology",
+    name: "High-Field 3.0T MRI System",
+    tagline: "Zero-boiloff superconducting magnetic resonance suite",
+    description: "Premium superconducting MRI scanner delivering crisp tissue contrast, silent scanning technology, and rapid neurological and musculoskeletal acquisition sequences.",
+    supplier: "LONWIN",
+    country: "China",
+    specs: [
+      { label: "Field Strength", value: "3.0 Tesla Superconducting" },
+      { label: "Bore Size", value: "70 cm Wide Bore" },
+      { label: "Helium Consumption", value: "Zero-Boiloff Technology" },
+      { label: "Gradient Strength", value: "45 mT/m @ 200 T/m/s" },
+    ],
+    features: [
+      "Deep learning image reconstruction neural engine",
+      "Ultra-wide 70cm bore for claustrophobia reduction",
+      "Acoustic noise reduction technology up to 90%",
+      "Whole-body multi-channel phased array coil set",
+    ],
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80",
+    featured: true,
+  },
+  {
+    id: "digital-dr-panel",
+    category: "radiology",
+    categoryLabel: "Radiology",
+    name: "RadMedix Acuity Wireless DR Flat Panel",
+    tagline: "Direct-deposit Cesium Iodide (CsI) wireless X-ray detector",
+    description: "High-DQE wireless digital X-ray flat panel detector engineered for instant retrofits into existing cassette trays, delivering high-contrast images in under 3 seconds.",
+    supplier: "RADMEDIX",
+    country: "USA",
+    specs: [
+      { label: "Active Area", value: "14\" x 17\" (35 x 43 cm)" },
+      { label: "Scintillator", value: "Direct Deposit CsI" },
+      { label: "Pixel Pitch", value: "100 μm (5.0 lp/mm)" },
+      { label: "Battery Life", value: "Up to 8 Hours Continuous" },
+    ],
+    features: [
+      "AED (Automatic Exposure Detection) - no generator wiring required",
+      "Ultra-lightweight carbon fiber chassis with IP56 fluid resistance",
+      "AccuVue Cloud PACS seamless synchronization",
+      "Real-time grid suppression and edge enhancement software",
+    ],
+    image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&w=1200&q=80",
+    featured: true,
+  },
+  {
+    id: "cath-lab-suite",
+    category: "radiology",
+    categoryLabel: "Radiology",
+    name: "Lonwin Interventional Cath-Lab System",
+    tagline: "Single & dual-plane interventional cardiology angiography",
+    description: "Advanced cardiac and vascular interventional angiography room featuring dynamic flat panel detectors, 3D roadmap navigation, and live stent visualization.",
+    supplier: "LONWIN",
+    country: "China",
+    specs: [
+      { label: "Detector Type", value: "Dynamic Flat Panel 30x40 cm" },
+      { label: "Tube Rating", value: "100 kW High Frequency" },
+      { label: "Rotation Speed", value: "Up to 50°/sec 3D Angio" },
+      { label: "Dose Optimization", value: "Live Fluoroscopy Pulse Guard" },
+    ],
+    features: [
+      "StentBoost enhancement for clear vessel deployment",
+      "3D rotational angiography with CBCT volume reconstruction",
+      "Motorized ceiling 8-axis C-arm gantry flexibility",
+      "Integrated hemodynamic patient monitor interface",
+    ],
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=80",
+    featured: true,
+  },
+  {
+    id: "c-arm-surgical",
+    category: "radiology",
+    categoryLabel: "Radiology",
+    name: "High-Frequency Surgical Mobile C-Arm",
+    tagline: "Precision intraoperative imaging for orthopedics & trauma",
+    description: "Compact mobile C-arm with high-resolution digital imaging chain, laser positioning guides, and touch-screen dual monitor trolley.",
+    supplier: "INNOCARE",
+    country: "Taiwan",
+    specs: [
+      { label: "Generator Output", value: "5.0 kW High Frequency" },
+      { label: "Detector", value: "9\" High DQE Image Intensifier / FPD" },
+      { label: "Memory Capacity", value: "100,000 DICOM Frames" },
+      { label: "C-Arm Free Space", value: "780 mm Deep Immersion" },
+    ],
+    features: [
+      "Pulse fluoroscopy mode for minimal operator dose",
+      "Dual high-brightness anti-reflective LCD monitors",
+      "Laser alignment crosshairs for accurate target positioning",
+      "Integrated DICOM 3.0 network connection",
+    ],
+    image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "icu-patient-monitor",
+    category: "equipment",
+    categoryLabel: "Medical Equipment",
+    name: "Multiparameter ICU Patient Monitor",
+    tagline: "Continuous vital signs surveillance with AI arrhythmia detection",
+    description: "15-inch touch screen clinical patient monitor displaying ECG, SpO2, NIBP, Dual IBP, EtCO2, and body temperature with intuitive central station connectivity.",
+    supplier: "NOUR MEDICAL",
+    country: "Egypt / Global",
+    specs: [
+      { label: "Display", value: "15\" HD Color TFT Touch Screen" },
+      { label: "ECG Channels", value: "12-Lead Simultaneous Analysis" },
+      { label: "Battery Backup", value: "4 Hours Li-Ion" },
+      { label: "Data Storage", value: "120 Hours Trend Review" },
+    ],
+    features: [
+      "ST-segment analysis and 26 arrhythmia event detections",
+      "Central monitoring system connection up to 64 beds",
+      "Fanless cooling design for silent operating room use",
+      "Waterproof IPX1 grade sealed enclosure",
+    ],
+    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "hospital-bed-icu",
+    category: "furniture",
+    categoryLabel: "Hospital Furniture",
+    name: "5-Function Electric ICU Bed",
+    tagline: "Ergonomic intensive care patient bed with weighing scale",
+    description: "Motorized ICU bed equipped with Linak actuators, integrated digital weighing system, CPR quick release, and Trendelenburg control panels.",
+    supplier: "NOUR MEDICAL",
+    country: "Egypt",
+    specs: [
+      { label: "Safe Working Load", value: "250 kg" },
+      { label: "Actuators", value: "LINAK Heavy Duty Motors" },
+      { label: "Functions", value: "Height, Back, Knee, Trendelenburg, Reverse" },
+      { label: "Castors", value: "125mm Central Locking System" },
+    ],
+    features: [
+      "Integrated side-rail nurse control panels with weight display",
+      "X-ray translucent backrest for bed-side cassette insertion",
+      "One-touch emergency electric and manual CPR controls",
+      "Bacteriostatic anti-microbial powder coating finish",
+    ],
+    image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "autoclave-sterilization",
+    category: "sterilization",
+    categoryLabel: "Central Sterilization",
+    name: "Double-Door Steam Sterilizer Autoclave",
+    tagline: "High-capacity CSSD steam sterilizer with vacuum pulse",
+    description: "Pass-through autoclave designed for hospital CSSD departments, featuring automated pneumatic sliding doors, micro-computer PLC controls, and bowie-dick test validation.",
+    supplier: "NOUR MEDICAL",
+    country: "Egypt",
+    specs: [
+      { label: "Chamber Volume", value: "600 Liters stainless 316L" },
+      { label: "Working Temp", value: "134°C High Pressure Steam" },
+      { label: "Door Type", value: "Automatic Pass-Through Sliding" },
+      { label: "Control System", value: "Siemens PLC Touch Screen" },
+    ],
+    features: [
+      "Multi-stage pulsating vacuum drying cycle",
+      "Built-in steam generator with energy saving heat exchangers",
+      "Real-time pressure & temperature graph recording printer",
+      "Bioseal barrier barrier separating clean and sterile zones",
+    ],
+    image: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: "xray-tubes-parts",
+    category: "consumables",
+    categoryLabel: "Consumables & Spare Parts",
+    name: "OEM CT & X-Ray Tube Assemblies",
+    tagline: "High heat capacity replacement X-ray & CT tube inserts",
+    description: "Original OEM replacement X-ray tubes, high-voltage cables, generator boards, and CT anode assemblies stored directly in Cairo's 1,000m² warehouse.",
+    supplier: "RADMEDIX / LONWIN",
+    country: "USA / China",
+    specs: [
+      { label: "Anode Heat Storage", value: "3.5 to 8.0 MHU" },
+      { label: "Focal Spot Size", value: "0.6 / 1.2 mm" },
+      { label: "Max Voltage", value: "150 kV" },
+      { label: "Warehouse Availability", value: "In Stock - Maadi Cairo" },
+    ],
+    features: [
+      "1,000 m² local spare parts inventory in Cairo for rapid delivery",
+      "Pre-tested high-voltage oil insulation and cooling exchangers",
+      "Factory-certified warranty and calibration technical support",
+      "Emergency 4-hour dispatch to hospitals across Egypt",
+    ],
+    image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80",
+    featured: true,
+  },
+];
