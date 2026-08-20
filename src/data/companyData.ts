@@ -1,312 +1,393 @@
-export interface CompanyStats {
-  value: string;
-  number: number;
-  suffix: string;
-  label: string;
-  description: string;
-}
+// ================================================================
+// NOUR MEDICAL — COMPLETE COMPANY DATA
+// Awwwards V2 Branch — authoritative source for all page content
+// ================================================================
 
-export interface SupplierPartner {
-  id: string;
-  name: string;
-  country: string;
-  flag: string;
-  role: string;
-  description: string;
-  specialties: string[];
-  featuredProduct: string;
-}
-
-export interface ClientHospital {
-  id: string;
-  name: string;
-  city: string;
-  region: string;
-  lat: number;
-  lng: number;
-  type: string;
-  installations: string[];
-  featured?: boolean;
-}
-
-export const COMPANY_PROFILE = {
-  name: "Nour Medical Company",
-  tagline: "SEEING WHAT OTHERS CAN'T.",
-  subtagline: "Advanced medical imaging technology, reliable equipment and precision service — built around the moments that matter.",
-  establishedYear: 2015,
-  coreBusiness: "Healthcare technology, radiology devices, medical equipment, hospital furniture, consumables, spare parts, installation, and after-sales service.",
-  address: "No. 30 Misr Helwan Agricultural St., Maadi, Cairo, Egypt",
-  telephones: ["02 25267173", "02 25267175"],
-  mobiles: ["01007361255", "01023515373"],
-  email: "info@nourmedical.com",
-  website: "www.nourmedical.com",
-  warehouseArea: "1,000 m² Spare Parts Storage",
+// ── CONTACT ────────────────────────────────────────────────────
+export const COMPANY_CONTACT = {
+  address: 'No. 30 Misr Helwan Agricultural St., Maadi, Cairo, Egypt',
+  phone: ['02 25267173', '02 25267175'],
+  fax: '02 25267178',
+  mobile: ['(+02) 01007361255', '(+02) 01023515373'],
+  website: 'www.nourmedical.com',
+  email: 'info@nourmedical.com',
 };
 
-export const COMPANY_STATS: CompanyStats[] = [
+// ── COMPANY INFO ────────────────────────────────────────────────
+export const COMPANY_INFO = {
+  name: 'Nour Medical Company',
+  established: 2015,
+  chairman: 'Dr. Eng. Sayed Awad',
+  chairmanTitle: 'Chairman & CEO',
+  location: 'Maadi, Cairo, Egypt',
+  partsFacilityM2: 1000,
+  totalPersonnel: 50,
+  vision: 'To delight our customers by delivering an exceptional and elegant customer experience at the moments that matter.',
+  mission: [
+    {
+      title: 'Sustainable Technologies',
+      description: 'Provide sustainable technologies that support long-term healthcare operations.',
+    },
+    {
+      title: 'Valuable Products & High-Quality Service',
+      description: 'Deliver valuable products supported by a high standard of service.',
+    },
+    {
+      title: 'Higher Healthcare Standards',
+      description: 'Contribute to improving quality standards in the Egyptian healthcare market.',
+    },
+  ],
+};
+
+// ── INSTALLATION STATISTICS ─────────────────────────────────────
+export const INSTALLATION_STATS = [
+  { label: 'Cath-Lab Installations', value: '25+', unit: '' },
+  { label: 'Digital X-Ray Installations', value: '15+', unit: '' },
+  { label: 'CT Installations', value: '10+', unit: '' },
+  { label: 'MRI Installations', value: '5+', unit: '' },
+];
+
+// ── MAINTENANCE CONTRACT STATISTICS ─────────────────────────────
+export const MAINTENANCE_STATS = [
+  { system: 'Cath-Lab', contracts: '30+' },
+  { system: 'C-Arm', contracts: '20+' },
+  { system: 'X-Ray', contracts: '40+' },
+  { system: 'CT', contracts: '15+' },
+  { system: 'MRI', contracts: '7+' },
+];
+
+// ── BUSINESS CAPACITY METRICS ────────────────────────────────────
+export const CAPACITY_METRICS = [
   {
-    value: "2015",
-    number: 2015,
-    suffix: "",
-    label: "Established Year",
-    description: "A decade of pioneering medical technology in Egypt",
+    number: '50',
+    suffix: '',
+    label: 'Field Service Engineers & Technical Staff',
   },
   {
-    value: "50+",
-    number: 50,
-    suffix: "+",
-    label: "Field Engineers & Technicians",
-    description: "Certified bio-medical engineering team on 24/7 standby",
+    number: '1,000',
+    suffix: 'm²',
+    label: 'Spare Parts Storage Facility',
   },
   {
-    value: "1,000 m²",
-    number: 1000,
-    suffix: " m²",
-    label: "Spare Parts Storage",
-    description: "Centralized inventory in Cairo for rapid response times",
+    number: '25+',
+    suffix: '',
+    label: 'Cath-Lab Systems Installed',
   },
   {
-    value: "25+",
-    number: 25,
-    suffix: "+",
-    label: "Cath-Lab Installations",
-    description: "Advanced interventional cardiology suite deployments",
-  },
-  {
-    value: "15+",
-    number: 15,
-    suffix: "+",
-    label: "Digital X-Ray Installations",
-    description: "State-of-the-art DR flat panel system implementations",
-  },
-  {
-    value: "10+",
-    number: 10,
-    suffix: "+",
-    label: "CT Installations",
-    description: "High-resolution computed tomography scanner setups",
-  },
-  {
-    value: "5+",
-    number: 5,
-    suffix: "+",
-    label: "MRI Installations",
-    description: "High-field magnetic resonance imaging systems",
+    number: '40+',
+    suffix: '',
+    label: 'X-Ray Systems Under AMC',
   },
 ];
 
-export const SUPPLIER_PARTNERS: SupplierPartner[] = [
+// ── THREE PILLARS ────────────────────────────────────────────────
+export const COMPANY_PILLARS = [
   {
-    id: "radmedix",
-    name: "RADMEDIX",
-    country: "USA",
-    flag: "🇺🇸",
-    role: "Digital Radiology & Cloud PACS Leader",
-    description: "Pioneering American digital X-ray detectors, flat panel systems, and cloud-based PACS image management platforms.",
-    specialties: ["Digital X-Ray", "Flat Panel Detectors", "Cloud PACS", "Acquisition Software"],
-    featuredProduct: "Acuity DR Wireless Flat Panel System",
+    id: 'technology',
+    title: 'Technology',
+    description:
+      'Access to advanced medical products through an international supplier network spanning the USA, Taiwan, and China.',
   },
   {
-    id: "innocare",
-    name: "INNOCARE",
-    country: "Taiwan",
-    flag: "🇹🇼",
-    role: "Precision X-Ray Sensor Technology",
-    description: "World-class Taiwanese manufacturer of advanced amorphous silicon (a-Si) TFT X-ray flat panel sensors.",
-    specialties: ["a-Si TFT Flat Panel Sensors", "Dynamic Detectors", "Mammography Panels"],
-    featuredProduct: "InnoCare High-DQE Flat Panel Detector",
+    id: 'expertise',
+    title: 'Expertise',
+    description:
+      'Established technical experience in radiology equipment and healthcare systems, including complex imaging modalities.',
   },
   {
-    id: "lonwin",
-    name: "LONWIN",
-    country: "China",
-    flag: "🇨🇳",
-    role: "Interventional & Diagnostic Imaging Systems",
-    description: "Leading global developer of high-performance MRI scanners, CT systems, DR suites, and interventional therapy equipment.",
-    specialties: ["MRI Systems", "Multi-Slice CT", "Interventional C-Arms", "Angiography"],
-    featuredProduct: "Lonwin Multi-Slice Computed Tomography",
+    id: 'reliability',
+    title: 'Reliability',
+    description:
+      'After-sales service and maintenance designed to support customers throughout the operational life of their systems.',
   },
 ];
 
-export const CLIENT_HOSPITALS: ClientHospital[] = [
+// ── PRODUCT CATEGORIES ───────────────────────────────────────────
+export const PRODUCT_CATEGORIES = [
   {
-    id: "capital-care",
-    name: "Capital Care Hospital",
-    city: "Cairo",
-    region: "New Cairo",
-    lat: 30.0275,
-    lng: 31.4914,
-    type: "Private Healthcare Center",
-    installations: ["Cath-Lab Suite", "Digital X-Ray System", "Preventive Maintenance"],
-    featured: true,
+    id: 'radiology',
+    number: '01',
+    title: 'Radiology Devices',
+    description:
+      'Advanced imaging technologies and radiology equipment, including MRI, CT, Digital X-Ray, C-Arm, and Cath-Lab / interventional imaging systems.',
+    subcategories: ['MRI', 'CT Scanner', 'Digital X-Ray', 'C-Arm', 'Cath-Lab / Interventional Imaging'],
+    tag: 'Imaging Technology',
   },
   {
-    id: "south-sinai",
-    name: "South Sinai Hospital",
-    city: "Sharm El Sheikh",
-    region: "South Sinai",
-    lat: 27.9158,
-    lng: 34.3299,
-    type: "General Hospital",
-    installations: ["Multi-Slice CT Scanner", "Emergency DR Unit", "24/7 Technical Support"],
-    featured: true,
+    id: 'medical-equipment',
+    number: '02',
+    title: 'Medical Equipment',
+    description:
+      'A broad range of medical equipment solutions supporting modern healthcare facilities and clinical operations.',
+    subcategories: [],
+    tag: 'Healthcare Solutions',
   },
   {
-    id: "el-gouna",
-    name: "El Gouna Hospital",
-    city: "El Gouna",
-    region: "Red Sea",
-    lat: 27.3949,
-    lng: 33.6775,
-    type: "International Hospital",
-    installations: ["MRI System", "Digital Mammography", "Central Sterilization"],
-    featured: true,
+    id: 'hospital-furniture',
+    number: '03',
+    title: 'Hospital Furniture',
+    description:
+      'Durable, purpose-designed furniture solutions for patient care environments, wards, and clinical areas.',
+    subcategories: [],
+    tag: 'Facility Solutions',
   },
   {
-    id: "al-marwa",
-    name: "Al-Marwa Hospital",
-    city: "Cairo",
-    region: "Dokki / Giza",
-    lat: 30.0384,
-    lng: 31.2125,
-    type: "Specialized Medical Center",
-    installations: ["Cath-Lab Unit", "Mobile C-Arm", "Spare Parts Contract"],
-    featured: true,
+    id: 'sterilization',
+    number: '04',
+    title: 'Central Sterilization Equipment',
+    description:
+      'Equipment for central sterilization departments, supporting infection control and safety standards across healthcare facilities.',
+    subcategories: [],
+    tag: 'Infection Control',
   },
   {
-    id: "al-tayseer",
-    name: "Al-Tayseer Hospitals",
-    city: "Zagazig",
-    region: "Sharqia",
-    lat: 30.5877,
-    lng: 31.5020,
-    type: "Medical Complex",
-    installations: ["High-Field MRI", "Multi-Slice CT", "Digital X-Ray Suite"],
-    featured: true,
+    id: 'consumables',
+    number: '05',
+    title: 'Consumables',
+    description:
+      'Essential medical consumables supporting day-to-day clinical operations and patient care continuity.',
+    subcategories: [],
+    tag: 'Clinical Supplies',
   },
   {
-    id: "al-zahra",
-    name: "Al-Zahra Hospital",
-    city: "Cairo",
-    region: "Abbassia",
-    lat: 30.0667,
-    lng: 31.2833,
-    type: "University Teaching Hospital",
-    installations: ["Cath-Lab Suite", "Radiology Workstations"],
+    id: 'spare-parts',
+    number: '06',
+    title: 'Spare Parts',
+    description:
+      'Genuine spare parts for radiology and medical equipment, backed by a 1,000 m² storage facility for rapid availability.',
+    subcategories: [],
+    tag: 'Parts & Components',
+  },
+];
+
+// ── SERVICES ─────────────────────────────────────────────────────
+export const SERVICES = [
+  {
+    number: '01',
+    title: 'Equipment Installation',
+    description:
+      'Professional installation of radiology systems and medical equipment, ensuring optimal performance from day one.',
   },
   {
-    id: "el-nokhba",
-    name: "El Nokhba Hospital",
-    city: "Giza",
-    region: "Mohandessin",
-    lat: 30.0520,
-    lng: 31.2010,
-    type: "Private Medical Center",
-    installations: ["Digital Radiology Suite", "Hospital Furniture Setup"],
+    number: '02',
+    title: 'Preventive Maintenance',
+    description:
+      'Scheduled preventive maintenance programmes designed to sustain equipment reliability and extend operational lifespan.',
   },
   {
-    id: "elite-heart",
-    name: "Elite Heart Center",
-    city: "Cairo",
-    region: "Maadi",
-    lat: 29.9602,
-    lng: 31.2569,
-    type: "Cardiovascular Institute",
-    installations: ["Interventional Cath-Lab", "Cardiac C-Arm"],
-    featured: true,
+    number: '03',
+    title: 'Corrective Maintenance',
+    description:
+      'Prompt corrective maintenance to restore equipment functionality and minimize disruption to healthcare operations.',
   },
   {
-    id: "el-salama",
-    name: "El Salama Hospital",
-    city: "Alexandria",
-    region: "Shatby",
-    lat: 31.2001,
-    lng: 29.9187,
-    type: "General Hospital",
-    installations: ["Digital X-Ray System", "CT Maintenance Service"],
-    featured: true,
+    number: '04',
+    title: 'Technical Support',
+    description:
+      'Dedicated technical support for radiology and medical equipment, provided by experienced field service engineers.',
   },
   {
-    id: "intl-center-rad",
-    name: "International Center for Radiology and MRI",
-    city: "Cairo",
-    region: "Heliopolis",
-    lat: 30.0900,
-    lng: 31.3200,
-    type: "Diagnostic Imaging Center",
-    installations: ["3.0T MRI System", "64-Slice CT Scanner", "PACS Integration"],
-    featured: true,
+    number: '05',
+    title: 'Spare Parts Supply',
+    description:
+      'Reliable supply of genuine spare parts from a 1,000 m² facility, supporting rapid turnaround for service requirements.',
   },
   {
-    id: "military-hospitals",
-    name: "Military Hospitals Complex",
-    city: "Cairo",
-    region: "Koubbah",
-    lat: 30.0950,
-    lng: 31.2950,
-    type: "Military Medical Armed Forces",
-    installations: ["Multiple CT & MRI Scanners", "Central Sterilization Systems"],
-    featured: true,
+    number: '06',
+    title: 'Annual Maintenance Contracts',
+    description:
+      'Structured annual maintenance contracts providing scheduled service, priority support, and parts availability for critical systems.',
+  },
+];
+
+// ── SUPPLIER PARTNERS ─────────────────────────────────────────────
+export const SUPPLIER_PARTNERS = [
+  {
+    id: 'radmedix',
+    name: 'Radmedix',
+    country: 'USA',
+    countryFlag: '🇺🇸',
+    tagline: 'Digital Radiology Solutions',
+    description:
+      'A US-based digital radiology supplier specializing in flat panel DR detectors, digital X-Ray systems, and cloud-based PACS solutions.',
+    specialties: [
+      'Flat Panel DR Systems',
+      'Digital X-Ray Equipment',
+      'Cloud-Based PACS',
+    ],
   },
   {
-    id: "banha-univ",
-    name: "Banha University Hospital",
-    city: "Banha",
-    region: "Qalyubia",
-    lat: 30.4667,
-    lng: 31.1833,
-    type: "University Hospital",
-    installations: ["Cath-Lab Installation", "Digital Radiology Suites"],
-    featured: true,
+    id: 'innocare',
+    name: 'InnoCare Optoelectronics Corporation',
+    country: 'Taiwan',
+    countryFlag: '🇹🇼',
+    tagline: 'X-Ray Flat Panel Sensor Technology',
+    description:
+      'Established in April 2019, InnoCare Optoelectronics is a Taiwanese manufacturer specializing in X-Ray flat panel sensors, recognized as a world leader in this field.',
+    specialties: [
+      'X-Ray Flat Panel Sensors',
+      'Digital Detector Technology',
+      'Optoelectronic Components',
+    ],
   },
   {
-    id: "egyptian-railway",
-    name: "Egyptian Railway Hospital",
-    city: "Cairo",
-    region: "Ramses",
-    lat: 30.0630,
-    lng: 31.2470,
-    type: "Government Healthcare Center",
-    installations: ["Digital X-Ray Detectors", "Preventive Service Contract"],
+    id: 'lonwin',
+    name: 'Suzhou Lonwin Medical Systems Co.',
+    country: 'China',
+    countryFlag: '🇨🇳',
+    tagline: 'Integrated Medical Imaging Systems',
+    description:
+      'A Chinese medical systems manufacturer with a core business spanning MRI, CT, integrated imaging products, radiography, imaging-related products, and interventional therapy-related products.',
+    specialties: [
+      'MRI Systems',
+      'CT Systems',
+      'Integrated Imaging Products',
+      'Radiography Equipment',
+      'Interventional Therapy Products',
+    ],
+  },
+];
+
+// ── CLIENT REFERENCES — BY EQUIPMENT ─────────────────────────────
+export const CATH_LAB_CLIENTS = [
+  'Al-Marwa Hospital / Dr. Monir Othman',
+  'Egypt Group for Import & Export — Police Hospital, Elagoza',
+  'Al-Tayseer Hospitals',
+  'Al-Zahra Hospital',
+  'El Nokhba Hospital',
+  'Elite Heart — Alaa Ezzat',
+  'El Salama Hospital',
+  'Aseel Hospital',
+  'El Gouna Hospital',
+  'South Sinai Hospital',
+  'El Assema Hospital',
+  'Al-Safwa Center',
+  'Golden Heart Hospital',
+  'Military Hospital',
+];
+
+export const C_ARM_CLIENTS = [
+  'Capital Care Hospital',
+  'Al-Salama Hospital',
+  'Al-Zahra Hospital',
+  'Al-Hayah Hospital',
+  'Al-Rayan Scan Center',
+  'Banha University Hospital',
+  'Military Hospital',
+];
+
+export const CT_CLIENTS = [
+  'Capital Care Hospital',
+  'Al-Salama Hospital',
+  'Aseel Hospital',
+  'Al-Rayan Scan Center',
+  'South Sinai Hospital',
+  'International Center for Radiology and MRI',
+  'Sona Center',
+  'Tiba Center',
+  'Nile Center',
+  'Military Hospital',
+];
+
+export const MRI_CLIENTS = [
+  'Al-Rayan Scan Center',
+  'Tiba Scan',
+  'Military Hospitals',
+];
+
+// ── FULL CLIENT REFERENCE LIST ────────────────────────────────────
+export const ALL_CLIENTS = [
+  { name: 'Capital Care Hospital', location: '6th of October, Giza' },
+  { name: 'South Sinai Hospital', location: 'Sharm El Sheikh' },
+  { name: 'El Gouna Hospital', location: 'El Gouna, Red Sea' },
+  { name: 'Al-Marwa Hospital / Dr. Monir Othman', location: 'Dokki, Giza' },
+  { name: 'El Assema Hospital', location: 'Minya El Qamh, Sharqia' },
+  { name: 'Al-Tayseer Hospitals', location: 'Zagazig, Sharqia' },
+  { name: 'International Center for Radiology and MRI', location: 'Helwan, Cairo' },
+  { name: 'Al-Zahra Hospital', location: 'Kafr El Sheikh' },
+  { name: 'Al-Safwa Hospital', location: '6th of October, Giza' },
+  { name: 'El Nokhba Hospital', location: 'Kafr El Sheikh' },
+  { name: 'El-Hayah Hospital', location: 'Assiut' },
+  { name: 'Elite Heart Center', location: 'Maadi, Cairo' },
+  { name: 'Al-Safwa Center', location: 'Faqus, Sharqia' },
+  { name: 'Al-Fouad Center', location: 'Shebin El Kom, Monufia' },
+  { name: 'Al-Delta Hospital', location: 'Mansoura, Dakahlia' },
+  { name: 'El-Salama Hospital', location: 'Minya' },
+  { name: 'Sona Center', location: 'Sharqia' },
+  { name: 'Al-Rayyan Scan Center', location: 'Minya' },
+  { name: 'Egypt Heart Center', location: 'Dokki, Giza' },
+  { name: 'Academi Hospital', location: 'New Cairo' },
+  { name: 'Glory Hospital', location: 'Damietta' },
+  { name: 'Thuraya Hospital', location: 'Mohandessin, Giza' },
+  { name: 'Al-Nahar Hospital', location: 'Nasr City, Cairo' },
+  { name: 'Aman Elhayah Medical Hospital', location: 'Beni Suef' },
+  { name: 'Aman Hospital', location: 'Helwan, Cairo' },
+  { name: 'Teba Center', location: 'Malawi, Minya' },
+  { name: 'Dar Al-Teb Hospital', location: 'Dokki, Giza' },
+  { name: 'Al-Taqwa Hospital', location: 'Helwan, Cairo' },
+  { name: 'Banha University Hospital', location: 'Banha, Qalyubia' },
+  { name: 'Egyptian Railway Hospital', location: 'Cairo' },
+  { name: 'Heia Scan', location: 'Minya' },
+  { name: 'Golden Heart Hospital', location: 'Maadi, Cairo' },
+  { name: 'Dr. Ahmed Safaan', location: 'Tanta, Gharbia' },
+  { name: 'Jana Hospital', location: 'Haram, Giza' },
+  { name: 'Nile Center', location: 'Cairo & Giza' },
+  { name: 'Military Hospital', location: 'All Egypt' },
+];
+
+// ── WHY NOUR MEDICAL POINTS ───────────────────────────────────────
+export const WHY_NOUR_MEDICAL = [
+  {
+    title: 'Experienced Technical Team',
+    description: '50 field service engineers, technicians, and administrative personnel dedicated to healthcare technology support.',
   },
   {
-    id: "golden-heart",
-    name: "Golden Heart Hospital",
-    city: "6th of October",
-    region: "Giza",
-    lat: 29.9667,
-    lng: 30.9333,
-    type: "Specialized Cardiac Center",
-    installations: ["Cath-Lab Suite", "Hemodynamic Monitoring System"],
+    title: 'Reliable After-Sales Service',
+    description: 'Our value extends beyond supply — we support healthcare organizations throughout the operational life of their systems.',
   },
   {
-    id: "nile-center",
-    name: "Nile Center for Radiology",
-    city: "Mansoura",
-    region: "Dakahlia",
-    lat: 31.0379,
-    lng: 31.3815,
-    type: "Scan & Diagnostic Center",
-    installations: ["Digital X-Ray Detector Retrofits", "Spare Parts Supply"],
+    title: 'Large Parts Inventory',
+    description: 'A 1,000 m² parts storage facility enabling swift technical response and reduced system downtime.',
   },
   {
-    id: "assuit-center",
-    name: "Assiut Diagnostic Scan Center",
-    city: "Assiut",
-    region: "Upper Egypt",
-    lat: 27.1809,
-    lng: 31.1837,
-    type: "Regional Imaging Facility",
-    installations: ["Multi-Slice CT Scanner", "Mobile DR Detector"],
+    title: 'Global Supplier Network',
+    description: 'Direct access to technology from established suppliers in the USA, Taiwan, and China.',
   },
   {
-    id: "minia-hospital",
-    name: "Minia Specialized Hospital",
-    city: "Minia",
-    region: "Upper Egypt",
-    lat: 28.1099,
-    lng: 30.7503,
-    type: "Regional Medical Center",
-    installations: ["Digital X-Ray System", "Preventive Maintenance"],
+    title: 'Radiology Specialization',
+    description: 'One of the pioneering companies in Egypt for maintenance of imported radiology devices, with proven Cath-Lab and CT/MRI expertise.',
+  },
+  {
+    title: 'Nationwide Client References',
+    description: 'An established network of hospitals, scan centers, and medical facilities across Egypt.',
+  },
+];
+
+// ── CAPABILITY HIGHLIGHTS ─────────────────────────────────────────
+export const KEY_CAPABILITIES = [
+  {
+    id: 'radiology',
+    title: 'Radiology Devices',
+    description: 'Advanced imaging technologies and radiology equipment.',
+  },
+  {
+    id: 'equipment',
+    title: 'Medical Equipment',
+    description: 'Solutions supporting modern healthcare facilities.',
+  },
+  {
+    id: 'furniture',
+    title: 'Hospital Furniture',
+    description: 'Durable furniture solutions for healthcare environments.',
+  },
+  {
+    id: 'consumables',
+    title: 'Consumables & Spare Parts',
+    description: 'Essential components and supplies supporting operational continuity.',
+  },
+  {
+    id: 'maintenance',
+    title: 'Maintenance',
+    description: 'Professional technical support and maintenance for radiology equipment.',
   },
 ];

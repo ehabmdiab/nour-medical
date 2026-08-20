@@ -1,107 +1,176 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, MapPin, Phone, Mail } from 'lucide-react';
-import { COMPANY_PROFILE } from '../../data/companyData';
+import { Phone, Mail, MapPin, Globe } from 'lucide-react';
+import { COMPANY_CONTACT } from '../../data/companyData';
 
-export const Footer: React.FC = () => {
-  return (
-    <footer className="relative bg-slate-100 border-t border-slate-200/80 pt-20 pb-12 overflow-hidden text-slate-800">
-      <div className="bg-grid-pattern absolute inset-0 opacity-40 pointer-events-none" />
-      <div className="scanline-overlay" />
+const FOOTER_LINKS = {
+  Company: [
+    { label: 'About Us', href: '/about' },
+    { label: 'Our Partners', href: '/partners' },
+    { label: 'Our Clients', href: '/clients' },
+  ],
+  Solutions: [
+    { label: 'Products', href: '/products' },
+    { label: 'Services', href: '/services' },
+    { label: 'Maintenance & Support', href: '/maintenance' },
+  ],
+  Support: [
+    { label: 'Contact Us', href: '/contact' },
+    { label: 'Technical Support', href: '/maintenance' },
+    { label: 'Annual Maintenance', href: '/services' },
+  ],
+};
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
-          {/* Brand Col */}
-          <div className="lg:col-span-2 space-y-6">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-full bg-cyan-600/10 border border-cyan-500/30 flex items-center justify-center">
-                <Activity className="w-5 h-5 text-cyan-600" />
-              </div>
-              <span className="font-heading font-extrabold text-xl tracking-wider text-slate-900">
-                NOUR <span className="text-cyan-600">MEDICAL</span>
+export const Footer: React.FC = () => (
+  <footer style={{ background: 'var(--navy)', color: 'var(--white)' }}>
+    {/* Main Footer */}
+    <div className="container" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '48px' }}>
+        {/* Top Row: Brand + Links */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '40px',
+        }}>
+          {/* Brand */}
+          <div>
+            <Link
+              to="/"
+              style={{ textDecoration: 'none', display: 'inline-flex', flexDirection: 'column', gap: '2px', marginBottom: '20px' }}
+            >
+              <span style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.375rem',
+                fontWeight: 800,
+                letterSpacing: '-0.02em',
+                color: 'var(--white)',
+              }}>
+                Nour Medical
+              </span>
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.5rem',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.45)',
+              }}>
+                Healthcare Technology
               </span>
             </Link>
-
-            <p className="text-xs md:text-sm text-slate-600 leading-relaxed max-w-md">
-              {COMPANY_PROFILE.subtagline} Established 2015 in Cairo, Egypt. Specializing in radiology devices, medical equipment, hospital furniture, consumables, spare parts, installation, and 24/7 technical support.
+            <p style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.8125rem',
+              lineHeight: 1.7,
+              color: 'rgba(255,255,255,0.55)',
+              maxWidth: '240px',
+            }}>
+              Established 2015. Supplying radiology devices, medical equipment, and technical support to healthcare organizations across Egypt.
             </p>
+          </div>
 
-            <div className="flex items-center gap-3 pt-2">
-              <span className="px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-xs font-mono text-cyan-700">
-                Est. {COMPANY_PROFILE.establishedYear}
-              </span>
-              <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-mono text-slate-700 shadow-sm">
-                1,000 m² Parts Storage
-              </span>
+          {/* Link Columns */}
+          {Object.entries(FOOTER_LINKS).map(([category, links]) => (
+            <div key={category}>
+              <p style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.5625rem',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.35)',
+                marginBottom: '16px',
+              }}>
+                {category}
+              </p>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      className="hover-underline"
+                      style={{
+                        fontFamily: 'var(--font-body)',
+                        fontSize: '0.8125rem',
+                        color: 'rgba(255,255,255,0.65)',
+                        textDecoration: 'none',
+                        transition: 'color var(--dur-fast)',
+                      }}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
 
-          {/* Quick Navigation */}
+          {/* Contact Column */}
           <div>
-            <h4 className="text-xs font-mono text-cyan-700 uppercase tracking-widest mb-4">NAVIGATION</h4>
-            <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
-              <li><Link to="/" className="hover:text-cyan-600 transition-colors">Home Experience</Link></li>
-              <li><Link to="/products" className="hover:text-cyan-600 transition-colors">Radiology & Products</Link></li>
-              <li><Link to="/services" className="hover:text-cyan-600 transition-colors">Services & Engineering</Link></li>
-              <li><Link to="/gallery" className="hover:text-cyan-600 transition-colors">Showcase Gallery</Link></li>
-              <li><Link to="/clients" className="hover:text-cyan-600 transition-colors">Client Hospitals Map</Link></li>
-              <li><Link to="/contact" className="hover:text-cyan-600 transition-colors">Contact Headquarters</Link></li>
-            </ul>
-          </div>
-
-          {/* Global Partners */}
-          <div>
-            <h4 className="text-xs font-mono text-cyan-700 uppercase tracking-widest mb-4">GLOBAL PARTNERS</h4>
-            <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
-              <li className="flex items-center justify-between">
-                <span>RADMEDIX</span>
-                <span className="text-[10px] font-mono text-slate-500">USA 🇺🇸</span>
+            <p style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.5625rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.35)',
+              marginBottom: '16px',
+            }}>
+              Contact
+            </p>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <li style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                <MapPin size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0, marginTop: '2px' }} />
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.5 }}>
+                  {COMPANY_CONTACT.address}
+                </span>
               </li>
-              <li className="flex items-center justify-between">
-                <span>INNOCARE</span>
-                <span className="text-[10px] font-mono text-slate-500">Taiwan 🇹🇼</span>
+              <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <Phone size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)' }}>
+                  {COMPANY_CONTACT.phone[0]} · {COMPANY_CONTACT.phone[1]}
+                </span>
               </li>
-              <li className="flex items-center justify-between">
-                <span>LONWIN</span>
-                <span className="text-[10px] font-mono text-slate-500">China 🇨🇳</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Details */}
-          <div>
-            <h4 className="text-xs font-mono text-cyan-700 uppercase tracking-widest mb-4">CAIRO HEADQUARTERS</h4>
-            <div className="space-y-3 text-xs text-slate-600">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
-                <span>{COMPANY_PROFILE.address}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-cyan-600 shrink-0" />
-                <span>02 25267173 / 02 25267175</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-cyan-600 shrink-0" />
-                <a href={`mailto:${COMPANY_PROFILE.email}`} className="hover:text-cyan-600 transition-colors font-mono">
-                  {COMPANY_PROFILE.email}
+              <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <Mail size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
+                <a
+                  href={`mailto:${COMPANY_CONTACT.email}`}
+                  className="hover-underline"
+                  style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)', textDecoration: 'none' }}
+                >
+                  {COMPANY_CONTACT.email}
                 </a>
-              </div>
-            </div>
+              </li>
+              <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <Globe size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)' }}>
+                  {COMPANY_CONTACT.website}
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
-          <div>
-            © {new Date().getFullYear()} {COMPANY_PROFILE.name}. All rights reserved. Cairo, Egypt.
-          </div>
-          <div className="flex items-center gap-6">
-            <span className="hover:text-slate-900 cursor-pointer">Privacy Policy</span>
-            <span className="hover:text-slate-900 cursor-pointer">Terms of Service</span>
-            <span className="hover:text-slate-900 cursor-pointer">Regulatory Compliance</span>
-          </div>
+        {/* Divider */}
+        <div className="rule-dark" />
+
+        {/* Bottom Row */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+          <p style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.625rem',
+            letterSpacing: '0.1em',
+            color: 'rgba(255,255,255,0.3)',
+          }}>
+            © {new Date().getFullYear()} Nour Medical Company. All rights reserved. Maadi, Cairo, Egypt.
+          </p>
+          <p style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.625rem',
+            letterSpacing: '0.1em',
+            color: 'rgba(255,255,255,0.3)',
+          }}>
+            Est. 2015 · Healthcare Technology · Egypt
+          </p>
         </div>
       </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);

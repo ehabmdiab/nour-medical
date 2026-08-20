@@ -1,174 +1,695 @@
-import React from 'react';
-import { PageTransition } from '../components/templates/PageTransition';
-import { MedicalScanScene } from '../components/organisms/MedicalScanScene';
-import { MagneticButton } from '../components/atoms/MagneticButton';
-import { RevealText } from '../components/atoms/RevealText';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { StatsSection } from '../components/organisms/StatsSection';
-import { ProductShowcase } from '../components/organisms/ProductShowcase';
-import { ServicesTimeline } from '../components/organisms/ServicesTimeline';
-import { EgyptMap3D } from '../components/organisms/EgyptMap3D';
-import { SUPPLIER_PARTNERS } from '../data/companyData';
-import { PartnerCard } from '../components/molecules/PartnerCard';
-import { motion } from 'framer-motion';
-import { ArrowRight, Activity, ChevronDown, Cpu } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ClientMarquee } from '../components/organisms/ClientMarquee';
+import {
+  KEY_CAPABILITIES,
+  WHY_NOUR_MEDICAL,
+  SUPPLIER_PARTNERS,
+  COMPANY_INFO,
+} from '../data/companyData';
+
+// ── Reveal Hook ──────────────────────────────────────────────────
+function useReveal(threshold = 0.15) {
+  const ref = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
 
 export const HomePage: React.FC = () => {
-  const navigate = useNavigate();
+  const { ref: introRef, visible: introVisible } = useReveal();
+  const { ref: capRef, visible: capVisible } = useReveal();
+  const { ref: whyRef, visible: whyVisible } = useReveal();
+  const { ref: missionRef, visible: missionVisible } = useReveal();
+  const { ref: partnersRef, visible: partnersVisible } = useReveal();
+  const { ref: ctaRef, visible: ctaVisible } = useReveal();
 
   return (
-    <PageTransition>
-      {/* 1. HERO SECTION - CT/MRI Scanner 3D Interactive Viewport */}
-      <section className="relative h-screen min-h-[750px] w-full flex items-center justify-center overflow-hidden pt-20 bg-[#f8fafc]">
-        <div className="bg-grid-pattern absolute inset-0 opacity-60 pointer-events-none" />
-        <div className="scanline-overlay" />
+    <>
+      {/* ── 1. HERO ──────────────────────────────────────────── */}
+      <section
+        id="hero"
+        style={{
+          minHeight: '100vh',
+          background: 'var(--navy)',
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Background grid */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+          pointerEvents: 'none',
+        }} />
 
-        {/* 3D R3F CT/MRI Scanner Model */}
-        <div className="absolute inset-0 z-0 opacity-100">
-          <MedicalScanScene />
-        </div>
+        {/* Gradient orb */}
+        <div style={{
+          position: 'absolute',
+          right: '-10%',
+          top: '10%',
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
 
-        {/* Foreground Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col items-center text-center pointer-events-none">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-cyan-500/30 text-cyan-700 text-xs font-mono tracking-widest uppercase mb-6 pointer-events-auto shadow-sm"
-          >
-            <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
-            <Cpu className="w-3.5 h-3.5 text-cyan-600" />
-            <span>RADIOLOGY SCANNER & CATH-LAB TECHNOLOGY</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-heading font-black tracking-tight text-slate-900 mb-6 uppercase leading-none"
-          >
-            PRECISION <br className="hidden sm:block" />
-            <span className="text-gradient-cyan">RADIOLOGY TECH.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.4 }}
-            className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl font-normal leading-relaxed mb-10 text-balance"
-          >
-            Turnkey CT/MRI gantry assembly, flat panel DR detectors, Cath-Lab equipment installation & 24/7 hotline technical maintenance in Egypt.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.6 }}
-            className="flex flex-wrap items-center justify-center gap-5 pointer-events-auto"
-          >
-            <MagneticButton
-              onClick={() => navigate('/products')}
-              variant="primary"
-              icon={<ArrowRight className="w-4 h-4" />}
-            >
-              Explore Medical Equipment
-            </MagneticButton>
-            <MagneticButton
-              onClick={() => navigate('/services')}
-              variant="glass"
-            >
-              Engineering & Maintenance
-            </MagneticButton>
-          </motion.div>
-        </div>
-
-        {/* Scroll Prompt */}
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 pointer-events-none text-slate-500"
-        >
-          <span className="text-[10px] font-mono tracking-widest uppercase">SCROLL TO INSPECT</span>
-          <ChevronDown className="w-4 h-4 text-cyan-600" />
-        </motion.div>
-      </section>
-
-      {/* 2. EDITORIAL STATEMENT INTRO SECTION */}
-      <section className="py-32 relative bg-slate-50 border-t border-slate-200 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 text-center flex flex-col items-center">
-          <span className="text-xs font-mono text-cyan-700 tracking-widest uppercase mb-6 block font-bold">
-            OUR POSITIONING & PROMISE
-          </span>
-          <RevealText
-            text="Precision imaging equipment. Rapid emergency engineering response."
-            className="text-3xl sm:text-5xl md:text-6xl font-heading font-extrabold text-slate-900 text-center justify-center leading-tight mb-8"
-          />
-          <p className="text-base sm:text-lg text-slate-600 max-w-3xl font-normal leading-relaxed">
-            Established in 2015, Nour Medical has built Egypt’s leading healthcare technology infrastructure — integrating advanced radiology devices, flat panel DR detectors, central sterilization systems, and a 1,000m² spare parts facility in Maadi, Cairo.
-          </p>
-        </div>
-      </section>
-
-      {/* 3. MILESTONE STATISTICS SECTION */}
-      <StatsSection />
-
-      {/* 4. PRODUCTS SHOWCASE */}
-      <ProductShowcase />
-
-      {/* 5. SERVICES TIMELINE */}
-      <ServicesTimeline />
-
-      {/* 6. GLOBAL SUPPLIER PARTNERS SECTION */}
-      <section className="py-24 relative bg-slate-50 overflow-hidden border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <span className="text-xs font-mono text-cyan-700 tracking-widest uppercase block mb-3 font-bold">GLOBAL TECHNOLOGY PARTNERS</span>
-            <h2 className="text-3xl md:text-5xl font-heading font-bold text-slate-900">World-Class Supplier Ecosystem</h2>
-            <p className="text-sm md:text-base text-slate-600 max-w-2xl mx-auto mt-4">
-              Direct official distribution & technical partnerships with market leaders across the USA, Taiwan, and China.
-            </p>
+        <div className="container" style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          paddingTop: '60px',
+          paddingBottom: '80px',
+        }}>
+          {/* Label */}
+          <div style={{
+            opacity: 0,
+            animation: 'fadeInUp 0.7s var(--ease-smooth) 0.1s both',
+          }}>
+            <span style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.5625rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.45)',
+              marginBottom: '40px',
+            }}>
+              <span style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                background: 'var(--teal-accent)',
+                animation: 'pulse-dot 2s ease-in-out infinite',
+              }} />
+              Est. 2015 · Maadi, Cairo, Egypt
+            </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {SUPPLIER_PARTNERS.map((partner) => (
-              <PartnerCard key={partner.id} partner={partner} />
+          {/* Main headline */}
+          <div style={{ maxWidth: '900px' }}>
+            <h1
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(3rem, 7vw, 6.5rem)',
+                fontWeight: 800,
+                color: 'var(--white)',
+                lineHeight: 0.95,
+                letterSpacing: '-0.03em',
+                marginBottom: '36px',
+                opacity: 0,
+                animation: 'fadeInUp 0.9s var(--ease-smooth) 0.25s both',
+              }}
+            >
+              Advanced Healthcare Technology.{' '}
+              <span style={{ color: 'var(--teal-accent)' }}>Reliable Medical Solutions.</span>
+            </h1>
+
+            <p style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+              lineHeight: 1.7,
+              color: 'rgba(255,255,255,0.65)',
+              maxWidth: '560px',
+              marginBottom: '48px',
+              opacity: 0,
+              animation: 'fadeInUp 0.9s var(--ease-smooth) 0.4s both',
+            }}>
+              Nour Medical provides radiology devices, medical equipment, hospital furniture, consumables, spare parts, and professional maintenance services to healthcare organizations across Egypt.
+            </p>
+
+            <div style={{
+              display: 'flex',
+              gap: '16px',
+              flexWrap: 'wrap',
+              opacity: 0,
+              animation: 'fadeInUp 0.9s var(--ease-smooth) 0.55s both',
+            }}>
+              <Link to="/products" className="btn btn-blue" style={{ gap: '8px' }}>
+                Explore Our Solutions
+                <ArrowRight size={15} />
+              </Link>
+              <Link to="/contact" className="btn btn-outline-white">
+                Contact Our Team
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll prompt */}
+        <div style={{
+          position: 'absolute',
+          bottom: '32px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '6px',
+          color: 'rgba(255,255,255,0.3)',
+          animation: 'fadeIn 1s var(--ease-smooth) 1.2s both',
+        }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            Scroll
+          </span>
+          <ChevronDown size={14} style={{ animation: 'fadeInUp 2s ease-in-out infinite' }} />
+        </div>
+
+        {/* Bottom stat bar */}
+        <div style={{
+          borderTop: '1px solid rgba(255,255,255,0.08)',
+          background: 'rgba(255,255,255,0.03)',
+          opacity: 0,
+          animation: 'fadeIn 0.8s var(--ease-smooth) 0.8s both',
+        }}>
+          <div className="container">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+              gap: '0',
+              padding: '24px 0',
+            }}>
+              {[
+                { value: '50+', label: 'Technical Personnel' },
+                { value: '25+', label: 'Cath-Lab Installs' },
+                { value: '40+', label: 'X-Ray AMCs' },
+                { value: '1,000 m²', label: 'Parts Facility' },
+              ].map((stat, i) => (
+                <div
+                  key={stat.label}
+                  style={{
+                    padding: '12px 24px',
+                    borderRight: i < 3 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                  }}
+                >
+                  <div style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '1.5rem',
+                    fontWeight: 700,
+                    color: 'var(--white)',
+                    letterSpacing: '-0.02em',
+                    lineHeight: 1,
+                  }}>
+                    {stat.value}
+                  </div>
+                  <div style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.5rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.35)',
+                    marginTop: '4px',
+                  }}>
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 2. COMPANY INTRODUCTION ──────────────────────────── */}
+      <section
+        ref={introRef as React.RefObject<HTMLElement>}
+        style={{
+          padding: 'var(--section-gap) 0',
+          background: 'var(--white)',
+          opacity: introVisible ? 1 : 0,
+          transform: introVisible ? 'translateY(0)' : 'translateY(24px)',
+          transition: 'opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth)',
+        }}
+      >
+        <div className="container">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: 'clamp(40px, 6vw, 100px)',
+            alignItems: 'center',
+          }}>
+            <div>
+              <div className="section-label">About Nour Medical</div>
+              <h2 style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(2rem, 4vw, 3.25rem)',
+                fontWeight: 700,
+                color: 'var(--navy)',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
+                marginBottom: '28px',
+              }}>
+                Healthcare Technology Built Around Reliability
+              </h2>
+              <Link to="/about" className="btn btn-outline" style={{ marginTop: '8px' }}>
+                Discover Nour Medical
+              </Link>
+            </div>
+            <div>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'clamp(0.9375rem, 1.2vw, 1.0625rem)',
+                lineHeight: 1.75,
+                color: 'var(--text-muted)',
+                marginBottom: '24px',
+              }}>
+                Established in {COMPANY_INFO.established}, Nour Medical Company has built its business around the healthcare sector, specializing in radiology devices, medical equipment, hospital furniture, consumables, spare parts, and technical maintenance.
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'clamp(0.9375rem, 1.2vw, 1.0625rem)',
+                lineHeight: 1.75,
+                color: 'var(--text-muted)',
+              }}>
+                Our experience in maintaining imported radiology systems, combined with access to a global supplier network spanning the USA, Taiwan, and China, enables us to deliver dependable products and responsive after-sales support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. KEY CAPABILITIES ──────────────────────────────── */}
+      <section
+        ref={capRef as React.RefObject<HTMLElement>}
+        style={{
+          padding: 'var(--section-gap) 0',
+          background: 'var(--warm-white)',
+          opacity: capVisible ? 1 : 0,
+          transition: 'opacity 0.7s var(--ease-smooth)',
+        }}
+      >
+        <div className="container">
+          <div style={{ marginBottom: '60px' }}>
+            <div className="section-label">What We Offer</div>
+            <h2 style={{
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
+              fontWeight: 700,
+              color: 'var(--navy)',
+              letterSpacing: '-0.02em',
+            }}>
+              Core Capabilities
+            </h2>
+          </div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '0',
+            border: '1px solid var(--gray-light)',
+            borderRadius: '4px',
+            overflow: 'hidden',
+          }}>
+            {KEY_CAPABILITIES.map((cap, i) => (
+              <div
+                key={cap.id}
+                style={{
+                  padding: '40px 32px',
+                  borderRight: i < KEY_CAPABILITIES.length - 1 ? '1px solid var(--gray-light)' : 'none',
+                  background: 'var(--white)',
+                  transition: 'background var(--dur-mid)',
+                  opacity: capVisible ? 1 : 0,
+                  transform: capVisible ? 'translateY(0)' : 'translateY(16px)',
+                  transitionDelay: `${i * 0.08}s`,
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = 'var(--warm-white)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'var(--white)')}
+              >
+                <div style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.5rem',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--teal-accent)',
+                  marginBottom: '16px',
+                }}>
+                  0{i + 1}
+                </div>
+                <h3 style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.125rem',
+                  fontWeight: 700,
+                  color: 'var(--navy)',
+                  letterSpacing: '-0.01em',
+                  marginBottom: '10px',
+                }}>
+                  {cap.title}
+                </h3>
+                <p style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.875rem',
+                  lineHeight: 1.65,
+                  color: 'var(--text-muted)',
+                }}>
+                  {cap.description}
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 7. INTERACTIVE EGYPT HOSPITAL MAP */}
-      <EgyptMap3D />
+      {/* ── 4. STATS SECTION ─────────────────────────────────── */}
+      <StatsSection />
 
-      {/* 8. FINAL CINEMATIC CTA */}
-      <section className="py-32 relative bg-white overflow-hidden border-t border-slate-200 text-center">
-        <div className="bg-grid-pattern absolute inset-0 opacity-60 pointer-events-none" />
-        <div className="scanline-overlay" />
+      {/* ── 5. CLIENT MARQUEE ────────────────────────────────── */}
+      <ClientMarquee />
 
-        <div className="max-w-4xl mx-auto px-6 relative z-10 flex flex-col items-center">
-          <div className="w-16 h-16 rounded-full bg-cyan-600/10 border border-cyan-500/30 flex items-center justify-center text-cyan-600 mb-6 cyan-glow">
-            <Activity className="w-8 h-8" />
+      {/* ── 6. WHY NOUR MEDICAL ──────────────────────────────── */}
+      <section
+        ref={whyRef as React.RefObject<HTMLElement>}
+        style={{
+          padding: 'var(--section-gap) 0',
+          background: 'var(--white)',
+          opacity: whyVisible ? 1 : 0,
+          transition: 'opacity 0.7s var(--ease-smooth)',
+        }}
+      >
+        <div className="container">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: 'clamp(40px, 6vw, 100px)',
+            alignItems: 'start',
+          }}>
+            <div style={{ position: 'sticky', top: '100px' }}>
+              <div className="section-label">Why Nour Medical</div>
+              <h2 style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 700,
+                color: 'var(--navy)',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
+                marginBottom: '20px',
+              }}>
+                From Equipment Supply to Long-Term Support
+              </h2>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.9375rem',
+                lineHeight: 1.7,
+                color: 'var(--text-muted)',
+                marginBottom: '32px',
+              }}>
+                Nour Medical's value extends beyond supplying equipment — we support healthcare organizations throughout the operational life of their systems.
+              </p>
+              <Link to="/services" className="btn btn-primary">
+                View Our Services
+              </Link>
+            </div>
+
+            <div>
+              {WHY_NOUR_MEDICAL.map((item, i) => (
+                <div
+                  key={item.title}
+                  style={{
+                    padding: '28px 0',
+                    borderBottom: '1px solid var(--warm-neutral)',
+                    opacity: whyVisible ? 1 : 0,
+                    transform: whyVisible ? 'translateY(0)' : 'translateY(16px)',
+                    transition: `opacity 0.6s var(--ease-smooth) ${i * 0.08}s, transform 0.6s var(--ease-smooth) ${i * 0.08}s`,
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px' }}>
+                    <div>
+                      <h3 style={{
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: '1.0625rem',
+                        fontWeight: 600,
+                        color: 'var(--navy)',
+                        letterSpacing: '-0.01em',
+                        marginBottom: '8px',
+                      }}>
+                        {item.title}
+                      </h3>
+                      <p style={{
+                        fontFamily: 'var(--font-body)',
+                        fontSize: '0.875rem',
+                        lineHeight: 1.65,
+                        color: 'var(--text-muted)',
+                      }}>
+                        {item.description}
+                      </p>
+                    </div>
+                    <span style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.5rem',
+                      letterSpacing: '0.15em',
+                      color: 'var(--stone)',
+                      flexShrink: 0,
+                      marginTop: '4px',
+                    }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-heading font-extrabold text-slate-900 tracking-tight mb-6 uppercase">
-            LET'S BUILD THE FUTURE <br />
-            <span className="text-gradient-cyan">OF HEALTHCARE.</span>
-          </h2>
-
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mb-10 leading-relaxed">
-            Partner with Nour Medical for turnkey radiology suite installations, preventive maintenance contracts, and 24/7 technical hotline support in Egypt.
-          </p>
-
-          <MagneticButton
-            onClick={() => navigate('/contact')}
-            variant="primary"
-            className="py-4 px-10 text-base"
-            icon={<ArrowRight className="w-5 h-5" />}
-          >
-            Contact Nour Medical
-          </MagneticButton>
         </div>
       </section>
-    </PageTransition>
+
+      {/* ── 7. VISION & MISSION ──────────────────────────────── */}
+      <section
+        ref={missionRef as React.RefObject<HTMLElement>}
+        style={{
+          padding: 'var(--section-gap) 0',
+          background: 'var(--navy)',
+          opacity: missionVisible ? 1 : 0,
+          transition: 'opacity 0.7s var(--ease-smooth)',
+        }}
+      >
+        <div className="container">
+          {/* Vision */}
+          <div style={{ marginBottom: '80px', maxWidth: '760px' }}>
+            <div className="section-label section-label-light" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              Our Vision
+            </div>
+            <blockquote style={{
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              fontWeight: 600,
+              fontStyle: 'italic',
+              color: 'var(--white)',
+              lineHeight: 1.3,
+              letterSpacing: '-0.02em',
+            }}>
+              "{COMPANY_INFO.vision}"
+            </blockquote>
+          </div>
+
+          <div className="rule-dark" style={{ marginBottom: '80px' }} />
+
+          {/* Mission Pillars */}
+          <div className="section-label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '48px' }}>
+            Our Mission
+          </div>
+          <div className="grid-3">
+            {COMPANY_INFO.mission.map((pillar, i) => (
+              <div
+                key={pillar.title}
+                style={{
+                  opacity: missionVisible ? 1 : 0,
+                  transform: missionVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transition: `opacity 0.6s var(--ease-smooth) ${i * 0.12}s, transform 0.6s var(--ease-smooth) ${i * 0.12}s`,
+                }}
+              >
+                <div style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.5rem',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: 'var(--teal-accent)',
+                  marginBottom: '16px',
+                }}>
+                  0{i + 1}
+                </div>
+                <div style={{
+                  width: '32px',
+                  height: '1px',
+                  background: 'rgba(255,255,255,0.2)',
+                  marginBottom: '24px',
+                }} />
+                <h3 style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.25rem',
+                  fontWeight: 700,
+                  color: 'var(--white)',
+                  letterSpacing: '-0.01em',
+                  marginBottom: '12px',
+                }}>
+                  {pillar.title}
+                </h3>
+                <p style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.875rem',
+                  lineHeight: 1.7,
+                  color: 'rgba(255,255,255,0.55)',
+                }}>
+                  {pillar.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 8. GLOBAL PARTNERS ───────────────────────────────── */}
+      <section
+        ref={partnersRef as React.RefObject<HTMLElement>}
+        style={{
+          padding: 'var(--section-gap) 0',
+          background: 'var(--warm-white)',
+          opacity: partnersVisible ? 1 : 0,
+          transition: 'opacity 0.7s var(--ease-smooth)',
+        }}
+      >
+        <div className="container">
+          <div style={{ marginBottom: '60px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px' }}>
+            <div>
+              <div className="section-label">Global Technology Partners</div>
+              <h2 style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
+                fontWeight: 700,
+                color: 'var(--navy)',
+                letterSpacing: '-0.02em',
+              }}>
+                Global Technology. Local Expertise.
+              </h2>
+            </div>
+            <Link to="/partners" className="btn btn-outline">
+              View All Partners
+            </Link>
+          </div>
+
+          <div className="grid-3">
+            {SUPPLIER_PARTNERS.map((partner, i) => (
+              <div
+                key={partner.id}
+                className="card"
+                style={{
+                  padding: '40px 32px',
+                  opacity: partnersVisible ? 1 : 0,
+                  transform: partnersVisible ? 'translateY(0)' : 'translateY(16px)',
+                  transition: `opacity 0.6s var(--ease-smooth) ${i * 0.1}s, transform 0.6s var(--ease-smooth) ${i * 0.1}s`,
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                  <span style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.5rem',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: 'var(--text-muted)',
+                    background: 'var(--warm-neutral)',
+                    padding: '4px 10px',
+                    borderRadius: '2px',
+                  }}>
+                    {partner.country}
+                  </span>
+                </div>
+                <h3 style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.0625rem',
+                  fontWeight: 700,
+                  color: 'var(--navy)',
+                  letterSpacing: '-0.01em',
+                  marginBottom: '8px',
+                }}>
+                  {partner.name}
+                </h3>
+                <p style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.5625rem',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: 'var(--teal-accent)',
+                  marginBottom: '16px',
+                }}>
+                  {partner.tagline}
+                </p>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {partner.specialties.slice(0, 3).map(s => (
+                    <li key={s} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--blue-medical)', flexShrink: 0 }} />
+                      <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 9. FINAL CTA ─────────────────────────────────────── */}
+      <section
+        ref={ctaRef as React.RefObject<HTMLElement>}
+        style={{
+          padding: 'var(--section-gap) 0',
+          background: 'var(--white)',
+          borderTop: '1px solid var(--gray-light)',
+          textAlign: 'center',
+          opacity: ctaVisible ? 1 : 0,
+          transform: ctaVisible ? 'translateY(0)' : 'translateY(24px)',
+          transition: 'opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth)',
+        }}
+      >
+        <div className="container" style={{ maxWidth: '720px' }}>
+          <div className="section-label" style={{ justifyContent: 'center' }}>
+            Start a Conversation
+          </div>
+          <h2 style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(2rem, 4.5vw, 4rem)',
+            fontWeight: 700,
+            color: 'var(--navy)',
+            letterSpacing: '-0.025em',
+            lineHeight: 1.05,
+            marginBottom: '24px',
+          }}>
+            Let's Build Better Healthcare Infrastructure
+          </h2>
+          <p style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '1rem',
+            lineHeight: 1.7,
+            color: 'var(--text-muted)',
+            marginBottom: '40px',
+          }}>
+            Whether you are equipping a new facility, upgrading imaging capabilities, or looking for dependable technical support, Nour Medical is ready to support your healthcare operation.
+          </p>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/contact" className="btn btn-primary" style={{ gap: '8px' }}>
+              Talk to Our Team
+              <ArrowRight size={15} />
+            </Link>
+            <Link to="/products" className="btn btn-outline">
+              Explore Products
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
