@@ -124,7 +124,7 @@ export const HomePage: React.FC = () => {
                   color: 'var(--white)',
                   lineHeight: 0.98,
                   letterSpacing: '-0.03em',
-                  marginBottom: '28px',
+                  marginBottom: '40px',
                   opacity: 0,
                   animation: 'fadeInUp 0.9s var(--ease-smooth) 0.25s both',
                 }}
@@ -132,18 +132,6 @@ export const HomePage: React.FC = () => {
                 Advanced Healthcare Technology.{' '}
                 <span style={{ color: 'var(--teal-accent)' }}>Reliable Medical Solutions.</span>
               </h1>
-
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
-                lineHeight: 1.7,
-                color: 'rgba(255,255,255,0.65)',
-                marginBottom: '40px',
-                opacity: 0,
-                animation: 'fadeInUp 0.9s var(--ease-smooth) 0.4s both',
-              }}>
-                Nour Medical provides radiology devices, medical equipment, hospital furniture, consumables, spare parts, and professional maintenance services to healthcare organizations across Egypt.
-              </p>
 
               <div style={{
                 display: 'flex',
@@ -162,7 +150,7 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Seamless Blended 3D MRI Scanner Viewer */}
+            {/* Right: Larger Seamless 3D MRI Scanner Viewer */}
             <div style={{
               opacity: 0,
               animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
@@ -172,7 +160,7 @@ export const HomePage: React.FC = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-              <Mri3DViewer height="500px" />
+              <Mri3DViewer height="650px" />
             </div>
           </div>
         </div>
