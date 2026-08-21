@@ -106,52 +106,132 @@ export const HomePage: React.FC = () => {
             </span>
           </div>
 
-          {/* Main headline */}
-          <div style={{ maxWidth: '900px' }}>
-            <h1
-              style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(3rem, 7vw, 6.5rem)',
-                fontWeight: 800,
-                color: 'var(--white)',
-                lineHeight: 0.95,
-                letterSpacing: '-0.03em',
-                marginBottom: '36px',
+          {/* Hero Content Grid: Text Left, Video Right */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: 'clamp(32px, 5vw, 64px)',
+            alignItems: 'center',
+          }}>
+            {/* Left: Text & CTA */}
+            <div style={{ maxWidth: '640px' }}>
+              <h1
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: 'clamp(2.5rem, 5.5vw, 5.25rem)',
+                  fontWeight: 800,
+                  color: 'var(--white)',
+                  lineHeight: 0.98,
+                  letterSpacing: '-0.03em',
+                  marginBottom: '28px',
+                  opacity: 0,
+                  animation: 'fadeInUp 0.9s var(--ease-smooth) 0.25s both',
+                }}
+              >
+                Advanced Healthcare Technology.{' '}
+                <span style={{ color: 'var(--teal-accent)' }}>Reliable Medical Solutions.</span>
+              </h1>
+
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
+                lineHeight: 1.7,
+                color: 'rgba(255,255,255,0.65)',
+                marginBottom: '40px',
                 opacity: 0,
-                animation: 'fadeInUp 0.9s var(--ease-smooth) 0.25s both',
-              }}
-            >
-              Advanced Healthcare Technology.{' '}
-              <span style={{ color: 'var(--teal-accent)' }}>Reliable Medical Solutions.</span>
-            </h1>
+                animation: 'fadeInUp 0.9s var(--ease-smooth) 0.4s both',
+              }}>
+                Nour Medical provides radiology devices, medical equipment, hospital furniture, consumables, spare parts, and professional maintenance services to healthcare organizations across Egypt.
+              </p>
 
-            <p style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-              lineHeight: 1.7,
-              color: 'rgba(255,255,255,0.65)',
-              maxWidth: '560px',
-              marginBottom: '48px',
-              opacity: 0,
-              animation: 'fadeInUp 0.9s var(--ease-smooth) 0.4s both',
-            }}>
-              Nour Medical provides radiology devices, medical equipment, hospital furniture, consumables, spare parts, and professional maintenance services to healthcare organizations across Egypt.
-            </p>
+              <div style={{
+                display: 'flex',
+                gap: '16px',
+                flexWrap: 'wrap',
+                opacity: 0,
+                animation: 'fadeInUp 0.9s var(--ease-smooth) 0.55s both',
+              }}>
+                <Link to="/products" className="btn btn-blue" style={{ gap: '8px' }}>
+                  Explore Our Solutions
+                  <ArrowRight size={15} />
+                </Link>
+                <Link to="/contact" className="btn btn-outline-white">
+                  Contact Our Team
+                </Link>
+              </div>
+            </div>
 
+            {/* Right: Playable GIF / Video */}
             <div style={{
-              display: 'flex',
-              gap: '16px',
-              flexWrap: 'wrap',
               opacity: 0,
-              animation: 'fadeInUp 0.9s var(--ease-smooth) 0.55s both',
+              animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
+              position: 'relative',
             }}>
-              <Link to="/products" className="btn btn-blue" style={{ gap: '8px' }}>
-                Explore Our Solutions
-                <ArrowRight size={15} />
-              </Link>
-              <Link to="/contact" className="btn btn-outline-white">
-                Contact Our Team
-              </Link>
+              <div style={{
+                position: 'relative',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 168, 181, 0.15)',
+                background: 'var(--navy-mid)',
+              }}>
+                {/* Top bar overlay for clinical monitor aesthetic */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '12px 16px',
+                  background: 'linear-gradient(to bottom, rgba(10, 22, 40, 0.85), transparent)',
+                  zIndex: 2,
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#00C4CC',
+                      boxShadow: '0 0 8px #00C4CC',
+                      animation: 'pulse-dot 2s ease-in-out infinite',
+                    }} />
+                    <span style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.625rem',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      color: 'rgba(255,255,255,0.85)',
+                    }}>
+                      MRI Technology Demo
+                    </span>
+                  </div>
+                  <span style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.5625rem',
+                    color: 'rgba(255,255,255,0.5)',
+                    letterSpacing: '0.1em',
+                  }}>
+                    HD · LOOPING
+                  </span>
+                </div>
+
+                <video
+                  src={`${import.meta.env.BASE_URL}hero-mri.mp4`}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    maxHeight: '440px',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
