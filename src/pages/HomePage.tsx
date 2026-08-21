@@ -162,65 +162,17 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Interactive 3D MRI Scanner Viewer */}
+            {/* Right: Seamless Blended 3D MRI Scanner Viewer */}
             <div style={{
               opacity: 0,
               animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
               position: 'relative',
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
-              <div style={{
-                position: 'relative',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 168, 181, 0.15)',
-                background: 'var(--navy-mid)',
-              }}>
-                {/* Top bar overlay for clinical monitor aesthetic */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  padding: '12px 16px',
-                  background: 'linear-gradient(to bottom, rgba(10, 22, 40, 0.85), transparent)',
-                  zIndex: 2,
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  pointerEvents: 'none',
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{
-                      width: '8px',
-                      height: '8px',
-                      borderRadius: '50%',
-                      background: '#00C4CC',
-                      boxShadow: '0 0 8px #00C4CC',
-                      animation: 'pulse-dot 2s ease-in-out infinite',
-                    }} />
-                    <span style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.625rem',
-                      letterSpacing: '0.15em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.85)',
-                    }}>
-                      Interactive 3D Model
-                    </span>
-                  </div>
-                  <span style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.5625rem',
-                    color: 'rgba(255,255,255,0.5)',
-                    letterSpacing: '0.1em',
-                  }}>
-                    DRAG TO ROTATE
-                  </span>
-                </div>
-
-                <Mri3DViewer height="440px" />
-              </div>
+              <Mri3DViewer height="500px" />
             </div>
           </div>
         </div>

@@ -19,13 +19,13 @@ interface Mri3DViewerProps {
   height?: string;
 }
 
-export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '440px' }) => {
+export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '480px' }) => {
   return (
-    <div style={{ width: '100%', height: height, background: '#09121f', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: '100%', height: height, background: 'transparent', position: 'relative', overflow: 'hidden' }}>
       <Canvas
         shadows
         camera={{ position: [3.2, 2.2, 3.6], fov: 45 }}
-        gl={{ antialias: true }}
+        gl={{ antialias: true, alpha: true }}
       >
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 8, 5]} intensity={1.8} castShadow shadow-mapSize={1024} />
