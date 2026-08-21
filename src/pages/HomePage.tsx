@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { Mri3DViewer } from '../components/organisms/Mri3DViewer';
 import { StatsSection } from '../components/organisms/StatsSection';
 import { ClientMarquee } from '../components/organisms/ClientMarquee';
 import {
@@ -161,7 +162,7 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Playable GIF / Video */}
+            {/* Right: Interactive 3D MRI Scanner Viewer */}
             <div style={{
               opacity: 0,
               animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
@@ -187,6 +188,7 @@ export const HomePage: React.FC = () => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
+                  pointerEvents: 'none',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span style={{
@@ -204,7 +206,7 @@ export const HomePage: React.FC = () => {
                       textTransform: 'uppercase',
                       color: 'rgba(255,255,255,0.85)',
                     }}>
-                      MRI Technology Demo
+                      Interactive 3D Model
                     </span>
                   </div>
                   <span style={{
@@ -213,24 +215,11 @@ export const HomePage: React.FC = () => {
                     color: 'rgba(255,255,255,0.5)',
                     letterSpacing: '0.1em',
                   }}>
-                    HD · LOOPING
+                    DRAG TO ROTATE
                   </span>
                 </div>
 
-                <video
-                  src={`${import.meta.env.BASE_URL}hero-mri.mp4`}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    maxHeight: '440px',
-                    objectFit: 'cover',
-                    display: 'block',
-                  }}
-                />
+                <Mri3DViewer height="440px" />
               </div>
             </div>
           </div>
