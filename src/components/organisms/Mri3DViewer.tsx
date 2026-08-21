@@ -44,8 +44,8 @@ function CameraController({ onOpacityChange }: { onOpacityChange: (opacity: numb
   const startPos = new THREE.Vector3(0, 2.2, 4.6);
   const startTarget = new THREE.Vector3(0, 1.2, 0);
 
-  // Zoomed Position: Centered at aperture bore level
-  const zoomPos = new THREE.Vector3(0, 1.48, 2.3);
+  // Zoomed Position: Entrance of scanner bore (framing the inner bore and text)
+  const zoomPos = new THREE.Vector3(0, 1.48, 2.2);
   const zoomTarget = new THREE.Vector3(0, 1.48, 0.0);
 
   useFrame((_, delta) => {
@@ -108,28 +108,17 @@ function ScannerBoreText({ opacity }: { opacity: number }) {
   if (opacity <= 0.01) return null;
 
   return (
-    <group position={[0, 1.48, 0.1]}>
-      <Float speed={1.5} rotationIntensity={0.03} floatIntensity={0.12}>
+    <group position={[0, 1.48, -0.1]}>
+      <Float speed={1.5} rotationIntensity={0.02} floatIntensity={0.1}>
         <Text
-          fontSize={0.11}
+          fontSize={0.075}
           color="#00e5ff"
           anchorX="center"
           anchorY="middle"
           fillOpacity={opacity}
-          letterSpacing={0.12}
+          letterSpacing={0.14}
         >
           NOUR MEDICAL
-        </Text>
-        <Text
-          position={[0, -0.11, 0]}
-          fontSize={0.045}
-          color="#ffffff"
-          anchorX="center"
-          anchorY="middle"
-          fillOpacity={opacity * 0.9}
-          letterSpacing={0.15}
-        >
-          ADVANCED HEALTHCARE TECHNOLOGY
         </Text>
       </Float>
     </group>
@@ -140,11 +129,20 @@ interface Mri3DViewerProps {
   height?: string;
 }
 
-export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '650px' }) => {
+export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '700px' }) => {
   const [textOpacity, setTextOpacity] = useState(0);
 
   return (
-    <div style={{ width: '100%', height: height, background: 'transparent', position: 'relative', overflow: 'hidden' }}>
+    <div style={{
+      width: '100%',
+      height: height,
+      background: 'transparent',
+      position: 'relative',
+      overflow: 'hidden',
+      borderRadius: '50%',
+      maskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
+      WebkitMaskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
+    }}>
       <Canvas
         shadows
         camera={{ position: [0, 2.2, 4.6], fov: 45 }}

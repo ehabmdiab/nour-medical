@@ -150,17 +150,20 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Larger Seamless 3D MRI Scanner Viewer */}
+            {/* Right: Larger Circular Blended 3D MRI Scanner Viewer */}
             <div style={{
               opacity: 0,
               animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
               position: 'relative',
               width: '100%',
+              maxWidth: '720px',
+              aspectRatio: '1/1',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              margin: '0 auto',
             }}>
-              <Mri3DViewer height="650px" />
+              <Mri3DViewer height="720px" />
             </div>
           </div>
         </div>
