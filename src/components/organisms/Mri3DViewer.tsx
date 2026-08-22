@@ -40,13 +40,13 @@ function CameraController({ onOpacityChange }: { onOpacityChange: (opacity: numb
   const controlsRef = useRef<any>(null);
   const timeRef = useRef<number>(0);
 
-  // Start Position: Wide view of the entire MRI scanner
-  const startPos = new THREE.Vector3(0, 2.2, 4.6);
-  const startTarget = new THREE.Vector3(0, 1.2, 0);
+  // Start Position: Wide view of the MRI scanner
+  const startPos = new THREE.Vector3(0, 2.2, 4.4);
+  const startTarget = new THREE.Vector3(0, 1.35, 0);
 
-  // Zoomed Position: Entrance of scanner bore (framing the inner bore and text)
-  const zoomPos = new THREE.Vector3(0, 1.48, 2.2);
-  const zoomTarget = new THREE.Vector3(0, 1.48, 0.0);
+  // Zoomed Position: Framed zoom showing the outer machine colors and glowing ring
+  const zoomPos = new THREE.Vector3(0, 1.78, 2.75);
+  const zoomTarget = new THREE.Vector3(0, 1.78, 0.0);
 
   useFrame((_, delta) => {
     timeRef.current += delta;
@@ -66,7 +66,7 @@ function CameraController({ onOpacityChange }: { onOpacityChange: (opacity: numb
       progress = ease < 0.5 ? 4 * ease * ease * ease : 1 - Math.pow(-2 * ease + 2, 3) / 2;
       opacity = Math.min(1, Math.max(0, (ease - 0.15) * 1.3));
     } else if (t < 52) {
-      // 7s - 52s: Hold zoomed inside view for ~45 seconds displaying the text
+      // 7s - 52s: Hold zoomed inside view for ~45 seconds displaying text
       progress = 1;
       opacity = 1;
     } else if (t < 57) {
@@ -96,6 +96,8 @@ function CameraController({ onOpacityChange }: { onOpacityChange: (opacity: numb
     <OrbitControls
       ref={controlsRef}
       makeDefault
+      enableZoom={false}
+      enableRotate={true}
       minDistance={0.5}
       maxDistance={12}
       maxPolarAngle={Math.PI / 2 - 0.05}
@@ -108,15 +110,15 @@ function ScannerBoreText({ opacity }: { opacity: number }) {
   if (opacity <= 0.01) return null;
 
   return (
-    <group position={[0, 1.48, -0.1]}>
-      <Float speed={1.5} rotationIntensity={0.02} floatIntensity={0.1}>
+    <group position={[0, 1.82, -0.15]}>
+      <Float speed={1.5} rotationIntensity={0.02} floatIntensity={0.08}>
         <Text
-          fontSize={0.075}
+          fontSize={0.052}
           color="#00e5ff"
           anchorX="center"
           anchorY="middle"
           fillOpacity={opacity}
-          letterSpacing={0.14}
+          letterSpacing={0.16}
         >
           NOUR MEDICAL
         </Text>
@@ -140,20 +142,20 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '700px' }) =>
       position: 'relative',
       overflow: 'hidden',
       borderRadius: '50%',
-      maskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
-      WebkitMaskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
+      maskImage: 'radial-gradient(circle at center, black 62%, transparent 100%)',
+      WebkitMaskImage: 'radial-gradient(circle at center, black 62%, transparent 100%)',
     }}>
       <Canvas
         shadows
-        camera={{ position: [0, 2.2, 4.6], fov: 45 }}
+        camera={{ position: [0, 2.2, 4.4], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
       >
         <ambientLight intensity={0.9} />
         <directionalLight position={[5, 8, 5]} intensity={1.8} castShadow shadow-mapSize={1024} />
-        <pointLight position={[0, 1.48, 0.5]} color="#00e5ff" intensity={4.5} distance={6} />
+        <pointLight position={[0, 1.82, 0.5]} color="#00e5ff" intensity={4.5} distance={6} />
 
         <Suspense fallback={null}>
-          <MriScannerModel position={[0, 0, 0]} />
+          <MriScannerModel position={[0, 0, 0]} scale={[1.25, 1.25, 1.25]} />
           <ScannerBoreText opacity={textOpacity} />
           <ContactShadows position={[0, 0, 0]} opacity={0.6} scale={10} blur={1.5} far={4} />
           <Environment preset="city" />
