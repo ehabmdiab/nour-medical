@@ -79,6 +79,7 @@ export const HomePage: React.FC = () => {
           justifyContent: 'center',
           paddingTop: '60px',
           paddingBottom: '80px',
+          maxWidth: '1440px',
         }}>
           {/* Label */}
           <div style={{
@@ -107,19 +108,19 @@ export const HomePage: React.FC = () => {
             </span>
           </div>
 
-          {/* Hero Content Grid: Text Left, Video Right */}
+          {/* Hero Content Grid: Text Left, Expanded 3D Model Right */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: 'clamp(32px, 5vw, 64px)',
+            gridTemplateColumns: 'minmax(320px, 540px) 1fr',
+            gap: 'clamp(32px, 4vw, 64px)',
             alignItems: 'center',
           }}>
-            {/* Left: Text & CTA */}
-            <div style={{ maxWidth: '640px' }}>
+            {/* Left: Text & CTA (Preserved without layout compression) */}
+            <div style={{ maxWidth: '540px', width: '100%' }}>
               <h1
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(2.5rem, 5.5vw, 5.25rem)',
+                  fontSize: 'clamp(2.5rem, 5vw, 5.25rem)',
                   fontWeight: 800,
                   color: 'var(--white)',
                   lineHeight: 0.98,
@@ -150,20 +151,20 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Larger Circular Blended 3D MRI Scanner Viewer */}
+            {/* Right: Max Width Full Radius Circular 3D MRI Scanner Viewer */}
             <div style={{
               opacity: 0,
               animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
               position: 'relative',
               width: '100%',
-              maxWidth: '720px',
+              maxWidth: '920px',
               aspectRatio: '1/1',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               margin: '0 auto',
             }}>
-              <Mri3DViewer height="720px" />
+              <Mri3DViewer height="100%" />
             </div>
           </div>
         </div>

@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { PRODUCT_CATEGORIES } from '../data/companyData';
+import { ArrowRight, Search, Check, FileText } from 'lucide-react';
+import { PRODUCTS_DATA } from '../data/productsData';
+import type { ProductItem } from '../data/productsData';
+import { ProductSpecModal } from '../components/organisms/ProductSpecModal';
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null);
@@ -17,25 +19,51 @@ function useReveal(threshold = 0.1) {
   return { ref, visible };
 }
 
-export const ProductsPage: React.FC = () => {
-  const { ref: gridRef, visible: gridVisible } = useReveal();
-  const { ref: radRef, visible: radVisible } = useReveal();
+const MODALITY_FILTERS = [
+  { id: 'all', label: 'All Ecosystem' },
+  { id: 'cath-lab', label: 'Cath-Lab / Angio' },
+  { id: 'ct', label: 'CT Scanner' },
+  { id: 'mri', label: 'MRI Systems' },
+  { id: 'c-arm', label: 'Mobile C-Arm' },
+  { id: 'xray', label: 'Digital X-Ray' },
+  { id: 'sterilization', label: 'Sterilization' },
+  { id: 'furniture', label: 'Hospital Beds & Furniture' },
+  { id: 'consumables', label: 'Parts & Consumables' },
+];
 
-  const RADIOLOGY_SUBCATEGORIES = [
-    { name: 'MRI', description: 'Magnetic Resonance Imaging systems for advanced soft tissue diagnostics.' },
-    { name: 'CT Scanner', description: 'Computed Tomography systems delivering high-resolution cross-sectional imaging.' },
-    { name: 'Digital X-Ray', description: 'Flat-panel DR systems for efficient, high-quality digital radiography.' },
-    { name: 'C-Arm', description: 'Mobile fluoroscopic imaging for surgical and interventional procedures.' },
-    { name: 'Cath-Lab / Interventional Imaging', description: 'Dedicated cardiac catheterization laboratory and interventional radiology systems.' },
-  ];
+export const ProductsPage: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
+
+  const { ref: gridRef, visible: gridVisible } = useReveal();
+
+  const filteredProducts = PRODUCTS_DATA.filter(product => {
+    const matchesFilter = activeFilter === 'all' ||
+      (activeFilter === 'cath-lab' && (product.id.includes('cath') || product.name.toLowerCase().includes('cath'))) ||
+      (activeFilter === 'ct' && (product.id.includes('ct') || product.name.toLowerCase().includes('ct'))) ||
+      (activeFilter === 'mri' && (product.id.includes('mri') || product.name.toLowerCase().includes('mri'))) ||
+      (activeFilter === 'c-arm' && (product.id.includes('c-arm') || product.name.toLowerCase().includes('c-arm'))) ||
+      (activeFilter === 'xray' && (product.id.includes('dr') || product.name.toLowerCase().includes('x-ray') || product.name.toLowerCase().includes('radiology'))) ||
+      (activeFilter === 'sterilization' && product.category === 'sterilization') ||
+      (activeFilter === 'furniture' && product.category === 'furniture') ||
+      (activeFilter === 'consumables' && product.category === 'consumables');
+
+    const matchesSearch = searchQuery.trim() === '' ||
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.supplier.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchesFilter && matchesSearch;
+  });
 
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--navy)', padding: '100px 0 80px' }}>
+      <section style={{ background: 'var(--navy)', padding: '100px 0 70px' }}>
         <div className="container">
-          <div className="section-label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '24px' }}>
-            Product Portfolio
+          <div className="section-label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '20px' }}>
+            Product Portfolio & Datasheets
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
@@ -44,8 +72,8 @@ export const ProductsPage: React.FC = () => {
             color: 'var(--white)',
             letterSpacing: '-0.03em',
             lineHeight: 0.95,
-            maxWidth: '700px',
-            marginBottom: '32px',
+            maxWidth: '750px',
+            marginBottom: '24px',
           }}>
             Medical Technology Solutions
           </h1>
@@ -53,15 +81,87 @@ export const ProductsPage: React.FC = () => {
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
             lineHeight: 1.7,
-            color: 'rgba(255,255,255,0.6)',
-            maxWidth: '520px',
+            color: 'rgba(255,255,255,0.65)',
+            maxWidth: '560px',
+            marginBottom: '40px',
           }}>
-            A comprehensive portfolio of medical technology, radiology equipment, hospital furniture, and consumables — sourced from international suppliers and delivered with technical expertise.
+            Explore our advanced radiology modalities, diagnostic equipment, central sterilization suites, and hospital furniture — supported by 24/7 technical hotline and spare parts inventory.
           </p>
+
+          {/* Search Bar & Filter Pills Container */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {/* Search Input */}
+            <div style={{
+              position: 'relative',
+              maxWidth: '480px',
+            }}>
+              <Search size={18} style={{
+                position: 'absolute',
+                left: '16px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                color: 'rgba(255, 255, 255, 0.4)',
+              }} />
+              <input
+                type="text"
+                placeholder="Search equipment, supplier (Lonwin, RadMedix, InnoCare)..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '12px 16px 12px 48px',
+                  borderRadius: '30px',
+                  background: 'rgba(255, 255, 255, 0.06)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  color: '#fff',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.875rem',
+                  outline: 'none',
+                  backdropFilter: 'blur(10px)',
+                }}
+              />
+            </div>
+
+            {/* Filter Pills */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '8px',
+            }}>
+              {MODALITY_FILTERS.map((filter) => (
+                <button
+                  key={filter.id}
+                  onClick={() => setActiveFilter(filter.id)}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '20px',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.04em',
+                    border: activeFilter === filter.id
+                      ? '1px solid var(--teal-accent)'
+                      : '1px solid rgba(255, 255, 255, 0.12)',
+                    background: activeFilter === filter.id
+                      ? 'rgba(0, 168, 181, 0.25)'
+                      : 'rgba(255, 255, 255, 0.04)',
+                    color: activeFilter === filter.id
+                      ? 'var(--teal-accent)'
+                      : 'rgba(255, 255, 255, 0.7)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Product Categories */}
+      {/* Product Showcase Grid */}
       <section
         ref={gridRef as React.RefObject<HTMLElement>}
         style={{
@@ -72,113 +172,136 @@ export const ProductsPage: React.FC = () => {
         }}
       >
         <div className="container">
-          <div style={{ marginBottom: '60px' }}>
-            <div className="section-label">All Categories</div>
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
-              fontWeight: 700,
-              color: 'var(--navy)',
-              letterSpacing: '-0.02em',
-            }}>
-              Product Categories
-            </h2>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-            {PRODUCT_CATEGORIES.map((cat, i) => (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+            gap: '28px',
+          }}>
+            {filteredProducts.map((product) => (
               <div
-                key={cat.id}
+                key={product.id}
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: '80px 1fr auto',
-                  gap: '32px',
-                  alignItems: 'center',
-                  padding: '40px 0',
-                  borderBottom: '1px solid var(--warm-neutral)',
-                  opacity: gridVisible ? 1 : 0,
-                  transform: gridVisible ? 'translateX(0)' : 'translateX(-16px)',
-                  transition: `opacity 0.5s var(--ease-smooth) ${i * 0.07}s, transform 0.5s var(--ease-smooth) ${i * 0.07}s`,
-                  cursor: 'default',
+                  background: 'var(--white)',
+                  border: '1px solid var(--warm-neutral)',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
                 }}
-                onMouseEnter={e => {
-                  const arrow = e.currentTarget.querySelector('.cat-arrow') as HTMLElement;
-                  if (arrow) arrow.style.transform = 'translateX(6px)';
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px)';
+                  e.currentTarget.style.borderColor = 'var(--blue-medical)';
+                  e.currentTarget.style.boxShadow = '0 16px 36px rgba(0, 51, 102, 0.08)';
                 }}
-                onMouseLeave={e => {
-                  const arrow = e.currentTarget.querySelector('.cat-arrow') as HTMLElement;
-                  if (arrow) arrow.style.transform = 'translateX(0)';
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = 'var(--warm-neutral)';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.04)';
                 }}
               >
-                <div>
-                  <div style={{
+                {/* Image */}
+                <div style={{ position: 'relative', height: '220px', overflow: 'hidden', background: '#f1f5f9' }}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <span style={{
+                    position: 'absolute',
+                    top: '14px',
+                    left: '14px',
+                    padding: '4px 10px',
+                    borderRadius: '12px',
+                    background: 'var(--navy)',
+                    color: 'var(--teal-accent)',
                     fontFamily: 'var(--font-mono)',
-                    fontSize: '1.25rem',
-                    fontWeight: 300,
-                    color: 'var(--blue-medical)',
-                    letterSpacing: '-0.01em',
+                    fontSize: '0.625rem',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
                   }}>
-                    {cat.number}
-                  </div>
+                    {product.supplier} · {product.country}
+                  </span>
                 </div>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px', flexWrap: 'wrap' }}>
-                    <h3 style={{
-                      fontFamily: 'var(--font-heading)',
-                      fontSize: 'clamp(1.25rem, 2vw, 1.625rem)',
-                      fontWeight: 700,
-                      color: 'var(--navy)',
-                      letterSpacing: '-0.015em',
-                    }}>
-                      {cat.title}
-                    </h3>
-                    <span style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.5rem',
-                      letterSpacing: '0.15em',
-                      textTransform: 'uppercase',
-                      color: 'var(--text-muted)',
-                      background: 'var(--warm-neutral)',
-                      padding: '3px 8px',
-                      borderRadius: '2px',
-                    }}>
-                      {cat.tag}
-                    </span>
-                  </div>
+
+                {/* Content */}
+                <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <span style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.6875rem',
+                    color: 'var(--blue-medical)',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    marginBottom: '6px',
+                  }}>
+                    {product.categoryLabel}
+                  </span>
+
+                  <h3 style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '1.25rem',
+                    fontWeight: 700,
+                    color: 'var(--navy)',
+                    marginBottom: '8px',
+                    lineHeight: 1.3,
+                  }}>
+                    {product.name}
+                  </h3>
+
                   <p style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '0.875rem',
-                    lineHeight: 1.65,
+                    fontSize: '0.8125rem',
+                    lineHeight: 1.6,
                     color: 'var(--text-muted)',
-                    maxWidth: '600px',
+                    marginBottom: '20px',
+                    flex: 1,
                   }}>
-                    {cat.description}
+                    {product.description}
                   </p>
-                  {cat.subcategories.length > 0 && (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '14px' }}>
-                      {cat.subcategories.map(sub => (
-                        <span
-                          key={sub}
-                          style={{
-                            fontFamily: 'var(--font-body)',
-                            fontSize: '0.75rem',
-                            color: 'var(--text-muted)',
-                            border: '1px solid var(--gray-light)',
-                            borderRadius: '2px',
-                            padding: '4px 10px',
-                          }}
-                        >
-                          {sub}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div
-                  className="cat-arrow"
-                  style={{ transition: 'transform var(--dur-mid) var(--ease-smooth)', color: 'var(--navy)' }}
-                >
-                  <ArrowRight size={20} />
+
+                  {/* Highlights */}
+                  <div style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    {product.features.slice(0, 2).map((feat, i) => (
+                      <span key={i} style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.75rem',
+                        fontFamily: 'var(--font-body)',
+                        color: 'var(--navy)',
+                      }}>
+                        <Check size={14} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
+                        {feat}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Button */}
+                  <button
+                    onClick={() => setSelectedProduct(product)}
+                    className="btn"
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      borderRadius: '12px',
+                      background: 'var(--navy)',
+                      color: 'var(--white)',
+                      fontSize: '0.8125rem',
+                      fontFamily: 'var(--font-mono)',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      border: 'none',
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    <FileText size={15} />
+                    View Technical Spec Sheet
+                  </button>
                 </div>
               </div>
             ))}
@@ -186,88 +309,16 @@ export const ProductsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Radiology Subcategory Detail */}
-      <section
-        ref={radRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--warm-white)',
-          opacity: radVisible ? 1 : 0,
-          transition: 'opacity 0.7s var(--ease-smooth)',
-        }}
-      >
-        <div className="container">
-          <div style={{ marginBottom: '56px' }}>
-            <div className="section-label">Deep Dive</div>
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
-              fontWeight: 700,
-              color: 'var(--navy)',
-              letterSpacing: '-0.02em',
-            }}>
-              Radiology Technology
-            </h2>
-            <p style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.9375rem',
-              lineHeight: 1.7,
-              color: 'var(--text-muted)',
-              maxWidth: '560px',
-              marginTop: '16px',
-            }}>
-              Nour Medical provides the full spectrum of clinical imaging technologies, with installation and maintenance capabilities across all major modalities.
-            </p>
-          </div>
-
-          <div className="grid-3" style={{ gap: '24px' }}>
-            {RADIOLOGY_SUBCATEGORIES.map((sub, i) => (
-              <div
-                key={sub.name}
-                className="card"
-                style={{
-                  padding: '36px 28px',
-                  opacity: radVisible ? 1 : 0,
-                  transform: radVisible ? 'translateY(0)' : 'translateY(16px)',
-                  transition: `opacity 0.6s var(--ease-smooth) ${i * 0.1}s, transform 0.6s var(--ease-smooth) ${i * 0.1}s`,
-                }}
-              >
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.5rem',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--teal-accent)',
-                  marginBottom: '16px',
-                }}>
-                  {String(i + 1).padStart(2, '0')} — Radiology
-                </div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.25rem',
-                  fontWeight: 700,
-                  color: 'var(--navy)',
-                  letterSpacing: '-0.015em',
-                  marginBottom: '10px',
-                }}>
-                  {sub.name}
-                </h3>
-                <p style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
-                  lineHeight: 1.65,
-                  color: 'var(--text-muted)',
-                }}>
-                  {sub.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Product Spec Sheet Modal */}
+      {selectedProduct && (
+        <ProductSpecModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
 
       {/* CTA */}
-      <section style={{ padding: '80px 0', background: 'var(--white)', borderTop: '1px solid var(--gray-light)', textAlign: 'center' }}>
+      <section style={{ padding: '80px 0', background: 'var(--warm-white)', borderTop: '1px solid var(--gray-light)', textAlign: 'center' }}>
         <div className="container" style={{ maxWidth: '600px' }}>
           <h2 style={{
             fontFamily: 'var(--font-heading)',
@@ -277,7 +328,7 @@ export const ProductsPage: React.FC = () => {
             letterSpacing: '-0.02em',
             marginBottom: '20px',
           }}>
-            Looking for Specific Equipment?
+            Looking for Custom Configurations?
           </h2>
           <p style={{
             fontFamily: 'var(--font-body)',
@@ -286,10 +337,10 @@ export const ProductsPage: React.FC = () => {
             color: 'var(--text-muted)',
             marginBottom: '36px',
           }}>
-            Contact our team to discuss your specific requirements. We work with international suppliers to source the right solution for your facility.
+            Our field engineers provide tailored equipment quotations, room layout planning, lead shielding calculation, and turnkey installation across Egypt.
           </p>
           <Link to="/contact" className="btn btn-primary" style={{ gap: '8px' }}>
-            Send an Inquiry
+            Request Quotation
             <ArrowRight size={15} />
           </Link>
         </div>

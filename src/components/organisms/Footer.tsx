@@ -8,6 +8,7 @@ const FOOTER_LINKS = {
     { label: 'About Us', href: '/about' },
     { label: 'Our Partners', href: '/partners' },
     { label: 'Our Clients', href: '/clients' },
+    { label: 'Media & Gallery', href: '/gallery' },
   ],
   Solutions: [
     { label: 'Products', href: '/products' },

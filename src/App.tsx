@@ -9,6 +9,7 @@ import { MaintenancePage } from './pages/MaintenancePage';
 import { ClientsPage } from './pages/ClientsPage';
 import { PartnersPage } from './pages/PartnersPage';
 import { ContactPage } from './pages/ContactPage';
+import { GalleryPage } from './pages/GalleryPage';
 
 // Scroll to top on route change
 const ScrollToTop: React.FC = () => {
@@ -33,8 +34,7 @@ export const App: React.FC = () => {
           <Route path="/clients" element={<ClientsPage />} />
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          {/* Legacy routes redirect to new ones */}
-          <Route path="/gallery" element={<ClientsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
         </Routes>
       </PageLayout>
     </Router>
