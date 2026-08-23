@@ -22,6 +22,7 @@ export const GalleryPage: React.FC = () => {
             eyebrow="MEDIA & FIELD EXHIBITION HUB"
             title="Engineering Log & Photo Gallery"
             subtitle="Explore high-resolution records of heavy CT/MRI gantry rigging, Cath-Lab deployments, RSNA delegation, Japan technical facilities, and system walkthrough videos."
+            theme="dark"
           />
 
           {/* Category Filter Tabs */}
