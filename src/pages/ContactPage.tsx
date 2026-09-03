@@ -37,16 +37,16 @@ export const ContactPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--navy)', padding: '100px 0 80px' }}>
+      <section style={{ background: 'var(--bg-hero-light)', padding: '120px 0 80px', borderBottom: '1px solid var(--gray-light)' }}>
         <div className="container">
-          <div className="section-label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '24px' }}>
+          <div className="section-label" style={{ marginBottom: '24px' }}>
             Get in Touch
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             fontWeight: 800,
-            color: 'var(--white)',
+            color: 'var(--navy)',
             letterSpacing: '-0.03em',
             lineHeight: 0.95,
             maxWidth: '700px',
@@ -58,7 +58,7 @@ export const ContactPage: React.FC = () => {
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
             lineHeight: 1.7,
-            color: 'rgba(255,255,255,0.6)',
+            color: 'var(--text-muted)',
             maxWidth: '520px',
           }}>
             Contact Nour Medical to discuss medical equipment, radiology systems, maintenance, spare parts, and healthcare technology solutions.
@@ -133,7 +133,7 @@ export const ContactPage: React.FC = () => {
                     color: 'var(--text-muted)',
                     marginBottom: '10px',
                   }}>
-                    Mobile
+                    Head Office / Mobile
                   </div>
                   {COMPANY_CONTACT.mobile.map(m => (
                     <div key={m} style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '6px' }}>

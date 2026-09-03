@@ -5,10 +5,11 @@
 
 // ── CONTACT ────────────────────────────────────────────────────
 export const COMPANY_CONTACT = {
+  headOffice: 'Head Office',
   address: 'No. 30 Misr Helwan Agricultural St., Maadi, Cairo, Egypt',
   phone: ['02 25267173', '02 25267175'],
   fax: '02 25267178',
-  mobile: ['(+02) 01007361255', '(+02) 01023515373'],
+  mobile: ['01023515373', '01007361255'],
   website: 'www.nourmedical.com',
   email: 'info@nourmedical.com',
 };
@@ -38,47 +39,6 @@ export const COMPANY_INFO = {
     },
   ],
 };
-
-// ── INSTALLATION STATISTICS ─────────────────────────────────────
-export const INSTALLATION_STATS = [
-  { label: 'Cath-Lab Installations', value: '25+', unit: '' },
-  { label: 'Digital X-Ray Installations', value: '15+', unit: '' },
-  { label: 'CT Installations', value: '10+', unit: '' },
-  { label: 'MRI Installations', value: '5+', unit: '' },
-];
-
-// ── MAINTENANCE CONTRACT STATISTICS ─────────────────────────────
-export const MAINTENANCE_STATS = [
-  { system: 'Cath-Lab', contracts: '30+' },
-  { system: 'C-Arm', contracts: '20+' },
-  { system: 'X-Ray', contracts: '40+' },
-  { system: 'CT', contracts: '15+' },
-  { system: 'MRI', contracts: '7+' },
-];
-
-// ── BUSINESS CAPACITY METRICS ────────────────────────────────────
-export const CAPACITY_METRICS = [
-  {
-    number: '50',
-    suffix: '',
-    label: 'Field Service Engineers & Technical Staff',
-  },
-  {
-    number: '1,000',
-    suffix: 'm²',
-    label: 'Spare Parts Storage Facility',
-  },
-  {
-    number: '25+',
-    suffix: '',
-    label: 'Cath-Lab Systems Installed',
-  },
-  {
-    number: '40+',
-    suffix: '',
-    label: 'X-Ray Systems Under AMC',
-  },
-];
 
 // ── THREE PILLARS ────────────────────────────────────────────────
 export const COMPANY_PILLARS = [
@@ -154,49 +114,78 @@ export const PRODUCT_CATEGORIES = [
     number: '06',
     title: 'Spare Parts',
     description:
-      'Genuine spare parts for radiology and medical equipment, backed by a 1,000 m² storage facility for rapid availability.',
+      'Genuine spare parts for radiology and medical equipment, backed by a dedicated local storage facility for rapid availability.',
     subcategories: [],
     tag: 'Parts & Components',
   },
 ];
 
 // ── SERVICES ─────────────────────────────────────────────────────
-export const SERVICES = [
+export interface ServicePillar {
+  number: string;
+  id: string;
+  title: string;
+  tag: string;
+  headline: string;
+  description: string;
+  highlights: { title: string; desc: string }[];
+  badge: string;
+  link: string;
+  linkText: string;
+}
+
+export const SERVICES: ServicePillar[] = [
   {
     number: '01',
-    title: 'Equipment Installation',
+    id: 'maintenance-support',
+    title: 'Maintenance & Technical Support',
+    tag: 'Preventive & Corrective Engineering',
+    headline: '24/7 Field Service Engineering & Operational Uptime',
     description:
-      'Professional installation of radiology systems and medical equipment, ensuring optimal performance from day one.',
+      'Proactive diagnostic maintenance programs, 24/7 emergency response, and annual service contracts (AMC) designed to eliminate system downtime and extend equipment lifespan.',
+    highlights: [
+      {
+        title: '24/7 Emergency Hotline',
+        desc: 'Direct line to biomedical engineers with under 2-hour response in Cairo and rapid nationwide dispatch.',
+      },
+      {
+        title: 'Preventive & Corrective Maintenance',
+        desc: 'Scheduled diagnostic checks, X-ray tube wear analysis, high-voltage calibration, and detector mapping.',
+      },
+      {
+        title: 'Annual Maintenance Contracts (AMC)',
+        desc: 'Structured contracts offering priority response, routine audits, and local spare parts coverage.',
+      },
+    ],
+    badge: '24/7 Hotline Support',
+    link: '/maintenance',
+    linkText: 'Explore Maintenance Services',
   },
   {
     number: '02',
-    title: 'Preventive Maintenance',
+    id: 'device-parts-supplier',
+    title: 'Device and Spare Parts Supplier',
+    tag: 'Turnkey Supply & Inventory',
+    headline: 'Advanced Modalities & Stocked Central Warehouse',
     description:
-      'Scheduled preventive maintenance programmes designed to sustain equipment reliability and extend operational lifespan.',
-  },
-  {
-    number: '03',
-    title: 'Corrective Maintenance',
-    description:
-      'Prompt corrective maintenance to restore equipment functionality and minimize disruption to healthcare operations.',
-  },
-  {
-    number: '04',
-    title: 'Technical Support',
-    description:
-      'Dedicated technical support for radiology and medical equipment, provided by experienced field service engineers.',
-  },
-  {
-    number: '05',
-    title: 'Spare Parts Supply',
-    description:
-      'Reliable supply of genuine spare parts from a 1,000 m² facility, supporting rapid turnaround for service requirements.',
-  },
-  {
-    number: '06',
-    title: 'Annual Maintenance Contracts',
-    description:
-      'Structured annual maintenance contracts providing scheduled service, priority support, and parts availability for critical systems.',
+      'Turnkey supply of diagnostic radiology systems, central sterilization suites, hospital furniture, and genuine OEM spare parts backed by our 1,000 m² local storage facility.',
+    highlights: [
+      {
+        title: 'Global OEM Supplier Network',
+        desc: 'Authorized partner for leading medical OEMs across USA, Taiwan, and China (Radmedix, InnoCare, Lonwin, Senno Vision).',
+      },
+      {
+        title: '1,000 m² Central Warehouse',
+        desc: 'Stocked local storage in Maadi, Cairo featuring OEM X-ray tubes, generators, detectors, and ICU components.',
+      },
+      {
+        title: 'Turnkey Rigging & Installation',
+        desc: 'Comprehensive site planning, lead shielding construction, precision gantry levelling, and AEA certification.',
+      },
+    ],
+    badge: 'Maadi Central Warehouse',
+    link: '/products',
+    linkText: 'Explore Equipment Portfolio',
   },
 ];
 
@@ -244,6 +233,21 @@ export const SUPPLIER_PARTNERS = [
       'Integrated Imaging Products',
       'Radiography Equipment',
       'Interventional Therapy Products',
+    ],
+  },
+  {
+    id: 'sennovision',
+    name: 'Senno Vision (SennoVision Medical Technology)',
+    country: 'China',
+    countryFlag: '🇨🇳',
+    tagline: 'Advanced Medical Imaging & Vision Systems',
+    description:
+      'A medical systems manufacturer specializing in surgical C-arms, digital radiography (DR) solutions, medical vision systems, and specialized diagnostic imaging technology.',
+    specialties: [
+      'Surgical C-Arm Systems',
+      'Digital Radiography (DR)',
+      'Intraoperative Medical Vision',
+      'Specialized Diagnostic Systems',
     ],
   },
 ];
@@ -339,7 +343,7 @@ export const ALL_CLIENTS = [
 export const WHY_NOUR_MEDICAL = [
   {
     title: 'Experienced Technical Team',
-    description: '50 field service engineers, technicians, and administrative personnel dedicated to healthcare technology support.',
+    description: 'Field service engineers, technicians, and administrative personnel dedicated to healthcare technology support.',
   },
   {
     title: 'Reliable After-Sales Service',
@@ -347,7 +351,7 @@ export const WHY_NOUR_MEDICAL = [
   },
   {
     title: 'Large Parts Inventory',
-    description: 'A 1,000 m² parts storage facility enabling swift technical response and reduced system downtime.',
+    description: 'A dedicated parts storage facility enabling swift technical response and reduced system downtime.',
   },
   {
     title: 'Global Supplier Network',

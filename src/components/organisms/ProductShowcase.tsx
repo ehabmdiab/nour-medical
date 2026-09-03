@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { PRODUCTS_DATA, PRODUCT_CATEGORIES } from '../../data/productsData';
-import type { ProductItem } from '../../data/productsData';
 import { ProductCard } from '../molecules/ProductCard';
-import { ProductSpecModal } from './ProductSpecModal';
 import { SectionHeading } from '../atoms/SectionHeading';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const ProductShowcase: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [activeModalProduct, setActiveModalProduct] = useState<ProductItem | null>(null);
 
   const filteredProducts = selectedCategory === 'all'
     ? PRODUCTS_DATA
@@ -54,21 +51,12 @@ export const ProductShowcase: React.FC = () => {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
               >
-                <ProductCard
-                  product={product}
-                  onOpenSpecs={(p) => setActiveModalProduct(p)}
-                />
+                <ProductCard product={product} />
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
-
-      {/* Technical Spec Lightbox Modal */}
-      <ProductSpecModal
-        product={activeModalProduct}
-        onClose={() => setActiveModalProduct(null)}
-      />
     </section>
   );
 };

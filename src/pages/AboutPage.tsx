@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Award, ShieldCheck, Quote } from 'lucide-react';
 import { COMPANY_INFO, COMPANY_PILLARS } from '../data/companyData';
 
 function useReveal(threshold = 0.15) {
@@ -25,16 +25,16 @@ export const AboutPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--navy)', padding: '100px 0 80px' }}>
+      <section style={{ background: 'var(--bg-hero-light)', padding: '120px 0 80px', borderBottom: '1px solid var(--gray-light)' }}>
         <div className="container">
-          <div className="section-label section-label-light" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '24px' }}>
+          <div className="section-label section-label-light" style={{ marginBottom: '24px' }}>
             About Nour Medical
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             fontWeight: 800,
-            color: 'var(--white)',
+            color: 'var(--navy)',
             letterSpacing: '-0.03em',
             lineHeight: 0.95,
             maxWidth: '700px',
@@ -46,7 +46,7 @@ export const AboutPage: React.FC = () => {
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
             lineHeight: 1.7,
-            color: 'rgba(255,255,255,0.6)',
+            color: 'var(--text-muted)',
             maxWidth: '560px',
           }}>
             Nour Medical Company was established in {COMPANY_INFO.established} with the healthcare sector at the heart of its business.
@@ -161,12 +161,12 @@ export const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Leadership */}
+      {/* Executive Leadership & Vision */}
       <section
         ref={leaderRef as React.RefObject<HTMLElement>}
         style={{
           padding: 'var(--section-gap) 0',
-          background: 'var(--white)',
+          background: 'linear-gradient(180deg, var(--warm-white) 0%, var(--white) 100%)',
           opacity: leaderVisible ? 1 : 0,
           transform: leaderVisible ? 'translateY(0)' : 'translateY(24px)',
           transition: 'opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth)',
@@ -174,51 +174,132 @@ export const AboutPage: React.FC = () => {
       >
         <div className="container">
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 'clamp(40px, 6vw, 100px)',
-            alignItems: 'start',
+            position: 'relative',
+            background: 'var(--navy)',
+            borderRadius: '12px',
+            padding: 'clamp(32px, 5vw, 64px)',
+            color: 'var(--white)',
+            overflow: 'hidden',
+            boxShadow: '0 20px 40px rgba(10, 25, 47, 0.12)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
           }}>
-            <div>
-              <div className="section-label">Leadership</div>
-              <h2 style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-                fontWeight: 700,
-                color: 'var(--navy)',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.1,
-              }}>
-                Leadership
-              </h2>
-            </div>
-            <div>
-              <div style={{
-                padding: '40px 36px',
-                border: '1px solid var(--gray-light)',
-                borderRadius: '4px',
-                display: 'inline-block',
-                minWidth: '280px',
-              }}>
+            {/* Background Accent Lines */}
+            <div style={{
+              position: 'absolute',
+              top: '-50%',
+              right: '-10%',
+              width: '400px',
+              height: '400px',
+              background: 'radial-gradient(circle, rgba(0, 168, 150, 0.15) 0%, rgba(0, 168, 150, 0) 70%)',
+              pointerEvents: 'none',
+              borderRadius: '50%',
+            }} />
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: 'clamp(32px, 4vw, 56px)',
+              alignItems: 'center',
+              position: 'relative',
+              zIndex: 1,
+            }}>
+              {/* Left Column: Executive Credentials */}
+              <div>
                 <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.5rem',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--text-muted)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '6px 14px',
+                  borderRadius: '20px',
+                  background: 'rgba(0, 168, 150, 0.12)',
+                  border: '1px solid rgba(0, 168, 150, 0.3)',
+                  marginBottom: '20px',
+                }}>
+                  <Award size={14} style={{ color: 'var(--teal-accent)' }} />
+                  <span style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.6875rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: 'var(--teal-accent)',
+                    fontWeight: 600,
+                  }}>
+                    {COMPANY_INFO.chairmanTitle}
+                  </span>
+                </div>
+
+                <h2 style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: 'clamp(2rem, 4vw, 3.25rem)',
+                  fontWeight: 800,
+                  color: 'var(--white)',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1.05,
                   marginBottom: '16px',
                 }}>
-                  {COMPANY_INFO.chairmanTitle}
-                </div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.75rem',
-                  fontWeight: 700,
-                  color: 'var(--navy)',
-                  letterSpacing: '-0.02em',
-                }}>
                   {COMPANY_INFO.chairman}
-                </h3>
+                </h2>
+
+                <div style={{
+                  width: '60px',
+                  height: '3px',
+                  background: 'var(--teal-accent)',
+                  borderRadius: '2px',
+                  marginBottom: '24px',
+                }} />
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                  {['Executive Leadership', 'Strategic Vision', 'Engineering Excellence'].map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.75rem',
+                        fontFamily: 'var(--font-mono)',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        padding: '6px 12px',
+                        borderRadius: '4px',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                      }}
+                    >
+                      <ShieldCheck size={12} style={{ color: 'var(--teal-accent)' }} />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Column: Executive Quote / Vision Statement */}
+              <div style={{
+                position: 'relative',
+                paddingLeft: 'clamp(0px, 3vw, 24px)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+              }}>
+                <Quote size={32} style={{ color: 'var(--teal-accent)', opacity: 0.5, marginBottom: '16px' }} />
+                <p style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: 'clamp(1rem, 1.5vw, 1.1875rem)',
+                  lineHeight: 1.65,
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  fontWeight: 400,
+                  fontStyle: 'italic',
+                  marginBottom: '20px',
+                }}>
+                  "Guiding Nour Medical's mission to empower healthcare providers across Egypt through world-class medical diagnostic imaging systems, precision technical engineering, and uncompromised service support."
+                </p>
+                <div style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'var(--teal-accent)',
+                  fontWeight: 600,
+                }}>
+                  Nour Medical Governance & Direction
+                </div>
               </div>
             </div>
           </div>
@@ -230,7 +311,7 @@ export const AboutPage: React.FC = () => {
         ref={infraRef as React.RefObject<HTMLElement>}
         style={{
           padding: 'var(--section-gap) 0',
-          background: 'var(--navy)',
+          background: 'var(--warm-neutral)',
           opacity: infraVisible ? 1 : 0,
           transition: 'opacity 0.7s var(--ease-smooth)',
         }}
@@ -239,27 +320,27 @@ export const AboutPage: React.FC = () => {
           <div className="grid-2">
             {/* HR */}
             <div>
-              <div className="section-label section-label-light" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '32px' }}>
+              <div className="section-label section-label-light" style={{ marginBottom: '24px' }}>
                 Human Resources
               </div>
-              <div style={{
+              <h3 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(4rem, 8vw, 7rem)',
-                fontWeight: 800,
-                color: 'var(--white)',
-                lineHeight: 1,
-                letterSpacing: '-0.04em',
-                marginBottom: '8px',
+                fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
+                fontWeight: 700,
+                color: 'var(--navy)',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.2,
+                marginBottom: '16px',
               }}>
-                50
-              </div>
+                Experienced Technical & Service Staff
+              </h3>
               <p style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.5625rem',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.4)',
-                marginBottom: '24px',
+                color: 'var(--teal-accent)',
+                marginBottom: '20px',
               }}>
                 Field Service Engineers, Technicians & Administrative Personnel
               </p>
@@ -267,50 +348,50 @@ export const AboutPage: React.FC = () => {
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.9375rem',
                 lineHeight: 1.7,
-                color: 'rgba(255,255,255,0.55)',
+                color: 'var(--text-muted)',
               }}>
                 Our team of field service engineers, technicians, and administrative personnel is supported by a broader group of motivated professionals committed to delivering high-quality healthcare technology service.
               </p>
             </div>
 
             {/* Infrastructure */}
-            <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', paddingLeft: 'clamp(32px, 5vw, 60px)' }}>
-              <div className="section-label section-label-light" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '32px' }}>
+            <div style={{ borderLeft: '1px solid var(--gray-light)', paddingLeft: 'clamp(32px, 5vw, 60px)' }}>
+              <div className="section-label section-label-light" style={{ marginBottom: '24px' }}>
                 Parts Infrastructure
               </div>
-              <div style={{
+              <h3 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(4rem, 8vw, 7rem)',
-                fontWeight: 800,
-                color: 'var(--white)',
-                lineHeight: 1,
-                letterSpacing: '-0.04em',
-                marginBottom: '8px',
+                fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
+                fontWeight: 700,
+                color: 'var(--navy)',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.2,
+                marginBottom: '16px',
               }}>
-                1,000
-              </div>
+                Dedicated Parts Storage Facility
+              </h3>
               <p style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.5625rem',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
                 color: 'var(--teal-accent)',
-                marginBottom: '24px',
+                marginBottom: '20px',
               }}>
-                m² Spare Parts Storage Facility — Maadi, Cairo
+                Spare Parts Facility — Maadi, Cairo
               </p>
               <p style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.9375rem',
                 lineHeight: 1.7,
-                color: 'rgba(255,255,255,0.55)',
+                color: 'var(--text-muted)',
               }}>
                 Maintaining an extensive parts inventory allows the technical team to respond efficiently to service requirements, supporting reduced system downtime for healthcare facilities across Egypt.
               </p>
             </div>
           </div>
 
-          <div className="rule-dark" style={{ margin: '80px 0 60px' }} />
+          <div className="rule" style={{ margin: '80px 0 60px' }} />
 
           {/* CTA */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '24px' }}>
@@ -318,13 +399,13 @@ export const AboutPage: React.FC = () => {
               fontFamily: 'var(--font-heading)',
               fontSize: 'clamp(1.25rem, 2.5vw, 1.875rem)',
               fontWeight: 600,
-              color: 'var(--white)',
+              color: 'var(--navy)',
               letterSpacing: '-0.015em',
               maxWidth: '480px',
             }}>
               Ready to discuss your healthcare technology requirements?
             </p>
-            <Link to="/contact" className="btn btn-outline-white" style={{ gap: '8px' }}>
+            <Link to="/contact" className="btn btn-primary" style={{ gap: '8px' }}>
               Contact Nour Medical
               <ArrowRight size={15} />
             </Link>

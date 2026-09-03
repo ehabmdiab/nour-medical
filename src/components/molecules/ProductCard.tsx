@@ -2,14 +2,13 @@ import React from 'react';
 import { HolographicCard3D } from './HolographicCard3D';
 import { Badge } from '../atoms/Badge';
 import type { ProductItem } from '../../data/productsData';
-import { ArrowUpRight, Cpu } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 interface ProductCardProps {
   product: ProductItem;
-  onOpenSpecs: (product: ProductItem) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenSpecs }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <HolographicCard3D className="h-full flex flex-col justify-between group">
       <div>
@@ -39,25 +38,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenSpecs }
         <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">{product.description}</p>
       </div>
 
-      {/* Highlights & Action Button */}
+      {/* Main Task Display */}
       <div className="pt-4 border-t border-slate-200">
-        <div className="grid grid-cols-2 gap-2 mb-4">
-          {product.specs.slice(0, 2).map((spec: { label: string; value: string }, idx: number) => (
-            <div key={idx} className="flex flex-col bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
-              <span className="text-[9px] font-mono text-slate-500 uppercase">{spec.label}</span>
-              <span className="text-xs font-heading font-bold text-slate-900 truncate">{spec.value}</span>
-            </div>
-          ))}
+        <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex items-start gap-2.5">
+          <Zap className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
+          <div className="text-xs">
+            <span className="font-mono font-bold text-slate-500 uppercase text-[10px] block mb-0.5">Main Function</span>
+            <p className="text-slate-800 font-medium leading-normal">{product.mainTask}</p>
+          </div>
         </div>
-
-        <button
-          onClick={() => onOpenSpecs(product)}
-          className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-cyan-600 text-slate-800 hover:text-white font-mono text-xs tracking-wider uppercase font-semibold flex items-center justify-center gap-2 border border-slate-300 hover:border-cyan-600 transition-all duration-300 group/btn shadow-sm"
-        >
-          <Cpu className="w-3.5 h-3.5" />
-          <span>Technical Specifications</span>
-          <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-        </button>
       </div>
     </HolographicCard3D>
   );

@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { label: 'Maintenance', href: '/maintenance' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Clients', href: '/clients' },
-  { label: 'Partners', href: '/partners' },
+  { label: 'Suppliers', href: '/suppliers' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -37,18 +37,18 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`} role="navigation" aria-label="Main navigation">
-      <div className="container" style={{ height: '72px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="container" style={{ height: '84px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Logo */}
         <Link
           to="/"
-          style={{ display: 'flex', flexDirection: 'column', gap: '1px', textDecoration: 'none' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '2px', textDecoration: 'none' }}
           aria-label="Nour Medical — Home"
         >
           <span style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: '1.25rem',
-            fontWeight: 800,
-            letterSpacing: '-0.02em',
+            fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
+            fontWeight: 900,
+            letterSpacing: '-0.03em',
             color: 'var(--navy)',
             lineHeight: 1,
           }}>
@@ -56,10 +56,11 @@ export const Navbar: React.FC = () => {
           </span>
           <span style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.5rem',
-            letterSpacing: '0.2em',
+            fontSize: '0.625rem',
+            letterSpacing: '0.22em',
             textTransform: 'uppercase',
             color: 'var(--text-muted)',
+            fontWeight: 600,
           }}>
             Healthcare Technology
           </span>
@@ -113,7 +114,7 @@ export const Navbar: React.FC = () => {
           style={{
             position: 'fixed',
             inset: 0,
-            top: '72px',
+            top: '84px',
             background: 'var(--white)',
             zIndex: 999,
             padding: '32px var(--container-pad)',

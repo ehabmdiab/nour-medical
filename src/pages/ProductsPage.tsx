@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search, Check, FileText } from 'lucide-react';
+import { ArrowRight, Search, Check, Zap } from 'lucide-react';
 import { PRODUCTS_DATA } from '../data/productsData';
-import type { ProductItem } from '../data/productsData';
-import { ProductSpecModal } from '../components/organisms/ProductSpecModal';
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null);
@@ -34,7 +32,6 @@ const MODALITY_FILTERS = [
 export const ProductsPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
 
   const { ref: gridRef, visible: gridVisible } = useReveal();
 
@@ -60,16 +57,16 @@ export const ProductsPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--navy)', padding: '100px 0 70px' }}>
+      <section style={{ background: 'var(--bg-hero-light)', padding: '120px 0 70px', borderBottom: '1px solid var(--gray-light)' }}>
         <div className="container">
-          <div className="section-label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '20px' }}>
-            Product Portfolio & Datasheets
+          <div className="section-label" style={{ marginBottom: '20px' }}>
+            Product Portfolio & Overview
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             fontWeight: 800,
-            color: 'var(--white)',
+            color: 'var(--navy)',
             letterSpacing: '-0.03em',
             lineHeight: 0.95,
             maxWidth: '750px',
@@ -81,7 +78,7 @@ export const ProductsPage: React.FC = () => {
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
             lineHeight: 1.7,
-            color: 'rgba(255,255,255,0.65)',
+            color: 'var(--text-muted)',
             maxWidth: '560px',
             marginBottom: '40px',
           }}>
@@ -100,7 +97,7 @@ export const ProductsPage: React.FC = () => {
                 left: '16px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: 'rgba(255, 255, 255, 0.4)',
+                color: 'var(--text-muted)',
               }} />
               <input
                 type="text"
@@ -111,13 +108,12 @@ export const ProductsPage: React.FC = () => {
                   width: '100%',
                   padding: '12px 16px 12px 48px',
                   borderRadius: '30px',
-                  background: 'rgba(255, 255, 255, 0.06)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  color: '#fff',
+                  background: 'var(--white)',
+                  border: '1px solid var(--gray-light)',
+                  color: 'var(--navy)',
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.875rem',
                   outline: 'none',
-                  backdropFilter: 'blur(10px)',
                 }}
               />
             </div>
@@ -141,14 +137,14 @@ export const ProductsPage: React.FC = () => {
                     fontWeight: 600,
                     letterSpacing: '0.04em',
                     border: activeFilter === filter.id
-                      ? '1px solid var(--teal-accent)'
-                      : '1px solid rgba(255, 255, 255, 0.12)',
+                      ? '1px solid var(--blue-medical)'
+                      : '1px solid var(--gray-light)',
                     background: activeFilter === filter.id
-                      ? 'rgba(0, 168, 181, 0.25)'
-                      : 'rgba(255, 255, 255, 0.04)',
+                      ? 'var(--blue-medical)'
+                      : 'var(--white)',
                     color: activeFilter === filter.id
-                      ? 'var(--teal-accent)'
-                      : 'rgba(255, 255, 255, 0.7)',
+                      ? 'var(--white)'
+                      : 'var(--text-muted)',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                   }}
@@ -277,45 +273,48 @@ export const ProductsPage: React.FC = () => {
                     ))}
                   </div>
 
-                  {/* Action Button */}
-                  <button
-                    onClick={() => setSelectedProduct(product)}
-                    className="btn"
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '12px',
-                      background: 'var(--navy)',
-                      color: 'var(--white)',
-                      fontSize: '0.8125rem',
-                      fontFamily: 'var(--font-mono)',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      border: 'none',
-                      transition: 'all 0.2s ease',
-                    }}
-                  >
-                    <FileText size={15} />
-                    View Technical Spec Sheet
-                  </button>
+                  {/* Main Task Display */}
+                  <div style={{
+                    padding: '12px 14px',
+                    borderRadius: '12px',
+                    background: 'var(--warm-white)',
+                    border: '1px solid var(--warm-neutral)',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '10px',
+                    marginTop: 'auto',
+                  }}>
+                    <Zap size={16} style={{ color: 'var(--teal-accent)', flexShrink: 0, marginTop: '2px' }} />
+                    <div>
+                      <span style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.625rem',
+                        fontWeight: 700,
+                        color: 'var(--text-muted)',
+                        textTransform: 'uppercase',
+                        display: 'block',
+                        marginBottom: '2px',
+                      }}>
+                        Main Function
+                      </span>
+                      <p style={{
+                        fontFamily: 'var(--font-body)',
+                        fontSize: '0.8125rem',
+                        fontWeight: 600,
+                        color: 'var(--navy)',
+                        lineHeight: 1.4,
+                        margin: 0,
+                      }}>
+                        {product.mainTask}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Product Spec Sheet Modal */}
-      {selectedProduct && (
-        <ProductSpecModal
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-        />
-      )}
 
       {/* CTA */}
       <section style={{ padding: '80px 0', background: 'var(--warm-white)', borderTop: '1px solid var(--gray-light)', textAlign: 'center' }}>

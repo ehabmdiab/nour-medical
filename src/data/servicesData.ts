@@ -13,9 +13,9 @@ export interface ServiceItem {
 export const SERVICES_DATA: ServiceItem[] = [
   {
     id: "installation",
-    title: "Precision Equipment Installation",
+    title: "Precision Equipment Supply & Installation",
     subtitle: "Turnkey imaging suite assembly & architectural shielding",
-    tag: "INSTALLATION & RIGGING",
+    tag: "SUPPLY, INSTALLATION & RIGGING",
     description: "From heavy CT/MRI gantry rigging to lead-shielded room construction, electrical grounding, and calibration, our certified engineers execute complete turnkey installations to international standards.",
     details: [
       "Site planning, floor loading calculation & 3D CAD layout design",
@@ -64,7 +64,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     details: [
       "Dedicated 24/7 technical hotline with direct senior engineer access",
       "Average response time under 2 hours in Greater Cairo, 4 hours nationwide",
-      "Immediate access to 1,000m² Cairo spare parts storage warehouse",
+      "Immediate access to Cairo spare parts storage warehouse",
       "Advanced oscilloscope, HV divider & tube diagnostic toolkits",
       "Loaner flat panel detectors provided during extended sensor repairs",
     ],
@@ -80,11 +80,11 @@ export const SERVICES_DATA: ServiceItem[] = [
   {
     id: "spare-parts",
     title: "Centralized Spare Parts Warehouse",
-    subtitle: "1,000 m² stocked inventory in Maadi, Cairo",
+    subtitle: "Stocked inventory in Maadi, Cairo",
     tag: "PARTS & INVENTORY",
     description: "Eliminating long shipping delays, Nour Medical maintains Egypt's largest specialized inventory of OEM X-ray tubes, high-voltage generators, flat panel detectors, power supplies, and ICU components.",
     details: [
-      "1,000 m² temperature and humidity-controlled warehouse in Maadi",
+      "Temperature and humidity-controlled warehouse in Maadi",
       "Genuine replacement parts for RadMedix, Innocare, Lonwin & major OEMs",
       "High-vacuum X-ray tube inserts, colimators & HV cables ready to ship",
       "Flat panel detector replacement modules with warranty",
@@ -96,7 +96,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       { step: "03", title: "Express Dispatch", desc: "Climate-controlled delivery vehicle to hospital site" },
       { step: "04", title: "Warranty Guarantee", desc: "Full manufacturer-backed replacement warranty" },
     ],
-    badge: "1,000 m² Storage",
+    badge: "Local Warehouse",
     iconName: "Box",
   },
   {

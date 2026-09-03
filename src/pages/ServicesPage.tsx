@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Wrench, Package, CheckCircle2 } from 'lucide-react';
 import { SERVICES } from '../data/companyData';
 
 function useReveal(threshold = 0.1) {
@@ -24,19 +24,19 @@ export const ServicesPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--navy)', padding: '100px 0 80px' }}>
+      <section style={{ background: 'var(--bg-hero-light)', padding: '120px 0 80px', borderBottom: '1px solid var(--gray-light)' }}>
         <div className="container">
-          <div className="section-label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '24px' }}>
-            Healthcare Technology Services
+          <div className="section-label" style={{ marginBottom: '24px' }}>
+            CORE CAPABILITIES & SOLUTIONS
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             fontWeight: 800,
-            color: 'var(--white)',
+            color: 'var(--navy)',
             letterSpacing: '-0.03em',
             lineHeight: 0.95,
-            maxWidth: '700px',
+            maxWidth: '750px',
             marginBottom: '32px',
           }}>
             Healthcare Technology Services
@@ -45,15 +45,15 @@ export const ServicesPage: React.FC = () => {
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
             lineHeight: 1.7,
-            color: 'rgba(255,255,255,0.6)',
-            maxWidth: '520px',
+            color: 'var(--text-muted)',
+            maxWidth: '580px',
           }}>
-            From equipment installation to long-term maintenance contracts — Nour Medical supports healthcare organizations throughout the complete operational lifecycle.
+            Nour Medical supports healthcare facilities across Egypt through two specialized operational pillars: rapid technical maintenance and turnkey equipment & spare parts supply.
           </p>
         </div>
       </section>
 
-      {/* Services List */}
+      {/* Services List — 2 Core Boxes */}
       <section
         ref={servicesRef as React.RefObject<HTMLElement>}
         style={{
@@ -64,8 +64,8 @@ export const ServicesPage: React.FC = () => {
         }}
       >
         <div className="container">
-          <div style={{ marginBottom: '60px' }}>
-            <div className="section-label">What We Provide</div>
+          <div style={{ marginBottom: '50px' }}>
+            <div className="section-label">Core Operations</div>
             <h2 style={{
               fontFamily: 'var(--font-heading)',
               fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
@@ -73,52 +73,170 @@ export const ServicesPage: React.FC = () => {
               color: 'var(--navy)',
               letterSpacing: '-0.02em',
             }}>
-              Our Service Portfolio
+              Our Service Pillars
             </h2>
           </div>
 
-          <div className="grid-3" style={{ gap: '24px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+            gap: '32px',
+          }}>
             {SERVICES.map((service, i) => (
               <div
-                key={service.number}
-                className="card"
+                key={service.id}
                 style={{
-                  padding: '44px 32px',
+                  background: 'var(--white)',
+                  border: '1px solid var(--warm-neutral)',
+                  borderRadius: '24px',
+                  padding: '40px 36px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)',
+                  transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
                   opacity: servicesVisible ? 1 : 0,
-                  transform: servicesVisible ? 'translateY(0)' : 'translateY(20px)',
-                  transition: `opacity 0.6s var(--ease-smooth) ${i * 0.1}s, transform 0.6s var(--ease-smooth) ${i * 0.1}s`,
+                  transform: servicesVisible ? 'translateY(0)' : 'translateY(24px)',
+                  transitionDelay: `${i * 0.15}s`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px)';
+                  e.currentTarget.style.borderColor = 'var(--blue-medical)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 51, 102, 0.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = 'var(--warm-neutral)';
+                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.04)';
                 }}
               >
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '2rem',
-                  fontWeight: 300,
-                  color: 'var(--blue-medical)',
-                  letterSpacing: '-0.02em',
-                  lineHeight: 1,
-                  marginBottom: '24px',
-                }}>
-                  {service.number}
+                {/* Header Row: Badge & Number */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '28px' }}>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '6px 14px',
+                    borderRadius: '20px',
+                    background: i === 0 ? 'rgba(0, 168, 181, 0.1)' : 'rgba(0, 51, 102, 0.08)',
+                    color: i === 0 ? 'var(--teal-accent)' : 'var(--blue-medical)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                  }}>
+                    {i === 0 ? <Wrench size={14} /> : <Package size={14} />}
+                    {service.tag}
+                  </span>
+
+                  <span style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '2.25rem',
+                    fontWeight: 300,
+                    color: 'rgba(0, 51, 102, 0.2)',
+                    lineHeight: 1,
+                  }}>
+                    {service.number}
+                  </span>
                 </div>
-                <div style={{ width: '32px', height: '1px', background: 'var(--gray-light)', marginBottom: '24px' }} />
+
+                {/* Title & Subtitle */}
                 <h3 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '1.25rem',
-                  fontWeight: 700,
+                  fontSize: '1.625rem',
+                  fontWeight: 800,
                   color: 'var(--navy)',
-                  letterSpacing: '-0.015em',
-                  marginBottom: '12px',
+                  letterSpacing: '-0.02em',
+                  marginBottom: '6px',
+                  lineHeight: 1.25,
                 }}>
                   {service.title}
                 </h3>
+
+                <p style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.8125rem',
+                  color: 'var(--blue-medical)',
+                  fontWeight: 600,
+                  marginBottom: '16px',
+                }}>
+                  {service.headline}
+                </p>
+
                 <p style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
-                  lineHeight: 1.7,
+                  fontSize: '0.9375rem',
+                  lineHeight: 1.65,
                   color: 'var(--text-muted)',
+                  marginBottom: '28px',
                 }}>
                   {service.description}
                 </p>
+
+                <div style={{ height: '1px', background: 'var(--warm-neutral)', marginBottom: '28px' }} />
+
+                {/* Highlights Checklist */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px', flex: 1 }}>
+                  {service.highlights.map((item, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <CheckCircle2 size={18} style={{ color: 'var(--teal-accent)', flexShrink: 0, marginTop: '2px' }} />
+                      <div>
+                        <h4 style={{
+                          fontFamily: 'var(--font-heading)',
+                          fontSize: '0.875rem',
+                          fontWeight: 700,
+                          color: 'var(--navy)',
+                          marginBottom: '2px',
+                        }}>
+                          {item.title}
+                        </h4>
+                        <p style={{
+                          fontFamily: 'var(--font-body)',
+                          fontSize: '0.8125rem',
+                          lineHeight: 1.5,
+                          color: 'var(--text-muted)',
+                          margin: 0,
+                        }}>
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Footer Link / CTA */}
+                <Link
+                  to={service.link}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '14px 20px',
+                    borderRadius: '12px',
+                    background: 'var(--warm-white)',
+                    border: '1px solid var(--warm-neutral)',
+                    color: 'var(--navy)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.8125rem',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease',
+                    marginTop: 'auto',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'var(--navy)';
+                    e.currentTarget.style.color = 'var(--white)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'var(--warm-white)';
+                    e.currentTarget.style.color = 'var(--navy)';
+                  }}
+                >
+                  <span>{service.linkText}</span>
+                  <ArrowRight size={16} />
+                </Link>
               </div>
             ))}
           </div>
@@ -152,7 +270,7 @@ export const ServicesPage: React.FC = () => {
                 letterSpacing: '-0.02em',
                 lineHeight: 1.1,
               }}>
-                Beyond Installation
+                Beyond Supply & Installation
               </h2>
             </div>
             <div>
@@ -166,7 +284,7 @@ export const ServicesPage: React.FC = () => {
                 paddingLeft: '28px',
                 marginBottom: '24px',
               }}>
-                "Reliable equipment is only part of the equation. Long-term technical support is essential to maintaining continuity in healthcare operations."
+                "Reliable equipment is only part of the equation. Continuous technical support and genuine local spare parts are essential to maintaining uninterrupted healthcare operations."
               </blockquote>
               <p style={{
                 fontFamily: 'var(--font-body)',
@@ -174,7 +292,7 @@ export const ServicesPage: React.FC = () => {
                 lineHeight: 1.7,
                 color: 'var(--text-muted)',
               }}>
-                Our approach to after-sales service ensures that healthcare facilities receive continued technical support, access to spare parts, and structured maintenance programmes throughout the lifespan of their equipment.
+                Our integrated approach ensures that healthcare facilities receive swift engineering assistance, instant access to our 1,000 m² Maadi spare parts facility, and structured annual maintenance programs throughout the lifespan of their medical technology.
               </p>
             </div>
           </div>
@@ -186,7 +304,7 @@ export const ServicesPage: React.FC = () => {
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '32px' }}>
           <div>
             <div className="section-label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '16px' }}>
-              Major Capability
+              Maintenance Capabilities
             </div>
             <h2 style={{
               fontFamily: 'var(--font-heading)',
@@ -196,11 +314,11 @@ export const ServicesPage: React.FC = () => {
               letterSpacing: '-0.02em',
               maxWidth: '520px',
             }}>
-              Learn More About Our Maintenance & Technical Support
+              Need Immediate Technical Field Assistance or Maintenance?
             </h2>
           </div>
           <Link to="/maintenance" className="btn btn-outline-white" style={{ gap: '8px', flexShrink: 0 }}>
-            View Maintenance Portfolio
+            View Maintenance & Support Details
             <ArrowRight size={15} />
           </Link>
         </div>
@@ -208,3 +326,4 @@ export const ServicesPage: React.FC = () => {
     </>
   );
 };
+

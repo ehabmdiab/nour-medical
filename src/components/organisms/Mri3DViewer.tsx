@@ -4,22 +4,23 @@ import { OrbitControls, useGLTF, Environment, ContactShadows, Text, Float } from
 import { Play, Pause, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import * as THREE from 'three';
 
-function MriScannerModel(props: any) {
+function MriScannerModel(props: { position?: [number, number, number]; scale?: [number, number, number] }) {
   const modelUrl = `${import.meta.env.BASE_URL}models/philips-mri-scanner.glb`;
   const { scene } = useGLTF(modelUrl);
 
   React.useMemo(() => {
-    scene.traverse((child: any) => {
-      if (child.isMesh) {
+    scene.traverse((child: THREE.Object3D) => {
+      if (child instanceof THREE.Mesh) {
+        const mat = child.material as THREE.MeshStandardMaterial | undefined;
         // Hide unlit plane graphics inside bore
-        if (!child.material?.name || child.material?.map) {
+        if (!mat?.name || mat?.map) {
           child.visible = false;
         }
         // Style bore interior to match dark navy theme
-        if (child.material && child.material.name === 'Bore_Interior') {
-          child.material.color = new THREE.Color('#081326');
-          child.material.roughness = 0.2;
-          child.material.metalness = 0.5;
+        if (mat && mat.name === 'Bore_Interior') {
+          mat.color = new THREE.Color('#081326');
+          mat.roughness = 0.2;
+          mat.metalness = 0.5;
         }
       }
     });
@@ -31,7 +32,7 @@ function MriScannerModel(props: any) {
 // Preload model
 try {
   useGLTF.preload(`${import.meta.env.BASE_URL}models/philips-mri-scanner.glb`);
-} catch (e) {
+} catch {
   // Safe preload fallback
 }
 
@@ -45,7 +46,7 @@ interface CameraControllerProps {
 // ── Animated Camera Controller ────────────────────────────────────
 function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: CameraControllerProps) {
   const { camera } = useThree();
-  const controlsRef = useRef<any>(null);
+  const controlsRef = useRef<React.ComponentRef<typeof OrbitControls>>(null);
   const timeRef = useRef<number>(0);
   const isInitialized = useRef<boolean>(false);
   const lastResetTrigger = useRef<number>(resetTrigger);
@@ -148,12 +149,13 @@ function ScannerBoreText({ opacity }: { opacity: number }) {
     <group position={[0, 2.32, -0.15]}>
       <Float speed={1.5} rotationIntensity={0.02} floatIntensity={0.08}>
         <Text
-          fontSize={0.062}
+          fontSize={0.15}
           color="#00e5ff"
           anchorX="center"
           anchorY="middle"
           fillOpacity={opacity}
-          letterSpacing={0.16}
+          letterSpacing={0.18}
+          fontWeight="bold"
         >
           NOUR MEDICAL
         </Text>

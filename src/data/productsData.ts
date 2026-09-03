@@ -5,6 +5,7 @@ export interface ProductItem {
   name: string;
   tagline: string;
   description: string;
+  mainTask: string;
   supplier: string;
   country: string;
   specs: { label: string; value: string }[];
@@ -30,6 +31,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     name: "Lonwin Multi-Slice CT Scanner",
     tagline: "Ultra-low dose high-resolution computed tomography",
     description: "State-of-the-art multi-slice CT system featuring fast volumetric scanning, AI-assisted anatomical positioning, and ultra-high spatial resolution for cardiac, neurological, and trauma diagnostics.",
+    mainTask: "High-resolution volumetric scanning for cardiac, neurological, and trauma diagnostics.",
     supplier: "LONWIN",
     country: "China",
     specs: [
@@ -54,6 +56,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     name: "High-Field 3.0T MRI System",
     tagline: "Zero-boiloff superconducting magnetic resonance suite",
     description: "Premium superconducting MRI scanner delivering crisp tissue contrast, silent scanning technology, and rapid neurological and musculoskeletal acquisition sequences.",
+    mainTask: "High-contrast tissue imaging for neurological, spinal, and musculoskeletal diagnostics.",
     supplier: "LONWIN",
     country: "China",
     specs: [
@@ -78,6 +81,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     name: "RadMedix Acuity Wireless DR Flat Panel",
     tagline: "Direct-deposit Cesium Iodide (CsI) wireless X-ray detector",
     description: "High-DQE wireless digital X-ray flat panel detector engineered for instant retrofits into existing cassette trays, delivering high-contrast images in under 3 seconds.",
+    mainTask: "Rapid digital X-ray image capture and instant cassette tray retrofits.",
     supplier: "RADMEDIX",
     country: "USA",
     specs: [
@@ -102,6 +106,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     name: "Lonwin Interventional Cath-Lab System",
     tagline: "Single & dual-plane interventional cardiology angiography",
     description: "Advanced cardiac and vascular interventional angiography room featuring dynamic flat panel detectors, 3D roadmap navigation, and live stent visualization.",
+    mainTask: "Real-time interventional cardiac and vascular angiography and fluoroscopy guidance.",
     supplier: "LONWIN",
     country: "China",
     specs: [
@@ -126,6 +131,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     name: "High-Frequency Surgical Mobile C-Arm",
     tagline: "Precision intraoperative imaging for orthopedics & trauma",
     description: "Compact mobile C-arm with high-resolution digital imaging chain, laser positioning guides, and touch-screen dual monitor trolley.",
+    mainTask: "Intraoperative real-time X-ray imaging for surgical and orthopedic procedures.",
     supplier: "INNOCARE",
     country: "Taiwan",
     specs: [
@@ -149,6 +155,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     name: "Multiparameter ICU Patient Monitor",
     tagline: "Continuous vital signs surveillance with AI arrhythmia detection",
     description: "15-inch touch screen clinical patient monitor displaying ECG, SpO2, NIBP, Dual IBP, EtCO2, and body temperature with intuitive central station connectivity.",
+    mainTask: "Continuous multi-parameter vital signs monitoring and arrhythmia detection in ICU.",
     supplier: "NOUR MEDICAL",
     country: "Egypt / Global",
     specs: [
@@ -172,6 +179,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     name: "5-Function Electric ICU Bed",
     tagline: "Ergonomic intensive care patient bed with weighing scale",
     description: "Motorized ICU bed equipped with Linak actuators, integrated digital weighing system, CPR quick release, and Trendelenburg control panels.",
+    mainTask: "Motorized patient positioning, weight tracking, and ergonomic care in ICU units.",
     supplier: "NOUR MEDICAL",
     country: "Egypt",
     specs: [
@@ -195,6 +203,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     name: "Double-Door Steam Sterilizer Autoclave",
     tagline: "High-capacity CSSD steam sterilizer with vacuum pulse",
     description: "Pass-through autoclave designed for hospital CSSD departments, featuring automated pneumatic sliding doors, micro-computer PLC controls, and bowie-dick test validation.",
+    mainTask: "High-pressure pass-through steam sterilization for surgical instruments and medical tools.",
     supplier: "NOUR MEDICAL",
     country: "Egypt",
     specs: [
@@ -217,7 +226,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
     categoryLabel: "Consumables & Spare Parts",
     name: "OEM CT & X-Ray Tube Assemblies",
     tagline: "High heat capacity replacement X-ray & CT tube inserts",
-    description: "Original OEM replacement X-ray tubes, high-voltage cables, generator boards, and CT anode assemblies stored directly in Cairo's 1,000m² warehouse.",
+    description: "Original OEM replacement X-ray tubes, high-voltage cables, generator boards, and CT anode assemblies stored directly in Cairo's spare parts warehouse.",
+    mainTask: "Replacement of high-heat X-ray and CT tube assemblies for medical equipment maintenance.",
     supplier: "RADMEDIX / LONWIN",
     country: "USA / China",
     specs: [
@@ -227,7 +237,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
       { label: "Warehouse Availability", value: "In Stock - Maadi Cairo" },
     ],
     features: [
-      "1,000 m² local spare parts inventory in Cairo for rapid delivery",
+      "Dedicated local spare parts inventory in Cairo for rapid delivery",
       "Pre-tested high-voltage oil insulation and cooling exchangers",
       "Factory-certified warranty and calibration technical support",
       "Emergency 4-hour dispatch to hospitals across Egypt",

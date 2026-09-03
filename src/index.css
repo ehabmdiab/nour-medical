@@ -3,27 +3,33 @@
 @import "tailwindcss";
 
 /* ============================================================
-   DESIGN TOKENS — NOUR MEDICAL AWWWARDS V2
-   Inspired by Everis Medical editorial aesthetics
+   DESIGN TOKENS — NOUR MEDICAL CLINICAL SAPPHIRE & LIGHT SLATE SYSTEM
+   A world-class, light, clean, and bright medical UI design system.
    ============================================================ */
 :root {
   /* Core Palette */
-  --navy:          #0A1628;
-  --navy-dark:     #050C16;
-  --navy-mid:      #112040;
-  --navy-light:    #1B3160;
-  --blue-medical:  #1B4FD8;
-  --blue-hover:    #1440B8;
-  --teal-accent:   #00A8B5;
-  --white:         #FAFAFA;
-  --warm-white:    #F5F0EB;
-  --warm-neutral:  #EDE8E3;
-  --stone:         #C5BAB0;
-  --gray-mid:      #8A8A96;
-  --gray-light:    #D4D4DC;
-  --text-body:     #2C2C3A;
-  --text-muted:    #5C5C6E;
-  --text-invert:   #FAFAFA;
+  --navy:          #0F172A; /* Rich Executive Slate Navy */
+  --navy-dark:     #090D16;
+  --navy-mid:      #1E293B;
+  --navy-light:    #334155;
+  
+  --blue-medical:  #0284C7; /* Clinical Sapphire Medical Blue */
+  --blue-hover:    #0369A1;
+  --teal-accent:   #0D9488; /* Clinical Teal Precision Accent */
+  --amber-accent:  #D97706; /* Subtle Warm Accent */
+
+  --white:         #FFFFFF;
+  --warm-white:    #F8FAFC; /* Slate Light Background */
+  --warm-neutral:  #F0F7FF; /* Light Baby Blue Tint */
+  --bg-hero-light: linear-gradient(180deg, #EBF5FF 0%, #F8FAFC 100%);
+
+  --stone:         #94A3B8;
+  --gray-mid:      #64748B;
+  --gray-light:    #E2E8F0;
+  
+  --text-body:     #1E293B; /* Deep Navy Body Text */
+  --text-muted:    #475569; /* Crisp Slate Muted Text */
+  --text-invert:   #FFFFFF;
 
   /* Typography Scale */
   --font-heading:  'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -91,7 +97,7 @@ ul, ol {
 }
 
 ::selection {
-  background: rgba(27, 79, 216, 0.2);
+  background: rgba(2, 132, 199, 0.18);
   color: var(--navy);
 }
 
@@ -250,7 +256,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.03em;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: all var(--dur-mid) var(--ease-smooth);
   cursor: pointer;
   white-space: nowrap;
@@ -306,20 +312,20 @@ h1, h2, h3, h4, h5, h6 {
 .card {
   background: var(--white);
   border: 1px solid var(--gray-light);
-  border-radius: 4px;
+  border-radius: 8px;
   transition: all var(--dur-mid) var(--ease-smooth);
 }
 
 .card:hover {
-  border-color: var(--navy);
+  border-color: var(--blue-medical);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(10, 22, 40, 0.1);
+  box-shadow: 0 12px 32px rgba(2, 132, 199, 0.1);
 }
 
 .card-navy {
   background: var(--navy);
   border: 1px solid var(--navy-mid);
-  border-radius: 4px;
+  border-radius: 8px;
   color: var(--white);
 }
 
@@ -349,6 +355,11 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%       { opacity: 0.5; transform: scale(0.85); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .animate-fade-in-up { animation: fadeInUp 0.7s var(--ease-smooth) both; }
@@ -414,15 +425,15 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(250, 250, 250, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gray-light);
   transition: border-color var(--dur-mid) var(--ease-smooth), box-shadow var(--dur-mid) var(--ease-smooth);
 }
 .navbar.scrolled {
   border-bottom-color: var(--gray-light);
-  box-shadow: 0 2px 20px rgba(10, 22, 40, 0.06);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
 }
 
 /* ============================================================
@@ -436,22 +447,23 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.625rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--blue-medical);
   margin-bottom: 24px;
+  font-weight: 600;
 }
 .section-label::before {
   content: '';
   display: inline-block;
   width: 32px;
-  height: 1px;
-  background-color: var(--text-muted);
+  height: 1.5px;
+  background-color: var(--blue-medical);
 }
 
 .section-label-light {
-  color: rgba(255,255,255,0.5);
+  color: var(--blue-medical);
 }
 .section-label-light::before {
-  background-color: rgba(255,255,255,0.3);
+  background-color: var(--blue-medical);
 }
 
 /* ============================================================
@@ -475,8 +487,8 @@ h1, h2, h3, h4, h5, h6 {
    ============================================================ */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--warm-white); }
-::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--navy-light); }
+::-webkit-scrollbar-thumb { background: var(--gray-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue-medical); }
 
 /* ============================================================
    LENIS SMOOTH SCROLL
@@ -503,7 +515,7 @@ html.lenis, html.lenis body { height: auto; }
   padding: 14px 16px;
   background: var(--white);
   border: 1px solid var(--gray-light);
-  border-radius: 4px;
+  border-radius: 6px;
   font-family: var(--font-body);
   font-size: 0.9375rem;
   color: var(--text-body);
@@ -511,7 +523,7 @@ html.lenis, html.lenis body { height: auto; }
   outline: none;
 }
 .form-input:focus {
-  border-color: var(--navy);
+  border-color: var(--blue-medical);
 }
 .form-input::placeholder {
   color: var(--gray-mid);

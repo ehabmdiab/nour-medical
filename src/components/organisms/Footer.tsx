@@ -6,7 +6,7 @@ import { COMPANY_CONTACT } from '../../data/companyData';
 const FOOTER_LINKS = {
   Company: [
     { label: 'About Us', href: '/about' },
-    { label: 'Our Partners', href: '/partners' },
+    { label: 'Our Suppliers', href: '/suppliers' },
     { label: 'Our Clients', href: '/clients' },
     { label: 'Media & Gallery', href: '/gallery' },
   ],
@@ -121,6 +121,12 @@ export const Footer: React.FC = () => (
                 <MapPin size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0, marginTop: '2px' }} />
                 <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.5 }}>
                   {COMPANY_CONTACT.address}
+                </span>
+              </li>
+              <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <Phone size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)' }}>
+                  {COMPANY_CONTACT.mobile.join(' · ')}
                 </span>
               </li>
               <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>

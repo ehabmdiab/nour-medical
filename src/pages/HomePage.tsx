@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
-import { Mri3DViewer } from '../components/organisms/Mri3DViewer';
-import { StatsSection } from '../components/organisms/StatsSection';
+
 import { ClientMarquee } from '../components/organisms/ClientMarquee';
 import {
   KEY_CAPABILITIES,
@@ -41,7 +40,7 @@ export const HomePage: React.FC = () => {
         id="hero"
         style={{
           minHeight: '100vh',
-          background: 'var(--navy)',
+          background: 'linear-gradient(160deg, #EAF4FF 0%, #F0F7FF 40%, #F8FAFC 100%)',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
@@ -53,8 +52,8 @@ export const HomePage: React.FC = () => {
           position: 'absolute',
           inset: 0,
           backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+            linear-gradient(to right, rgba(2,132,199,0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(2,132,199,0.05) 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px',
           pointerEvents: 'none',
@@ -68,7 +67,7 @@ export const HomePage: React.FC = () => {
           width: '600px',
           height: '600px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(2,132,199,0.12) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
 
@@ -94,7 +93,7 @@ export const HomePage: React.FC = () => {
               fontSize: '0.5625rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.45)',
+              color: 'var(--text-muted)',
               marginBottom: '40px',
             }}>
               <span style={{
@@ -108,11 +107,11 @@ export const HomePage: React.FC = () => {
             </span>
           </div>
 
-          {/* Hero Content Grid: Text Left, Expanded 3D Model Right */}
+          {/* Hero Content Grid: Text Left, Logo Right */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(320px, 540px) 1fr',
-            gap: 'clamp(32px, 4vw, 64px)',
+            gridTemplateColumns: 'minmax(300px, 480px) 1fr',
+            gap: 'clamp(48px, 6vw, 80px)',
             alignItems: 'center',
           }}>
             {/* Left: Text & CTA (Preserved without layout compression) */}
@@ -122,7 +121,7 @@ export const HomePage: React.FC = () => {
                   fontFamily: 'var(--font-heading)',
                   fontSize: 'clamp(2.5rem, 5vw, 5.25rem)',
                   fontWeight: 800,
-                  color: 'var(--white)',
+                  color: 'var(--navy)',
                   lineHeight: 0.98,
                   letterSpacing: '-0.03em',
                   marginBottom: '40px',
@@ -131,7 +130,7 @@ export const HomePage: React.FC = () => {
                 }}
               >
                 Advanced Healthcare Technology.{' '}
-                <span style={{ color: 'var(--teal-accent)' }}>Reliable Medical Solutions.</span>
+                <span style={{ color: 'var(--blue-medical)' }}>Reliable Medical DI Solutions.</span>
               </h1>
 
               <div style={{
@@ -145,26 +144,42 @@ export const HomePage: React.FC = () => {
                   Explore Our Solutions
                   <ArrowRight size={15} />
                 </Link>
-                <Link to="/contact" className="btn btn-outline-white">
+                <Link to="/contact" className="btn btn-outline">
                   Contact Our Team
                 </Link>
               </div>
             </div>
 
-            {/* Right: Max Width Full Radius Circular 3D MRI Scanner Viewer */}
+            {/* Right: Company Logo */}
             <div style={{
               opacity: 0,
               animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
               position: 'relative',
               width: '100%',
-              maxWidth: '920px',
-              aspectRatio: '1/1',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              margin: '0 auto',
             }}>
-              <Mri3DViewer height="100%" />
+              {/* Subtle glow */}
+              <div style={{
+                position: 'absolute',
+                inset: '-20%',
+                borderRadius: '50%',
+                background: 'radial-gradient(ellipse, rgba(2,132,199,0.10) 0%, transparent 65%)',
+                pointerEvents: 'none',
+              }} />
+
+              <img
+                src={`${import.meta.env.BASE_URL}nour-medical-logo.png`}
+                alt="Nour Medical Company Logo"
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  maxWidth: '640px',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 8px 32px rgba(2,132,199,0.20))',
+                }}
+              />
             </div>
           </div>
         </div>
@@ -179,66 +194,13 @@ export const HomePage: React.FC = () => {
           flexDirection: 'column',
           alignItems: 'center',
           gap: '6px',
-          color: 'rgba(255,255,255,0.3)',
+          color: 'var(--text-muted)',
           animation: 'fadeIn 1s var(--ease-smooth) 1.2s both',
         }}>
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
             Scroll
           </span>
           <ChevronDown size={14} style={{ animation: 'fadeInUp 2s ease-in-out infinite' }} />
-        </div>
-
-        {/* Bottom stat bar */}
-        <div style={{
-          borderTop: '1px solid rgba(255,255,255,0.08)',
-          background: 'rgba(255,255,255,0.03)',
-          opacity: 0,
-          animation: 'fadeIn 0.8s var(--ease-smooth) 0.8s both',
-        }}>
-          <div className="container">
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-              gap: '0',
-              padding: '24px 0',
-            }}>
-              {[
-                { value: '50+', label: 'Technical Personnel' },
-                { value: '25+', label: 'Cath-Lab Installs' },
-                { value: '40+', label: 'X-Ray AMCs' },
-                { value: '1,000 m²', label: 'Parts Facility' },
-              ].map((stat, i) => (
-                <div
-                  key={stat.label}
-                  style={{
-                    padding: '12px 24px',
-                    borderRight: i < 3 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                  }}
-                >
-                  <div style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1.5rem',
-                    fontWeight: 700,
-                    color: 'var(--white)',
-                    letterSpacing: '-0.02em',
-                    lineHeight: 1,
-                  }}>
-                    {stat.value}
-                  </div>
-                  <div style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.5rem',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.35)',
-                    marginTop: '4px',
-                  }}>
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -325,26 +287,33 @@ export const HomePage: React.FC = () => {
           </div>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '0',
-            border: '1px solid var(--gray-light)',
-            borderRadius: '4px',
-            overflow: 'hidden',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '20px',
           }}>
             {KEY_CAPABILITIES.map((cap, i) => (
               <div
                 key={cap.id}
                 style={{
-                  padding: '40px 32px',
-                  borderRight: i < KEY_CAPABILITIES.length - 1 ? '1px solid var(--gray-light)' : 'none',
+                  padding: '36px 28px',
                   background: 'var(--white)',
-                  transition: 'background var(--dur-mid)',
+                  border: '1px solid var(--gray-light)',
+                  borderRadius: '12px',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+                  transition: 'all 0.3s var(--ease-smooth)',
                   opacity: capVisible ? 1 : 0,
                   transform: capVisible ? 'translateY(0)' : 'translateY(16px)',
                   transitionDelay: `${i * 0.08}s`,
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'var(--warm-white)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'var(--white)')}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = 'var(--blue-medical)';
+                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 132, 199, 0.08)';
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = 'var(--gray-light)';
+                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.02)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
               >
                 <div style={{
                   fontFamily: 'var(--font-mono)',
@@ -380,10 +349,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── 4. STATS SECTION ─────────────────────────────────── */}
-      <StatsSection />
-
-      {/* ── 5. CLIENT MARQUEE ────────────────────────────────── */}
+      {/* ── 4. CLIENT MARQUEE ────────────────────────────────── */}
       <ClientMarquee />
 
       {/* ── 6. WHY NOUR MEDICAL ──────────────────────────────── */}
@@ -486,7 +452,7 @@ export const HomePage: React.FC = () => {
         ref={missionRef as React.RefObject<HTMLElement>}
         style={{
           padding: 'var(--section-gap) 0',
-          background: 'var(--navy)',
+          background: 'var(--warm-neutral)',
           opacity: missionVisible ? 1 : 0,
           transition: 'opacity 0.7s var(--ease-smooth)',
         }}
@@ -494,7 +460,7 @@ export const HomePage: React.FC = () => {
         <div className="container">
           {/* Vision */}
           <div style={{ marginBottom: '80px', maxWidth: '760px' }}>
-            <div className="section-label section-label-light" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            <div className="section-label" style={{ marginBottom: '24px' }}>
               Our Vision
             </div>
             <blockquote style={{
@@ -502,7 +468,7 @@ export const HomePage: React.FC = () => {
               fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
               fontWeight: 600,
               fontStyle: 'italic',
-              color: 'var(--white)',
+              color: 'var(--navy)',
               lineHeight: 1.3,
               letterSpacing: '-0.02em',
             }}>
@@ -510,10 +476,10 @@ export const HomePage: React.FC = () => {
             </blockquote>
           </div>
 
-          <div className="rule-dark" style={{ marginBottom: '80px' }} />
+          <div className="rule" style={{ marginBottom: '80px' }} />
 
           {/* Mission Pillars */}
-          <div className="section-label" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '48px' }}>
+          <div className="section-label" style={{ marginBottom: '48px' }}>
             Our Mission
           </div>
           <div className="grid-3">
@@ -546,7 +512,7 @@ export const HomePage: React.FC = () => {
                   fontFamily: 'var(--font-heading)',
                   fontSize: '1.25rem',
                   fontWeight: 700,
-                  color: 'var(--white)',
+                  color: 'var(--navy)',
                   letterSpacing: '-0.01em',
                   marginBottom: '12px',
                 }}>
@@ -556,7 +522,7 @@ export const HomePage: React.FC = () => {
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.875rem',
                   lineHeight: 1.7,
-                  color: 'rgba(255,255,255,0.55)',
+                  color: 'var(--text-muted)',
                 }}>
                   {pillar.description}
                 </p>
@@ -566,7 +532,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── 8. GLOBAL PARTNERS ───────────────────────────────── */}
+      {/* ── 8. GLOBAL SUPPLIERS ───────────────────────────────── */}
       <section
         ref={partnersRef as React.RefObject<HTMLElement>}
         style={{
@@ -579,7 +545,7 @@ export const HomePage: React.FC = () => {
         <div className="container">
           <div style={{ marginBottom: '60px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px' }}>
             <div>
-              <div className="section-label">Global Technology Partners</div>
+              <div className="section-label">Global Technology Suppliers</div>
               <h2 style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
@@ -590,12 +556,12 @@ export const HomePage: React.FC = () => {
                 Global Technology. Local Expertise.
               </h2>
             </div>
-            <Link to="/partners" className="btn btn-outline">
-              View All Partners
+            <Link to="/suppliers" className="btn btn-outline">
+              View All Suppliers
             </Link>
           </div>
 
-          <div className="grid-3">
+          <div className="grid-4">
             {SUPPLIER_PARTNERS.map((partner, i) => (
               <div
                 key={partner.id}
