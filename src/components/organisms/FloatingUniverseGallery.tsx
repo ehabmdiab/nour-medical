@@ -72,17 +72,20 @@ export const FloatingUniverseGallery: React.FC = () => {
     const width = rect.width > 200 ? rect.width : 1200;
     const height = rect.height > 200 ? rect.height : 780;
 
+    const isMobile = width < 640;
+    const isTablet = width >= 640 && width < 1024;
+
     const newMap = new Map<PhysicsParticle['id'], PhysicsParticle>();
 
     // Structured multi-lane grid composition for an organized spatial aesthetic
     const count = filteredItems.length;
-    const cols = Math.max(4, Math.ceil(Math.sqrt(count * 1.5)));
+    const cols = isMobile ? 3 : isTablet ? 4 : Math.max(5, Math.ceil(Math.sqrt(count * 1.5)));
     const rows = Math.ceil(count / cols);
     
-    const marginX = 70;
-    const marginY = 60;
+    const marginX = isMobile ? 12 : isTablet ? 35 : 70;
+    const marginY = isMobile ? 20 : isTablet ? 40 : 60;
     const cellWidth = (width - marginX * 2) / cols;
-    const cellHeight = (height - marginY - 40) / rows;
+    const cellHeight = (height - marginY - 20) / rows;
 
     filteredItems.forEach((item, index) => {
       const col = index % cols;
@@ -93,9 +96,9 @@ export const FloatingUniverseGallery: React.FC = () => {
       const seedY = (Math.cos(index * 678.90) + 1) / 2;
 
       // Stagger odd rows horizontally for organic balance
-      const rowStagger = (row % 2 === 1) ? cellWidth * 0.25 : 0;
-      const baseX = marginX + col * cellWidth + rowStagger + (seedX - 0.5) * (cellWidth * 0.2);
-      const baseY = marginY + row * cellHeight + (seedY - 0.5) * (cellHeight * 0.2);
+      const rowStagger = (row % 2 === 1) ? cellWidth * 0.2 : 0;
+      const baseX = marginX + col * cellWidth + rowStagger + (seedX - 0.5) * (cellWidth * 0.15);
+      const baseY = marginY + row * cellHeight + (seedY - 0.5) * (cellHeight * 0.15);
 
       // Ultra-slow, serene zero-gravity drift velocity
       const speedMult = item.depthLayer === 1 ? 0.03 : item.depthLayer === 2 ? 0.05 : 0.07;
@@ -105,16 +108,23 @@ export const FloatingUniverseGallery: React.FC = () => {
       const existing = particlesRef.current.get(item.id);
       const domEl = existing?.element || containerRef.current?.querySelector<HTMLDivElement>(`[data-particle-id="${item.id}"]`) || null;
 
+      const minXBound = isMobile ? 10 : 30;
+      const maxXOffset = isMobile ? 110 : 200;
+      const minYBound = isMobile ? 15 : 40;
+      const maxYOffset = isMobile ? 100 : 170;
+
       const particle: PhysicsParticle = {
         id: item.id,
-        x: Math.max(30, Math.min(width - 200, baseX)),
-        y: Math.max(40, Math.min(height - 170, baseY)),
+        x: Math.max(minXBound, Math.min(width - maxXOffset, baseX)),
+        y: Math.max(minYBound, Math.min(height - maxYOffset, baseY)),
         vx: dirX * (0.03 + seedX * 0.04) * speedMult,
         vy: dirY * (0.02 + seedY * 0.03) * speedMult,
         rot: (seedX - 0.5) * 6, // Subtle tilt (-3deg to +3deg)
         rotSpeed: (seedY - 0.5) * 0.008,
         phase: seedX * Math.PI * 2,
-        scale: item.depthLayer === 1 ? 0.8 : item.depthLayer === 2 ? 0.95 : 1.05,
+        scale: isMobile
+          ? (item.depthLayer === 1 ? 0.7 : item.depthLayer === 2 ? 0.85 : 0.95)
+          : (item.depthLayer === 1 ? 0.8 : item.depthLayer === 2 ? 0.95 : 1.05),
         depth: item.depthLayer,
         isHovered: false,
         element: domEl,

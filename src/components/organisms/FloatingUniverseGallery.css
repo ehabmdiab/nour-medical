@@ -569,25 +569,115 @@
 @media (max-width: 768px) {
   .floating-universe-header {
     padding: 32px 16px 12px 16px;
+    gap: 16px;
+  }
+  .floating-universe-control-bar {
+    border-radius: 20px;
+    padding: 8px 12px;
+    gap: 10px;
   }
   .floating-universe-canvas {
-    height: 520px;
+    height: 540px;
   }
   .floating-photo-card.size-xl {
-    width: 160px;
+    width: 140px;
   }
   .floating-photo-card.size-lg {
-    width: 130px;
+    width: 115px;
   }
   .floating-photo-card.size-md {
-    width: 110px;
+    width: 95px;
   }
   .floating-photo-card.size-sm {
-    width: 85px;
+    width: 75px;
   }
   .floating-lightbox-content {
     grid-template-columns: 1fr;
     max-height: 90vh;
     overflow-y: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .floating-universe-header {
+    padding: 24px 12px 10px 12px;
+    gap: 12px;
+  }
+  .floating-universe-heading {
+    font-size: 1.65rem;
+  }
+  .floating-universe-subtitle {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+  .floating-universe-control-bar {
+    border-radius: 16px;
+    padding: 6px 10px;
+    gap: 8px;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+  .floating-universe-filters {
+    padding-bottom: 0;
+    gap: 4px;
+    flex: 1;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .floating-filter-pill {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    border-radius: 14px;
+  }
+  .floating-universe-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .floating-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .floating-universe-canvas {
+    height: 480px;
+  }
+
+  /* Compact Photo Sizing on Small Phones */
+  .floating-photo-card.size-xl {
+    width: 115px;
+  }
+  .floating-photo-card.size-lg {
+    width: 95px;
+  }
+  .floating-photo-card.size-md {
+    width: 75px;
+  }
+  .floating-photo-card.size-sm {
+    width: 60px;
+  }
+
+  /* Responsive Mobile Grid Archive Layout */
+  .floating-universe-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 0 12px;
+    margin: 16px auto 40px auto;
+  }
+
+  .grid-mode-info {
+    padding: 10px 12px;
+    gap: 4px;
+  }
+
+  .grid-mode-tag {
+    font-size: 0.5625rem;
+    padding: 2px 6px;
+  }
+
+  .grid-mode-title {
+    font-size: 0.8125rem;
+  }
+
+  .grid-mode-specs {
+    font-size: 0.6875rem;
   }
 }
