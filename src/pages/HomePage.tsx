@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
 import { ClientMarquee } from '../components/organisms/ClientMarquee';
+import { FloatingUniverseGallery } from '../components/organisms/FloatingUniverseGallery';
 import {
   KEY_CAPABILITIES,
   WHY_NOUR_MEDICAL,
@@ -351,6 +352,9 @@ export const HomePage: React.FC = () => {
 
       {/* ── 4. CLIENT MARQUEE ────────────────────────────────── */}
       <ClientMarquee />
+
+      {/* ── 5. INTERACTIVE FLOATING IMAGE UNIVERSE ───────────── */}
+      <FloatingUniverseGallery />
 
       {/* ── 6. WHY NOUR MEDICAL ──────────────────────────────── */}
       <section

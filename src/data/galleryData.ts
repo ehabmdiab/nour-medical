@@ -65,7 +65,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     categoryLabel: "Japan Facilities",
     location: "Japan Technical Facility",
     description: "Precision calibration of liquid metal bearing X-ray tubes and high-voltage generators prior to shipment to Egypt.",
-    image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80",
     date: "Ongoing",
     specs: "Japanese Precision OEM Calibration & Vacuum Diagnostics",
   },

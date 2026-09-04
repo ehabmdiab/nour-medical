@@ -242,7 +242,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
       "Factory-certified warranty and calibration technical support",
       "Emergency 4-hour dispatch to hospitals across Egypt",
     ],
-    image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80",
     featured: true,
   },
 ];

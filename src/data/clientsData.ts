@@ -65,7 +65,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     featured: true,
     images: [
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80',
     ],
     primaryCategories: ['Cath-Lab', 'CT'],
@@ -146,7 +146,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     facilityType: 'Hospital',
     featured: true,
     images: [
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
     ],
@@ -374,7 +374,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     facilityType: 'Hospital',
     featured: false,
     images: [
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
     ],
     primaryCategories: ['Cath-Lab', 'C-Arm', 'CT'],
@@ -441,7 +441,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     featured: false,
     images: [
       'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
     ],
     primaryCategories: ['Cath-Lab'],
     devices: [
@@ -507,7 +507,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     featured: false,
     images: [
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
     ],
     primaryCategories: ['CT', 'DR X-Ray'],
     devices: [
@@ -536,7 +536,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     featured: false,
     images: [
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
     ],
     primaryCategories: ['CT'],
     devices: [
@@ -580,7 +580,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     featured: false,
     images: [
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
     ],
     primaryCategories: ['CT'],
     devices: [
@@ -778,7 +778,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     featured: false,
     images: [
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
     ],
     primaryCategories: ['CT', 'DR X-Ray'],
     devices: [
@@ -866,7 +866,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     featured: false,
     images: [
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
     ],
     primaryCategories: ['CT'],
     devices: [
