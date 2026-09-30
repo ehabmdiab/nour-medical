@@ -18,7 +18,7 @@ export const COMPANY_CONTACT = {
 export const COMPANY_INFO = {
   name: 'Nour Medical Company',
   established: 2015,
-  chairman: 'Dr. Eng. Sayed Awad',
+  chairman: 'Eng. Sayed Awad',
   chairmanTitle: 'Chairman & CEO',
   location: 'Maadi, Cairo, Egypt',
   partsFacilityM2: 1000,
@@ -158,7 +158,7 @@ export const SERVICES: ServicePillar[] = [
       },
     ],
     badge: '24/7 Hotline Support',
-    link: '/maintenance',
+    link: '/services#maintenance',
     linkText: 'Explore Maintenance Services',
   },
   {

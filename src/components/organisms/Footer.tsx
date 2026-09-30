@@ -13,11 +13,11 @@ const FOOTER_LINKS = {
   Solutions: [
     { label: 'Products', href: '/products' },
     { label: 'Services', href: '/services' },
-    { label: 'Maintenance & Support', href: '/maintenance' },
+    { label: 'Maintenance & Support', href: '/services#maintenance' },
   ],
   Support: [
     { label: 'Contact Us', href: '/contact' },
-    { label: 'Technical Support', href: '/maintenance' },
+    { label: 'Technical Support', href: '/services#maintenance' },
     { label: 'Annual Maintenance', href: '/services' },
   ],
 };
@@ -168,14 +168,47 @@ export const Footer: React.FC = () => (
           }}>
             © {new Date().getFullYear()} Nour Medical Company. All rights reserved. Maadi, Cairo, Egypt.
           </p>
-          <p style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.625rem',
-            letterSpacing: '0.1em',
-            color: 'rgba(255,255,255,0.3)',
-          }}>
-            Est. 2015 · Healthcare Technology · Egypt
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={() => {
+                sessionStorage.removeItem('nour_loader_dismissed');
+                window.dispatchEvent(new CustomEvent('replay-3d-loader'));
+                window.scrollTo({ top: 0, behavior: 'instant' });
+              }}
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(255, 255, 255, 0.18)',
+                borderRadius: '4px',
+                color: 'rgba(255, 255, 255, 0.55)',
+                padding: '3px 9px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.5625rem',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                e.currentTarget.style.color = '#ffffff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)';
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.55)';
+              }}
+            >
+              Replay Intro
+            </button>
+            <p style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.625rem',
+              letterSpacing: '0.1em',
+              color: 'rgba(255,255,255,0.3)',
+            }}>
+              Est. 2015 · Healthcare Technology · Egypt
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { Suspense, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Environment, ContactShadows, Text, Float } from '@react-three/drei';
+import { OrbitControls, useGLTF, useTexture, Environment, ContactShadows, Float } from '@react-three/drei';
 import { Play, Pause, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import * as THREE from 'three';
 
@@ -32,6 +32,7 @@ function MriScannerModel(props: { position?: [number, number, number]; scale?: [
 // Preload model
 try {
   useGLTF.preload(`${import.meta.env.BASE_URL}models/philips-mri-scanner.glb`);
+  useTexture.preload(`${import.meta.env.BASE_URL}nour-medical-logo.png`);
 } catch {
   // Safe preload fallback
 }
@@ -56,8 +57,8 @@ function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: Ca
   const startTarget = new THREE.Vector3(0, 2.0, 0.0);
 
   // Zoomed Position: Centered straight-on zoom directly into the machine's circular bore center
-  const zoomPos = new THREE.Vector3(0, 2.32, 2.85);
-  const zoomTarget = new THREE.Vector3(0, 2.32, 0.0);
+  const zoomPos = new THREE.Vector3(0, 2.42, 2.85);
+  const zoomTarget = new THREE.Vector3(0, 2.42, 0.0);
 
   // Reset time if reset button clicked
   if (resetTrigger !== lastResetTrigger.current) {
@@ -141,24 +142,39 @@ function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: Ca
   );
 }
 
-// ── Inside Scanner Bore Text ──────────────────────────────────────
-function ScannerBoreText({ opacity }: { opacity: number }) {
+// ── Inside Scanner Bore Logo ──────────────────────────────────────
+function ScannerBoreLogo({ opacity }: { opacity: number }) {
+  const logoTexture = useTexture(`${import.meta.env.BASE_URL}nour-medical-logo.png`);
+
+  React.useMemo(() => {
+    if (logoTexture) {
+      logoTexture.colorSpace = THREE.SRGBColorSpace;
+      logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
+      logoTexture.magFilter = THREE.LinearFilter;
+      logoTexture.generateMipmaps = true;
+    }
+  }, [logoTexture]);
+
   if (opacity <= 0.01) return null;
 
+  // Aspect ratio is 221 / 66 (~3.348)
+  const width = 1.05;
+  const height = width / (221 / 66);
+
   return (
-    <group position={[0, 2.32, -0.15]}>
+    <group position={[0, 2.42, -0.05]}>
       <Float speed={1.5} rotationIntensity={0.02} floatIntensity={0.08}>
-        <Text
-          fontSize={0.15}
-          color="#00e5ff"
-          anchorX="center"
-          anchorY="middle"
-          fillOpacity={opacity}
-          letterSpacing={0.18}
-          fontWeight="bold"
-        >
-          NOUR MEDICAL
-        </Text>
+        <mesh>
+          <planeGeometry args={[width, height]} />
+          <meshBasicMaterial
+            map={logoTexture}
+            transparent
+            opacity={opacity}
+            depthWrite={false}
+            toneMapped={false}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
       </Float>
     </group>
   );
@@ -214,11 +230,11 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
       >
         <ambientLight intensity={0.9} />
         <directionalLight position={[5, 8, 5]} intensity={1.8} castShadow shadow-mapSize={1024} />
-        <pointLight position={[0, 2.32, 0.5]} color="#00e5ff" intensity={4.5} distance={6} />
+        <pointLight position={[0, 2.42, 0.5]} color="#00e5ff" intensity={4.5} distance={6} />
 
         <Suspense fallback={null}>
           <MriScannerModel position={[0, 0, 0]} scale={[1.6, 1.6, 1.6]} />
-          <ScannerBoreText opacity={textOpacity} />
+          <ScannerBoreLogo opacity={textOpacity} />
           <ContactShadows position={[0, 0, 0]} opacity={0.6} scale={12} blur={1.5} far={4} />
           <Environment preset="city" />
         </Suspense>
