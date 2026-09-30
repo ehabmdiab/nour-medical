@@ -378,7 +378,7 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
     size: 'lg',
     depthLayer: 2,
     supplier: 'NOUR MEDICAL',
-    specs: '316L Stainless Chamber | Siemens PLC Automation',
+    specs: '316L Stainless Chamber | Advanced PLC Automation',
   },
   {
     id: 'ster-2',

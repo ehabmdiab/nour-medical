@@ -112,7 +112,7 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
         category: 'CSSD & Sterilization',
         serviceType: 'Preventive Maintenance (AMC)',
         status: 'Active Support',
-        description: 'Double-door bioseal pass-through autoclave system with Siemens PLC control and quarterly calibration audits.',
+        description: 'Double-door bioseal pass-through autoclave system with precision PLC automation control and quarterly calibration audits.',
       },
     ],
   },

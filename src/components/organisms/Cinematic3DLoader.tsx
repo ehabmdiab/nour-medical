@@ -5,14 +5,14 @@ import * as THREE from 'three';
 
 // Preload 3D model
 try {
-  useGLTF.preload(`${import.meta.env.BASE_URL}models/philips-mri-scanner.glb`);
+  useGLTF.preload(`${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`);
 } catch {
   // Preload fallback
 }
 
 // ── MINIMAL 3D SCANNER MODEL ──────────────────────────────────────
 function CleanScannerModel({ mouse }: { mouse: { x: number; y: number } }) {
-  const modelUrl = `${import.meta.env.BASE_URL}models/philips-mri-scanner.glb`;
+  const modelUrl = `${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`;
   const { scene } = useGLTF(modelUrl);
   const groupRef = useRef<THREE.Group>(null);
 

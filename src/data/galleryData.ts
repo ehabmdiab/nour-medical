@@ -176,6 +176,6 @@ export const GALLERY_DATA: GalleryItem[] = [
     description: "Complete pass-through steam autoclave sterilizer facility installation with bioseal sterile barrier zones.",
     image: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=1200&q=80",
     date: "2024",
-    specs: "600L Double-Door Pass-Through Autoclaves | Siemens PLC",
+    specs: "600L Double-Door Pass-Through Autoclaves | Advanced PLC Automation",
   },
 ];

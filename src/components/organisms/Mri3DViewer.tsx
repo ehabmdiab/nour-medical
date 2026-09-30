@@ -5,7 +5,7 @@ import { Play, Pause, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import * as THREE from 'three';
 
 function MriScannerModel(props: { position?: [number, number, number]; scale?: [number, number, number] }) {
-  const modelUrl = `${import.meta.env.BASE_URL}models/philips-mri-scanner.glb`;
+  const modelUrl = `${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`;
   const { scene } = useGLTF(modelUrl);
 
   React.useMemo(() => {
@@ -31,7 +31,7 @@ function MriScannerModel(props: { position?: [number, number, number]; scale?: [
 
 // Preload model
 try {
-  useGLTF.preload(`${import.meta.env.BASE_URL}models/philips-mri-scanner.glb`);
+  useGLTF.preload(`${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`);
   useTexture.preload(`${import.meta.env.BASE_URL}nour-medical-logo.png`);
 } catch {
   // Safe preload fallback

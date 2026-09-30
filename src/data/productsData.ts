@@ -210,7 +210,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
       { label: "Chamber Volume", value: "600 Liters stainless 316L" },
       { label: "Working Temp", value: "134°C High Pressure Steam" },
       { label: "Door Type", value: "Automatic Pass-Through Sliding" },
-      { label: "Control System", value: "Siemens PLC Touch Screen" },
+      { label: "Control System", value: "Advanced PLC Touch Screen" },
     ],
     features: [
       "Multi-stage pulsating vacuum drying cycle",
