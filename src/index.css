@@ -89,6 +89,7 @@
   --section-gap:   clamp(80px, 10vw, 140px);
   --container-max: 1280px;
   --container-pad: clamp(24px, 5vw, 80px);
+  --navbar-height: 92px;
 
   /* Motion */
   --ease-smooth:   cubic-bezier(0.16, 1, 0.3, 1);

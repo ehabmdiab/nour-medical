@@ -49,6 +49,8 @@ export const HomePage: React.FC = () => {
           flexDirection: 'column',
           position: 'relative',
           overflow: 'hidden',
+          paddingTop: 'var(--navbar-height, 92px)',
+          boxSizing: 'border-box',
         }}
       >
         {/* Background grid */}
@@ -80,7 +82,7 @@ export const HomePage: React.FC = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          paddingTop: '60px',
+          paddingTop: 'clamp(32px, 4vh, 56px)',
           paddingBottom: '80px',
           maxWidth: '1440px',
         }}>

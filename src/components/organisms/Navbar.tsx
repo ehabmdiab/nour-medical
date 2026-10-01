@@ -237,7 +237,7 @@ export const Navbar: React.FC = () => {
           style={{
             position: 'fixed',
             inset: 0,
-            top: '84px',
+            top: 'var(--navbar-height, 92px)',
             background: 'var(--white)',
             zIndex: 999,
             padding: '32px var(--container-pad)',
