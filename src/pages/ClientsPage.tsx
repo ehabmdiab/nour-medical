@@ -245,18 +245,46 @@ export const ClientsPage: React.FC = () => {
       {/* ── 1. HERO HEADER ────────────────── */}
       <section
         style={{
-          background: 'var(--bg-hero-light)',
+          background: 'var(--navy)',
           padding: '140px 0 80px',
-          color: 'var(--navy)',
+          color: 'var(--white)',
           position: 'relative',
-          borderBottom: '1px solid var(--gray-light)',
+          overflow: 'hidden',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
           zIndex: 1,
         }}
       >
-        <div className="container">
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+          pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'absolute',
+          right: '-5%',
+          top: '0%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div
-            className="section-label"
-            style={{ color: 'var(--blue-medical)', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.625rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: 'var(--teal-accent)',
+              marginBottom: '20px',
+            }}
           >
             <Sparkles size={14} /> Client Reference Portfolio
           </div>
@@ -264,26 +292,26 @@ export const ClientsPage: React.FC = () => {
           <h1
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2.4rem, 4.5vw, 4.2rem)',
-              fontWeight: 800,
-              color: 'var(--navy)',
-              letterSpacing: '-0.03em',
-              lineHeight: 1.08,
-              maxWidth: '820px',
+              fontSize: 'clamp(2.85rem, 6.2vw, 5.5rem)',
+              fontWeight: 700,
+              color: 'var(--white)',
+              letterSpacing: '-0.035em',
+              lineHeight: 0.98,
+              maxWidth: '920px',
               marginBottom: '24px',
             }}
           >
             Healthcare Facilities Powered & Maintained by{' '}
-            <span style={{ color: 'var(--blue-medical)' }}>Nour Medical</span>
+            <span style={{ color: 'var(--teal-accent)' }}>Nour Medical</span>
           </h1>
 
           <p
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(1rem, 1.4vw, 1.125rem)',
+              fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
               lineHeight: 1.65,
-              color: 'var(--text-muted)',
-              maxWidth: '640px',
+              color: 'rgba(255, 255, 255, 0.7)',
+              maxWidth: '720px',
             }}
           >
             Click on any healthcare partner below to launch the project gallery carousel and inspect the medical equipment installed and serviced at each location.
@@ -363,7 +391,7 @@ export const ClientsPage: React.FC = () => {
                   borderRadius: '30px',
                   border: '1px solid var(--gray-light)',
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
+                  fontSize: '1.125rem',
                   color: 'var(--navy)',
                   background: 'var(--white)',
                   outline: 'none',
@@ -402,7 +430,7 @@ export const ClientsPage: React.FC = () => {
               }}
             >
               <Filter size={32} color="var(--stone)" style={{ marginBottom: '16px' }} />
-              <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', color: 'var(--navy)' }}>
+              <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: 'var(--navy)' }}>
                 No clients found matching your filter
               </h4>
             </div>
@@ -496,7 +524,7 @@ export const ClientsPage: React.FC = () => {
                       <h3
                         style={{
                           fontFamily: 'var(--font-heading)',
-                          fontSize: '1.125rem',
+                          fontSize: '1.25rem',
                           fontWeight: 700,
                           color: 'var(--navy)',
                           letterSpacing: '-0.015em',
@@ -516,8 +544,8 @@ export const ClientsPage: React.FC = () => {
                               fontFamily: 'var(--font-mono)',
                               fontSize: '0.5625rem',
                               color: 'var(--blue-medical)',
-                              background: 'rgba(2, 132, 199, 0.08)',
-                              border: '1px solid rgba(2, 132, 199, 0.2)',
+                              background: 'rgba(27, 79, 216, 0.08)',
+                              border: '1px solid rgba(27, 79, 216, 0.2)',
                               padding: '2px 8px',
                               borderRadius: '3px',
                             }}
@@ -659,8 +687,8 @@ export const ClientsPage: React.FC = () => {
                 <h2
                   style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: 'clamp(1.5rem, 2.5vw, 1.875rem)',
-                    fontWeight: 800,
+                    fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
+                    fontWeight: 700,
                     color: 'var(--navy)',
                     letterSpacing: '-0.02em',
                     marginBottom: '20px',
@@ -680,7 +708,7 @@ export const ClientsPage: React.FC = () => {
                   <div className="section-label" style={{ color: 'var(--blue-medical)', marginBottom: '6px' }}>
                     Equipment & Maintenance Scope
                   </div>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>
+                  <p style={{ fontSize: '1.125rem', color: 'var(--text-muted)' }}>
                     Radiology devices supplied, installed, or maintained by Nour Medical engineers:
                   </p>
                 </div>

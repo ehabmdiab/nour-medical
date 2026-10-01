@@ -73,7 +73,7 @@ export const StatsSection: React.FC = () => {
               <div style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
-                fontWeight: 800,
+                fontWeight: 700,
                 color: 'var(--navy)',
                 lineHeight: 1,
                 letterSpacing: '-0.03em',

@@ -37,31 +37,72 @@ export const ContactPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--bg-hero-light)', padding: '120px 0 80px', borderBottom: '1px solid var(--gray-light)' }}>
-        <div className="container">
-          <div className="section-label" style={{ marginBottom: '24px' }}>
-            Get in Touch
+      <section style={{
+        background: 'var(--navy)',
+        padding: '130px 0 80px',
+        position: 'relative',
+        overflow: 'hidden',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+          pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'absolute',
+          right: '-5%',
+          top: '0%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.625rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--teal-accent)',
+            marginBottom: '24px',
+          }}>
+            <span style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: 'var(--teal-accent)',
+              boxShadow: '0 0 8px var(--teal-accent)',
+            }} />
+            Contact & Location
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-            fontWeight: 800,
-            color: 'var(--navy)',
-            letterSpacing: '-0.03em',
-            lineHeight: 0.95,
-            maxWidth: '700px',
+            fontSize: 'clamp(3rem, 6.5vw, 5.75rem)',
+            fontWeight: 700,
+            color: 'var(--white)',
+            letterSpacing: '-0.035em',
+            lineHeight: 0.94,
+            maxWidth: '850px',
             marginBottom: '32px',
           }}>
-            Let's Talk About Your Healthcare Technology Needs
+            Connect With Our Team
           </h1>
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
+            fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
             lineHeight: 1.7,
-            color: 'var(--text-muted)',
-            maxWidth: '520px',
+            color: 'rgba(255, 255, 255, 0.7)',
+            maxWidth: '650px',
           }}>
-            Contact Nour Medical to discuss medical equipment, radiology systems, maintenance, spare parts, and healthcare technology solutions.
+            For equipment inquiries, turnkey projects, maintenance requests, or spare parts — reach out to our Cairo headquarters.
           </p>
         </div>
       </section>
@@ -93,7 +134,7 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
                     <MapPin size={14} style={{ color: 'var(--blue-medical)', flexShrink: 0, marginTop: '2px' }} />
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.6, color: 'var(--text-body)' }}>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', lineHeight: 1.6, color: 'var(--text-body)' }}>
                       {COMPANY_CONTACT.address}
                     </p>
                   </div>
@@ -116,7 +157,7 @@ export const ContactPage: React.FC = () => {
                       <a
                         href={`tel:${ph.replace(/\s/g, '')}`}
                         className="hover-underline"
-                        style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--text-body)', textDecoration: 'none' }}
+                        style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', color: 'var(--text-body)', textDecoration: 'none' }}
                       >
                         {ph}
                       </a>
@@ -141,7 +182,7 @@ export const ContactPage: React.FC = () => {
                       <a
                         href={`tel:${m.replace(/\s|\(|\)/g, '')}`}
                         className="hover-underline"
-                        style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--text-body)', textDecoration: 'none' }}
+                        style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', color: 'var(--text-body)', textDecoration: 'none' }}
                       >
                         {m}
                       </a>
@@ -162,7 +203,7 @@ export const ContactPage: React.FC = () => {
                   </div>
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                     <Printer size={14} style={{ color: 'var(--blue-medical)', flexShrink: 0 }} />
-                    <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--text-body)' }}>
+                    <span style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', color: 'var(--text-body)' }}>
                       {COMPANY_CONTACT.fax}
                     </span>
                   </div>
@@ -184,7 +225,7 @@ export const ContactPage: React.FC = () => {
                     <a
                       href={`mailto:${COMPANY_CONTACT.email}`}
                       className="hover-underline"
-                      style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--text-body)', textDecoration: 'none' }}
+                      style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', color: 'var(--text-body)', textDecoration: 'none' }}
                     >
                       {COMPANY_CONTACT.email}
                     </a>
@@ -214,14 +255,14 @@ export const ContactPage: React.FC = () => {
                     justifyContent: 'center',
                     margin: '0 auto 20px',
                     color: 'var(--blue-medical)',
-                    fontSize: '1.5rem',
+                    fontSize: '1.625rem',
                   }}>
                     ✓
                   </div>
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.375rem', fontWeight: 700, color: 'var(--navy)', marginBottom: '12px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.625rem', fontWeight: 700, color: 'var(--navy)', marginBottom: '12px' }}>
                     Inquiry Received
                   </h3>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
                     Thank you for contacting Nour Medical. Our team will respond to your inquiry shortly.
                   </p>
                 </div>

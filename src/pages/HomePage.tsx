@@ -114,21 +114,21 @@ export const HomePage: React.FC = () => {
           {/* Hero Content Grid: Text Left, Expanded 3D Model Right */}
           <div className="hero-content-grid">
             {/* Left: Text & CTA (Preserved without layout compression) */}
-            <div style={{ maxWidth: '540px', width: '100%' }}>
+            <div style={{ maxWidth: '640px', width: '100%' }}>
               <h1
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(2rem, 5vw, 5.25rem)',
-                  fontWeight: 800,
+                  fontSize: 'clamp(2.5rem, 6.2vw, 6.25rem)',
+                  fontWeight: 700,
                   color: 'var(--white)',
-                  lineHeight: 0.98,
-                  letterSpacing: '-0.03em',
+                  lineHeight: 0.94,
+                  letterSpacing: '-0.035em',
                   marginBottom: '40px',
                   opacity: 0,
                   animation: 'fadeInUp 0.9s var(--ease-smooth) 0.25s both',
                 }}
               >
-                Advanced Healthcare Technology.{' '}
+                Advanced Healthcare Technology{' '}
                 <span style={{ color: 'var(--teal-accent)' }}>Reliable Medical DI Solutions.</span>
               </h1>
 
@@ -215,7 +215,7 @@ export const HomePage: React.FC = () => {
                 >
                   <div style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: '1.5rem',
+                    fontSize: '1.625rem',
                     fontWeight: 700,
                     color: 'var(--white)',
                     letterSpacing: '-0.02em',
@@ -262,7 +262,7 @@ export const HomePage: React.FC = () => {
               <div className="section-label">About Nour Medical</div>
               <h2 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(2rem, 4vw, 3.25rem)',
+                fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
                 fontWeight: 700,
                 color: 'var(--navy)',
                 letterSpacing: '-0.02em',
@@ -313,7 +313,7 @@ export const HomePage: React.FC = () => {
             <div className="section-label">What We Offer</div>
             <h2 style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
+              fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
               fontWeight: 700,
               color: 'var(--navy)',
               letterSpacing: '-0.02em',
@@ -342,7 +342,7 @@ export const HomePage: React.FC = () => {
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 132, 199, 0.08)';
+                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(27, 79, 216, 0.08)';
                   e.currentTarget.style.transform = 'translateY(-4px)';
                 }}
                 onMouseLeave={e => {
@@ -363,7 +363,7 @@ export const HomePage: React.FC = () => {
                 </div>
                 <h3 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '1.125rem',
+                  fontSize: '1.25rem',
                   fontWeight: 700,
                   color: 'var(--navy)',
                   letterSpacing: '-0.01em',
@@ -373,7 +373,7 @@ export const HomePage: React.FC = () => {
                 </h3>
                 <p style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
+                  fontSize: '1.125rem',
                   lineHeight: 1.65,
                   color: 'var(--text-muted)',
                 }}>
@@ -412,7 +412,7 @@ export const HomePage: React.FC = () => {
               <div className="section-label">Why Nour Medical</div>
               <h2 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
                 fontWeight: 700,
                 color: 'var(--navy)',
                 letterSpacing: '-0.02em',
@@ -423,7 +423,7 @@ export const HomePage: React.FC = () => {
               </h2>
               <p style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
+                fontSize: '1.0625rem',
                 lineHeight: 1.7,
                 color: 'var(--text-muted)',
                 marginBottom: '32px',
@@ -461,7 +461,7 @@ export const HomePage: React.FC = () => {
                       </h3>
                       <p style={{
                         fontFamily: 'var(--font-body)',
-                        fontSize: '0.875rem',
+                        fontSize: '1.125rem',
                         lineHeight: 1.65,
                         color: 'var(--text-muted)',
                       }}>
@@ -504,7 +504,7 @@ export const HomePage: React.FC = () => {
             </div>
             <blockquote style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
               fontWeight: 600,
               fontStyle: 'italic',
               color: 'var(--white)',
@@ -555,7 +555,7 @@ export const HomePage: React.FC = () => {
                 </div>
                 <h3 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '1.25rem',
+                  fontSize: '1.625rem',
                   fontWeight: 700,
                   color: 'var(--white)',
                   letterSpacing: '-0.01em',
@@ -565,7 +565,7 @@ export const HomePage: React.FC = () => {
                 </h3>
                 <p style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
+                  fontSize: '1.125rem',
                   lineHeight: 1.7,
                   color: 'rgba(255,255,255,0.6)',
                 }}>
@@ -593,7 +593,7 @@ export const HomePage: React.FC = () => {
               <div className="section-label">Global Technology Suppliers</div>
               <h2 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
                 fontWeight: 700,
                 color: 'var(--navy)',
                 letterSpacing: '-0.02em',
@@ -696,7 +696,7 @@ export const HomePage: React.FC = () => {
           </h2>
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '1rem',
+            fontSize: '1.125rem',
             lineHeight: 1.7,
             color: 'var(--text-muted)',
             marginBottom: '40px',

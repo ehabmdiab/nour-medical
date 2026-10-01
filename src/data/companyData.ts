@@ -1,3 +1,5 @@
+const BASE = import.meta.env.BASE_URL || '/';
+
 // ================================================================
 // NOUR MEDICAL — COMPLETE COMPANY DATA
 // Awwwards V2 Branch — authoritative source for all page content
@@ -20,6 +22,9 @@ export const COMPANY_INFO = {
   established: 2015,
   chairman: 'Eng. Sayed Awad',
   chairmanTitle: 'Chairman & CEO',
+  chairmanImage: `${BASE}images/team/eng-sayed-awad.jpg`,
+  medicalDirector: 'Dr. Gehan',
+  medicalDirectorImage: `${BASE}images/team/dr-gehan.jpg`,
   location: 'Maadi, Cairo, Egypt',
   partsFacilityM2: 1000,
   totalPersonnel: 50,
@@ -191,6 +196,22 @@ export const SERVICES: ServicePillar[] = [
 
 // ── SUPPLIER PARTNERS ─────────────────────────────────────────────
 export const SUPPLIER_PARTNERS = [
+  {
+    id: 'angel',
+    name: 'Angel (Anjian Technology)',
+    country: 'China',
+    countryFlag: '🇨🇳',
+    tagline: 'Dynamic Digital Radiography & Advanced DR Systems',
+    description:
+      'A leading manufacturer of digital radiography systems, specializing in dynamic fluoroscopy DR (DTP580), mobile DR (QOMO & MTP), ceiling suspension systems (Lingxi & Fanghua), and weight-bearing 3D imaging (WR-3D).',
+    specialties: [
+      'Dynamic Flat Panel Fluoroscopy (DTP580)',
+      'Ceiling Suspension DR Systems (Lingxi & Fanghua)',
+      'Mobile Digital Radiography (QOMO & MTP Series)',
+      'Weight-Bearing 3D Imaging Systems (WR-3D)',
+      'Multi-Functional Dynamic DR (Talent II & HUA II)',
+    ],
+  },
   {
     id: 'radmedix',
     name: 'Radmedix',

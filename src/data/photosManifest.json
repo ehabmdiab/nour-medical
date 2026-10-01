@@ -1,0 +1,1510 @@
+[
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DTP580 Series.jpeg",
+    "dest": "images/products/angel-dtp580-series.jpeg",
+    "width": 800,
+    "height": 800,
+    "size_bytes": 30769,
+    "category": "machines",
+    "title": "Angel DTP580 Dynamic Flat Panel Fluoroscopy System",
+    "extra": {
+      "supplier": "Angel",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/Fanghua Series.jpeg",
+    "dest": "images/products/angel-fanghua-series.jpeg",
+    "width": 800,
+    "height": 800,
+    "size_bytes": 32831,
+    "category": "machines",
+    "title": "Angel Fanghua Ceiling Digital Radiography System",
+    "extra": {
+      "supplier": "Angel",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/HUA II Series.jpeg",
+    "dest": "images/products/angel-hua-ii-series.jpeg",
+    "width": 800,
+    "height": 800,
+    "size_bytes": 39486,
+    "category": "machines",
+    "title": "Angel HUA II Floor-Mounted Digital Radiography System",
+    "extra": {
+      "supplier": "Angel",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/Lingxi Series.jpeg",
+    "dest": "images/products/angel-lingxi-series.jpeg",
+    "width": 600,
+    "height": 600,
+    "size_bytes": 21519,
+    "category": "machines",
+    "title": "Angel Lingxi Premium Ceiling Suspension Digital X-Ray",
+    "extra": {
+      "supplier": "Angel",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/MTP Series.jpeg",
+    "dest": "images/products/angel-mtp-series.jpeg",
+    "width": 800,
+    "height": 800,
+    "size_bytes": 21860,
+    "category": "machines",
+    "title": "Angel MTP Series Mobile Digital Radiography System",
+    "extra": {
+      "supplier": "Angel",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/QOMO Series.jpeg",
+    "dest": "images/products/angel-qomo-series.jpeg",
+    "width": 600,
+    "height": 600,
+    "size_bytes": 18052,
+    "category": "machines",
+    "title": "Angel QOMO Series Compact Mobile DR System",
+    "extra": {
+      "supplier": "Angel",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/Talent II Series.jpeg",
+    "dest": "images/products/angel-talent-ii-series.jpeg",
+    "width": 600,
+    "height": 600,
+    "size_bytes": 27902,
+    "category": "machines",
+    "title": "Angel Talent II Multi-Functional Dynamic DR System",
+    "extra": {
+      "supplier": "Angel",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/WR-3D.jpeg",
+    "dest": "images/products/angel-wr-3d.jpeg",
+    "width": 600,
+    "height": 600,
+    "size_bytes": 24351,
+    "category": "machines",
+    "title": "Angel WR-3D Weight-Bearing 3D Imaging DR System",
+    "extra": {
+      "supplier": "Angel",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00373.jpg",
+    "dest": "images/gallery/angel/angel-dsc00373.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 318337,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00373)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00374.jpg",
+    "dest": "images/gallery/angel/angel-dsc00374.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 292517,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00374)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00760.jpg",
+    "dest": "images/gallery/angel/angel-dsc00760.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 243907,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00760)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00762.jpg",
+    "dest": "images/gallery/angel/angel-dsc00762.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 228533,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00762)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00765.jpg",
+    "dest": "images/gallery/angel/angel-dsc00765.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 224156,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00765)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00766.jpg",
+    "dest": "images/gallery/angel/angel-dsc00766.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 301853,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00766)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00772.jpg",
+    "dest": "images/gallery/angel/angel-dsc00772.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 282722,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00772)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00779.jpg",
+    "dest": "images/gallery/angel/angel-dsc00779.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 323890,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00779)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00781.jpg",
+    "dest": "images/gallery/angel/angel-dsc00781.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 342862,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00781)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Angel/DSC00784.jpg",
+    "dest": "images/gallery/angel/angel-dsc00784.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 398471,
+    "category": "machines",
+    "title": "Angel Radiology Technology Presentation (DSC00784)",
+    "extra": {
+      "supplier": "Angel",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/MRI Lonwin.jpeg",
+    "dest": "images/products/lonwin-mri-system.jpeg",
+    "width": 224,
+    "height": 141,
+    "size_bytes": 6498,
+    "category": "machines",
+    "title": "Lonwin Superconducting 3.0T MRI System",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/Equipment Disinfection.jpeg",
+    "dest": "images/products/lonwin-disinfection-system.jpeg",
+    "width": 261,
+    "height": 148,
+    "size_bytes": 7613,
+    "category": "machines",
+    "title": "Lonwin Automated Medical Equipment Disinfection System",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "machine"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00726.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00726.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 174388,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00726)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00728.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00728.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 243616,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00728)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00730.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00730.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 174989,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00730)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00731.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00731.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 148645,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00731)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00736.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00736.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 319518,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00736)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00737.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00737.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 385779,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00737)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00739.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00739.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 393592,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00739)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00740.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00740.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 372522,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00740)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00749.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00749.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 246776,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00749)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Lonwin/DSC00751.jpg",
+    "dest": "images/gallery/lonwin/lonwin-dsc00751.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 218642,
+    "category": "machines",
+    "title": "Lonwin Medical Diagnostic Imaging Demonstration (DSC00751)",
+    "extra": {
+      "supplier": "Lonwin",
+      "type": "exhibition"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/Eng. Sayed Awad.jpg",
+    "dest": "images/team/eng-sayed-awad.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 182007,
+    "category": "team",
+    "title": "Eng. Sayed Awad \u2014 Chairman & CEO",
+    "extra": {
+      "role": "Chairman & CEO"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DR. Gehan.jpg",
+    "dest": "images/team/dr-gehan.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 284906,
+    "category": "team",
+    "title": "Dr. Gehan \u2014 Medical Director",
+    "extra": {
+      "role": "Medical Director"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00614.jpg",
+    "dest": "images/team/team-dsc00614.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 402195,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00614)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00616.jpg",
+    "dest": "images/team/team-dsc00616.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 408644,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00616)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00634.jpg",
+    "dest": "images/team/team-dsc00634.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 418671,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00634)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00636.jpg",
+    "dest": "images/team/team-dsc00636.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 446611,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00636)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00642.jpg",
+    "dest": "images/team/team-dsc00642.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 483237,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00642)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00645.jpg",
+    "dest": "images/team/team-dsc00645.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 483372,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00645)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00652.jpg",
+    "dest": "images/team/team-dsc00652.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 500714,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00652)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00659.jpg",
+    "dest": "images/team/team-dsc00659.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 504099,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00659)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00669.jpg",
+    "dest": "images/team/team-dsc00669.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 335297,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00669)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00708.jpg",
+    "dest": "images/team/team-dsc00708.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 469955,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00708)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00709.jpg",
+    "dest": "images/team/team-dsc00709.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 454825,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00709)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/DSC00712.jpg",
+    "dest": "images/team/team-dsc00712.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 365426,
+    "category": "team",
+    "title": "Nour Medical Engineering & Technical Team (DSC00712)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/WhatsApp Image 2026-02-27 at 12.18.16 PM (2).jpeg",
+    "dest": "images/team/team-gathering-1.jpeg",
+    "width": 1600,
+    "height": 900,
+    "size_bytes": 293822,
+    "category": "team",
+    "title": "Nour Medical Team Gathering & Field Assembly #1",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/WhatsApp Image 2026-02-27 at 12.18.16 PM.jpeg",
+    "dest": "images/team/team-gathering-2.jpeg",
+    "width": 900,
+    "height": 1600,
+    "size_bytes": 207889,
+    "category": "team",
+    "title": "Nour Medical Team Gathering & Field Assembly #2",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/WhatsApp Image 2026-02-27 at 12.18.17 PM (1).jpeg",
+    "dest": "images/team/team-gathering-3.jpeg",
+    "width": 1600,
+    "height": 1200,
+    "size_bytes": 304019,
+    "category": "team",
+    "title": "Nour Medical Team Gathering & Field Assembly #3",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/WhatsApp Image 2026-03-04 at 3.12.26 PM (1).jpeg",
+    "dest": "images/team/team-gathering-4.jpeg",
+    "width": 1600,
+    "height": 1200,
+    "size_bytes": 345199,
+    "category": "team",
+    "title": "Nour Medical Team Gathering & Field Assembly #4",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Nour Medical Team/WhatsApp Image 2026-03-04 at 3.12.26 PM.jpeg",
+    "dest": "images/team/team-gathering-5.jpeg",
+    "width": 1600,
+    "height": 900,
+    "size_bytes": 295388,
+    "category": "team",
+    "title": "Nour Medical Team Gathering & Field Assembly #5",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DR. Mohamed Fawzy.jpg",
+    "dest": "images/doctors/dr-mohamed-fawzy.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 547912,
+    "category": "doctors",
+    "title": "Prof. Dr. Mohamed Fawzy",
+    "extra": {
+      "doctor": "Prof. Dr. Mohamed Fawzy"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DR.Ashraf Zaytoun.jpg",
+    "dest": "images/doctors/dr-ashraf-zaytoun.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 339269,
+    "category": "doctors",
+    "title": "Prof. Dr. Ashraf Zaytoun",
+    "extra": {
+      "doctor": "Prof. Dr. Ashraf Zaytoun"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DR.Ghalia Elmohani.jpg",
+    "dest": "images/doctors/dr-ghalia-elmohani.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 264668,
+    "category": "doctors",
+    "title": "Dr. Ghalia Elmohani",
+    "extra": {
+      "doctor": "Dr. Ghalia Elmohani"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DR (2).jpg",
+    "dest": "images/doctors/dr-clinical-consultant-2.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 322983,
+    "category": "doctors",
+    "title": "Senior Clinical Radiology Consultant",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DR (3).jpg",
+    "dest": "images/doctors/dr-clinical-consultant-3.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 331584,
+    "category": "doctors",
+    "title": "Interventional Radiology Specialist",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00442.jpg",
+    "dest": "images/doctors/doctor-session-dsc00442.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 276168,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00442)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00443.jpg",
+    "dest": "images/doctors/doctor-session-dsc00443.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 258195,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00443)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00447.jpg",
+    "dest": "images/doctors/doctor-session-dsc00447.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 304706,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00447)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00470.jpg",
+    "dest": "images/doctors/doctor-session-dsc00470.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 305520,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00470)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00471.jpg",
+    "dest": "images/doctors/doctor-session-dsc00471.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 302782,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00471)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00472.jpg",
+    "dest": "images/doctors/doctor-session-dsc00472.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 336597,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00472)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00476.jpg",
+    "dest": "images/doctors/doctor-session-dsc00476.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 435355,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00476)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00485.jpg",
+    "dest": "images/doctors/doctor-session-dsc00485.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 458287,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00485)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00487.jpg",
+    "dest": "images/doctors/doctor-session-dsc00487.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 371272,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00487)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00501.jpg",
+    "dest": "images/doctors/doctor-session-dsc00501.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 546671,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00501)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00505.jpg",
+    "dest": "images/doctors/doctor-session-dsc00505.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 491749,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00505)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00513.jpg",
+    "dest": "images/doctors/doctor-session-dsc00513.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 248789,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00513)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00515.jpg",
+    "dest": "images/doctors/doctor-session-dsc00515.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 258448,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00515)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00524.jpg",
+    "dest": "images/doctors/doctor-session-dsc00524.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 225756,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00524)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00527.jpg",
+    "dest": "images/doctors/doctor-session-dsc00527.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 357199,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00527)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00532.jpg",
+    "dest": "images/doctors/doctor-session-dsc00532.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 414184,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00532)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00586.jpg",
+    "dest": "images/doctors/doctor-session-dsc00586.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 230357,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00586)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/VIP Doctors/DSC00590.jpg",
+    "dest": "images/doctors/doctor-session-dsc00590.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 236864,
+    "category": "doctors",
+    "title": "VIP Clinical Leadership & Radiology Symposium (DSC00590)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00346.jpg",
+    "dest": "images/seminar/seminar-dsc00346.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 418059,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00346)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00370.jpg",
+    "dest": "images/seminar/seminar-dsc00370.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 256868,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00370)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00435.jpg",
+    "dest": "images/seminar/seminar-dsc00435.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 389376,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00435)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00476.jpg",
+    "dest": "images/seminar/seminar-dsc00476.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 435355,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00476)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00532.jpg",
+    "dest": "images/seminar/seminar-dsc00532.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 414184,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00532)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00611.jpg",
+    "dest": "images/seminar/seminar-dsc00611.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 406842,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00611)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00636.jpg",
+    "dest": "images/seminar/seminar-dsc00636.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 446611,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00636)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00659.jpg",
+    "dest": "images/seminar/seminar-dsc00659.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 504099,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00659)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00684.jpg",
+    "dest": "images/seminar/seminar-dsc00684.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 380596,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00684)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00737.jpg",
+    "dest": "images/seminar/seminar-dsc00737.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 385779,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00737)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00740.jpg",
+    "dest": "images/seminar/seminar-dsc00740.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 372522,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00740)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00749.jpg",
+    "dest": "images/seminar/seminar-dsc00749.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 246776,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00749)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00751.jpg",
+    "dest": "images/seminar/seminar-dsc00751.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 218642,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00751)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00754.jpg",
+    "dest": "images/seminar/seminar-dsc00754.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 271226,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00754)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00760.jpg",
+    "dest": "images/seminar/seminar-dsc00760.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 243907,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00760)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00766.jpg",
+    "dest": "images/seminar/seminar-dsc00766.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 301853,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00766)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00779.jpg",
+    "dest": "images/seminar/seminar-dsc00779.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 323890,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00779)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00781.jpg",
+    "dest": "images/seminar/seminar-dsc00781.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 342862,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00781)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00784.jpg",
+    "dest": "images/seminar/seminar-dsc00784.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 398471,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00784)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00786.jpg",
+    "dest": "images/seminar/seminar-dsc00786.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 344947,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00786)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00790.jpg",
+    "dest": "images/seminar/seminar-dsc00790.jpg",
+    "width": 1280,
+    "height": 1920,
+    "size_bytes": 328906,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00790)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Seminar 10 July 2025/DSC00791.jpg",
+    "dest": "images/seminar/seminar-dsc00791.jpg",
+    "width": 1920,
+    "height": 1280,
+    "size_bytes": 277937,
+    "category": "seminar",
+    "title": "Nour Medical Annual Scientific Seminar \u2014 10 July 2025 (DSC00791)",
+    "extra": {}
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Alaa Ezat - Elite Heart/CathLab.jpg",
+    "dest": "images/clients/elite-heart-cathlab.jpg",
+    "width": 1920,
+    "height": 1552,
+    "size_bytes": 540332,
+    "category": "clients",
+    "title": "Elite Heart Center \u2014 Cath-Lab Angiography Suite",
+    "extra": {
+      "clientFolder": "Alaa Ezat - Elite Heart"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Alaa Ezat - Elite Heart/Alaa Ezat logo.png",
+    "dest": "images/clients/elite-heart-logo-alaa-ezat.png",
+    "width": 800,
+    "height": 536,
+    "size_bytes": 625411,
+    "category": "clients",
+    "title": "Elite Heart \u2014 Dr. Alaa Ezat Identity",
+    "extra": {
+      "clientFolder": "Alaa Ezat - Elite Heart"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Alaa Ezat - Elite Heart/Logo.png",
+    "dest": "images/clients/elite-heart-logo.png",
+    "width": 335,
+    "height": 597,
+    "size_bytes": 196285,
+    "category": "clients",
+    "title": "Elite Heart Center Logo",
+    "extra": {
+      "clientFolder": "Alaa Ezat - Elite Heart"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Assema/Logo.jpeg",
+    "dest": "images/clients/el-assema-logo.jpeg",
+    "width": 1600,
+    "height": 1066,
+    "size_bytes": 380231,
+    "category": "clients",
+    "title": "El Assema Hospital Logo",
+    "extra": {
+      "clientFolder": "AL-Assema"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Marwah/Building.jpeg",
+    "dest": "images/clients/al-marwah-building.jpeg",
+    "width": 447,
+    "height": 447,
+    "size_bytes": 36869,
+    "category": "clients",
+    "title": "Al-Marwa Hospital Building & Entrance",
+    "extra": {
+      "clientFolder": "AL-Marwah"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Marwah/Cathlab.jpeg",
+    "dest": "images/clients/al-marwah-cathlab.jpeg",
+    "width": 500,
+    "height": 375,
+    "size_bytes": 48811,
+    "category": "clients",
+    "title": "Al-Marwa Hospital Cath-Lab Angiography Suite",
+    "extra": {
+      "clientFolder": "AL-Marwah"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Marwah/DR (1).jpg",
+    "dest": "images/clients/al-marwah-dr-1.jpg",
+    "width": 1440,
+    "height": 1920,
+    "size_bytes": 495446,
+    "category": "clients",
+    "title": "Al-Marwa Hospital Digital DR Diagnostic Suite 1",
+    "extra": {
+      "clientFolder": "AL-Marwah"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Marwah/DR (2).jpg",
+    "dest": "images/clients/al-marwah-dr-2.jpg",
+    "width": 1920,
+    "height": 1440,
+    "size_bytes": 428929,
+    "category": "clients",
+    "title": "Al-Marwa Hospital Digital DR Diagnostic Suite 2",
+    "extra": {
+      "clientFolder": "AL-Marwah"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Rayan Scan Centre/CT.jpg",
+    "dest": "images/clients/al-rayan-ct.jpg",
+    "width": 1920,
+    "height": 1279,
+    "size_bytes": 326715,
+    "category": "clients",
+    "title": "Al-Rayyan Scan Center Multi-Slice CT Scanner",
+    "extra": {
+      "clientFolder": "AL-Rayan Scan Centre"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Rayan Scan Centre/VCT.jpeg",
+    "dest": "images/clients/al-rayan-vct.jpeg",
+    "width": 1280,
+    "height": 957,
+    "size_bytes": 107331,
+    "category": "clients",
+    "title": "Al-Rayyan Scan Center Volumetric CT Suite",
+    "extra": {
+      "clientFolder": "AL-Rayan Scan Centre"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Safwaa 6 October/Building (1).jpeg",
+    "dest": "images/clients/al-safwaa-6-october-building-1.jpeg",
+    "width": 225,
+    "height": 225,
+    "size_bytes": 10245,
+    "category": "clients",
+    "title": "Al-Safwa Hospital 6th of October Facility",
+    "extra": {
+      "clientFolder": "AL-Safwaa 6 October"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Safwaa 6 October/Building (2).jpeg",
+    "dest": "images/clients/al-safwaa-6-october-building-2.jpeg",
+    "width": 225,
+    "height": 225,
+    "size_bytes": 10859,
+    "category": "clients",
+    "title": "Al-Safwa Hospital 6th of October Diagnostic Wing",
+    "extra": {
+      "clientFolder": "AL-Safwaa 6 October"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Safwaa Faqous/Building.png",
+    "dest": "images/clients/al-safwaa-faqous-building.png",
+    "width": 1200,
+    "height": 1600,
+    "size_bytes": 1494953,
+    "category": "clients",
+    "title": "Al-Safwa Center Faqus Facility",
+    "extra": {
+      "clientFolder": "AL-Safwaa Faqous"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Safwaa Faqous/CT.jpeg",
+    "dest": "images/clients/al-safwaa-faqous-ct.jpeg",
+    "width": 554,
+    "height": 393,
+    "size_bytes": 31146,
+    "category": "clients",
+    "title": "Al-Safwa Center Faqus CT Scanner Unit",
+    "extra": {
+      "clientFolder": "AL-Safwaa Faqous"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Tayseer/Building.jpeg",
+    "dest": "images/clients/al-tayseer-building.jpeg",
+    "width": 467,
+    "height": 700,
+    "size_bytes": 86537,
+    "category": "clients",
+    "title": "Al-Tayseer Hospitals Zagazig Main Medical Complex",
+    "extra": {
+      "clientFolder": "AL-Tayseer"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Tayseer/Main doctors.jpg",
+    "dest": "images/clients/al-tayseer-main-doctors.jpg",
+    "width": 1920,
+    "height": 1571,
+    "size_bytes": 492265,
+    "category": "clients",
+    "title": "Al-Tayseer Hospitals Senior Medical Faculty",
+    "extra": {
+      "clientFolder": "AL-Tayseer"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Tayseer/Team work.jpg",
+    "dest": "images/clients/al-tayseer-team-work.jpg",
+    "width": 880,
+    "height": 720,
+    "size_bytes": 154813,
+    "category": "clients",
+    "title": "Al-Tayseer Hospitals & Nour Medical Technical Service Team",
+    "extra": {
+      "clientFolder": "AL-Tayseer"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Tayseer/team work ramadan event.jpg",
+    "dest": "images/clients/al-tayseer-ramadan-event.jpg",
+    "width": 880,
+    "height": 720,
+    "size_bytes": 141915,
+    "category": "clients",
+    "title": "Al-Tayseer Hospitals Ramadan Annual Gathering",
+    "extra": {
+      "clientFolder": "AL-Tayseer"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Zahraa & AL-Nokhba/Building.jpeg",
+    "dest": "images/clients/al-zahraa-building.jpeg",
+    "width": 1600,
+    "height": 899,
+    "size_bytes": 350803,
+    "category": "clients",
+    "title": "Al-Zahra & El Nokhba Hospital Medical Complex",
+    "extra": {
+      "clientFolder": "AL-Zahraa & AL-Nokhba"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Zahraa & AL-Nokhba/Cathlab.jpeg",
+    "dest": "images/clients/al-zahraa-cathlab.jpeg",
+    "width": 1080,
+    "height": 712,
+    "size_bytes": 80382,
+    "category": "clients",
+    "title": "Al-Zahra & El Nokhba Cath-Lab Suite",
+    "extra": {
+      "clientFolder": "AL-Zahraa & AL-Nokhba"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Zahraa & AL-Nokhba/EL-nokhba .png",
+    "dest": "images/clients/el-nokhba-logo.png",
+    "width": 904,
+    "height": 1130,
+    "size_bytes": 681005,
+    "category": "clients",
+    "title": "El Nokhba Hospital Official Brand Mark",
+    "extra": {
+      "clientFolder": "AL-Zahraa & AL-Nokhba"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/AL-Zahraa & AL-Nokhba/\u062f. \u0645\u062d\u0645\u062f \u0633\u0644\u0627\u0645\u0629.jpg",
+    "dest": "images/clients/al-zahraa-dr-mohamed-salama.jpg",
+    "width": 843,
+    "height": 843,
+    "size_bytes": 91301,
+    "category": "clients",
+    "title": "Dr. Mohamed Salama \u2014 Al-Zahra & El Nokhba",
+    "extra": {
+      "clientFolder": "AL-Zahraa & AL-Nokhba"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Aseel/Building.jpeg",
+    "dest": "images/clients/aseel-building.jpeg",
+    "width": 450,
+    "height": 350,
+    "size_bytes": 37656,
+    "category": "clients",
+    "title": "Aseel Hospital Hurghada Exterior Facility",
+    "extra": {
+      "clientFolder": "Aseel"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Aseel/C-Arm.jpeg",
+    "dest": "images/clients/aseel-c-arm.jpeg",
+    "width": 750,
+    "height": 472,
+    "size_bytes": 53972,
+    "category": "clients",
+    "title": "Aseel Hospital High-Frequency Surgical C-Arm Suite",
+    "extra": {
+      "clientFolder": "Aseel"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Aseel/Doctor - Staff.jpg",
+    "dest": "images/clients/aseel-staff.jpg",
+    "width": 765,
+    "height": 1020,
+    "size_bytes": 114933,
+    "category": "clients",
+    "title": "Aseel Hospital Medical Staff & Surgical Department",
+    "extra": {
+      "clientFolder": "Aseel"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Banha Hospital/Building.jpeg",
+    "dest": "images/clients/banha-hospital-building.jpeg",
+    "width": 1440,
+    "height": 732,
+    "size_bytes": 210744,
+    "category": "clients",
+    "title": "Banha University Hospital Radiology Department Building",
+    "extra": {
+      "clientFolder": "Banha Hospital"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Capital care/CT.jpg",
+    "dest": "images/clients/capital-care-ct.jpg",
+    "width": 1600,
+    "height": 1600,
+    "size_bytes": 197951,
+    "category": "clients",
+    "title": "Capital Care Hospital 64-Slice Volumetric CT Suite",
+    "extra": {
+      "clientFolder": "Capital care"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Capital care/logo.jpeg",
+    "dest": "images/clients/capital-care-logo.jpeg",
+    "width": 447,
+    "height": 447,
+    "size_bytes": 15717,
+    "category": "clients",
+    "title": "Capital Care Hospital Brand Emblem",
+    "extra": {
+      "clientFolder": "Capital care"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/El-Gouna/Logo.png",
+    "dest": "images/clients/el-gouna-logo.png",
+    "width": 519,
+    "height": 510,
+    "size_bytes": 383249,
+    "category": "clients",
+    "title": "El Gouna Hospital Official Logo",
+    "extra": {
+      "clientFolder": "El-Gouna"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/El-Gouna/Team Work.jpg",
+    "dest": "images/clients/el-gouna-team-work.jpg",
+    "width": 1900,
+    "height": 590,
+    "size_bytes": 267126,
+    "category": "clients",
+    "title": "El Gouna Hospital Biomedical & Support Team",
+    "extra": {
+      "clientFolder": "El-Gouna"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/EL-Salama hospital (Omar Nagy)/Building.jpeg",
+    "dest": "images/clients/el-salama-building.jpeg",
+    "width": 400,
+    "height": 400,
+    "size_bytes": 42015,
+    "category": "clients",
+    "title": "El-Salama Hospital Minya (Omar Nagy)",
+    "extra": {
+      "clientFolder": "EL-Salama hospital (Omar Nagy)"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Golden Heart Centre/Building.jpeg",
+    "dest": "images/clients/golden-heart-building.jpeg",
+    "width": 582,
+    "height": 776,
+    "size_bytes": 103559,
+    "category": "clients",
+    "title": "Golden Heart Specialized Cardiac Center Maadi",
+    "extra": {
+      "clientFolder": "Golden Heart Centre"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Golden Heart Centre/Cathlab .jpeg",
+    "dest": "images/clients/golden-heart-cathlab.jpeg",
+    "width": 1600,
+    "height": 1066,
+    "size_bytes": 264528,
+    "category": "clients",
+    "title": "Golden Heart Center Interventional Angiography Cath-Lab",
+    "extra": {
+      "clientFolder": "Golden Heart Centre"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Golden Heart Centre/Staff 1 .jpeg",
+    "dest": "images/clients/golden-heart-staff-1.jpeg",
+    "width": 1040,
+    "height": 780,
+    "size_bytes": 151386,
+    "category": "clients",
+    "title": "Golden Heart Hospital Clinical Nursing & Tech Staff",
+    "extra": {
+      "clientFolder": "Golden Heart Centre"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Golden Heart Centre/Staff 2.jpeg",
+    "dest": "images/clients/golden-heart-staff-2.jpeg",
+    "width": 1040,
+    "height": 780,
+    "size_bytes": 143948,
+    "category": "clients",
+    "title": "Golden Heart Hospital Senior Cardiology Team",
+    "extra": {
+      "clientFolder": "Golden Heart Centre"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/IRC/Building.png",
+    "dest": "images/clients/irc-building.png",
+    "width": 480,
+    "height": 300,
+    "size_bytes": 270213,
+    "category": "clients",
+    "title": "International Center for Radiology and MRI (IRC)",
+    "extra": {
+      "clientFolder": "IRC"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Nile Centre/El-Nile Centre.jpeg",
+    "dest": "images/clients/nile-centre-building.jpeg",
+    "width": 225,
+    "height": 225,
+    "size_bytes": 12090,
+    "category": "clients",
+    "title": "Nile Center for Radiology Diagnostic Center",
+    "extra": {
+      "clientFolder": "Nile Centre"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/South Sinai/Logo.png",
+    "dest": "images/clients/south-sinai-logo.png",
+    "width": 800,
+    "height": 800,
+    "size_bytes": 694463,
+    "category": "clients",
+    "title": "South Sinai Hospital Sharm El Sheikh Logo",
+    "extra": {
+      "clientFolder": "South Sinai"
+    }
+  },
+  {
+    "src": "/home/ehab/Downloads/Website Content/Tiba Scan Centre/Logo.jpeg",
+    "dest": "images/clients/tiba-scan-logo.jpeg",
+    "width": 447,
+    "height": 447,
+    "size_bytes": 20062,
+    "category": "clients",
+    "title": "Tiba Scan & Diagnostic Center Logo",
+    "extra": {
+      "clientFolder": "Tiba Scan Centre"
+    }
+  }
+]

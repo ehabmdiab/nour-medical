@@ -42,7 +42,7 @@ export const Footer: React.FC = () => (
               <span style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: '1.375rem',
-                fontWeight: 800,
+                fontWeight: 700,
                 letterSpacing: '-0.02em',
                 color: 'var(--white)',
               }}>

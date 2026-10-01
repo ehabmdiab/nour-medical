@@ -21,29 +21,70 @@ export const SuppliersPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--bg-hero-light)', padding: '120px 0 80px', position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--gray-light)' }}>
-        <div className="container" style={{ position: 'relative' }}>
-          <div className="section-label" style={{ marginBottom: '24px' }}>
+      <section style={{
+        background: 'var(--navy)',
+        padding: '130px 0 80px',
+        position: 'relative',
+        overflow: 'hidden',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+          pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'absolute',
+          right: '-5%',
+          top: '0%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.625rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--teal-accent)',
+            marginBottom: '24px',
+          }}>
+            <span style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: 'var(--teal-accent)',
+              boxShadow: '0 0 8px var(--teal-accent)',
+            }} />
             Global Supplier Network
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-            fontWeight: 800,
-            color: 'var(--navy)',
-            letterSpacing: '-0.03em',
-            lineHeight: 0.95,
-            maxWidth: '700px',
+            fontSize: 'clamp(3rem, 6.5vw, 5.75rem)',
+            fontWeight: 700,
+            color: 'var(--white)',
+            letterSpacing: '-0.035em',
+            lineHeight: 0.94,
+            maxWidth: '880px',
             marginBottom: '32px',
           }}>
-            Global Technology. Local Expertise.
+            Global Technology. <span style={{ color: 'var(--teal-accent)' }}>Local Expertise.</span>
           </h1>
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
+            fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
             lineHeight: 1.7,
-            color: 'var(--text-muted)',
-            maxWidth: '520px',
+            color: 'rgba(255, 255, 255, 0.7)',
+            maxWidth: '680px',
           }}>
             Nour Medical works through a carefully selected global supplier network, bringing advanced medical technology from the USA, Taiwan, and China to the Egyptian healthcare market.
           </p>
@@ -55,14 +96,14 @@ export const SuppliersPage: React.FC = () => {
                 key={country}
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.5625rem',
+                  fontSize: '0.625rem',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
-                  color: 'var(--text-muted)',
-                  border: '1px solid var(--gray-light)',
+                  color: 'rgba(255, 255, 255, 0.85)',
+                  border: '1px solid rgba(255, 255, 255, 0.18)',
                   padding: '8px 16px',
-                  borderRadius: '2px',
-                  background: 'var(--white)',
+                  borderRadius: '30px',
+                  background: 'rgba(255, 255, 255, 0.08)',
                 }}
               >
                 {country}
@@ -87,10 +128,11 @@ export const SuppliersPage: React.FC = () => {
             <div className="section-label">Our Suppliers</div>
             <h2 style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
+              fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
               fontWeight: 700,
               color: 'var(--navy)',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05,
             }}>
               Technology Suppliers
             </h2>
@@ -143,7 +185,7 @@ export const SuppliersPage: React.FC = () => {
                 <div>
                   <h3 style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: 'clamp(1.25rem, 2vw, 1.75rem)',
+                    fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
                     fontWeight: 700,
                     color: 'var(--navy)',
                     letterSpacing: '-0.015em',
@@ -163,7 +205,7 @@ export const SuppliersPage: React.FC = () => {
                   </p>
                   <p style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '0.9375rem',
+                    fontSize: '1.0625rem',
                     lineHeight: 1.7,
                     color: 'var(--text-muted)',
                   }}>
@@ -187,7 +229,7 @@ export const SuppliersPage: React.FC = () => {
                     {partner.specialties.map(s => (
                       <li key={s} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                         <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--blue-medical)', flexShrink: 0, marginTop: '8px' }} />
-                        <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'var(--text-body)', lineHeight: 1.5 }}>
+                        <span style={{ fontFamily: 'var(--font-body)', fontSize: '1.125rem', color: 'var(--text-body)', lineHeight: 1.5 }}>
                           {s}
                         </span>
                       </li>
@@ -208,7 +250,7 @@ export const SuppliersPage: React.FC = () => {
           </div>
           <p style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(1.25rem, 2.5vw, 1.875rem)',
+            fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
             fontWeight: 600,
             fontStyle: 'italic',
             color: 'var(--navy)',

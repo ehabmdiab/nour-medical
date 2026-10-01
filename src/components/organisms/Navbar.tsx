@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`} role="navigation" aria-label="Main navigation">
-      <div className="container" style={{ height: '84px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="container" style={{ height: '92px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Logo */}
         <Link
           to="/"
@@ -59,8 +59,8 @@ export const Navbar: React.FC = () => {
         >
           <span style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
-            fontWeight: 900,
+            fontSize: 'clamp(2rem, 3vw, 2.6rem)',
+            fontWeight: 700,
             letterSpacing: '-0.03em',
             color: 'var(--navy)',
             lineHeight: 1,
@@ -165,7 +165,7 @@ export const Navbar: React.FC = () => {
                           >
                             <span style={{
                               fontFamily: 'var(--font-heading)',
-                              fontSize: '0.875rem',
+                              fontSize: '1.125rem',
                               fontWeight: 700,
                               color: 'var(--navy)',
                             }}>
@@ -294,7 +294,7 @@ export const Navbar: React.FC = () => {
                       onClick={() => setMobileOpen(false)}
                       style={{
                         fontFamily: 'var(--font-body)',
-                        fontSize: '0.875rem',
+                        fontSize: '1.125rem',
                         color: 'var(--text-muted)',
                         textDecoration: 'none',
                         display: 'flex',

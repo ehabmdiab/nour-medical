@@ -56,7 +56,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.1 }}
-        className={`text-3xl md:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight leading-tight max-w-4xl ${
+        className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold tracking-tight leading-[1.04] max-w-5xl ${
           isDark ? 'text-white' : 'text-slate-900'
         }`}
       >
@@ -69,7 +69,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className={`mt-5 text-base md:text-lg max-w-2xl font-normal leading-relaxed ${
+          className={`mt-6 text-base sm:text-lg md:text-xl max-w-3xl font-normal leading-relaxed ${
             isDark ? 'text-slate-300' : 'text-slate-600'
           }`}
         >

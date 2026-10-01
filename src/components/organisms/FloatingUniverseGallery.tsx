@@ -404,28 +404,28 @@ export const FloatingUniverseGallery: React.FC = () => {
                 {selectedItem.categoryLabel}
               </div>
 
-              <h3 style={{ fontFamily: 'var(--font-heading, sans-serif)', fontSize: '1.625rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.2, marginBottom: '16px' }}>
+              <h3 style={{ fontFamily: 'var(--font-heading, sans-serif)', fontSize: '1.625rem', fontWeight: 700, color: '#0f172a', lineHeight: 1.2, marginBottom: '16px' }}>
                 {selectedItem.title}
               </h3>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', margin: '16px 0 24px 0' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#475569', fontSize: '0.875rem' }}>
-                  <Building2 size={16} style={{ color: '#0284c7' }} />
+                  <Building2 size={16} style={{ color: 'var(--teal-accent)' }} />
                   <span><strong>Location / Hospital:</strong> {selectedItem.location || 'Nour Medical Fleet'}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#475569', fontSize: '0.875rem' }}>
-                  <Calendar size={16} style={{ color: '#0284c7' }} />
+                  <Calendar size={16} style={{ color: 'var(--teal-accent)' }} />
                   <span><strong>Deployment Year:</strong> {selectedItem.year}</span>
                 </div>
                 {selectedItem.supplier && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#475569', fontSize: '0.875rem' }}>
-                    <ShieldCheck size={16} style={{ color: '#0284c7' }} />
+                    <ShieldCheck size={16} style={{ color: 'var(--teal-accent)' }} />
                     <span><strong>OEM Supplier:</strong> {selectedItem.supplier}</span>
                   </div>
                 )}
                 {selectedItem.specs && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#475569', fontSize: '0.875rem' }}>
-                    <Layers size={16} style={{ color: '#0284c7' }} />
+                    <Layers size={16} style={{ color: 'var(--teal-accent)' }} />
                     <span><strong>Technical Specs:</strong> {selectedItem.specs}</span>
                   </div>
                 )}

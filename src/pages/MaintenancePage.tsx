@@ -40,42 +40,72 @@ export const MaintenancePage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--bg-hero-light)', padding: '120px 0 80px', position: 'relative', overflow: 'hidden', borderBottom: '1px solid var(--gray-light)' }}>
-        {/* Grid BG */}
+      <section style={{
+        background: 'var(--navy)',
+        padding: '130px 0 80px',
+        position: 'relative',
+        overflow: 'hidden',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      }}>
         <div style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `
-            linear-gradient(to right, rgba(2,132,199,0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(2,132,199,0.05) 1px, transparent 1px)
-          `,
+          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
           pointerEvents: 'none',
         }} />
-        <div className="container" style={{ position: 'relative' }}>
-          <div className="section-label" style={{ marginBottom: '24px' }}>
-            Technical Services &amp; Support
+        <div style={{
+          position: 'absolute',
+          right: '-5%',
+          top: '0%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.625rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--teal-accent)',
+            marginBottom: '24px',
+          }}>
+            <span style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: 'var(--teal-accent)',
+              boxShadow: '0 0 8px var(--teal-accent)',
+            }} />
+            Engineering & Maintenance Division
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-            fontWeight: 800,
-            color: 'var(--navy)',
-            letterSpacing: '-0.03em',
-            lineHeight: 0.95,
-            maxWidth: '750px',
+            fontSize: 'clamp(3rem, 6.5vw, 5.75rem)',
+            fontWeight: 700,
+            color: 'var(--white)',
+            letterSpacing: '-0.035em',
+            lineHeight: 0.94,
+            maxWidth: '900px',
             marginBottom: '32px',
           }}>
-            Keeping Critical Medical Systems Running
+            Medical Equipment Maintenance & Technical Services
           </h1>
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
+            fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
             lineHeight: 1.7,
-            color: 'var(--text-muted)',
-            maxWidth: '600px',
+            color: 'rgba(255, 255, 255, 0.7)',
+            maxWidth: '680px',
           }}>
-            Nour Medical provides comprehensive field service maintenance and genuine spare parts for all medical devices we support — including third-party equipment originally supplied by other vendors.
+            From preventive calibration to emergency board repair and tube replacements — our certified engineering team keeps critical hospital equipment operational across Egypt.
           </p>
         </div>
       </section>
@@ -137,8 +167,8 @@ export const MaintenancePage: React.FC = () => {
               </div>
               <h3 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: '1.375rem',
-                fontWeight: 800,
+                fontSize: '1.625rem',
+                fontWeight: 700,
                 color: 'var(--navy)',
                 marginBottom: '12px',
                 lineHeight: 1.3,
@@ -147,7 +177,7 @@ export const MaintenancePage: React.FC = () => {
               </h3>
               <p style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
+                fontSize: '1.0625rem',
                 lineHeight: 1.65,
                 color: 'var(--text-muted)',
                 marginBottom: '16px',
@@ -200,8 +230,8 @@ export const MaintenancePage: React.FC = () => {
               </div>
               <h3 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: '1.375rem',
-                fontWeight: 800,
+                fontSize: '1.625rem',
+                fontWeight: 700,
                 color: 'var(--navy)',
                 marginBottom: '12px',
                 lineHeight: 1.3,
@@ -210,7 +240,7 @@ export const MaintenancePage: React.FC = () => {
               </h3>
               <p style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
+                fontSize: '1.0625rem',
                 lineHeight: 1.65,
                 color: 'var(--text-muted)',
                 marginBottom: '16px',
@@ -241,7 +271,7 @@ export const MaintenancePage: React.FC = () => {
             <div className="section-label">Annual Maintenance Contracts</div>
             <h2 style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
+              fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
               fontWeight: 700,
               color: 'var(--navy)',
               letterSpacing: '-0.02em',
@@ -251,7 +281,7 @@ export const MaintenancePage: React.FC = () => {
             </h2>
             <p style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '0.9375rem',
+              fontSize: '1.0625rem',
               lineHeight: 1.7,
               color: 'var(--text-muted)',
               maxWidth: '580px',
@@ -291,7 +321,7 @@ export const MaintenancePage: React.FC = () => {
                 </div>
                 <h3 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '1.125rem',
+                  fontSize: '1.25rem',
                   fontWeight: 700,
                   color: 'var(--navy)',
                   marginBottom: '10px',
@@ -300,7 +330,7 @@ export const MaintenancePage: React.FC = () => {
                 </h3>
                 <p style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
+                  fontSize: '1.125rem',
                   lineHeight: 1.6,
                   color: 'var(--text-muted)',
                 }}>
@@ -333,7 +363,7 @@ export const MaintenancePage: React.FC = () => {
               <div className="section-label">Track Record</div>
               <h2 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
                 fontWeight: 700,
                 color: 'var(--navy)',
                 letterSpacing: '-0.02em',
@@ -344,7 +374,7 @@ export const MaintenancePage: React.FC = () => {
               </h2>
               <p style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
+                fontSize: '1.0625rem',
                 lineHeight: 1.7,
                 color: 'var(--text-muted)',
               }}>
@@ -368,7 +398,7 @@ export const MaintenancePage: React.FC = () => {
                 >
                   <span style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: '1.125rem',
+                    fontSize: '1.25rem',
                     color: 'var(--navy)',
                     fontWeight: 700,
                     marginBottom: '4px',
@@ -377,7 +407,7 @@ export const MaintenancePage: React.FC = () => {
                   </span>
                   <span style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '0.875rem',
+                    fontSize: '1.125rem',
                     color: 'var(--text-muted)',
                   }}>
                     {stat.description}
@@ -412,8 +442,8 @@ export const MaintenancePage: React.FC = () => {
               </div>
               <h2 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(2rem, 4vw, 3.25rem)',
-                fontWeight: 800,
+                fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
+                fontWeight: 700,
                 color: 'var(--navy)',
                 lineHeight: 1.1,
                 letterSpacing: '-0.03em',
@@ -436,7 +466,7 @@ export const MaintenancePage: React.FC = () => {
             <div>
               <h3 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.25rem, 2vw, 1.75rem)',
+                fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
                 fontWeight: 700,
                 color: 'var(--navy)',
                 letterSpacing: '-0.02em',
@@ -447,7 +477,7 @@ export const MaintenancePage: React.FC = () => {
               </h3>
               <p style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
+                fontSize: '1.0625rem',
                 lineHeight: 1.7,
                 color: 'var(--text-muted)',
                 marginBottom: '32px',

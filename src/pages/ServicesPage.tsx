@@ -118,38 +118,63 @@ export const ServicesPage: React.FC = () => {
       {/* Page Header / Hero */}
       <section
         style={{
-          background: 'var(--bg-hero-light)',
-          padding: '120px 0 80px',
+          background: 'var(--navy)',
+          padding: '130px 0 80px',
           position: 'relative',
           overflow: 'hidden',
-          borderBottom: '1px solid var(--gray-light)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
         }}
       >
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: `
-              linear-gradient(to right, rgba(2, 132, 199, 0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(2, 132, 199, 0.05) 1px, transparent 1px)
-            `,
+            backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
             pointerEvents: 'none',
           }}
         />
-        <div className="container" style={{ position: 'relative' }}>
-          <div className="section-label" style={{ marginBottom: '24px' }}>
+        <div style={{
+          position: 'absolute',
+          right: '-5%',
+          top: '0%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.625rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--teal-accent)',
+            marginBottom: '20px',
+          }}>
+            <span style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: 'var(--teal-accent)',
+              boxShadow: '0 0 8px var(--teal-accent)',
+            }} />
             CORE CAPABILITIES & SOLUTIONS
           </div>
           <h1
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-              fontWeight: 800,
-              color: 'var(--navy)',
-              letterSpacing: '-0.03em',
-              lineHeight: 0.95,
-              maxWidth: '820px',
+              fontSize: 'clamp(3rem, 6.5vw, 5.75rem)',
+              fontWeight: 700,
+              color: 'var(--white)',
+              letterSpacing: '-0.035em',
+              lineHeight: 0.94,
+              maxWidth: '920px',
               marginBottom: '32px',
             }}
           >
@@ -158,10 +183,10 @@ export const ServicesPage: React.FC = () => {
           <p
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
+              fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
               lineHeight: 1.7,
-              color: 'var(--text-muted)',
-              maxWidth: '640px',
+              color: 'rgba(255, 255, 255, 0.7)',
+              maxWidth: '720px',
               marginBottom: '36px',
             }}
           >
@@ -175,9 +200,9 @@ export const ServicesPage: React.FC = () => {
               style={{
                 padding: '8px 16px',
                 borderRadius: '24px',
-                background: 'var(--white)',
-                border: '1px solid var(--gray-light)',
-                color: 'var(--navy)',
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                color: 'rgba(255, 255, 255, 0.85)',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.75rem',
                 fontWeight: 600,
@@ -185,12 +210,12 @@ export const ServicesPage: React.FC = () => {
                 transition: 'all 0.2s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                e.currentTarget.style.color = 'var(--blue-medical)';
+                e.currentTarget.style.borderColor = 'var(--teal-accent)';
+                e.currentTarget.style.color = 'var(--white)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--gray-light)';
-                e.currentTarget.style.color = 'var(--navy)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
               }}
             >
               Overview &amp; Pillars
@@ -200,9 +225,9 @@ export const ServicesPage: React.FC = () => {
               style={{
                 padding: '8px 16px',
                 borderRadius: '24px',
-                background: 'rgba(2, 132, 199, 0.08)',
-                border: '1px solid rgba(2, 132, 199, 0.25)',
-                color: 'var(--blue-medical)',
+                background: 'rgba(0, 168, 181, 0.15)',
+                border: '1px solid var(--teal-accent)',
+                color: 'var(--teal-accent)',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.75rem',
                 fontWeight: 700,
@@ -213,75 +238,23 @@ export const ServicesPage: React.FC = () => {
                 gap: '6px',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--blue-medical)';
-                e.currentTarget.style.color = 'var(--white)';
+                e.currentTarget.style.background = 'rgba(0, 168, 181, 0.25)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(2, 132, 199, 0.08)';
-                e.currentTarget.style.color = 'var(--blue-medical)';
+                e.currentTarget.style.background = 'rgba(0, 168, 181, 0.15)';
               }}
             >
-              <Wrench size={13} />
-              Technical Maintenance Band
-            </button>
-            <button
-              onClick={() => scrollToSection('amc-portfolio')}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '24px',
-                background: 'var(--white)',
-                border: '1px solid var(--gray-light)',
-                color: 'var(--navy)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                e.currentTarget.style.color = 'var(--blue-medical)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--gray-light)';
-                e.currentTarget.style.color = 'var(--navy)';
-              }}
-            >
-              AMC Contracts
-            </button>
-            <button
-              onClick={() => scrollToSection('installation')}
-              style={{
-                padding: '8px 16px',
-                borderRadius: '24px',
-                background: 'var(--white)',
-                border: '1px solid var(--gray-light)',
-                color: 'var(--navy)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                e.currentTarget.style.color = 'var(--blue-medical)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--gray-light)';
-                e.currentTarget.style.color = 'var(--navy)';
-              }}
-            >
-              Installation &amp; Rigging
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--teal-accent)' }} />
+              Technical Maintenance
             </button>
             <button
               onClick={() => scrollToSection('parts-infrastructure')}
               style={{
                 padding: '8px 16px',
                 borderRadius: '24px',
-                background: 'var(--white)',
-                border: '1px solid var(--gray-light)',
-                color: 'var(--navy)',
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                color: 'rgba(255, 255, 255, 0.85)',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.75rem',
                 fontWeight: 600,
@@ -289,15 +262,40 @@ export const ServicesPage: React.FC = () => {
                 transition: 'all 0.2s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                e.currentTarget.style.color = 'var(--blue-medical)';
+                e.currentTarget.style.borderColor = 'var(--teal-accent)';
+                e.currentTarget.style.color = 'var(--white)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--gray-light)';
-                e.currentTarget.style.color = 'var(--navy)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
               }}
             >
-              1,000 m² Parts Facility
+              Maadi Parts Facility (1,000 m²)
+            </button>
+            <button
+              onClick={() => scrollToSection('amc-portfolio')}
+              style={{
+                padding: '8px 16px',
+                borderRadius: '24px',
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                color: 'rgba(255, 255, 255, 0.85)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--teal-accent)';
+                e.currentTarget.style.color = 'var(--white)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
+              }}
+            >
+              Annual AMC Contracts
             </button>
           </div>
         </div>
@@ -320,7 +318,7 @@ export const ServicesPage: React.FC = () => {
             <h2
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
                 fontWeight: 700,
                 color: 'var(--navy)',
                 letterSpacing: '-0.02em',
@@ -357,7 +355,7 @@ export const ServicesPage: React.FC = () => {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                    e.currentTarget.style.boxShadow = '0 16px 40px rgba(2, 132, 199, 0.08)';
+                    e.currentTarget.style.boxShadow = '0 16px 40px rgba(27, 79, 216, 0.08)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = 'var(--gray-light)';
@@ -383,7 +381,7 @@ export const ServicesPage: React.FC = () => {
                         background:
                           i === 0
                             ? 'rgba(13, 148, 136, 0.1)'
-                            : 'rgba(2, 132, 199, 0.08)',
+                            : 'rgba(27, 79, 216, 0.08)',
                         color:
                           i === 0 ? 'var(--teal-accent)' : 'var(--blue-medical)',
                         fontFamily: 'var(--font-mono)',
@@ -415,7 +413,7 @@ export const ServicesPage: React.FC = () => {
                     style={{
                       fontFamily: 'var(--font-heading)',
                       fontSize: '1.625rem',
-                      fontWeight: 800,
+                      fontWeight: 700,
                       color: 'var(--navy)',
                       letterSpacing: '-0.02em',
                       marginBottom: '6px',
@@ -440,7 +438,7 @@ export const ServicesPage: React.FC = () => {
                   <p
                     style={{
                       fontFamily: 'var(--font-body)',
-                      fontSize: '0.9375rem',
+                      fontSize: '1.0625rem',
                       lineHeight: 1.65,
                       color: 'var(--text-muted)',
                       marginBottom: '28px',
@@ -488,7 +486,7 @@ export const ServicesPage: React.FC = () => {
                           <h4
                             style={{
                               fontFamily: 'var(--font-heading)',
-                              fontSize: '0.875rem',
+                              fontSize: '1.125rem',
                               fontWeight: 700,
                               color: 'var(--navy)',
                               marginBottom: '2px',
@@ -608,7 +606,7 @@ export const ServicesPage: React.FC = () => {
                 gap: '8px',
                 padding: '6px 14px',
                 borderRadius: '20px',
-                background: 'rgba(2, 132, 199, 0.1)',
+                background: 'rgba(27, 79, 216, 0.1)',
                 color: 'var(--blue-medical)',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.75rem',
@@ -623,8 +621,8 @@ export const ServicesPage: React.FC = () => {
             <h2
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                fontWeight: 800,
+                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
+                fontWeight: 700,
                 color: 'var(--navy)',
                 letterSpacing: '-0.02em',
                 lineHeight: 1.15,
@@ -668,7 +666,7 @@ export const ServicesPage: React.FC = () => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                e.currentTarget.style.boxShadow = '0 12px 30px rgba(2, 132, 199, 0.08)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(27, 79, 216, 0.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = 'var(--gray-light)';
@@ -698,8 +696,8 @@ export const ServicesPage: React.FC = () => {
               <h3
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '1.375rem',
-                  fontWeight: 800,
+                  fontSize: '1.625rem',
+                  fontWeight: 700,
                   color: 'var(--navy)',
                   marginBottom: '12px',
                   lineHeight: 1.3,
@@ -710,7 +708,7 @@ export const ServicesPage: React.FC = () => {
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.9375rem',
+                  fontSize: '1.0625rem',
                   lineHeight: 1.65,
                   color: 'var(--text-muted)',
                   marginBottom: '20px',
@@ -749,7 +747,7 @@ export const ServicesPage: React.FC = () => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                e.currentTarget.style.boxShadow = '0 12px 30px rgba(2, 132, 199, 0.08)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(27, 79, 216, 0.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = 'var(--gray-light)';
@@ -763,7 +761,7 @@ export const ServicesPage: React.FC = () => {
                   gap: '8px',
                   padding: '6px 14px',
                   borderRadius: '20px',
-                  background: 'rgba(2, 132, 199, 0.08)',
+                  background: 'rgba(27, 79, 216, 0.08)',
                   color: 'var(--blue-medical)',
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.75rem',
@@ -779,8 +777,8 @@ export const ServicesPage: React.FC = () => {
               <h3
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '1.375rem',
-                  fontWeight: 800,
+                  fontSize: '1.625rem',
+                  fontWeight: 700,
                   color: 'var(--navy)',
                   marginBottom: '12px',
                   lineHeight: 1.3,
@@ -791,7 +789,7 @@ export const ServicesPage: React.FC = () => {
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.9375rem',
+                  fontSize: '1.0625rem',
                   lineHeight: 1.65,
                   color: 'var(--text-muted)',
                   marginBottom: '20px',
@@ -830,7 +828,7 @@ export const ServicesPage: React.FC = () => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                e.currentTarget.style.boxShadow = '0 12px 30px rgba(2, 132, 199, 0.08)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(27, 79, 216, 0.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = 'var(--gray-light)';
@@ -860,8 +858,8 @@ export const ServicesPage: React.FC = () => {
               <h3
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '1.375rem',
-                  fontWeight: 800,
+                  fontSize: '1.625rem',
+                  fontWeight: 700,
                   color: 'var(--navy)',
                   marginBottom: '12px',
                   lineHeight: 1.3,
@@ -872,7 +870,7 @@ export const ServicesPage: React.FC = () => {
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.9375rem',
+                  fontSize: '1.0625rem',
                   lineHeight: 1.65,
                   color: 'var(--text-muted)',
                   marginBottom: '20px',
@@ -917,7 +915,7 @@ export const ServicesPage: React.FC = () => {
             <h2
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
                 fontWeight: 700,
                 color: 'var(--navy)',
                 letterSpacing: '-0.02em',
@@ -929,7 +927,7 @@ export const ServicesPage: React.FC = () => {
             <p
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.9375rem',
+                fontSize: '1.0625rem',
                 lineHeight: 1.7,
                 color: 'var(--text-muted)',
                 maxWidth: '620px',
@@ -962,7 +960,7 @@ export const ServicesPage: React.FC = () => {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                  e.currentTarget.style.boxShadow = '0 10px 25px rgba(2, 132, 199, 0.07)';
+                  e.currentTarget.style.boxShadow = '0 10px 25px rgba(27, 79, 216, 0.07)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = 'var(--gray-light)';
@@ -985,7 +983,7 @@ export const ServicesPage: React.FC = () => {
                 <h3
                   style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: '1.25rem',
+                    fontSize: '1.625rem',
                     fontWeight: 700,
                     color: 'var(--navy)',
                     marginBottom: '10px',
@@ -997,7 +995,7 @@ export const ServicesPage: React.FC = () => {
                 <p
                   style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '0.875rem',
+                    fontSize: '1.125rem',
                     lineHeight: 1.6,
                     color: 'var(--text-muted)',
                     margin: 0,
@@ -1037,7 +1035,7 @@ export const ServicesPage: React.FC = () => {
               <h2
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
                   fontWeight: 700,
                   color: 'var(--navy)',
                   letterSpacing: '-0.02em',
@@ -1050,7 +1048,7 @@ export const ServicesPage: React.FC = () => {
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.9375rem',
+                  fontSize: '1.0625rem',
                   lineHeight: 1.7,
                   color: 'var(--text-muted)',
                   marginBottom: '24px',
@@ -1061,7 +1059,7 @@ export const ServicesPage: React.FC = () => {
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.9375rem',
+                  fontSize: '1.0625rem',
                   lineHeight: 1.7,
                   color: 'var(--text-muted)',
                 }}
@@ -1087,7 +1085,7 @@ export const ServicesPage: React.FC = () => {
                   <span
                     style={{
                       fontFamily: 'var(--font-heading)',
-                      fontSize: '1.125rem',
+                      fontSize: '1.25rem',
                       color: 'var(--navy)',
                       fontWeight: 700,
                       marginBottom: '6px',
@@ -1098,7 +1096,7 @@ export const ServicesPage: React.FC = () => {
                   <span
                     style={{
                       fontFamily: 'var(--font-body)',
-                      fontSize: '0.875rem',
+                      fontSize: '1.125rem',
                       color: 'var(--text-muted)',
                       lineHeight: 1.6,
                     }}
@@ -1139,8 +1137,8 @@ export const ServicesPage: React.FC = () => {
               <h2
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(2rem, 4vw, 3.25rem)',
-                  fontWeight: 800,
+                  fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
+                  fontWeight: 700,
                   color: 'var(--navy)',
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -1168,7 +1166,7 @@ export const ServicesPage: React.FC = () => {
               <h3
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1.25rem, 2vw, 1.75rem)',
+                  fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
                   fontWeight: 700,
                   color: 'var(--navy)',
                   letterSpacing: '-0.02em',
@@ -1181,7 +1179,7 @@ export const ServicesPage: React.FC = () => {
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.9375rem',
+                  fontSize: '1.0625rem',
                   lineHeight: 1.7,
                   color: 'var(--text-muted)',
                   marginBottom: '32px',
@@ -1233,7 +1231,7 @@ export const ServicesPage: React.FC = () => {
               <h2
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
                   fontWeight: 700,
                   color: 'var(--navy)',
                   letterSpacing: '-0.02em',
@@ -1247,7 +1245,7 @@ export const ServicesPage: React.FC = () => {
               <blockquote
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
+                  fontSize: 'clamp(1.25rem, 2.2vw, 1.625rem)',
                   fontStyle: 'italic',
                   color: 'var(--navy)',
                   lineHeight: 1.4,
@@ -1261,7 +1259,7 @@ export const ServicesPage: React.FC = () => {
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.9375rem',
+                  fontSize: '1.0625rem',
                   lineHeight: 1.7,
                   color: 'var(--text-muted)',
                 }}
@@ -1295,7 +1293,7 @@ export const ServicesPage: React.FC = () => {
             <h2
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+                fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
                 fontWeight: 700,
                 color: 'var(--white)',
                 letterSpacing: '-0.02em',

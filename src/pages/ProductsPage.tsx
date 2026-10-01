@@ -18,15 +18,12 @@ function useReveal(threshold = 0.1) {
 }
 
 const MODALITY_FILTERS = [
-  { id: 'all', label: 'All Ecosystem' },
-  { id: 'cath-lab', label: 'Cath-Lab / Angio' },
-  { id: 'ct', label: 'CT Scanner' },
+  { id: 'all', label: 'All Modalities' },
+  { id: 'dr', label: 'Digital Radiography (DR)' },
+  { id: 'mobile', label: 'Mobile Bedside DR' },
+  { id: 'fluoroscopy', label: 'Dynamic Fluoroscopy' },
   { id: 'mri', label: 'MRI Systems' },
-  { id: 'c-arm', label: 'Mobile C-Arm' },
-  { id: 'xray', label: 'Digital X-Ray' },
-  { id: 'sterilization', label: 'Sterilization' },
-  { id: 'furniture', label: 'Hospital Beds & Furniture' },
-  { id: 'consumables', label: 'Parts & Consumables' },
+  { id: 'sterilization', label: 'Disinfection & Sterilization' },
 ];
 
 export const ProductsPage: React.FC = () => {
@@ -37,14 +34,11 @@ export const ProductsPage: React.FC = () => {
 
   const filteredProducts = PRODUCTS_DATA.filter(product => {
     const matchesFilter = activeFilter === 'all' ||
-      (activeFilter === 'cath-lab' && (product.id.includes('cath') || product.name.toLowerCase().includes('cath'))) ||
-      (activeFilter === 'ct' && (product.id.includes('ct') || product.name.toLowerCase().includes('ct'))) ||
+      (activeFilter === 'dr' && product.category === 'radiology') ||
+      (activeFilter === 'mobile' && (product.id.includes('qomo') || product.id.includes('mtp') || product.name.toLowerCase().includes('mobile'))) ||
+      (activeFilter === 'fluoroscopy' && (product.id.includes('dtp580') || product.name.toLowerCase().includes('fluoroscopy'))) ||
       (activeFilter === 'mri' && (product.id.includes('mri') || product.name.toLowerCase().includes('mri'))) ||
-      (activeFilter === 'c-arm' && (product.id.includes('c-arm') || product.name.toLowerCase().includes('c-arm'))) ||
-      (activeFilter === 'xray' && (product.id.includes('dr') || product.name.toLowerCase().includes('x-ray') || product.name.toLowerCase().includes('radiology'))) ||
-      (activeFilter === 'sterilization' && product.category === 'sterilization') ||
-      (activeFilter === 'furniture' && product.category === 'furniture') ||
-      (activeFilter === 'consumables' && product.category === 'consumables');
+      (activeFilter === 'sterilization' && product.category === 'sterilization');
 
     const matchesSearch = searchQuery.trim() === '' ||
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -57,29 +51,71 @@ export const ProductsPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{ background: 'var(--bg-hero-light)', padding: '120px 0 70px', borderBottom: '1px solid var(--gray-light)' }}>
-        <div className="container">
-          <div className="section-label" style={{ marginBottom: '20px' }}>
+      <section style={{
+        background: 'var(--navy)',
+        padding: '130px 0 70px',
+        position: 'relative',
+        overflow: 'hidden',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      }}>
+        {/* Ambient Grid & Glow matching Hero Section */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+          pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'absolute',
+          right: '-5%',
+          top: '0%',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.625rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--teal-accent)',
+            marginBottom: '20px',
+          }}>
+            <span style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: 'var(--teal-accent)',
+              boxShadow: '0 0 8px var(--teal-accent)',
+            }} />
             Product Portfolio & Overview
           </div>
           <h1 style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-            fontWeight: 800,
-            color: 'var(--navy)',
-            letterSpacing: '-0.03em',
-            lineHeight: 0.95,
-            maxWidth: '750px',
+            fontSize: 'clamp(3rem, 6.5vw, 5.75rem)',
+            fontWeight: 700,
+            color: 'var(--white)',
+            letterSpacing: '-0.035em',
+            lineHeight: 0.94,
+            maxWidth: '900px',
             marginBottom: '24px',
           }}>
             Medical Technology Solutions
           </h1>
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(1rem, 1.5vw, 1.125rem)',
+            fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
             lineHeight: 1.7,
-            color: 'var(--text-muted)',
-            maxWidth: '560px',
+            color: 'rgba(255, 255, 255, 0.7)',
+            maxWidth: '680px',
             marginBottom: '40px',
           }}>
             Explore our advanced radiology modalities, diagnostic equipment, central sterilization suites, and hospital furniture — supported by 24/7 technical hotline and spare parts inventory.
@@ -97,22 +133,22 @@ export const ProductsPage: React.FC = () => {
                 left: '16px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: 'var(--text-muted)',
+                color: 'rgba(255, 255, 255, 0.5)',
               }} />
               <input
                 type="text"
-                placeholder="Search equipment, supplier (Lonwin, RadMedix, InnoCare)..."
+                placeholder="Search equipment, supplier (Lonwin, InnoCare, Angel)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
                   width: '100%',
                   padding: '12px 16px 12px 48px',
                   borderRadius: '30px',
-                  background: 'var(--white)',
-                  border: '1px solid var(--gray-light)',
-                  color: 'var(--navy)',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.18)',
+                  color: 'var(--white)',
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.875rem',
+                  fontSize: '1.125rem',
                   outline: 'none',
                 }}
               />
@@ -138,13 +174,13 @@ export const ProductsPage: React.FC = () => {
                     letterSpacing: '0.04em',
                     border: activeFilter === filter.id
                       ? '1px solid var(--blue-medical)'
-                      : '1px solid var(--gray-light)',
+                      : '1px solid rgba(255, 255, 255, 0.15)',
                     background: activeFilter === filter.id
                       ? 'var(--blue-medical)'
-                      : 'var(--white)',
+                      : 'rgba(255, 255, 255, 0.08)',
                     color: activeFilter === filter.id
                       ? 'var(--white)'
-                      : 'var(--text-muted)',
+                      : 'rgba(255, 255, 255, 0.75)',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                   }}
@@ -236,7 +272,7 @@ export const ProductsPage: React.FC = () => {
 
                   <h3 style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: '1.25rem',
+                    fontSize: '1.625rem',
                     fontWeight: 700,
                     color: 'var(--navy)',
                     marginBottom: '8px',
@@ -321,17 +357,18 @@ export const ProductsPage: React.FC = () => {
         <div className="container" style={{ maxWidth: '600px' }}>
           <h2 style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+            fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
             fontWeight: 700,
             color: 'var(--navy)',
-            letterSpacing: '-0.02em',
+            letterSpacing: '-0.03em',
+            lineHeight: 1.08,
             marginBottom: '20px',
           }}>
             Looking for Custom Configurations?
           </h2>
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.9375rem',
+            fontSize: '1.0625rem',
             lineHeight: 1.7,
             color: 'var(--text-muted)',
             marginBottom: '36px',

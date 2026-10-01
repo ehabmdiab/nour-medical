@@ -20,7 +20,7 @@ const RotatingGantryInner = () => {
       {/* Inner Detector Rotor Ring */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[2.1, 0.08, 16, 64]} />
-        <meshStandardMaterial color="#0284c7" metalness={0.8} roughness={0.2} />
+        <meshStandardMaterial color="#1B4FD8" metalness={0.8} roughness={0.2} />
       </mesh>
 
       {/* X-Ray Tube Gantry Mount (Top Focal Source) */}
@@ -91,7 +91,7 @@ const GantryStructure = () => {
       </mesh>
       <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, -0.46]}>
         <torusGeometry args={[2.65, 0.03, 16, 64]} />
-        <meshBasicMaterial color="#0284c7" />
+        <meshBasicMaterial color="#1B4FD8" />
       </mesh>
 
       {/* Gantry Base Pedestal */}
@@ -143,7 +143,7 @@ const PhotonParticles = () => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     const colorTeal = new THREE.Color("#00a8e8");
-    const colorBlue = new THREE.Color("#0284c7");
+    const colorBlue = new THREE.Color("#1B4FD8");
 
     for (let i = 0; i < count; i++) {
       pos[i * 3] = (Math.random() - 0.5) * 14;
@@ -189,7 +189,7 @@ export const MedicalScanScene: React.FC = () => {
         <ambientLight intensity={0.9} />
         <directionalLight position={[10, 15, 10]} intensity={2.0} color="#ffffff" />
         <pointLight position={[-8, -5, -5]} intensity={1.2} color="#00a8e8" />
-        <pointLight position={[5, 8, 5]} intensity={1.5} color="#0284c7" />
+        <pointLight position={[5, 8, 5]} intensity={1.5} color="#1B4FD8" />
 
         <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.3}>
           <GantryStructure />
