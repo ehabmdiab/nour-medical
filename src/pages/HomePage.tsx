@@ -49,7 +49,7 @@ export const HomePage: React.FC = () => {
           flexDirection: 'column',
           position: 'relative',
           overflow: 'hidden',
-          paddingTop: 'var(--navbar-height, 92px)',
+          paddingTop: '140px',
           boxSizing: 'border-box',
         }}
       >
@@ -81,9 +81,9 @@ export const HomePage: React.FC = () => {
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          paddingTop: 'clamp(32px, 4vh, 56px)',
-          paddingBottom: '80px',
+          justifyContent: 'flex-start',
+          paddingTop: '12px',
+          paddingBottom: '60px',
           maxWidth: '1440px',
         }}>
           {/* Label */}
@@ -157,7 +157,8 @@ export const HomePage: React.FC = () => {
               animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
               position: 'relative',
               width: '100%',
-              maxWidth: '920px',
+              maxWidth: '680px',
+              maxHeight: 'min(520px, 55vh)',
               aspectRatio: '1/1',
               display: 'flex',
               justifyContent: 'center',

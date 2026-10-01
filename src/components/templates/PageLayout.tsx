@@ -20,7 +20,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
       overflowX: 'hidden',
     }}>
       <Navbar />
-      <main style={{ flex: 1, paddingTop: '72px' }}>{children}</main>
+      <main style={{ flex: 1 }}>{children}</main>
       <Footer />
     </div>
   );
