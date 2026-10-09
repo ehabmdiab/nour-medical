@@ -389,51 +389,50 @@ export const FloatingUniverseGallery: React.FC = () => {
             </button>
 
             {/* Left Image View */}
-            <div style={{ position: 'relative', width: '100%', minHeight: '380px', background: '#f8fafc' }}>
+            <div className="relative w-full min-h-[380px] bg-slate-50">
               <img
                 src={selectedItem.imageUrl}
                 alt={selectedItem.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                className="w-full h-full object-cover"
               />
             </div>
 
             {/* Right Information Details */}
-            <div style={{ padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div className="floating-universe-label" style={{ marginBottom: '12px' }}>
+            <div className="p-9 flex flex-col justify-center">
+              <div className="floating-universe-label mb-3">
                 <span className="floating-universe-label-dot" />
                 {selectedItem.categoryLabel}
               </div>
 
-              <h3 style={{ fontFamily: 'var(--font-heading, sans-serif)', fontSize: '1.625rem', fontWeight: 700, color: '#0f172a', lineHeight: 1.2, marginBottom: '16px' }}>
+              <h3 className="font-heading text-2xl md:text-[1.625rem] font-bold text-navy leading-tight mb-4">
                 {selectedItem.title}
               </h3>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', margin: '16px 0 24px 0' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#475569', fontSize: '0.875rem' }}>
-                  <Building2 size={16} style={{ color: 'var(--teal-accent)' }} />
+              <div className="flex flex-col gap-3 my-4 mb-6">
+                <div className="flex items-center gap-2.5 text-slate-600 text-sm">
+                  <Building2 size={16} className="text-teal-accent" />
                   <span><strong>Location / Hospital:</strong> {selectedItem.location || 'Nour Medical Fleet'}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#475569', fontSize: '0.875rem' }}>
-                  <Calendar size={16} style={{ color: 'var(--teal-accent)' }} />
+                <div className="flex items-center gap-2.5 text-slate-600 text-sm">
+                  <Calendar size={16} className="text-teal-accent" />
                   <span><strong>Deployment Year:</strong> {selectedItem.year}</span>
                 </div>
                 {selectedItem.supplier && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#475569', fontSize: '0.875rem' }}>
-                    <ShieldCheck size={16} style={{ color: 'var(--teal-accent)' }} />
+                  <div className="flex items-center gap-2.5 text-slate-600 text-sm">
+                    <ShieldCheck size={16} className="text-teal-accent" />
                     <span><strong>OEM Supplier:</strong> {selectedItem.supplier}</span>
                   </div>
                 )}
                 {selectedItem.specs && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#475569', fontSize: '0.875rem' }}>
-                    <Layers size={16} style={{ color: 'var(--teal-accent)' }} />
+                  <div className="flex items-center gap-2.5 text-slate-600 text-sm">
+                    <Layers size={16} className="text-teal-accent" />
                     <span><strong>Technical Specs:</strong> {selectedItem.specs}</span>
                   </div>
                 )}
               </div>
 
               <button
-                className="btn btn-blue"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', alignSelf: 'flex-start' }}
+                className="btn btn-primary inline-flex items-center gap-2 self-start"
                 onClick={() => {
                   setSelectedItem(null);
                   const contactEl = document.getElementById('contact');

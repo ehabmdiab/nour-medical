@@ -1,3 +1,4 @@
+import type { TranslationKey } from "../i18n/types";
 const BASE = import.meta.env.BASE_URL || '/';
 
 // ================================================================
@@ -321,43 +322,50 @@ export const MRI_CLIENTS = [
 ];
 
 // ── FULL CLIENT REFERENCE LIST ────────────────────────────────────
-export const ALL_CLIENTS = [
-  { name: 'Capital Care Hospital', location: '6th of October, Giza' },
-  { name: 'South Sinai Hospital', location: 'Sharm El Sheikh' },
-  { name: 'El Gouna Hospital', location: 'El Gouna, Red Sea' },
-  { name: 'Al-Marwa Hospital / Dr. Monir Othman', location: 'Dokki, Giza' },
-  { name: 'El Assema Hospital', location: 'Minya El Qamh, Sharqia' },
-  { name: 'Al-Tayseer Hospitals', location: 'Zagazig, Sharqia' },
-  { name: 'International Center for Radiology and MRI', location: 'Helwan, Cairo' },
-  { name: 'Al-Zahra Hospital', location: 'Kafr El Sheikh' },
-  { name: 'Al-Safwa Hospital', location: '6th of October, Giza' },
-  { name: 'El Nokhba Hospital', location: 'Kafr El Sheikh' },
-  { name: 'El-Hayah Hospital', location: 'Assiut' },
-  { name: 'Elite Heart Center', location: 'Maadi, Cairo' },
-  { name: 'Al-Safwa Center', location: 'Faqus, Sharqia' },
-  { name: 'Al-Fouad Center', location: 'Shebin El Kom, Monufia' },
-  { name: 'Al-Delta Hospital', location: 'Mansoura, Dakahlia' },
-  { name: 'El-Salama Hospital', location: 'Minya' },
-  { name: 'Sona Center', location: 'Sharqia' },
-  { name: 'Al-Rayyan Scan Center', location: 'Minya' },
-  { name: 'Egypt Heart Center', location: 'Dokki, Giza' },
-  { name: 'Academi Hospital', location: 'New Cairo' },
-  { name: 'Glory Hospital', location: 'Damietta' },
-  { name: 'Thuraya Hospital', location: 'Mohandessin, Giza' },
-  { name: 'Al-Nahar Hospital', location: 'Nasr City, Cairo' },
-  { name: 'Aman Elhayah Medical Hospital', location: 'Beni Suef' },
-  { name: 'Aman Hospital', location: 'Helwan, Cairo' },
-  { name: 'Teba Center', location: 'Malawi, Minya' },
-  { name: 'Dar Al-Teb Hospital', location: 'Dokki, Giza' },
-  { name: 'Al-Taqwa Hospital', location: 'Helwan, Cairo' },
-  { name: 'Banha University Hospital', location: 'Banha, Qalyubia' },
-  { name: 'Egyptian Railway Hospital', location: 'Cairo' },
-  { name: 'Heia Scan', location: 'Minya' },
-  { name: 'Golden Heart Hospital', location: 'Maadi, Cairo' },
-  { name: 'Dr. Ahmed Safaan', location: 'Tanta, Gharbia' },
-  { name: 'Jana Hospital', location: 'Haram, Giza' },
-  { name: 'Nile Center', location: 'Cairo & Giza' },
-  { name: 'Military Hospital', location: 'All Egypt' },
+export interface ClientReference {
+  name: string;
+  nameAr: string;
+  location: string;
+  locationAr: string;
+}
+
+export const ALL_CLIENTS: ClientReference[] = [
+  { name: "Capital Care Hospital", nameAr: "مستشفى كابيتال كير", location: "6th of October, Giza", locationAr: "٦ أكتوبر، الجيزة" },
+  { name: "South Sinai Hospital", nameAr: "مستشفى جنوب سيناء", location: "Sharm El Sheikh", locationAr: "شرم الشيخ" },
+  { name: "El Gouna Hospital", nameAr: "مستشفى الجونة", location: "El Gouna, Red Sea", locationAr: "الجونة، البحر الأحمر" },
+  { name: "Al-Marwa Hospital / Dr. Monir Othman", nameAr: "مستشفى المروة / د. منير عثمان", location: "Dokki, Giza", locationAr: "الدقي، الجيزة" },
+  { name: "El Assema Hospital", nameAr: "مستشفى العاصمة", location: "Minya El Qamh, Sharqia", locationAr: "منيا القمح، الشرقية" },
+  { name: "Al-Tayseer Hospitals", nameAr: "مستشفيات التيسير", location: "Zagazig, Sharqia", locationAr: "الزقازيق، الشرقية" },
+  { name: "International Center for Radiology and MRI", nameAr: "المركز الدولي للأشعة والرنين المغناطيسي", location: "Helwan, Cairo", locationAr: "حلوان، القاهرة" },
+  { name: "Al-Zahra Hospital", nameAr: "مستشفى الزهراء", location: "Kafr El Sheikh", locationAr: "كفر الشيخ" },
+  { name: "Al-Safwa Hospital", nameAr: "مستشفى الصفوة", location: "6th of October, Giza", locationAr: "٦ أكتوبر، الجيزة" },
+  { name: "El Nokhba Hospital", nameAr: "مستشفى النخبة", location: "Kafr El Sheikh", locationAr: "كفر الشيخ" },
+  { name: "El-Hayah Hospital", nameAr: "مستشفى الحياة", location: "Assiut", locationAr: "أسيوط" },
+  { name: "Elite Heart Center", nameAr: "مركز إيليت للقلب", location: "Maadi, Cairo", locationAr: "المعادي، القاهرة" },
+  { name: "Al-Safwa Center", nameAr: "مركز الصفوة", location: "Faqus, Sharqia", locationAr: "فاقوس، الشرقية" },
+  { name: "Al-Fouad Center", nameAr: "مركز الفؤاد", location: "Shebin El Kom, Monufia", locationAr: "شبين الكوم، المنوفية" },
+  { name: "Al-Delta Hospital", nameAr: "مستشفى الدلتا", location: "Mansoura, Dakahlia", locationAr: "المنصورة، الدقهلية" },
+  { name: "El-Salama Hospital", nameAr: "مستشفى السلامة", location: "Minya", locationAr: "المنيا" },
+  { name: "Sona Center", nameAr: "مركز سونا للأشعة", location: "Sharqia", locationAr: "الشرقية" },
+  { name: "Al-Rayyan Scan Center", nameAr: "مركز الريان سكان", location: "Minya", locationAr: "المنيا" },
+  { name: "Egypt Heart Center", nameAr: "مركز مصر للقلب", location: "Dokki, Giza", locationAr: "الدقي، الجيزة" },
+  { name: "Academi Hospital", nameAr: "مستشفى أكاديمي", location: "New Cairo", locationAr: "القاهرة الجديدة" },
+  { name: "Glory Hospital", nameAr: "مستشفى جلوري", location: "Damietta", locationAr: "دمياط" },
+  { name: "Thuraya Hospital", nameAr: "مستشفى الثريا", location: "Mohandessin, Giza", locationAr: "المهندسين، الجيزة" },
+  { name: "Al-Nahar Hospital", nameAr: "مستشفى النهار", location: "Nasr City, Cairo", locationAr: "مدينة نصر، القاهرة" },
+  { name: "Aman Elhayah Medical Hospital", nameAr: "مستشفى أمان الحياة الطبي", location: "Beni Suef", locationAr: "بني سويف" },
+  { name: "Aman Hospital", nameAr: "مستشفى أمان", location: "Helwan, Cairo", locationAr: "حلوان، القاهرة" },
+  { name: "Teba Center", nameAr: "مركز طيبة", location: "Malawi, Minya", locationAr: "ملوي، المنيا" },
+  { name: "Dar Al-Teb Hospital", nameAr: "مستشفى دار الطب", location: "Dokki, Giza", locationAr: "الدقي، الجيزة" },
+  { name: "Al-Taqwa Hospital", nameAr: "مستشفى التقوى", location: "Helwan, Cairo", locationAr: "حلوان، القاهرة" },
+  { name: "Banha University Hospital", nameAr: "مستشفى بنها الجامعي", location: "Banha, Qalyubia", locationAr: "بنها، القليوبية" },
+  { name: "Egyptian Railway Hospital", nameAr: "مستشفى هيئة السكة الحديد", location: "Cairo", locationAr: "القاهرة" },
+  { name: "Heia Scan", nameAr: "مركز هيّا سكان", location: "Minya", locationAr: "المنيا" },
+  { name: "Golden Heart Hospital", nameAr: "مستشفى جولدن هارت", location: "Maadi, Cairo", locationAr: "المعادي، القاهرة" },
+  { name: "Dr. Ahmed Safaan", nameAr: "مركز د. أحمد صفوان", location: "Tanta, Gharbia", locationAr: "طنطا، الغربية" },
+  { name: "Jana Hospital", nameAr: "مستشفى جنى", location: "Haram, Giza", locationAr: "الهرم، الجيزة" },
+  { name: "Nile Center", nameAr: "مركز النيل للأشعة", location: "Cairo & Giza", locationAr: "القاهرة والجيزة" },
+  { name: "Military Hospital", nameAr: "المستشفيات العسكرية", location: "All Egypt", locationAr: "مختلف محافظات مصر" },
 ];
 
 // ── WHY NOUR MEDICAL POINTS ───────────────────────────────────────
@@ -389,30 +397,48 @@ export const WHY_NOUR_MEDICAL = [
 ];
 
 // ── CAPABILITY HIGHLIGHTS ─────────────────────────────────────────
-export const KEY_CAPABILITIES = [
+export interface KeyCapability {
+  id: string;
+  titleKey: TranslationKey;
+  descKey: TranslationKey;
+  title: string;
+  description: string;
+}
+
+export const KEY_CAPABILITIES: KeyCapability[] = [
   {
-    id: 'radiology',
-    title: 'Radiology Devices',
-    description: 'Advanced imaging technologies and radiology equipment.',
+    id: "radiology",
+    titleKey: "home.cap1Title",
+    descKey: "home.cap1Desc",
+    title: "Radiology Devices",
+    description: "Advanced imaging technologies and radiology equipment.",
   },
   {
-    id: 'equipment',
-    title: 'Medical Equipment',
-    description: 'Solutions supporting modern healthcare facilities.',
+    id: "equipment",
+    titleKey: "home.cap2Title",
+    descKey: "home.cap2Desc",
+    title: "Medical Equipment",
+    description: "Solutions supporting modern healthcare facilities.",
   },
   {
-    id: 'furniture',
-    title: 'Hospital Furniture',
-    description: 'Durable furniture solutions for healthcare environments.',
+    id: "furniture",
+    titleKey: "home.cap3Title",
+    descKey: "home.cap3Desc",
+    title: "Hospital Furniture",
+    description: "Durable furniture solutions for healthcare environments.",
   },
   {
-    id: 'consumables',
-    title: 'Consumables & Spare Parts',
-    description: 'Essential components and supplies supporting operational continuity.',
+    id: "consumables",
+    titleKey: "home.cap4Title",
+    descKey: "home.cap4Desc",
+    title: "Consumables & Spare Parts",
+    description: "Essential components and supplies supporting operational continuity.",
   },
   {
-    id: 'maintenance',
-    title: 'Maintenance',
-    description: 'Professional technical support and maintenance for radiology equipment.',
+    id: "maintenance",
+    titleKey: "home.cap5Title",
+    descKey: "home.cap5Desc",
+    title: "Maintenance",
+    description: "Professional technical support and maintenance for radiology equipment.",
   },
 ];

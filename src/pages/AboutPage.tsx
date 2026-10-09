@@ -27,108 +27,42 @@ export const AboutPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{
-        background: 'var(--navy)',
-        padding: '130px 0 80px',
-        position: 'relative',
-        overflow: 'hidden',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-      }}>
-        {/* Ambient Grid & Glow matching Hero Section */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute',
-          right: '-5%',
-          top: '0%',
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
+        {/* Ambient Subtle Medical Grid & Glow */}
+        <div className="absolute inset-0 bg-[size:60px_60px] bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] pointer-events-none" />
+        <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.625rem',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: 'var(--teal-accent)',
-            marginBottom: '24px',
-          }}>
-            <span style={{
-              width: '6px',
-              height: '6px',
-              borderRadius: '50%',
-              background: 'var(--teal-accent)',
-              boxShadow: '0 0 8px var(--teal-accent)',
-            }} />
-            About Nour Medical
+        <div className="container relative z-[1]">
+          <div className="section-label">
+            Corporate Profile & Governance
           </div>
-          <h1 style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(3rem, 6.5vw, 5.75rem)',
-            fontWeight: 700,
-            color: 'var(--white)',
-            letterSpacing: '-0.035em',
-            lineHeight: 0.94,
-            maxWidth: '850px',
-            marginBottom: '32px',
-          }}>
+          <h1 className="font-heading text-[clamp(3rem,6.5vw,5.75rem)] font-bold text-navy tracking-[-0.035em] leading-[0.94] max-w-[850px] mb-8">
             About Nour Medical
           </h1>
-          <p style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
-            lineHeight: 1.7,
-            color: 'rgba(255, 255, 255, 0.7)',
-            maxWidth: '650px',
-          }}>
-            Nour Medical Company was established in {COMPANY_INFO.established} with the healthcare sector at the heart of its business.
+          <p className="font-body text-[clamp(1.25rem,2vw,1.5rem)] leading-[1.7] text-text-muted max-w-[680px]">
+            Nour Medical Company was established 2015 with the healthcare sector at the heart of its business.
           </p>
         </div>
       </section>
 
       {/* Company Story */}
-      <section style={{ padding: 'var(--section-gap) 0', background: 'var(--white)' }}>
+      <section className="py-[var(--section-gap)] bg-white">
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 'clamp(40px, 6vw, 100px)',
-            alignItems: 'start',
-          }}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-start">
             <div>
               <div className="section-label">Our Story</div>
-              <h2 style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(2.25rem, 4vw, 3.5rem)',
-                fontWeight: 700,
-                color: 'var(--navy)',
-                letterSpacing: '-0.03em',
-                lineHeight: 1.05,
-                marginBottom: '24px',
-              }}>
+              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-navy tracking-[-0.03em] leading-[1.05] mb-6">
                 A Healthcare Technology Company Built for the Egyptian Market
               </h2>
             </div>
             <div>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', lineHeight: 1.75, color: 'var(--text-muted)', marginBottom: '20px' }}>
-                Founded in {COMPANY_INFO.established}, Nour Medical has evolved from a healthcare equipment and radiology maintenance specialist into a broader provider of healthcare technologies and solutions. Our business covers radiology devices, medical equipment, hospital furniture, consumables, spare parts, and maintenance.
+              <p className="font-body text-[1.0625rem] leading-[1.75] text-text-muted mb-5">
+                Established 2015, Nour Medical has evolved from a healthcare equipment and radiology maintenance specialist into a broader provider of healthcare technologies and solutions. Our business covers radiology devices, medical equipment, hospital furniture, consumables, spare parts, and maintenance.
               </p>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', lineHeight: 1.75, color: 'var(--text-muted)', marginBottom: '20px' }}>
+              <p className="font-body text-[1.0625rem] leading-[1.75] text-text-muted mb-5">
                 The company is recognized as one of the pioneering companies in Egypt in the maintenance of imported radiology devices. We have established a trusted network of healthcare entities across the country, from hospitals in Cairo to medical centers in Upper Egypt.
               </p>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: '1.0625rem', lineHeight: 1.75, color: 'var(--text-muted)' }}>
+              <p className="font-body text-[1.0625rem] leading-[1.75] text-text-muted">
                 Through a global supplier network spanning the USA, Taiwan, and China, we provide products that emphasize durability, sustainable technologies, and high-quality service — contributing to improved healthcare standards across Egypt.
               </p>
             </div>
@@ -139,23 +73,14 @@ export const AboutPage: React.FC = () => {
       {/* Three Pillars */}
       <section
         ref={pillarsRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--warm-white)',
-          opacity: pillarsVisible ? 1 : 0,
-          transition: 'opacity 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+          pillarsVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
-          <div style={{ marginBottom: '60px' }}>
+          <div className="mb-15">
             <div className="section-label">Our Foundation</div>
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-              fontWeight: 700,
-              color: 'var(--navy)',
-              letterSpacing: '-0.02em',
-            }}>
+            <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-navy tracking-[-0.02em]">
               Three Pillars of Our Business
             </h2>
           </div>
@@ -163,40 +88,18 @@ export const AboutPage: React.FC = () => {
             {COMPANY_PILLARS.map((pillar, i) => (
               <div
                 key={pillar.id}
-                style={{
-                  padding: '48px 36px',
-                  borderLeft: '2px solid var(--blue-medical)',
-                  opacity: pillarsVisible ? 1 : 0,
-                  transform: pillarsVisible ? 'translateY(0)' : 'translateY(20px)',
-                  transition: `opacity 0.6s var(--ease-smooth) ${i * 0.12}s, transform 0.6s var(--ease-smooth) ${i * 0.12}s`,
-                }}
+                className={`p-12 px-9 border-l-2 border-blue-medical transition-all duration-600 ease-[var(--ease-smooth)] ${
+                  pillarsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                }`}
+                style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.5rem',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--blue-medical)',
-                  marginBottom: '20px',
-                }}>
+                <div className="font-mono text-[0.5rem] tracking-[0.2em] uppercase text-blue-medical mb-5">
                   {String(i + 1).padStart(2, '0')} — {pillar.id.toUpperCase()}
                 </div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.625rem',
-                  fontWeight: 700,
-                  color: 'var(--navy)',
-                  letterSpacing: '-0.015em',
-                  marginBottom: '14px',
-                }}>
+                <h3 className="font-heading text-[1.625rem] font-bold text-navy tracking-[-0.015em] mb-3.5">
                   {pillar.title}
                 </h3>
-                <p style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '1.0625rem',
-                  lineHeight: 1.7,
-                  color: 'var(--text-muted)',
-                }}>
+                <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted">
                   {pillar.description}
                 </p>
               </div>
@@ -208,125 +111,46 @@ export const AboutPage: React.FC = () => {
       {/* Executive Leadership & Vision */}
       <section
         ref={leaderRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'linear-gradient(180deg, var(--warm-white) 0%, var(--white) 100%)',
-          opacity: leaderVisible ? 1 : 0,
-          transform: leaderVisible ? 'translateY(0)' : 'translateY(24px)',
-          transition: 'opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-gradient-to-b from-warm-white to-white transition-all duration-700 ease-[var(--ease-smooth)] ${
+          leaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}
       >
         <div className="container">
-          <div style={{
-            position: 'relative',
-            background: 'var(--navy)',
-            borderRadius: '12px',
-            padding: 'clamp(32px, 5vw, 64px)',
-            color: 'var(--white)',
-            overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(10, 25, 47, 0.12)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-          }}>
+          <div className="relative bg-navy rounded-xl p-[clamp(32px,5vw,64px)] text-white overflow-hidden shadow-[0_20px_40px_rgba(10,25,47,0.12)] border border-white/[0.08]">
             {/* Background Accent Lines */}
-            <div style={{
-              position: 'absolute',
-              top: '-50%',
-              right: '-10%',
-              width: '400px',
-              height: '400px',
-              background: 'radial-gradient(circle, rgba(0, 168, 150, 0.15) 0%, rgba(0, 168, 150, 0) 70%)',
-              pointerEvents: 'none',
-              borderRadius: '50%',
-            }} />
+            <div className="absolute -top-1/2 -right-[10%] w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(0,168,150,0.15)_0%,rgba(0,168,150,0)_70%)] pointer-events-none" />
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: 'clamp(32px, 4vw, 56px)',
-              alignItems: 'center',
-              position: 'relative',
-              zIndex: 1,
-            }}>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(32px,4vw,56px)] items-center relative z-[1]">
               {/* Left Column: Executive Credentials & Official Portrait */}
-              <div style={{ display: 'flex', gap: '28px', alignItems: 'center', flexWrap: 'wrap' }}>
-                <div style={{
-                  width: '180px',
-                  height: '230px',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  border: '2px solid var(--teal-accent)',
-                  boxShadow: '0 12px 30px rgba(0, 0, 0, 0.45)',
-                  flexShrink: 0,
-                  background: 'rgba(255, 255, 255, 0.05)',
-                }}>
+              <div className="flex gap-7 items-center flex-wrap">
+                <div className="w-[180px] h-[230px] rounded-2xl overflow-hidden border-2 border-orange-accent shadow-[0_12px_30px_rgba(0,0,0,0.45)] shrink-0 bg-white/[0.05]">
                   <img
                     src={`${BASE}images/team/eng-sayed-awad.jpg`}
                     alt={COMPANY_INFO.chairman}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <div style={{ flex: 1, minWidth: '240px' }}>
-                  <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '6px 14px',
-                    borderRadius: '20px',
-                    background: 'rgba(0, 168, 150, 0.12)',
-                    border: '1px solid rgba(0, 168, 150, 0.3)',
-                    marginBottom: '16px',
-                  }}>
-                    <Award size={14} style={{ color: 'var(--teal-accent)' }} />
-                    <span style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.6875rem',
-                      letterSpacing: '0.15em',
-                      textTransform: 'uppercase',
-                      color: 'var(--teal-accent)',
-                      fontWeight: 600,
-                    }}>
+                <div className="flex-1 min-w-[240px]">
+                  <div className="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-[20px] bg-orange-subtle border border-orange-accent/30 mb-4">
+                    <Award size={14} className="text-teal-accent" />
+                    <span className="font-mono text-[0.6875rem] tracking-[0.15em] uppercase text-orange-accent font-semibold">
                       {COMPANY_INFO.chairmanTitle}
                     </span>
                   </div>
 
-                  <h2 style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
-                    fontWeight: 700,
-                    color: 'var(--white)',
-                    letterSpacing: '-0.03em',
-                    lineHeight: 1.1,
-                    marginBottom: '12px',
-                  }}>
+                  <h2 className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold text-white tracking-[-0.03em] leading-[1.1] mb-3">
                     {COMPANY_INFO.chairman}
                   </h2>
 
-                  <div style={{
-                    width: '50px',
-                    height: '3px',
-                    background: 'var(--teal-accent)',
-                    borderRadius: '2px',
-                    marginBottom: '18px',
-                  }} />
+                  <div className="w-[50px] h-[3px] bg-orange-accent rounded-sm mb-4.5" />
 
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  <div className="flex flex-wrap gap-2">
                     {['Executive Leadership', 'Strategic Vision', 'Engineering Excellence'].map((tag) => (
                       <span
                         key={tag}
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '6px',
-                          fontSize: '0.75rem',
-                          fontFamily: 'var(--font-mono)',
-                          color: 'rgba(255, 255, 255, 0.8)',
-                          background: 'rgba(255, 255, 255, 0.06)',
-                          padding: '4px 10px',
-                          borderRadius: '4px',
-                          border: '1px solid rgba(255, 255, 255, 0.08)',
-                        }}
+                        className="inline-flex items-center gap-1.5 text-xs font-mono text-white/80 bg-white/[0.06] py-1 px-2.5 rounded border border-white/[0.08]"
                       >
-                        <ShieldCheck size={12} style={{ color: 'var(--teal-accent)' }} />
+                        <ShieldCheck size={12} className="text-teal-accent" />
                         {tag}
                       </span>
                     ))}
@@ -335,31 +159,12 @@ export const AboutPage: React.FC = () => {
               </div>
 
               {/* Right Column: Executive Quote / Vision Statement */}
-              <div style={{
-                position: 'relative',
-                paddingLeft: 'clamp(0px, 3vw, 24px)',
-                borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-              }}>
-                <Quote size={32} style={{ color: 'var(--teal-accent)', opacity: 0.5, marginBottom: '16px' }} />
-                <p style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 'clamp(1rem, 1.5vw, 1.1875rem)',
-                  lineHeight: 1.65,
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  fontWeight: 400,
-                  fontStyle: 'italic',
-                  marginBottom: '20px',
-                }}>
+              <div className="relative ltr:pl-[clamp(0px,3vw,24px)] rtl:pr-[clamp(0px,3vw,24px)] ltr:border-l rtl:border-r border-white/10">
+                <Quote size={32} className="text-orange-accent opacity-50 mb-4" />
+                <p className="font-body text-[clamp(1rem,1.5vw,1.1875rem)] leading-[1.65] text-white/90 font-normal italic mb-5">
                   "Guiding Nour Medical's mission to empower healthcare providers across Egypt through world-class medical diagnostic imaging systems, precision technical engineering, and uncompromised service support."
                 </p>
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: 'var(--teal-accent)',
-                  fontWeight: 600,
-                }}>
+                <div className="font-mono text-xs tracking-[0.1em] uppercase text-orange-accent font-semibold">
                   Nour Medical Governance & Direction
                 </div>
               </div>
@@ -371,83 +176,39 @@ export const AboutPage: React.FC = () => {
       {/* Human Resources & Infrastructure */}
       <section
         ref={infraRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--warm-neutral)',
-          opacity: infraVisible ? 1 : 0,
-          transition: 'opacity 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-warm-neutral transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+          infraVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
           <div className="grid-2">
             {/* HR */}
             <div>
-              <div className="section-label section-label-light" style={{ marginBottom: '24px' }}>
+              <div className="section-label section-label-light mb-6">
                 Human Resources
               </div>
-              <h3 style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
-                fontWeight: 700,
-                color: 'var(--navy)',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.2,
-                marginBottom: '16px',
-              }}>
+              <h3 className="font-heading text-[clamp(1.5rem,2.5vw,2.25rem)] font-bold text-navy tracking-[-0.02em] leading-[1.2] mb-4">
                 Experienced Technical & Service Staff
               </h3>
-              <p style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.5625rem',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: 'var(--teal-accent)',
-                marginBottom: '20px',
-              }}>
+              <p className="font-mono text-[0.5625rem] tracking-[0.15em] uppercase text-orange-accent mb-5">
                 Field Service Engineers, Technicians & Administrative Personnel
               </p>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1.0625rem',
-                lineHeight: 1.7,
-                color: 'var(--text-muted)',
-                marginBottom: '20px',
-              }}>
+              <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-5">
                 Our team of field service engineers, technicians, and administrative personnel is supported by a broader group of motivated professionals committed to delivering high-quality healthcare technology service.
               </p>
-              {/* Executive Team Spotlight */}
-              <div style={{
-                display: 'flex',
-                gap: '16px',
-                alignItems: 'center',
-                padding: '16px',
-                background: 'var(--white)',
-                borderRadius: '12px',
-                border: '1px solid var(--gray-light)',
-                boxShadow: '0 4px 12px rgba(10, 22, 40, 0.04)',
-              }}>
-                <div style={{
-                  width: '64px',
-                  height: '76px',
-                  borderRadius: '10px',
-                  overflow: 'hidden',
-                  border: '1.5px solid var(--teal-accent)',
-                  flexShrink: 0,
-                }}>
-                  <img
-                    src={`${BASE}images/team/dr-gehan.jpg`}
-                    alt="Dr. Gehan"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+              {/* Executive Team Spotlight — Dr. Gehan */}
+              <div className="flex gap-[18px] items-center p-5 px-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-orange-accent shadow-[0_4px_16px_rgba(10,22,40,0.04)]">
+                <div className="w-[46px] h-[46px] rounded-[10px] bg-orange-subtle flex items-center justify-center text-orange-accent shrink-0">
+                  <Award size={22} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', fontWeight: 700, color: 'var(--navy)', marginBottom: '2px' }}>
+                  <h4 className="font-heading text-xl font-bold text-navy mb-0.5">
                     Dr. Gehan
                   </h4>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--teal-accent)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
+                  <p className="font-mono text-xs text-orange-accent uppercase tracking-[0.1em] font-semibold">
                     Medical Director & Clinical Governance
                   </p>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                  <p className="text-[0.8125rem] text-text-muted mt-1 leading-[1.5]">
                     Overseeing clinical quality, protocol adherence, and medical partner relations across Egypt.
                   </p>
                 </div>
@@ -455,102 +216,53 @@ export const AboutPage: React.FC = () => {
             </div>
 
             {/* Infrastructure */}
-            <div style={{ borderLeft: '1px solid var(--gray-light)', paddingLeft: 'clamp(32px, 5vw, 60px)' }}>
-              <div className="section-label section-label-light" style={{ marginBottom: '24px' }}>
+            <div className="border-l border-gray-light ltr:pl-[clamp(32px,5vw,60px)] rtl:pr-[clamp(32px,5vw,60px)]">
+              <div className="section-label section-label-light mb-6">
                 Parts Infrastructure
               </div>
-              <h3 style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
-                fontWeight: 700,
-                color: 'var(--navy)',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.2,
-                marginBottom: '16px',
-              }}>
+              <h3 className="font-heading text-[clamp(1.5rem,2.5vw,2.25rem)] font-bold text-navy tracking-[-0.02em] leading-[1.2] mb-4">
                 Dedicated Parts Storage Facility
               </h3>
-              <p style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.5625rem',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: 'var(--teal-accent)',
-                marginBottom: '20px',
-              }}>
+              <p className="font-mono text-[0.5625rem] tracking-[0.15em] uppercase text-orange-accent mb-5">
                 Spare Parts Facility — Maadi, Cairo
               </p>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1.0625rem',
-                lineHeight: 1.7,
-                color: 'var(--text-muted)',
-              }}>
+              <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted">
                 Maintaining an extensive parts inventory allows the technical team to respond efficiently to service requirements, supporting reduced system downtime for healthcare facilities across Egypt.
               </p>
             </div>
           </div>
 
           {/* Engineering Team Photographic Strip */}
-          <div style={{ marginTop: '50px' }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '18px',
-            }}>
-              <span style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.625rem',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: 'var(--teal-accent)',
-                fontWeight: 600,
-              }}>
+          <div className="mt-12">
+            <div className="flex items-center justify-between mb-4.5">
+              <span className="font-mono text-[0.625rem] tracking-[0.15em] uppercase text-orange-accent font-semibold">
                 Field Engineering & Operations Team
               </span>
-              <Link to="/gallery" style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                color: 'var(--navy)',
-                textDecoration: 'none',
-                fontWeight: 600,
-              }}>
+              <Link to="/gallery" className="font-mono text-xs text-navy no-underline font-semibold hover:text-blue-medical transition-colors">
                 View Full Team Gallery &rarr;
               </Link>
             </div>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '16px',
-            }}>
-              <div style={{ height: '180px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--gray-light)', boxShadow: '0 4px 12px rgba(10,22,40,0.06)' }}>
-                <img src={`${BASE}images/team/team-dsc00636.jpg`} alt="Nour Medical Technical Team" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
+              <div className="h-[180px] rounded-xl overflow-hidden border border-gray-light shadow-[0_4px_12px_rgba(10,22,40,0.06)]">
+                <img src={`${BASE}images/team/team-dsc00636.jpg`} alt="Nour Medical Technical Team" className="w-full h-full object-cover" />
               </div>
-              <div style={{ height: '180px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--gray-light)', boxShadow: '0 4px 12px rgba(10,22,40,0.06)' }}>
-                <img src={`${BASE}images/team/team-dsc00614.jpg`} alt="Nour Medical Field Engineering" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div className="h-[180px] rounded-xl overflow-hidden border border-gray-light shadow-[0_4px_12px_rgba(10,22,40,0.06)]">
+                <img src={`${BASE}images/team/team-dsc00614.jpg`} alt="Nour Medical Field Engineering" className="w-full h-full object-cover" />
               </div>
-              <div style={{ height: '180px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--gray-light)', boxShadow: '0 4px 12px rgba(10,22,40,0.06)' }}>
-                <img src={`${BASE}images/team/team-gathering-1.jpeg`} alt="Nour Medical Annual Gathering" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div className="h-[180px] rounded-xl overflow-hidden border border-gray-light shadow-[0_4px_12px_rgba(10,22,40,0.06)]">
+                <img src={`${BASE}images/team/team-gathering-1.jpeg`} alt="Nour Medical Annual Gathering" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
 
-          <div className="rule" style={{ margin: '60px 0 50px' }} />
+          <div className="rule my-[60px] mb-[50px]" />
 
           {/* CTA */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '24px' }}>
-            <p style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
-              fontWeight: 600,
-              color: 'var(--navy)',
-              letterSpacing: '-0.015em',
-              maxWidth: '480px',
-            }}>
+          <div className="flex justify-between items-center flex-wrap gap-6">
+            <p className="font-heading text-[clamp(1.5rem,3vw,2.25rem)] font-semibold text-navy tracking-[-0.015em] max-w-[480px]">
               Ready to discuss your healthcare technology requirements?
             </p>
-            <Link to="/contact" className="btn btn-primary" style={{ gap: '8px' }}>
+            <Link to="/contact" className="btn btn-primary gap-2">
               Contact Nour Medical
               <ArrowRight size={15} />
             </Link>

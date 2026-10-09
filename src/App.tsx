@@ -11,6 +11,7 @@ import { ContactPage } from './pages/ContactPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { Cinematic3DLoader } from './components/organisms/Cinematic3DLoader';
 import { LoaderContext } from './context/LoaderContext';
+import { LanguageProvider } from './i18n';
 
 // Scroll to top on route change
 const ScrollToTop: React.FC = () => {
@@ -50,26 +51,28 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <LoaderContext.Provider value={showLoader}>
-      <Router basename={import.meta.env.BASE_URL}>
-        {showLoader && <Cinematic3DLoader onComplete={handleLoaderComplete} />}
-        <ScrollToTop />
-        <PageLayout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/maintenance" element={<Navigate to="/services#maintenance" replace />} />
-            <Route path="/clients" element={<ClientsPage />} />
-            <Route path="/suppliers" element={<SuppliersPage />} />
-            <Route path="/partners" element={<SuppliersPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-          </Routes>
-        </PageLayout>
-      </Router>
-    </LoaderContext.Provider>
+    <LanguageProvider>
+      <LoaderContext.Provider value={showLoader}>
+        <Router basename={import.meta.env.BASE_URL}>
+          {showLoader && <Cinematic3DLoader onComplete={handleLoaderComplete} />}
+          <ScrollToTop />
+          <PageLayout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/maintenance" element={<Navigate to="/services#maintenance" replace />} />
+              <Route path="/clients" element={<ClientsPage />} />
+              <Route path="/suppliers" element={<SuppliersPage />} />
+              <Route path="/partners" element={<SuppliersPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/gallery" element={<GalleryPage />} />
+            </Routes>
+          </PageLayout>
+        </Router>
+      </LoaderContext.Provider>
+    </LanguageProvider>
   );
 };
 

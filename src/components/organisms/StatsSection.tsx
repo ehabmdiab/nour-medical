@@ -14,12 +14,17 @@ const FEATURED_CAPABILITIES: MetricItem[] = [
 ];
 
 export const StatsSection: React.FC = () => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
       { threshold: 0.1 }
     );
     if (ref.current) observer.observe(ref.current);
@@ -27,67 +32,38 @@ export const StatsSection: React.FC = () => {
   }, []);
 
   return (
-    <section style={{ background: 'var(--warm-white)', padding: 'var(--section-gap) 0' }}>
+    <section className="bg-warm-white py-[var(--section-gap)]">
       <div className="container">
         <div
           ref={ref}
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            flexWrap: 'wrap',
-            gap: '24px',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(16px)',
-            transition: 'opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth)',
-          }}
+          className={`flex justify-between items-end flex-wrap gap-6 transition-all duration-700 ${
+            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
         >
           <div>
             <div className="section-label">Technical Infrastructure</div>
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.8rem, 3vw, 2.75rem)',
-              fontWeight: 700,
-              color: 'var(--navy)',
-              letterSpacing: '-0.02em',
-              lineHeight: 1.1,
-            }}>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-navy tracking-tight leading-tight">
               Core Operational Strength
             </h2>
           </div>
         </div>
 
-        <div className="grid-4" style={{ marginTop: '32px' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
           {FEATURED_CAPABILITIES.map((m, i) => (
             <div
               key={m.label}
+              className={`py-8 border-t border-gray-light transition-all duration-500 ${
+                visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+              }`}
               style={{
-                paddingTop: '32px',
-                paddingBottom: '32px',
-                borderTop: '1px solid var(--gray-light)',
-                opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(20px)',
-                transition: `opacity 0.6s var(--ease-smooth) ${i * 0.1}s, transform 0.6s var(--ease-smooth) ${i * 0.1}s`,
+                transitionDelay: `${i * 0.1}s`,
               }}
             >
-              <div style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
-                fontWeight: 700,
-                color: 'var(--navy)',
-                lineHeight: 1,
-                letterSpacing: '-0.03em',
-                marginBottom: '8px',
-              }}>
-                {m.number}<span style={{ color: 'var(--blue-medical)', fontSize: '0.6em' }}>{m.suffix}</span>
+              <div className="font-heading text-3xl md:text-4xl font-bold text-navy leading-none tracking-tight mb-2">
+                {m.number}
+                <span className="text-blue-medical text-[0.6em]">{m.suffix}</span>
               </div>
-              <p style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.625rem',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: 'var(--text-muted)',
-              }}>
+              <p className="font-mono text-[0.625rem] tracking-widest uppercase text-text-muted">
                 {m.label}
               </p>
             </div>

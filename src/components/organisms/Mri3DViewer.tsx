@@ -1,9 +1,10 @@
-import React, { Suspense, useRef, useState } from 'react';
+import React, { Suspense, useRef, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useGLTF, useTexture, Environment, ContactShadows, Float } from '@react-three/drei';
 import { Play, Pause, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import * as THREE from 'three';
 
+// ── 3D MRI Scanner Model ──────────────────────────────────────────
 function MriScannerModel(props: { position?: [number, number, number]; scale?: [number, number, number] }) {
   const modelUrl = `${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`;
   const { scene } = useGLTF(modelUrl);
@@ -29,7 +30,7 @@ function MriScannerModel(props: { position?: [number, number, number]; scale?: [
   return <primitive object={scene} {...props} />;
 }
 
-// Preload model
+// Preload model & logo
 try {
   useGLTF.preload(`${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`);
   useTexture.preload(`${import.meta.env.BASE_URL}nour-medical-logo.png`);
@@ -52,13 +53,13 @@ function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: Ca
   const isInitialized = useRef<boolean>(false);
   const lastResetTrigger = useRef<number>(resetTrigger);
 
-  // Start Position: Distant, spaced wide view showing the full scanner in expansive surrounding perspective
-  const startPos = new THREE.Vector3(0, 4.2, 14.5);
-  const startTarget = new THREE.Vector3(0, 2.0, 0.0);
+  // Start Position: Distant wide view showing the full scanner in perspective
+  const startPos = useRef(new THREE.Vector3(0, 4.2, 14.5)).current;
+  const startTarget = useRef(new THREE.Vector3(0, 2.0, 0.0)).current;
 
-  // Zoomed Position: Centered straight-on zoom directly into the machine's circular bore center
-  const zoomPos = new THREE.Vector3(0, 2.42, 2.85);
-  const zoomTarget = new THREE.Vector3(0, 2.42, 0.0);
+  // Zoomed Position: Centered straight-on zoom directly into the circular bore
+  const zoomPos = useRef(new THREE.Vector3(0, 2.42, 2.85)).current;
+  const zoomTarget = useRef(new THREE.Vector3(0, 2.42, 0.0)).current;
 
   // Reset time if reset button clicked
   if (resetTrigger !== lastResetTrigger.current) {
@@ -85,11 +86,11 @@ function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: Ca
       progress = 0;
       opacity = 0;
     } else {
-      // Automatic animation loop mode
+      // Automatic animation loop mode (60s cycle)
       if (isPlaying) {
         timeRef.current += delta;
       }
-      const cycleTime = 60; // 60 seconds total cycle (1 minute loop)
+      const cycleTime = 60;
       const t = timeRef.current % cycleTime;
 
       if (t < 3.5) {
@@ -102,7 +103,7 @@ function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: Ca
         progress = ease < 0.5 ? 4 * ease * ease * ease : 1 - Math.pow(-2 * ease + 2, 3) / 2;
         opacity = Math.min(1, Math.max(0, (ease - 0.15) * 1.3));
       } else if (t < 52) {
-        // 9s - 52s: Hold zoomed inside view displaying text in dead center
+        // 9s - 52s: Hold zoomed inside view displaying logo in dead center
         progress = 1;
         opacity = 1;
       } else if (t < 57) {
@@ -111,7 +112,7 @@ function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: Ca
         progress = ease < 0.5 ? 4 * ease * ease * ease : 1 - Math.pow(-2 * ease + 2, 3) / 2;
         opacity = Math.min(1, Math.max(0, (ease - 0.15) * 1.3));
       } else {
-        // 57s - 60s: Reset at wide start view before next 1-minute cycle
+        // 57s - 60s: Reset at wide start view before next cycle
         progress = 0;
         opacity = 0;
       }
@@ -185,44 +186,41 @@ interface Mri3DViewerProps {
 }
 
 export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => {
-  const [textOpacity, setTextOpacity] = useState(0);
+  const [textOpacity, setTextOpacity] = useState<number>(0);
   const [mode, setMode] = useState<'auto' | 'zoomed-in' | 'zoomed-out'>('auto');
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [resetTrigger, setResetTrigger] = useState(0);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [resetTrigger, setResetTrigger] = useState<number>(0);
 
-  const handleTogglePlay = () => {
+  const handleTogglePlay = useCallback((): void => {
     if (mode !== 'auto') {
       setMode('auto');
       setIsPlaying(true);
     } else {
-      setIsPlaying(!isPlaying);
+      setIsPlaying((prev) => !prev);
     }
-  };
+  }, [mode]);
 
-  const handleRestart = () => {
+  const handleRestart = useCallback((): void => {
     setMode('auto');
     setIsPlaying(true);
-    setResetTrigger(prev => prev + 1);
-  };
+    setResetTrigger((prev) => prev + 1);
+  }, []);
 
-  const handleZoomIn = () => {
+  const handleZoomIn = useCallback((): void => {
     setMode('zoomed-in');
-  };
+  }, []);
 
-  const handleZoomOut = () => {
+  const handleZoomOut = useCallback((): void => {
     setMode('zoomed-out');
-  };
+  }, []);
 
   return (
-    <div style={{
-      width: '100%',
-      height: height,
-      position: 'relative',
-      overflow: 'hidden',
-      borderRadius: '50%',
-      maskImage: 'radial-gradient(circle at center, black 84%, transparent 100%)',
-      WebkitMaskImage: 'radial-gradient(circle at center, black 84%, transparent 100%)',
-    }}>
+    <div
+      className="w-full relative overflow-hidden rounded-full select-none [mask-image:radial-gradient(circle_at_center,black_84%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_84%,transparent_100%)]"
+      style={{ height }}
+      role="region"
+      aria-label="Interactive 3D MRI Scanner Model Viewer"
+    >
       <Canvas
         shadows
         camera={{ position: [0, 4.2, 14.5], fov: 45 }}
@@ -248,40 +246,15 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
       </Canvas>
 
       {/* Floating Interactive 3D Viewer Controllers */}
-      <div style={{
-        position: 'absolute',
-        bottom: '28px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 20,
-        display: 'flex',
-        alignItems: 'center',
-        gap: '6px',
-        padding: '6px 12px',
-        background: 'rgba(10, 22, 40, 0.85)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.18)',
-        borderRadius: '30px',
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
-      }}>
+      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1.5 bg-navy/85 backdrop-blur-md border border-white/20 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
         {/* Start / Pause Animation */}
         <button
           onClick={handleTogglePlay}
           title={mode === 'auto' && isPlaying ? 'Pause Animation' : 'Start Animation'}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            background: mode === 'auto' && isPlaying ? 'rgba(0, 168, 181, 0.25)' : 'transparent',
-            color: mode === 'auto' && isPlaying ? 'var(--teal-accent)' : '#fff',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-          }}
+          aria-label={mode === 'auto' && isPlaying ? 'Pause Animation' : 'Start Animation'}
+          className={`flex items-center justify-center w-8 h-8 rounded-full border-0 cursor-pointer transition-all duration-200 ${
+            mode === 'auto' && isPlaying ? 'bg-teal-accent/25 text-teal-accent' : 'bg-transparent text-white hover:text-teal-accent'
+          }`}
         >
           {mode === 'auto' && isPlaying ? <Pause size={14} /> : <Play size={14} />}
         </button>
@@ -290,50 +263,24 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
         <button
           onClick={handleRestart}
           title="Restart Animation from Spaced View"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            background: 'transparent',
-            color: 'rgba(255,255,255,0.7)',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-          }}
-          onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-          onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.7)')}
+          aria-label="Restart Animation from Spaced View"
+          className="flex items-center justify-center w-8 h-8 rounded-full bg-transparent text-white/70 hover:text-white border-0 cursor-pointer transition-all duration-200"
         >
           <RotateCcw size={14} />
         </button>
 
-        <div style={{ width: '1px', height: '16px', background: 'rgba(255, 255, 255, 0.15)', margin: '0 2px' }} />
+        <div className="w-px h-4 bg-white/15 mx-0.5" />
 
         {/* Zoom Out (Spaced View) */}
         <button
           onClick={handleZoomOut}
           title="Zoom Out (Spaced View)"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            background: mode === 'zoomed-out' ? 'rgba(0, 168, 181, 0.25)' : 'transparent',
-            color: mode === 'zoomed-out' ? 'var(--teal-accent)' : 'rgba(255, 255, 255, 0.85)',
-            border: mode === 'zoomed-out' ? '1px solid var(--teal-accent)' : 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-          }}
-          onMouseEnter={e => {
-            if (mode !== 'zoomed-out') e.currentTarget.style.color = '#fff';
-          }}
-          onMouseLeave={e => {
-            if (mode !== 'zoomed-out') e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
-          }}
+          aria-label="Zoom Out (Spaced View)"
+          className={`flex items-center justify-center w-8 h-8 rounded-full cursor-pointer transition-all duration-200 ${
+            mode === 'zoomed-out'
+              ? 'bg-teal-accent/25 text-teal-accent border border-teal-accent'
+              : 'bg-transparent text-white/85 hover:text-white border-0'
+          }`}
         >
           <ZoomOut size={14} />
         </button>
@@ -342,25 +289,12 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
         <button
           onClick={handleZoomIn}
           title="Zoom In (Centered Bore)"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            background: mode === 'zoomed-in' ? 'rgba(0, 168, 181, 0.25)' : 'transparent',
-            color: mode === 'zoomed-in' ? 'var(--teal-accent)' : 'rgba(255, 255, 255, 0.85)',
-            border: mode === 'zoomed-in' ? '1px solid var(--teal-accent)' : 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-          }}
-          onMouseEnter={e => {
-            if (mode !== 'zoomed-in') e.currentTarget.style.color = '#fff';
-          }}
-          onMouseLeave={e => {
-            if (mode !== 'zoomed-in') e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
-          }}
+          aria-label="Zoom In (Centered Bore)"
+          className={`flex items-center justify-center w-8 h-8 rounded-full cursor-pointer transition-all duration-200 ${
+            mode === 'zoomed-in'
+              ? 'bg-teal-accent/25 text-teal-accent border border-teal-accent'
+              : 'bg-transparent text-white/85 hover:text-white border-0'
+          }`}
         >
           <ZoomIn size={14} />
         </button>

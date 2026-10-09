@@ -1,10 +1,8 @@
 export type GalleryCategoryType =
   | 'all'
-  | 'machines'
-  | 'hospitals'
-  | 'doctors'
   | 'team'
-  | 'seminar';
+  | 'exhibitions'
+  | 'events';
 
 export interface GalleryImageDetail {
   src: string;
@@ -28,181 +26,19 @@ export interface GalleryItem {
 
 const BASE = import.meta.env.BASE_URL || '/';
 
-export const GALLERY_CATEGORIES: { id: GalleryCategoryType; label: string }[] = [
-  { id: 'all', label: 'All Media' },
-  { id: 'machines', label: 'Radiology Systems & Machines' },
-  { id: 'hospitals', label: 'Hospital Installations' },
-  { id: 'doctors', label: 'VIP Doctors & Medical Leaders' },
-  { id: 'team', label: 'Nour Medical Team' },
-  { id: 'seminar', label: 'Annual Scientific Seminar' },
+export const GALLERY_CATEGORIES: { id: GalleryCategoryType; label: string; labelAr: string }[] = [
+  { id: 'all', label: 'All Media', labelAr: 'كافة الصور' },
+  { id: 'team', label: 'Team & Staff', labelAr: 'فريق العمل والمهندسون' },
+  { id: 'exhibitions', label: 'Exhibitions & Conferences', labelAr: 'المعارض والمؤتمرات' },
+  { id: 'events', label: 'Hospital Events & Celebrations', labelAr: 'الفعاليات والتسليمات' },
 ];
 
 export const GALLERY_DATA: GalleryItem[] = [
   {
-    id: "gal-machines-1",
-    title: "Angel DTP580 Dynamic Flat Panel Fluoroscopy System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Angel Medical Imaging / Nour Medical",
-    description: "Angel DTP580 Dynamic Flat Panel Fluoroscopy System — High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
-    image: `${BASE}images/products/angel-dtp580-series.jpeg`,
-    images: [
-      `${BASE}images/products/angel-dtp580-series.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/angel-dtp580-series.jpeg`,
-        caption: "Angel DTP580 Dynamic Flat Panel Fluoroscopy System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
-  },
-  {
-    id: "gal-machines-2",
-    title: "Angel Fanghua Ceiling Digital Radiography System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Angel Medical Imaging / Nour Medical",
-    description: "Angel Fanghua Ceiling Digital Radiography System — High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
-    image: `${BASE}images/products/angel-fanghua-series.jpeg`,
-    images: [
-      `${BASE}images/products/angel-fanghua-series.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/angel-fanghua-series.jpeg`,
-        caption: "Angel Fanghua Ceiling Digital Radiography System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
-  },
-  {
-    id: "gal-machines-3",
-    title: "Angel HUA II Floor-Mounted Digital Radiography System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Angel Medical Imaging / Nour Medical",
-    description: "Angel HUA II Floor-Mounted Digital Radiography System — High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
-    image: `${BASE}images/products/angel-hua-ii-series.jpeg`,
-    images: [
-      `${BASE}images/products/angel-hua-ii-series.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/angel-hua-ii-series.jpeg`,
-        caption: "Angel HUA II Floor-Mounted Digital Radiography System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
-  },
-  {
-    id: "gal-machines-4",
-    title: "Angel Lingxi Premium Ceiling Suspension Digital X-Ray",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Angel Medical Imaging / Nour Medical",
-    description: "Angel Lingxi Premium Ceiling Suspension Digital X-Ray — High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
-    image: `${BASE}images/products/angel-lingxi-series.jpeg`,
-    images: [
-      `${BASE}images/products/angel-lingxi-series.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/angel-lingxi-series.jpeg`,
-        caption: "Angel Lingxi Premium Ceiling Suspension Digital X-Ray",
-      },
-    ],
-    date: "2024-2025",
-    specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
-  },
-  {
-    id: "gal-machines-5",
-    title: "Angel MTP Series Mobile Digital Radiography System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Angel Medical Imaging / Nour Medical",
-    description: "Angel MTP Series Mobile Digital Radiography System — High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
-    image: `${BASE}images/products/angel-mtp-series.jpeg`,
-    images: [
-      `${BASE}images/products/angel-mtp-series.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/angel-mtp-series.jpeg`,
-        caption: "Angel MTP Series Mobile Digital Radiography System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
-  },
-  {
-    id: "gal-machines-6",
-    title: "Angel QOMO Series Compact Mobile DR System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Angel Medical Imaging / Nour Medical",
-    description: "Angel QOMO Series Compact Mobile DR System — High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
-    image: `${BASE}images/products/angel-qomo-series.jpeg`,
-    images: [
-      `${BASE}images/products/angel-qomo-series.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/angel-qomo-series.jpeg`,
-        caption: "Angel QOMO Series Compact Mobile DR System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
-  },
-  {
-    id: "gal-machines-7",
-    title: "Angel Talent II Multi-Functional Dynamic DR System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Angel Medical Imaging / Nour Medical",
-    description: "Angel Talent II Multi-Functional Dynamic DR System — High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
-    image: `${BASE}images/products/angel-talent-ii-series.jpeg`,
-    images: [
-      `${BASE}images/products/angel-talent-ii-series.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/angel-talent-ii-series.jpeg`,
-        caption: "Angel Talent II Multi-Functional Dynamic DR System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
-  },
-  {
-    id: "gal-machines-8",
-    title: "Angel WR-3D Weight-Bearing 3D Imaging DR System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Angel Medical Imaging / Nour Medical",
-    description: "Angel WR-3D Weight-Bearing 3D Imaging DR System — High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
-    image: `${BASE}images/products/angel-wr-3d.jpeg`,
-    images: [
-      `${BASE}images/products/angel-wr-3d.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/angel-wr-3d.jpeg`,
-        caption: "Angel WR-3D Weight-Bearing 3D Imaging DR System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
-  },
-  {
     id: "gal-machines-9",
     title: "Angel Radiology Technology Presentation",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
+    category: "exhibitions",
+    categoryLabel: "Exhibitions & Conferences",
     location: "Angel Medical Imaging / Nour Medical",
     description: "High-performance digital radiography modality delivering crisp diagnostic contrast, automated organ positioning, and ultra-low radiation dosage.",
     image: `${BASE}images/gallery/angel/angel-dsc00373.jpg`,
@@ -264,50 +100,10 @@ export const GALLERY_DATA: GalleryItem[] = [
     specs: "CsI Flat Panel Technology | DICOM 3.0 Real-time Cloud Sync",
   },
   {
-    id: "gal-machines-19",
-    title: "Lonwin Superconducting 3.0T MRI System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Lonwin Medical Systems / Nour Medical",
-    description: "Lonwin Superconducting 3.0T MRI System — Diagnostic imaging and sterilization technology engineered for maximum clinical uptime and patient safety.",
-    image: `${BASE}images/products/lonwin-mri-system.jpeg`,
-    images: [
-      `${BASE}images/products/lonwin-mri-system.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/lonwin-mri-system.jpeg`,
-        caption: "Lonwin Superconducting 3.0T MRI System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "Cryogenic / High Frequency Architecture | ISO 13485 Certified",
-  },
-  {
-    id: "gal-machines-20",
-    title: "Lonwin Automated Medical Equipment Disinfection System",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
-    location: "Lonwin Medical Systems / Nour Medical",
-    description: "Lonwin Automated Medical Equipment Disinfection System — Diagnostic imaging and sterilization technology engineered for maximum clinical uptime and patient safety.",
-    image: `${BASE}images/products/lonwin-disinfection-system.jpeg`,
-    images: [
-      `${BASE}images/products/lonwin-disinfection-system.jpeg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/products/lonwin-disinfection-system.jpeg`,
-        caption: "Lonwin Automated Medical Equipment Disinfection System",
-      },
-    ],
-    date: "2024-2025",
-    specs: "Cryogenic / High Frequency Architecture | ISO 13485 Certified",
-  },
-  {
     id: "gal-machines-21",
     title: "Lonwin Medical Diagnostic Imaging Demonstration",
-    category: "machines",
-    categoryLabel: "Radiology Systems & Machines",
+    category: "exhibitions",
+    categoryLabel: "Exhibitions & Conferences",
     location: "Lonwin Medical Systems / Nour Medical",
     description: "Diagnostic imaging and sterilization technology engineered for maximum clinical uptime and patient safety.",
     image: `${BASE}images/gallery/lonwin/lonwin-dsc00726.jpg`,
@@ -372,7 +168,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     id: "gal-team-31",
     title: "Eng. Sayed Awad — Chairman & CEO",
     category: "team",
-    categoryLabel: "Nour Medical Team",
+    categoryLabel: "Team & Staff",
     location: "Nour Medical Headquarters, Maadi, Cairo",
     description: "Eng. Sayed Awad — Chairman & CEO — Professional biomedical service engineers, technicians, and executive leadership driving operational excellence across Egypt.",
     image: `${BASE}images/team/eng-sayed-awad.jpg`,
@@ -389,30 +185,10 @@ export const GALLERY_DATA: GalleryItem[] = [
     specs: "Biomedical Engineering & 24/7 Field Response Service",
   },
   {
-    id: "gal-team-32",
-    title: "Dr. Gehan — Medical Director",
-    category: "team",
-    categoryLabel: "Nour Medical Team",
-    location: "Nour Medical Headquarters, Maadi, Cairo",
-    description: "Dr. Gehan — Medical Director — Professional biomedical service engineers, technicians, and executive leadership driving operational excellence across Egypt.",
-    image: `${BASE}images/team/dr-gehan.jpg`,
-    images: [
-      `${BASE}images/team/dr-gehan.jpg`,
-    ],
-    imageDetails: [
-      {
-        src: `${BASE}images/team/dr-gehan.jpg`,
-        caption: "Dr. Gehan — Medical Director",
-      },
-    ],
-    date: "2024-2025",
-    specs: "Biomedical Engineering & 24/7 Field Response Service",
-  },
-  {
     id: "gal-team-33",
     title: "Nour Medical Engineering & Technical Team",
     category: "team",
-    categoryLabel: "Nour Medical Team",
+    categoryLabel: "Team & Staff",
     location: "Nour Medical Headquarters, Maadi, Cairo",
     description: "Professional biomedical service engineers, technicians, and executive leadership driving operational excellence across Egypt.",
     image: `${BASE}images/team/team-dsc00614.jpg`,
@@ -487,7 +263,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     id: "gal-team-45",
     title: "Nour Medical Team Gathering & Field Assembly",
     category: "team",
-    categoryLabel: "Nour Medical Team",
+    categoryLabel: "Team & Staff",
     location: "Nour Medical Headquarters, Maadi, Cairo",
     description: "Nour Medical Team Gathering & Field Assembly #1 — Professional biomedical service engineers, technicians, and executive leadership driving operational excellence across Egypt.",
     image: `${BASE}images/team/team-gathering-1.jpeg`,
@@ -526,8 +302,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-doctors-50",
     title: "Prof. Dr. Mohamed Fawzy",
-    category: "doctors",
-    categoryLabel: "VIP Doctors & Medical Leaders",
+    category: "exhibitions",
+    categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
     description: "Prof. Dr. Mohamed Fawzy — Clinical consultations, scientific symposia, and diagnostic case discussions with top radiologists across Egypt.",
     image: `${BASE}images/doctors/dr-mohamed-fawzy.jpg`,
@@ -546,8 +322,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-doctors-51",
     title: "Prof. Dr. Ashraf Zaytoun",
-    category: "doctors",
-    categoryLabel: "VIP Doctors & Medical Leaders",
+    category: "exhibitions",
+    categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
     description: "Prof. Dr. Ashraf Zaytoun — Senior Clinical Radiology Consultant and Interventional Radiology Specialist. Clinical consultations, scientific symposia, and diagnostic case discussions with top radiologists across Egypt.",
     image: `${BASE}images/doctors/dr-ashraf-zaytoun.jpg`,
@@ -576,8 +352,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-doctors-52",
     title: "Dr. Ghalia Elmohani",
-    category: "doctors",
-    categoryLabel: "VIP Doctors & Medical Leaders",
+    category: "exhibitions",
+    categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
     description: "Dr. Ghalia Elmohani — Clinical consultations, scientific symposia, and diagnostic case discussions with top radiologists across Egypt.",
     image: `${BASE}images/doctors/dr-ghalia-elmohani.jpg`,
@@ -596,8 +372,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-doctors-55",
     title: "VIP Clinical Leadership & Radiology Symposium",
-    category: "doctors",
-    categoryLabel: "VIP Doctors & Medical Leaders",
+    category: "exhibitions",
+    categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
     description: "Clinical consultations, scientific symposia, and diagnostic case discussions with top radiologists across Egypt.",
     image: `${BASE}images/doctors/doctor-session-dsc00442.jpg`,
@@ -701,8 +477,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-seminar-73",
     title: "Nour Medical Annual Scientific Seminar — 10 July 2025",
-    category: "seminar",
-    categoryLabel: "Annual Scientific Seminar",
+    category: "exhibitions",
+    categoryLabel: "Exhibitions & Conferences",
     location: "Grand Nile Tower / Cairo Conference Center",
     description: "Nour Medical Annual Scientific Seminar bringing together over 300 radiologists, hospital directors, and international medical OEM partners.",
     image: `${BASE}images/seminar/seminar-dsc00346.jpg`,
@@ -826,8 +602,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-95",
     title: "Elite Heart Center — Cath-Lab & Cardiology Facilities",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Elite Heart Center, Maadi, Cairo",
     description: "Interventional cardiology catheterization suite and specialized cardiac imaging deployment.",
     image: `${BASE}images/clients/elite-heart-cathlab.jpg`,
@@ -856,8 +632,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-98",
     title: "El Assema Hospital",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "El Assema Hospital, Minya El Qamh, Sharqia",
     description: "Turnkey Cath-Lab fluoroscopy and lead shielding installation.",
     image: `${BASE}images/clients/el-assema-logo.jpeg`,
@@ -876,8 +652,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-99",
     title: "Al-Marwa Hospital",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Marwa Hospital, Dokki, Giza",
     description: "Comprehensive diagnostic radiology and Cath-Lab suite installation by Nour Medical engineers.",
     image: `${BASE}images/clients/al-marwah-building.jpeg`,
@@ -911,8 +687,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-103",
     title: "Al-Rayyan Scan Center",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Rayyan Scan Center, Minya, Upper Egypt",
     description: "Multi-slice helical CT scanner and volumetric diagnostic imaging unit.",
     image: `${BASE}images/clients/al-rayan-ct.jpg`,
@@ -936,8 +712,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-105",
     title: "Al-Safwa Hospital & Diagnostic Centers",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Safwa Hospital (6th of October & Faqus)",
     description: "Diagnostic scan center and hospital multi-slice CT unit installations.",
     image: `${BASE}images/clients/al-safwaa-6-october-building-1.jpeg`,
@@ -971,8 +747,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-109",
     title: "Al-Tayseer Hospitals",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Tayseer Hospitals, Zagazig, Sharqia",
     description: "Long-term healthcare technology partnership covering 3.0T MRI, Cath-Lab, and surgical C-arms.",
     image: `${BASE}images/clients/al-tayseer-building.jpeg`,
@@ -1006,8 +782,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-113",
     title: "Al-Zahra & El Nokhba Hospital",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Zahra & El Nokhba Hospital, Kafr El Sheikh",
     description: "Interventional angiography gantry and hospital radiology department setup.",
     image: `${BASE}images/clients/al-zahraa-building.jpeg`,
@@ -1041,8 +817,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-117",
     title: "Aseel Hospital Hurghada",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Aseel Hospital, Hurghada, Red Sea",
     description: "High-frequency mobile surgical C-arm and radiology department clinical equipment.",
     image: `${BASE}images/clients/aseel-building.jpeg`,
@@ -1071,8 +847,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-120",
     title: "Banha University Hospital",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Banha University Hospital, Qalyubia",
     description: "University hospital radiology department equipped with dual Cath-Lab suites and surgical C-arms.",
     image: `${BASE}images/clients/banha-hospital-building.jpeg`,
@@ -1091,8 +867,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-121",
     title: "Capital Care Hospital",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Capital Care Hospital, 6th of October",
     description: "64-Slice volumetric CT scanner installation and diagnostic wing equipment.",
     image: `${BASE}images/clients/capital-care-ct.jpg`,
@@ -1116,8 +892,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-123",
     title: "El Gouna Hospital",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "El Gouna Hospital, Red Sea",
     description: "Biomedical engineering support and turnkey radiology & central sterilization departments.",
     image: `${BASE}images/clients/el-gouna-logo.png`,
@@ -1141,8 +917,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-125",
     title: "El-Salama Hospital (Dr. Omar Nagy)",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "El-Salama Hospital (Dr. Omar Nagy), Minya",
     description: "Regional diagnostic imaging center and hospital Cath-Lab support.",
     image: `${BASE}images/clients/el-salama-building.jpeg`,
@@ -1161,8 +937,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-126",
     title: "Golden Heart Specialized Cardiac Center",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Golden Heart Specialized Hospital, Maadi, Cairo",
     description: "Specialized coronary catheterization laboratory and dedicated cardiovascular imaging suites.",
     image: `${BASE}images/clients/golden-heart-building.jpeg`,
@@ -1196,8 +972,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-130",
     title: "International Center for Radiology and MRI (IRC)",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "International Center for Radiology and MRI (IRC), Helwan",
     description: "Full diagnostic radiology facility supported by Nour Medical field engineers.",
     image: `${BASE}images/clients/irc-building.png`,
@@ -1216,8 +992,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-131",
     title: "Nile Center for Radiology",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Nile Center for Radiology, Cairo & Giza",
     description: "Regional diagnostic radiology and medical imaging network support.",
     image: `${BASE}images/clients/nile-centre-building.jpeg`,
@@ -1236,8 +1012,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-132",
     title: "South Sinai Hospital",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "South Sinai Hospital, Sharm El Sheikh",
     description: "Red Sea coastal trauma center and hospital radiology gantry maintenance.",
     image: `${BASE}images/clients/south-sinai-logo.png`,
@@ -1256,8 +1032,8 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-133",
     title: "Tiba Scan & Diagnostic Center",
-    category: "hospitals",
-    categoryLabel: "Hospital Installations",
+    category: "events",
+    categoryLabel: "Hospital Events & Celebrations",
     location: "Tiba Scan & Diagnostic Center, Minya",
     description: "Advanced MRI and CT diagnostic scanning center.",
     image: `${BASE}images/clients/tiba-scan-logo.jpeg`,
@@ -1273,4 +1049,64 @@ export const GALLERY_DATA: GalleryItem[] = [
     date: "2024-2025",
     specs: "High-Field MRI & Helical CT Scanner",
   },
+  {
+    id: "gal-team-gouna",
+    title: "El-Gouna Hospital Technical Operations & Deployment Team",
+    category: "team",
+    categoryLabel: "Team & Staff",
+    location: "El-Gouna Specialized Hospital, Red Sea",
+    description: "Nour Medical field service engineering squad during biomedical imaging calibration and turnkey operational commissioning at El-Gouna Hospital.",
+    image: `${BASE}images/gallery/team-gouna-deployment.jpg`,
+    images: [
+      `${BASE}images/gallery/team-gouna-deployment.jpg`,
+    ],
+    imageDetails: [
+      {
+        src: `${BASE}images/gallery/team-gouna-deployment.jpg`,
+        caption: "Nour Medical Biomedical Engineering Team at El-Gouna Hospital",
+      },
+    ],
+    date: "2024-2025",
+    specs: "Field Service Engineers | On-site Calibration & Commissioning",
+  },
+  {
+    id: "gal-team-tayseer",
+    title: "Al-Tayseer Hospital Technical Field Service Team",
+    category: "team",
+    categoryLabel: "Team & Staff",
+    location: "Al-Tayseer International Hospital, Sharkia",
+    description: "Specialized radiology engineering unit conducting periodic maintenance protocols and detector calibration for clinical imaging systems.",
+    image: `${BASE}images/gallery/team-hospital-support.jpg`,
+    images: [
+      `${BASE}images/gallery/team-hospital-support.jpg`,
+    ],
+    imageDetails: [
+      {
+        src: `${BASE}images/gallery/team-hospital-support.jpg`,
+        caption: "Nour Medical Field Technicians & Hospital Staff at Al-Tayseer",
+      },
+    ],
+    date: "2024-2025",
+    specs: "Preventive Maintenance | High-Frequency Calibration",
+  },
+  {
+    id: "gal-team-ramadan",
+    title: "Annual Corporate Ramadan Gathering & Team Celebration",
+    category: "team",
+    categoryLabel: "Team & Staff",
+    location: "Nour Medical Executive Gathering, Cairo",
+    description: "Annual team celebration gathering bringing together engineering leadership, field technicians, and clinical operations staff.",
+    image: `${BASE}images/gallery/team-ramadan-celebration.jpg`,
+    images: [
+      `${BASE}images/gallery/team-ramadan-celebration.jpg`,
+    ],
+    imageDetails: [
+      {
+        src: `${BASE}images/gallery/team-ramadan-celebration.jpg`,
+        caption: "Annual Corporate Ramadan Gathering & Team Event",
+      },
+    ],
+    date: "2025",
+    specs: "Executive & Field Engineering Leadership | Annual Celebration",
+  }
 ];

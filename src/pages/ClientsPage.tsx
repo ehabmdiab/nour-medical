@@ -9,7 +9,6 @@ import {
   X,
   ChevronRight,
   ChevronLeft,
-  Sparkles,
   ArrowUpRight,
   Filter,
 } from 'lucide-react';
@@ -43,72 +42,32 @@ interface ModalCarouselProps {
 }
 
 const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  const prevSlide = () => {
+  const prevSlide = (): void => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  const nextSlide = () => {
+  const nextSlide = (): void => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   if (!images || images.length === 0) return null;
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        minHeight: '340px',
-        background: '#0f172a',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-      }}
-    >
+    <div className="relative w-full h-full min-h-[340px] bg-slate-900 flex items-center justify-center overflow-hidden">
       {/* Current Slide Image */}
       <img
         src={images[currentIndex]}
         alt={`${clientName} photo ${currentIndex + 1}`}
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          transition: 'opacity 0.4s ease-in-out',
-        }}
+        className="w-full h-full object-cover transition-opacity duration-300"
       />
 
       {/* Vignette Overlay Gradient */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background:
-            'linear-gradient(180deg, rgba(15,23,42,0.3) 0%, transparent 40%, transparent 60%, rgba(15,23,42,0.85) 100%)',
-          pointerEvents: 'none',
-        }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-transparent to-slate-900/85 pointer-events-none" />
 
       {/* Slide Counter Badge */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '16px',
-          left: '16px',
-          background: 'rgba(15, 23, 42, 0.75)',
-          backdropFilter: 'blur(8px)',
-          color: 'var(--white)',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.6875rem',
-          letterSpacing: '0.12em',
-          padding: '4px 10px',
-          borderRadius: '4px',
-          border: '1px solid rgba(255,255,255,0.15)',
-        }}
-      >
+      <div className="absolute top-4 left-4 bg-slate-900/75 backdrop-blur-md text-white font-mono text-[0.6875rem] tracking-widest px-2.5 py-1 rounded border border-white/15">
         {currentIndex + 1} / {images.length}
       </div>
 
@@ -117,24 +76,7 @@ const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => 
         <>
           <button
             onClick={prevSlide}
-            style={{
-              position: 'absolute',
-              left: '16px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              background: 'rgba(15, 23, 42, 0.65)',
-              backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              color: 'var(--white)',
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-slate-900/65 backdrop-blur-md border border-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-900 hover:scale-110 transition-all duration-200"
             aria-label="Previous image"
           >
             <ChevronLeft size={20} />
@@ -142,52 +84,21 @@ const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => 
 
           <button
             onClick={nextSlide}
-            style={{
-              position: 'absolute',
-              right: '16px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              background: 'rgba(15, 23, 42, 0.65)',
-              backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              color: 'var(--white)',
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease',
-            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-slate-900/65 backdrop-blur-md border border-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-900 hover:scale-110 transition-all duration-200"
             aria-label="Next image"
           >
             <ChevronRight size={20} />
           </button>
 
           {/* Dots Indicator */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '16px',
-              display: 'flex',
-              gap: '6px',
-              zIndex: 2,
-            }}
-          >
+          <div className="absolute bottom-4 flex gap-1.5 z-[2]">
             {images.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                style={{
-                  width: idx === currentIndex ? '20px' : '6px',
-                  height: '6px',
-                  borderRadius: '3px',
-                  background: idx === currentIndex ? 'var(--blue-medical)' : 'rgba(255,255,255,0.4)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                }}
+                className={`h-1.5 rounded-[3px] border-0 cursor-pointer transition-all duration-300 ${
+                  idx === currentIndex ? 'w-5 bg-blue-medical' : 'w-1.5 bg-white/40'
+                }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
@@ -208,7 +119,7 @@ export const ClientsPage: React.FC = () => {
 
   // Close modal on Escape key
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key === 'Escape') setActiveClient(null);
     };
     if (activeClient) {
@@ -243,78 +154,22 @@ export const ClientsPage: React.FC = () => {
   return (
     <>
       {/* ── 1. HERO HEADER ────────────────── */}
-      <section
-        style={{
-          background: 'var(--navy)',
-          padding: '140px 0 80px',
-          color: 'var(--white)',
-          position: 'relative',
-          overflow: 'hidden',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-          zIndex: 1,
-        }}
-      >
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute',
-          right: '-5%',
-          top: '0%',
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 text-navy relative overflow-hidden border-b border-gray-light z-[1]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '10px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.625rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: 'var(--teal-accent)',
-              marginBottom: '20px',
-            }}
-          >
-            <Sparkles size={14} /> Client Reference Portfolio
+        <div className="container relative z-10">
+          <div className="section-label">
+            Client Reference Portfolio
           </div>
 
-          <h1
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2.85rem, 6.2vw, 5.5rem)',
-              fontWeight: 700,
-              color: 'var(--white)',
-              letterSpacing: '-0.035em',
-              lineHeight: 0.98,
-              maxWidth: '920px',
-              marginBottom: '24px',
-            }}
-          >
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-navy tracking-tight leading-[0.98] max-w-[920px] mb-6">
             Healthcare Facilities Powered & Maintained by{' '}
-            <span style={{ color: 'var(--teal-accent)' }}>Nour Medical</span>
+            <span className="text-orange-accent">Nour Medical</span>
           </h1>
 
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
-              lineHeight: 1.65,
-              color: 'rgba(255, 255, 255, 0.7)',
-              maxWidth: '720px',
-            }}
-          >
-            Click on any healthcare partner below to launch the project gallery carousel and inspect the medical equipment installed and serviced at each location.
+          <p className="font-body text-xl md:text-2xl leading-[1.65] text-text-muted max-w-[720px]">
+            Explore our trusted healthcare partners across Egypt, inspect installed diagnostic modalities, and review ongoing biomedical service operations.
           </p>
         </div>
       </section>
@@ -325,47 +180,26 @@ export const ClientsPage: React.FC = () => {
       {/* ── 3. FILTER TOOLBAR & MAIN CLIENT GRID ─────────────── */}
       <section
         ref={gridRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--warm-white)',
-          opacity: gridVisible ? 1 : 0,
-          transition: 'opacity 0.6s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-out ${
+          gridVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
           {/* Minimal Filter & Search Bar */}
-          <div
-            style={{
-              marginBottom: '40px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '20px',
-            }}
-          >
+          <div className="mb-10 flex justify-between items-center flex-wrap gap-5">
             {/* Category Pills */}
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div className="flex gap-2 flex-wrap items-center">
               {categories.map((cat) => {
                 const isActive = selectedCategory === cat;
                 return (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    style={{
-                      padding: '8px 18px',
-                      borderRadius: '30px',
-                      fontFamily: 'var(--font-heading)',
-                      fontSize: '0.8125rem',
-                      fontWeight: isActive ? 600 : 500,
-                      color: isActive ? 'var(--white)' : 'var(--navy)',
-                      background: isActive ? 'var(--navy)' : 'var(--white)',
-                      border: '1px solid',
-                      borderColor: isActive ? 'var(--navy)' : 'var(--gray-light)',
-                      cursor: 'pointer',
-                      transition: 'all 0.25s ease',
-                      boxShadow: isActive ? '0 4px 14px rgba(15, 23, 42, 0.15)' : 'none',
-                    }}
+                    className={`px-4.5 py-2 rounded-full font-heading text-[0.8125rem] cursor-pointer transition-all duration-200 ${
+                      isActive
+                        ? 'font-semibold text-white bg-navy border border-navy shadow-[0_4px_14px_rgba(15,23,42,0.15)]'
+                        : 'font-medium text-navy bg-white border border-gray-light hover:border-navy/40'
+                    }`}
                   >
                     {cat}
                   </button>
@@ -374,43 +208,23 @@ export const ClientsPage: React.FC = () => {
             </div>
 
             {/* Search Input */}
-            <div style={{ position: 'relative', minWidth: '280px', flex: '0 1 340px' }}>
+            <div className="relative min-w-[280px] flex-[0_1_340px]">
               <Search
                 size={16}
-                color="var(--text-muted)"
-                style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)' }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"
               />
               <input
                 type="text"
                 placeholder="Search hospital or city..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '10px 16px 10px 42px',
-                  borderRadius: '30px',
-                  border: '1px solid var(--gray-light)',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '1.125rem',
-                  color: 'var(--navy)',
-                  background: 'var(--white)',
-                  outline: 'none',
-                  transition: 'border-color 0.2s',
-                }}
+                className="w-full py-2.5 pl-11 pr-4 rounded-full border border-gray-light font-body text-base text-navy bg-white outline-none focus:border-blue-medical transition-colors duration-200"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  style={{
-                    position: 'absolute',
-                    right: '14px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    color: 'var(--text-muted)',
-                  }}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 bg-transparent border-0 cursor-pointer text-text-muted hover:text-navy"
+                  aria-label="Clear search"
                 >
                   <X size={14} />
                 </button>
@@ -420,158 +234,75 @@ export const ClientsPage: React.FC = () => {
 
           {/* Cards Grid */}
           {filteredClients.length === 0 ? (
-            <div
-              style={{
-                padding: '60px 20px',
-                textAlign: 'center',
-                background: 'var(--white)',
-                borderRadius: '12px',
-                border: '1px solid var(--gray-light)',
-              }}
-            >
-              <Filter size={32} color="var(--stone)" style={{ marginBottom: '16px' }} />
-              <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: 'var(--navy)' }}>
+            <div className="p-15 px-5 text-center bg-white rounded-xl border border-gray-light">
+              <Filter size={32} className="text-stone-400 mb-4 mx-auto" />
+              <h4 className="font-heading text-xl text-navy">
                 No clients found matching your filter
               </h4>
             </div>
           ) : (
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                gap: '24px',
-              }}
-            >
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
               {filteredClients.map((client) => (
                 <div
                   key={client.id}
                   onClick={() => setActiveClient(client)}
-                  style={{
-                    background: 'var(--white)',
-                    borderRadius: '10px',
-                    border: '1px solid var(--gray-light)',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  }}
-                  className="client-card-award"
+                  className="group bg-white rounded-[10px] border border-gray-light overflow-hidden cursor-pointer flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_32px_-8px_rgba(15,23,42,0.12)] hover:border-blue-medical"
                 >
                   {/* Thumbnail Image */}
-                  <div style={{ position: 'relative', height: '190px', overflow: 'hidden', background: '#0f172a' }}>
+                  <div className="relative h-[190px] overflow-hidden bg-slate-900">
                     <img
                       src={client.images[0]}
                       alt={client.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.5s ease',
-                      }}
-                      className="card-thumb-img"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div
-                      style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, 0.8) 100%)',
-                      }}
-                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
 
                     {/* Image Carousel Count Indicator */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '12px',
-                        right: '12px',
-                        background: 'rgba(15, 23, 42, 0.75)',
-                        backdropFilter: 'blur(6px)',
-                        color: 'var(--white)',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.625rem',
-                        padding: '3px 8px',
-                        borderRadius: '4px',
-                        border: '1px solid rgba(255,255,255,0.15)',
-                      }}
-                    >
+                    <div className="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white font-mono text-[0.625rem] px-2 py-0.5 rounded border border-white/15">
                       📷 {client.images.length} Photos
                     </div>
 
-                    <div style={{ position: 'absolute', bottom: '12px', left: '16px', display: 'flex', alignItems: 'center', gap: '6px', color: 'rgba(255,255,255,0.9)' }}>
-                      <MapPin size={14} color="var(--teal-accent)" />
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>{client.location}</span>
+                    <div className="absolute bottom-3 left-4 flex items-center gap-1.5 text-white/90">
+                      <MapPin size={14} className="text-teal-accent" />
+                      <span className="font-mono text-xs">{client.location}</span>
                     </div>
                   </div>
 
                   {/* Card Info Content */}
-                  <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
-                      <div
-                        style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.5625rem',
-                          letterSpacing: '0.1em',
-                          textTransform: 'uppercase',
-                          color: 'var(--teal-accent)',
-                          fontWeight: 600,
-                          marginBottom: '6px',
-                        }}
-                      >
+                      <div className="font-mono text-[0.5625rem] tracking-wider uppercase text-teal-accent font-semibold mb-1.5">
                         {client.facilityType}
                       </div>
 
-                      <h3
-                        style={{
-                          fontFamily: 'var(--font-heading)',
-                          fontSize: '1.25rem',
-                          fontWeight: 700,
-                          color: 'var(--navy)',
-                          letterSpacing: '-0.015em',
-                          marginBottom: '12px',
-                          lineHeight: 1.3,
-                        }}
-                      >
+                      <h3 className="font-heading text-xl font-bold text-navy tracking-tight mb-3 leading-snug">
                         {client.name}
                       </h3>
 
-                      {/* Equipment Badges */}
-                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '16px' }}>
-                        {client.primaryCategories.map((cat) => (
+                      {/* Primary Installed Devices Tags */}
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {client.devices.slice(0, 2).map((dev, i) => (
                           <span
-                            key={cat}
-                            style={{
-                              fontFamily: 'var(--font-mono)',
-                              fontSize: '0.5625rem',
-                              color: 'var(--blue-medical)',
-                              background: 'rgba(27, 79, 216, 0.08)',
-                              border: '1px solid rgba(27, 79, 216, 0.2)',
-                              padding: '2px 8px',
-                              borderRadius: '3px',
-                            }}
+                            key={i}
+                            className="font-mono text-[0.6875rem] px-2.5 py-0.5 rounded bg-blue-medical/[0.08] text-blue-medical font-medium"
                           >
-                            {cat}
+                            {dev.name.split('–')[0].trim()}
                           </span>
                         ))}
+                        {client.devices.length > 2 && (
+                          <span className="font-mono text-[0.6875rem] px-2 py-0.5 rounded bg-warm-neutral text-text-muted font-medium">
+                            +{client.devices.length - 2} more
+                          </span>
+                        )}
                       </div>
                     </div>
 
-                    <div
-                      style={{
-                        paddingTop: '12px',
-                        borderTop: '1px solid var(--gray-light)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        color: 'var(--blue-medical)',
-                        fontFamily: 'var(--font-heading)',
-                        fontSize: '0.8125rem',
-                        fontWeight: 600,
-                      }}
-                      className="card-action-link"
-                    >
-                      <span>View Gallery & Equipment</span>
-                      <ArrowUpRight size={16} />
+                    {/* Footer Row */}
+                    <div className="pt-3 border-t border-gray-light flex items-center justify-between font-mono text-xs text-navy font-semibold">
+                      <span className="flex items-center gap-1 text-blue-medical group-hover:translate-x-1 transition-transform duration-200">
+                        View Facility Profile <ChevronRight size={14} />
+                      </span>
+                      <ArrowUpRight size={16} className="text-text-muted group-hover:text-blue-medical transition-colors duration-200" />
                     </div>
                   </div>
                 </div>
@@ -581,179 +312,79 @@ export const ClientsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── 4. SPLIT MODAL WITH IMAGE CAROUSEL & TEXT ──────────── */}
+      {/* ── 4. DETAILED CLIENT MODAL (WITH CAROUSEL + DETAILS) ──────── */}
       {activeClient && (
         <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 9999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '24px',
-            background: 'rgba(15, 23, 42, 0.82)',
-            backdropFilter: 'blur(12px)',
-            animation: 'fadeIn 0.25s ease-out forwards',
-          }}
+          className="fixed inset-0 z-[1000] bg-navy/80 backdrop-blur-md flex items-center justify-center p-4 md:p-6"
           onClick={() => setActiveClient(null)}
         >
           <div
+            className="relative w-full max-w-[1080px] bg-white rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.5)] border border-gray-light grid grid-cols-1 md:grid-cols-[1.1fr_1fr] max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              background: 'var(--white)',
-              width: '100%',
-              maxWidth: '1020px',
-              maxHeight: '90vh',
-              borderRadius: '16px',
-              boxShadow: '0 30px 60px -12px rgba(0, 0, 0, 0.45)',
-              overflow: 'hidden',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-              position: 'relative',
-              animation: 'slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-            }}
           >
             {/* Close Button */}
             <button
               onClick={() => setActiveClient(null)}
-              style={{
-                position: 'absolute',
-                top: '16px',
-                right: '16px',
-                zIndex: 10,
-                background: 'rgba(15, 23, 42, 0.65)',
-                backdropFilter: 'blur(8px)',
-                border: '1px solid rgba(255,255,255,0.2)',
-                color: 'var(--white)',
-                width: '36px',
-                height: '36px',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-              }}
+              className="absolute top-4 right-4 z-20 bg-slate-900/70 backdrop-blur-md border border-white/20 text-white w-9 h-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-900 hover:scale-110 transition-all duration-200"
               aria-label="Close dialog"
             >
               <X size={18} />
             </button>
 
             {/* LEFT COLUMN: IMAGE CAROUSEL */}
-            <div style={{ height: '100%', minHeight: '380px', position: 'relative' }}>
+            <div className="h-full min-h-[380px] relative">
               <ModalCarousel images={activeClient.images} clientName={activeClient.name} />
             </div>
 
             {/* RIGHT COLUMN: TEXT DETAILS BESIDE THE IMAGE */}
-            <div
-              style={{
-                padding: '36px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                overflowY: 'auto',
-                maxHeight: '90vh',
-                background: 'var(--white)',
-              }}
-            >
+            <div className="p-9 flex flex-col justify-between overflow-y-auto max-h-[90vh] bg-white">
               <div>
                 {/* Header Tag & Location */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px', flexWrap: 'wrap' }}>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.625rem',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: 'var(--teal-accent)',
-                      background: 'rgba(13, 148, 136, 0.08)',
-                      padding: '4px 10px',
-                      borderRadius: '4px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      fontWeight: 600,
-                    }}
-                  >
+                <div className="flex items-center gap-2.5 mb-3 flex-wrap">
+                  <span className="font-mono text-[0.625rem] tracking-widest uppercase text-teal-accent bg-teal-accent/[0.08] px-2.5 py-1 rounded inline-flex items-center gap-1.5 font-semibold">
                     <Building2 size={12} /> {activeClient.facilityType}
                   </span>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
-                    <MapPin size={14} color="var(--blue-medical)" /> {activeClient.location}
+                  <span className="inline-flex items-center gap-1 text-[0.8125rem] text-text-muted">
+                    <MapPin size={14} className="text-blue-medical" /> {activeClient.location}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h2
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
-                    fontWeight: 700,
-                    color: 'var(--navy)',
-                    letterSpacing: '-0.02em',
-                    marginBottom: '20px',
-                    lineHeight: 1.25,
-                  }}
-                >
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy tracking-tight mb-5 leading-snug">
                   {activeClient.name}
                 </h2>
 
-                <div
-                  style={{
-                    borderBottom: '1px solid var(--gray-light)',
-                    paddingBottom: '16px',
-                    marginBottom: '24px',
-                  }}
-                >
-                  <div className="section-label" style={{ color: 'var(--blue-medical)', marginBottom: '6px' }}>
+                <div className="border-b border-gray-light pb-4 mb-6">
+                  <div className="section-label text-blue-medical mb-1.5">
                     Equipment & Maintenance Scope
                   </div>
-                  <p style={{ fontSize: '1.125rem', color: 'var(--text-muted)' }}>
+                  <p className="text-base text-text-muted">
                     Radiology devices supplied, installed, or maintained by Nour Medical engineers:
                   </p>
                 </div>
 
                 {/* Device List Stack */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+                <div className="flex flex-col gap-4 mb-6">
                   {activeClient.devices.map((dev: InstalledDevice, i: number) => (
                     <div
                       key={i}
-                      style={{
-                        background: 'var(--warm-white)',
-                        border: '1px solid var(--gray-light)',
-                        borderRadius: '8px',
-                        padding: '16px 20px',
-                      }}
+                      className="bg-warm-white border border-gray-light rounded-lg p-4 px-5"
                     >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px', marginBottom: '8px' }}>
-                        <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '0.975rem', fontWeight: 700, color: 'var(--navy)' }}>
+                      <div className="flex justify-between items-start gap-2.5 mb-2">
+                        <h4 className="font-heading text-[0.975rem] font-bold text-navy">
                           {dev.name}
                         </h4>
-                        <span
-                          style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '0.5625rem',
-                            color: 'var(--teal-accent)',
-                            border: '1px solid var(--teal-accent)',
-                            padding: '2px 8px',
-                            borderRadius: '3px',
-                            whiteSpace: 'nowrap',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '4px',
-                            fontWeight: 600,
-                          }}
-                        >
+                        <span className="font-mono text-[0.5625rem] text-teal-accent border border-teal-accent px-2 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1 font-semibold">
                           <ShieldCheck size={10} /> {dev.status}
                         </span>
                       </div>
 
-                      <p style={{ fontSize: '0.8125rem', lineHeight: 1.5, color: 'var(--text-muted)', marginBottom: '10px' }}>
+                      <p className="text-[0.8125rem] leading-normal text-text-muted mb-2.5">
                         {dev.description}
                       </p>
 
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem', color: 'var(--navy)', fontFamily: 'var(--font-mono)' }}>
-                        <Wrench size={12} color="var(--blue-medical)" />
+                      <div className="flex items-center gap-1.5 text-xs text-navy font-mono">
+                        <Wrench size={12} className="text-blue-medical" />
                         <span>Scope: {dev.serviceType}</span>
                       </div>
                     </div>
@@ -762,36 +393,16 @@ export const ClientsPage: React.FC = () => {
               </div>
 
               {/* Action Footer */}
-              <div
-                style={{
-                  paddingTop: '20px',
-                  borderTop: '1px solid var(--gray-light)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  gap: '16px',
-                }}
-              >
+              <div className="pt-5 border-t border-gray-light flex justify-between items-center gap-4">
                 <button
                   onClick={() => setActiveClient(null)}
-                  className="btn btn-outline"
-                  style={{ padding: '8px 16px', fontSize: '0.8125rem' }}
+                  className="btn btn-outline py-2 px-4 text-[0.8125rem]"
                 >
                   Close
                 </button>
                 <Link
                   to="/contact"
-                  className="btn btn-blue"
-                  style={{
-                    padding: '8px 20px',
-                    fontSize: '0.8125rem',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    borderRadius: '6px',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                  }}
+                  className="btn btn-primary py-2 px-5 text-[0.8125rem] inline-flex items-center gap-1.5 rounded-md font-semibold no-underline"
                 >
                   <span>Inquire Now</span>
                   <ChevronRight size={14} />
@@ -801,28 +412,6 @@ export const ClientsPage: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Global CSS for Animations and Card Hover Effects */}
-      <style>{`
-        .client-card-award:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.12);
-          border-color: var(--blue-medical) !important;
-        }
-        .client-card-award:hover .card-thumb-img {
-          transform: scale(1.06);
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px) scale(0.98); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-      `}</style>
     </>
   );
 };

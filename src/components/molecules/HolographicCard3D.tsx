@@ -15,12 +15,12 @@ export const HolographicCard3D: React.FC<HolographicCard3DProps> = ({
   onClick,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-  const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
-  const [isHovered, setIsHovered] = useState(false);
+  const [rotateX, setRotateX] = useState<number>(0);
+  const [rotateY, setRotateY] = useState<number>(0);
+  const [glarePos, setGlarePos] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -40,15 +40,15 @@ export const HolographicCard3D: React.FC<HolographicCard3DProps> = ({
     });
   };
 
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => {
+  const handleMouseEnter = (): void => setIsHovered(true);
+  const handleMouseLeave = (): void => {
     setIsHovered(false);
     setRotateX(0);
     setRotateY(0);
   };
 
   return (
-    <div className="perspective-1000 w-full" style={{ perspective: 1000 }}>
+    <div className="w-full [perspective:1000px]">
       <motion.div
         ref={cardRef}
         onClick={onClick}
@@ -61,12 +61,11 @@ export const HolographicCard3D: React.FC<HolographicCard3DProps> = ({
           scale: isHovered ? 1.02 : 1,
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        style={{ transformStyle: 'preserve-3d' }}
-        className={`glass-panel rounded-2xl relative overflow-hidden transition-all duration-300 ${
+        className={`glass-panel rounded-2xl relative overflow-hidden transition-all duration-300 [transform-style:preserve-3d] ${
           onClick ? 'cursor-pointer' : ''
         } ${className}`}
       >
-        {/* Holographic Glare & Scanline Effect */}
+        {/* Holographic Glare & Scanline Effect (dynamic mouse coords) */}
         <div
           className="absolute inset-0 pointer-events-none transition-opacity duration-300"
           style={{

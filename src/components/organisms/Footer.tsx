@@ -1,216 +1,151 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Globe } from 'lucide-react';
 import { COMPANY_CONTACT } from '../../data/companyData';
+import { useLanguage } from '../../i18n';
 
-const FOOTER_LINKS = {
-  Company: [
-    { label: 'About Us', href: '/about' },
-    { label: 'Our Suppliers', href: '/suppliers' },
-    { label: 'Our Clients', href: '/clients' },
-    { label: 'Media & Gallery', href: '/gallery' },
-  ],
-  Solutions: [
-    { label: 'Products', href: '/products' },
-    { label: 'Services', href: '/services' },
-    { label: 'Maintenance & Support', href: '/services#maintenance' },
-  ],
-  Support: [
-    { label: 'Contact Us', href: '/contact' },
-    { label: 'Technical Support', href: '/services#maintenance' },
-    { label: 'Annual Maintenance', href: '/services' },
-  ],
-};
+export const Footer: React.FC = () => {
+  const { locale, t } = useLanguage();
 
-export const Footer: React.FC = () => (
-  <footer style={{ background: 'var(--navy)', color: 'var(--white)' }}>
-    {/* Main Footer */}
-    <div className="container" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '48px' }}>
-        {/* Top Row: Brand + Links */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '40px',
-        }}>
-          {/* Brand */}
-          <div>
-            <Link
-              to="/"
-              style={{ textDecoration: 'none', display: 'inline-flex', flexDirection: 'column', gap: '2px', marginBottom: '20px' }}
-            >
-              <span style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: '1.375rem',
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                color: 'var(--white)',
-              }}>
-                Nour Medical
-              </span>
-              <span style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.5rem',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.45)',
-              }}>
-                Healthcare Technology
-              </span>
-            </Link>
-            <p style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.8125rem',
-              lineHeight: 1.7,
-              color: 'rgba(255,255,255,0.55)',
-              maxWidth: '240px',
-            }}>
-              Established 2015. Supplying radiology devices, medical equipment, and technical support to healthcare organizations across Egypt.
-            </p>
-          </div>
+  const footerLinks = useMemo(
+    () => ({
+      [t('footer.colCompany')]: [
+        { label: t('footer.aboutUs'), href: '/about' },
+        { label: t('footer.ourSuppliers'), href: '/suppliers' },
+        { label: t('footer.ourClients'), href: '/clients' },
+        { label: t('footer.mediaGallery'), href: '/gallery' },
+      ],
+      [t('footer.colSolutions')]: [
+        { label: t('footer.products'), href: '/products' },
+        { label: t('footer.services'), href: '/services' },
+        { label: t('footer.maintenanceSupport'), href: '/services#maintenance' },
+      ],
+      [t('footer.colSupport')]: [
+        { label: t('footer.contactUs'), href: '/contact' },
+        { label: t('footer.technicalSupport'), href: '/services#maintenance' },
+        { label: t('footer.annualMaintenance'), href: '/services' },
+      ],
+    }),
+    [t]
+  );
 
-          {/* Link Columns */}
-          {Object.entries(FOOTER_LINKS).map(([category, links]) => (
-            <div key={category}>
-              <p style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.5625rem',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.35)',
-                marginBottom: '16px',
-              }}>
-                {category}
+  return (
+    <footer className="bg-navy text-white">
+      {/* Main Footer */}
+      <div className="container pt-20 pb-16">
+        <div className="grid grid-cols-1 gap-12">
+          {/* Top Row: Brand + Links */}
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-10">
+            {/* Brand - Nour Medical remains in English */}
+            <div>
+              <Link
+                to="/"
+                className="no-underline inline-flex flex-col gap-0.5 mb-5"
+              >
+                <span className="font-heading text-[1.375rem] font-bold text-white tracking-tight flex items-center gap-2">
+                  <span>Nour Medical</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal-accent" />
+                </span>
+                <span className="font-mono text-[0.5rem] tracking-widest uppercase text-white/45">
+                  {locale === 'ar' ? 'تكنولوجيا الرعاية الصحية' : 'Healthcare Technology'}
+                </span>
+              </Link>
+              <p className="font-body text-[0.8125rem] leading-[1.7] text-white/55 max-w-[240px]">
+                {t('footer.bio')}
               </p>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      to={link.href}
-                      className="hover-underline"
-                      style={{
-                        fontFamily: 'var(--font-body)',
-                        fontSize: '0.8125rem',
-                        color: 'rgba(255,255,255,0.65)',
-                        textDecoration: 'none',
-                        transition: 'color var(--dur-fast)',
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+            </div>
+
+            {/* Link Columns */}
+            {Object.entries(footerLinks).map(([category, links]) => (
+              <div key={category}>
+                <p className="font-mono text-[0.5625rem] tracking-widest uppercase text-white/35 mb-4">
+                  {category}
+                </p>
+                <ul className="flex flex-col gap-2.5 list-none p-0 m-0">
+                  {links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        to={link.href}
+                        className="hover-underline font-body text-[0.8125rem] text-white/65 hover:text-white no-underline transition-colors duration-150"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            {/* Contact Column */}
+            <div>
+              <p className="font-mono text-[0.5625rem] tracking-widest uppercase text-white/35 mb-4">
+                {t('footer.colContact')}
+              </p>
+              <ul className="flex flex-col gap-3 list-none p-0 m-0">
+                <li className="flex gap-2.5 items-start">
+                  <MapPin size={13} className="text-teal-accent shrink-0 mt-0.5" />
+                  <span className="font-body text-[0.8125rem] text-white/65 leading-relaxed">
+                    {locale === 'ar' ? '٣٠ طريق مصر حلوان الزراعي، المعادي، القاهرة، مصر' : COMPANY_CONTACT.address}
+                  </span>
+                </li>
+                <li className="flex gap-2.5 items-center">
+                  <Phone size={13} className="text-teal-accent shrink-0" />
+                  <span className="font-body text-[0.8125rem] text-white/65">
+                    {COMPANY_CONTACT.mobile.join(' · ')}
+                  </span>
+                </li>
+                <li className="flex gap-2.5 items-center">
+                  <Phone size={13} className="text-teal-accent shrink-0" />
+                  <span className="font-body text-[0.8125rem] text-white/65">
+                    {COMPANY_CONTACT.phone[0]} · {COMPANY_CONTACT.phone[1]}
+                  </span>
+                </li>
+                <li className="flex gap-2.5 items-center">
+                  <Mail size={13} className="text-teal-accent shrink-0" />
+                  <a
+                    href={`mailto:${COMPANY_CONTACT.email}`}
+                    className="hover-underline font-body text-[0.8125rem] text-white/65 hover:text-white no-underline"
+                  >
+                    {COMPANY_CONTACT.email}
+                  </a>
+                </li>
+                <li className="flex gap-2.5 items-center">
+                  <Globe size={13} className="text-teal-accent shrink-0" />
+                  <span className="font-body text-[0.8125rem] text-white/65">
+                    {COMPANY_CONTACT.website}
+                  </span>
+                </li>
               </ul>
             </div>
-          ))}
-
-          {/* Contact Column */}
-          <div>
-            <p style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.5625rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.35)',
-              marginBottom: '16px',
-            }}>
-              Contact
-            </p>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <li style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                <MapPin size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0, marginTop: '2px' }} />
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.5 }}>
-                  {COMPANY_CONTACT.address}
-                </span>
-              </li>
-              <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <Phone size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)' }}>
-                  {COMPANY_CONTACT.mobile.join(' · ')}
-                </span>
-              </li>
-              <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <Phone size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)' }}>
-                  {COMPANY_CONTACT.phone[0]} · {COMPANY_CONTACT.phone[1]}
-                </span>
-              </li>
-              <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <Mail size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
-                <a
-                  href={`mailto:${COMPANY_CONTACT.email}`}
-                  className="hover-underline"
-                  style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)', textDecoration: 'none' }}
-                >
-                  {COMPANY_CONTACT.email}
-                </a>
-              </li>
-              <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                <Globe size={13} style={{ color: 'var(--teal-accent)', flexShrink: 0 }} />
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.65)' }}>
-                  {COMPANY_CONTACT.website}
-                </span>
-              </li>
-            </ul>
           </div>
-        </div>
 
-        {/* Divider */}
-        <div className="rule-dark" />
+          {/* Divider */}
+          <div className="w-full h-px bg-white/[0.08] my-2" />
 
-        {/* Bottom Row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
-          <p style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.625rem',
-            letterSpacing: '0.1em',
-            color: 'rgba(255,255,255,0.3)',
-          }}>
-            © {new Date().getFullYear()} Nour Medical Company. All rights reserved. Maadi, Cairo, Egypt.
-          </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              onClick={() => {
-                sessionStorage.removeItem('nour_loader_dismissed');
-                window.dispatchEvent(new CustomEvent('replay-3d-loader'));
-                window.scrollTo({ top: 0, behavior: 'instant' });
-              }}
-              style={{
-                background: 'transparent',
-                border: '1px solid rgba(255, 255, 255, 0.18)',
-                borderRadius: '4px',
-                color: 'rgba(255, 255, 255, 0.55)',
-                padding: '3px 9px',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.5625rem',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-                e.currentTarget.style.color = '#ffffff';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)';
-                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.55)';
-              }}
-            >
-              Replay Intro
-            </button>
-            <p style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.625rem',
-              letterSpacing: '0.1em',
-              color: 'rgba(255,255,255,0.3)',
-            }}>
-              Est. 2015 · Healthcare Technology · Egypt
+          {/* Bottom Row */}
+          <div className="flex justify-between items-center flex-wrap gap-4">
+            <p className="font-mono text-[0.625rem] tracking-wide text-white/30">
+              {t('footer.copyright', { year: new Date().getFullYear() })}
             </p>
+            <div className="flex items-center gap-5 flex-wrap">
+              <button
+                type="button"
+                onClick={() => {
+                  sessionStorage.removeItem('nour_loader_dismissed');
+                  window.dispatchEvent(new CustomEvent('replay-3d-loader'));
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }}
+                className="bg-transparent border border-white/20 rounded text-white/55 px-2.5 py-1 font-mono text-[0.5625rem] tracking-wide uppercase cursor-pointer hover:border-white/40 hover:text-white transition-all duration-200"
+              >
+                {t('footer.replayIntro')}
+              </button>
+              <p className="font-mono text-[0.625rem] tracking-wide text-white/30">
+                {t('footer.estTag')}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};

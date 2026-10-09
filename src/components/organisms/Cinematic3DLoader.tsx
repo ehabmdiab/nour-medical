@@ -1,33 +1,23 @@
-import React, { Suspense, useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import React, { Suspense, useRef, useState, useEffect, useMemo, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, useTexture, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Preload 3D model and logo texture
-try {
-  useGLTF.preload(`${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`);
-  useTexture.preload(`${import.meta.env.BASE_URL}nour-medical-logo.png`);
-} catch {
-  // Preload fallback
-}
-
-// ── INSIDE SCANNER BORE LOGO ──────────────────────────────────────
+// ── ROTATING LOGO INSIDE BORE (VISIBLE AT CLOSE ZOOM) ──────────────
 function ScannerBoreLogo({ opacity }: { opacity: number }) {
   const logoTexture = useTexture(`${import.meta.env.BASE_URL}nour-medical-logo.png`);
 
   useMemo(() => {
-    if (logoTexture) {
-      logoTexture.colorSpace = THREE.SRGBColorSpace;
-      logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
-      logoTexture.magFilter = THREE.LinearFilter;
-      logoTexture.generateMipmaps = true;
-    }
+    logoTexture.wrapS = THREE.ClampToEdgeWrapping;
+    logoTexture.wrapT = THREE.ClampToEdgeWrapping;
+    logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
+    logoTexture.magFilter = THREE.LinearFilter;
+    logoTexture.generateMipmaps = true;
+    logoTexture.needsUpdate = true;
   }, [logoTexture]);
 
-  if (opacity <= 0.005) return null;
-
   // Aspect ratio is 221 / 66 (~3.348)
-  const width = 1.05;
+  const width = 2.15;
   const height = width / (221 / 66);
 
   return (
@@ -136,7 +126,7 @@ function CleanScannerModel({
           child.visible = false;
         }
         if (mat && mat.name === 'Bore_Interior') {
-          mat.color = new THREE.Color('#07111e');
+          mat.color = new THREE.Color('#0B1B33');
           mat.roughness = 0.25;
           mat.metalness = 0.4;
         }
@@ -173,9 +163,9 @@ function CleanScannerModel({
       <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[2.8, 48]} />
         <meshBasicMaterial
-          color="#000000"
+          color="#0A1628"
           transparent
-          opacity={0.45}
+          opacity={0.12}
           depthWrite={false}
         />
       </mesh>
@@ -193,16 +183,19 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
   onComplete,
   minDurationMs = 2800,
 }) => {
-  const [progress, setProgress] = useState(0);
-  const [logoOpacity, setLogoOpacity] = useState(0);
-  const [zoomProgress, setZoomProgress] = useState(0);
-  const [isFading, setIsFading] = useState(false);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [progress, setProgress] = useState<number>(0);
+  const [logoOpacity, setLogoOpacity] = useState<number>(0);
+  const [zoomProgress, setZoomProgress] = useState<number>(0);
+  const [isFading, setIsFading] = useState<boolean>(false);
+  const [mouse, setMouse] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
   const isDebugMode =
     typeof window !== 'undefined' &&
     new URLSearchParams(window.location.search).get('debug') === 'true';
-  const freezeParam = typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("freeze") : null;
+  const freezeParam =
+    typeof window !== 'undefined'
+      ? new URLSearchParams(window.location.search).get('freeze')
+      : null;
   const effectiveDuration = isDebugMode ? 25000 : minDurationMs;
 
   // Lock body & html scroll while loader is visible
@@ -219,7 +212,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
 
   // Subtle mouse movement
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent): void => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
       setMouse({ x, y });
@@ -230,7 +223,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
   }, []);
 
   // Handle finish
-  const handleFinish = useCallback(() => {
+  const handleFinish = useCallback((): void => {
     setIsFading(true);
     setTimeout(() => {
       if (onComplete) onComplete();
@@ -239,7 +232,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
 
   // Keyboard shortcut (Escape to skip)
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key === 'Escape') {
         handleFinish();
       }
@@ -257,7 +250,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
     const startTime = performance.now();
     let frameId: number;
 
-    const tick = (now: number) => {
+    const tick = (now: number): void => {
       const elapsed = now - startTime;
       const raw = Math.min(100, (elapsed / effectiveDuration) * 100);
       setProgress(Math.floor(raw));
@@ -278,88 +271,46 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label="Loading Nour Medical"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 99999,
-        background: '#07111e',
-        overflow: 'hidden',
-        opacity: isFading ? 0 : 1,
-        transition: 'opacity 0.5s ease-out',
-        pointerEvents: isFading ? 'none' : 'auto',
-      }}
+      className={`fixed inset-0 z-[99999] bg-white overflow-hidden transition-opacity duration-500 ease-out ${
+        isFading ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
+      }`}
     >
       {/* Ambient Radial Background matching Dark Navy Hero */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse at 50% 50%, #0f223d 0%, #07111e 65%, #03080e 100%)',
-          pointerEvents: 'none',
-        }}
-      />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#FFFFFF_0%,#F8FAFC_60%,#EBF1F6_100%)] pointer-events-none" />
 
       {/* Brand Header - floats at top with subtle fade during bore zoom */}
       <div
+        className="absolute top-[clamp(24px,5vh,44px)] inset-x-0 z-10 flex flex-col items-center gap-2 pointer-events-none transition-all duration-200"
         style={{
-          position: 'absolute',
-          top: 'clamp(24px, 5vh, 44px)',
-          left: 0,
-          right: 0,
-          zIndex: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
           opacity: Math.max(0, 1 - (progress > 20 ? (progress - 20) / 45 : 0)),
           transform: `translateY(${progress > 20 ? -((progress - 20) * 0.3) : 0}px)`,
-          transition: 'opacity 0.2s ease, transform 0.2s ease',
-          pointerEvents: 'none',
         }}
       >
         <img
           src={`${import.meta.env.BASE_URL}nour-medical-logo.png`}
           alt="Nour Medical"
-          style={{
-            height: '36px',
-            width: 'auto',
-            objectFit: 'contain',
-          }}
+          className="h-9 w-auto object-contain"
         />
-        <span
-          style={{
-            fontFamily: 'var(--font-mono, monospace)',
-            fontSize: '0.625rem',
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase',
-            color: 'rgba(255, 255, 255, 0.45)',
-          }}
-        >
+        <span className="font-mono text-[0.625rem] tracking-widest uppercase text-text-muted">
           Healthcare Technology · Est. 2015
         </span>
       </div>
 
       {/* Fullscreen 3D MRI Scanner Stage */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 2,
-        }}
-      >
+      <div className="absolute inset-0 z-[2]">
         <Canvas
           camera={{ position: [0, 2.5, 12.0], fov: 38 }}
           gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         >
-          <ambientLight intensity={1.3} />
-          <directionalLight position={[5, 8, 5]} intensity={1.8} />
-          <directionalLight position={[-5, 4, -4]} intensity={0.8} color="#e2e8f0" />
-          {/* Subtle cyan interior bore lighting that intensifies during zoom */}
+          <ambientLight intensity={1.6} />
+          <directionalLight position={[6, 9, 6]} intensity={1.5} color="#ffffff" />
+          <directionalLight position={[-6, 4, -4]} intensity={0.9} color="#e2e8f0" />
+          {/* Subtle royal cyan interior bore lighting that highlights the logo during zoom */}
           <pointLight
-            position={[0, 2.42, 0.5]}
-            color="#00e5ff"
-            intensity={2.8 + logoOpacity * 3.5}
-            distance={7}
+            position={[0, 2.42, 0.4]}
+            color="#0284c7"
+            intensity={2.2 + logoOpacity * 3.0}
+            distance={6}
           />
 
           <Suspense fallback={null}>
@@ -376,67 +327,23 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
       </div>
 
       {/* Clean Minimal Progress Bar - anchored at bottom */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 'clamp(28px, 6vh, 52px)',
-          left: 0,
-          right: 0,
-          zIndex: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '10px',
-          pointerEvents: 'none',
-        }}
-      >
-        <div
-          style={{
-            width: '200px',
-            height: '2px',
-            background: 'rgba(255, 255, 255, 0.1)',
-            borderRadius: '2px',
-            overflow: 'hidden',
-          }}
-        >
+      <div className="absolute bottom-[clamp(28px,6vh,52px)] inset-x-0 z-10 flex flex-col items-center gap-2.5 pointer-events-none">
+        <div className="w-[200px] h-0.5 bg-navy/[0.08] rounded-xs overflow-hidden">
           <div
-            style={{
-              width: `${progress}%`,
-              height: '100%',
-              background: 'linear-gradient(90deg, var(--blue-medical) 0%, var(--teal-accent) 100%)',
-              transition: 'width 0.08s ease-out',
-            }}
+            className="h-full bg-gradient-to-r from-blue-medical to-teal-accent transition-[width] duration-75 ease-out"
+            style={{ width: `${progress}%` }}
           />
         </div>
 
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-mono, monospace)',
-              fontSize: '0.6875rem',
-              color: 'rgba(255, 255, 255, 0.45)',
-              fontVariantNumeric: 'tabular-nums',
-              letterSpacing: '0.05em',
-            }}
-          >
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-[0.6875rem] text-text-muted tabular-nums tracking-wide">
             {progress}%
           </span>
           {logoOpacity > 0.4 && (
             <span
+              className="font-mono text-[0.5625rem] tracking-widest uppercase text-orange-accent transition-opacity duration-200"
               style={{
-                fontFamily: 'var(--font-mono, monospace)',
-                fontSize: '0.5625rem',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--teal-accent)',
                 opacity: Math.min(1, (logoOpacity - 0.4) * 2),
-                transition: 'opacity 0.2s ease',
               }}
             >
               System Initialized

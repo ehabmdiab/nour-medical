@@ -2,34 +2,35 @@ import { describe, it, expect } from 'vitest';
 import { GALLERY_DATA, GALLERY_CATEGORIES } from './galleryData';
 import type { GalleryCategoryType } from './galleryData';
 
-describe('Gallery Data - Topic Consolidation', () => {
-  it('consolidates the same topic into one card across all categories', () => {
-    expect(GALLERY_DATA.length).toBe(38);
+describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
+  it('consolidates gallery items into exactly 30 authentic field cards', () => {
+    expect(GALLERY_DATA.length).toBe(30);
   });
 
-  it('preserves all 133 images without losing any photos', () => {
-    const totalImages = GALLERY_DATA.reduce((acc, item) => acc + item.images.length, 0);
-    expect(totalImages).toBe(133);
+  it('eliminates standalone equipment brochure cards from gallery', () => {
+    // Equipment brochure items must not exist in gallery (relocated to Products)
+    const machineIds = [
+      'gal-machines-1',
+      'gal-machines-2',
+      'gal-machines-3',
+      'gal-machines-4',
+      'gal-machines-5',
+      'gal-machines-6',
+      'gal-machines-7',
+      'gal-machines-8',
+      'gal-machines-19',
+      'gal-machines-20',
+    ];
+    for (const mid of machineIds) {
+      expect(GALLERY_DATA.find((item) => item.id === mid)).toBeUndefined();
+    }
   });
 
-  it('consolidates Prof. Dr. Ashraf Zaytoun images into a single card with 3 images', () => {
-    const ashraf = GALLERY_DATA.find((c) => c.title === 'Prof. Dr. Ashraf Zaytoun');
-    expect(ashraf).toBeDefined();
-    expect(ashraf?.images.length).toBe(3);
-    expect(ashraf?.imageDetails?.length).toBe(3);
-
-    // Ensure repetitive duplicate cards are no longer present
-    const consultant = GALLERY_DATA.find((c) => c.title === 'Senior Clinical Radiology Consultant');
-    const specialist = GALLERY_DATA.find((c) => c.title === 'Interventional Radiology Specialist');
-    expect(consultant).toBeUndefined();
-    expect(specialist).toBeUndefined();
-  });
-
-  it('contains valid properties for each card', () => {
+  it('contains valid properties for each gallery card', () => {
     for (const card of GALLERY_DATA) {
       expect(card.id).toBeTruthy();
       expect(card.title).toBeTruthy();
-      expect(card.category).toBeTruthy();
+      expect(['team', 'exhibitions', 'events']).toContain(card.category);
       expect(card.categoryLabel).toBeTruthy();
       expect(card.location).toBeTruthy();
       expect(card.description).toBeTruthy();
@@ -41,55 +42,40 @@ describe('Gallery Data - Topic Consolidation', () => {
     }
   });
 
-  it('groups key events and facilities with correct image counts', () => {
-    const seminar = GALLERY_DATA.find((c) => c.category === 'seminar');
+  it('groups key events, conferences, and teams with correct image counts', () => {
+    const seminar = GALLERY_DATA.find((c) => c.title === 'Nour Medical Annual Scientific Seminar — 10 July 2025');
     expect(seminar).toBeDefined();
-    expect(seminar?.title).toBe('Nour Medical Annual Scientific Seminar — 10 July 2025');
+    expect(seminar?.category).toBe('exhibitions');
     expect(seminar?.images.length).toBe(22);
 
     const symposium = GALLERY_DATA.find(
       (c) => c.title === 'VIP Clinical Leadership & Radiology Symposium'
     );
     expect(symposium).toBeDefined();
+    expect(symposium?.category).toBe('exhibitions');
     expect(symposium?.images.length).toBe(18);
 
     const techTeam = GALLERY_DATA.find(
       (c) => c.title === 'Nour Medical Engineering & Technical Team'
     );
     expect(techTeam).toBeDefined();
+    expect(techTeam?.category).toBe('team');
     expect(techTeam?.images.length).toBe(12);
-
-    const angelPres = GALLERY_DATA.find(
-      (c) => c.title === 'Angel Radiology Technology Presentation'
-    );
-    expect(angelPres).toBeDefined();
-    expect(angelPres?.images.length).toBe(10);
-
-    const lonwinPres = GALLERY_DATA.find(
-      (c) => c.title === 'Lonwin Medical Diagnostic Imaging Demonstration'
-    );
-    expect(lonwinPres).toBeDefined();
-    expect(lonwinPres?.images.length).toBe(10);
-
-    const alMarwa = GALLERY_DATA.find((c) => c.title === 'Al-Marwa Hospital');
-    expect(alMarwa).toBeDefined();
-    expect(alMarwa?.images.length).toBe(4);
 
     const goldenHeart = GALLERY_DATA.find(
       (c) => c.title === 'Golden Heart Specialized Cardiac Center'
     );
     expect(goldenHeart).toBeDefined();
+    expect(goldenHeart?.category).toBe('events');
     expect(goldenHeart?.images.length).toBe(4);
   });
 
   it('filters by category matching category labels and counts', () => {
     const categoryCounts: Record<GalleryCategoryType, number> = {
-      all: 38,
-      machines: 12,
-      hospitals: 17,
-      doctors: 4,
-      team: 4,
-      seminar: 1,
+      all: 30,
+      team: 6,
+      exhibitions: 7,
+      events: 17,
     };
 
     for (const cat of GALLERY_CATEGORIES) {

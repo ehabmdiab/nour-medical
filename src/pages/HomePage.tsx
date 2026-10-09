@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
@@ -12,6 +12,7 @@ import {
   SUPPLIER_PARTNERS,
   COMPANY_INFO,
 } from '../data/companyData';
+import { useLanguage } from '../i18n';
 
 // ── Reveal Hook ──────────────────────────────────────────────────
 function useReveal(threshold = 0.15) {
@@ -19,7 +20,12 @@ function useReveal(threshold = 0.15) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
       { threshold }
     );
     if (ref.current) observer.observe(ref.current);
@@ -30,6 +36,8 @@ function useReveal(threshold = 0.15) {
 
 export const HomePage: React.FC = () => {
   const isLoaderActive = React.useContext(LoaderContext);
+  const { locale, t } = useLanguage();
+
   const { ref: introRef, visible: introVisible } = useReveal();
   const { ref: capRef, visible: capVisible } = useReveal();
   const { ref: whyRef, visible: whyVisible } = useReveal();
@@ -37,203 +45,134 @@ export const HomePage: React.FC = () => {
   const { ref: partnersRef, visible: partnersVisible } = useReveal();
   const { ref: ctaRef, visible: ctaVisible } = useReveal();
 
+  const whyItems = useMemo(
+    () =>
+      locale === 'ar'
+        ? [
+            { title: t('home.whyTeamTitle'), description: t('home.whyTeamDesc') },
+            { title: t('home.whyServiceTitle'), description: t('home.whyServiceDesc') },
+            { title: t('home.whyPartsTitle'), description: t('home.whyPartsDesc') },
+            { title: t('home.whyNetworkTitle'), description: t('home.whyNetworkDesc') },
+            { title: t('home.whyRadiologyTitle'), description: t('home.whyRadiologyDesc') },
+            { title: t('home.whyClientsTitle'), description: t('home.whyClientsDesc') },
+          ]
+        : WHY_NOUR_MEDICAL,
+    [locale, t]
+  );
+
+  const missionPillars = useMemo(
+    () =>
+      locale === 'ar'
+        ? [
+            { title: t('home.missionP1Title'), description: t('home.missionP1Desc') },
+            { title: t('home.missionP2Title'), description: t('home.missionP2Desc') },
+            { title: t('home.missionP3Title'), description: t('home.missionP3Desc') },
+          ]
+        : COMPANY_INFO.mission,
+    [locale, t]
+  );
+
   return (
     <>
       {/* ── 1. HERO ──────────────────────────────────────────── */}
       <section
         id="hero"
-        style={{
-          minHeight: '100vh',
-          background: 'var(--navy)',
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'relative',
-          overflow: 'hidden',
-          paddingTop: '140px',
-          boxSizing: 'border-box',
-        }}
+        className="min-h-screen bg-navy flex flex-col relative overflow-hidden pt-36 box-border"
       >
-        {/* Background grid */}
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px',
-          pointerEvents: 'none',
-        }} />
+        {/* Ambient Medical Dark Grid */}
+        <div
+          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none"
+        />
 
-        {/* Gradient orb */}
-        <div style={{
-          position: 'absolute',
-          right: '-10%',
-          top: '10%',
-          width: '600px',
-          height: '600px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
+        {/* Ambient Royal Blue Glow Orb */}
+        <div
+          className="absolute -right-[10%] top-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.18)_0%,transparent_70%)] pointer-events-none"
+        />
 
-        <div className="container" style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          paddingTop: '12px',
-          paddingBottom: '60px',
-          maxWidth: '1440px',
-        }}>
-          {/* Label */}
-          <div style={{
-            opacity: 0,
-            animation: 'fadeInUp 0.7s var(--ease-smooth) 0.1s both',
-          }}>
-            <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '10px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.5625rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.45)',
-              marginBottom: '40px',
-            }}>
-              <span style={{
-                width: '6px',
-                height: '6px',
-                borderRadius: '50%',
-                background: 'var(--teal-accent)',
-                animation: 'pulse-dot 2s ease-in-out infinite',
-              }} />
-              Est. 2015 · Maadi, Cairo, Egypt
+        <div className="container flex-1 flex flex-col justify-center pt-8 pb-20 max-w-[1440px]">
+          {/* Label Badge */}
+          <div className="mb-6 animate-hero-est">
+            <span className="inline-flex items-center gap-2.5 font-mono text-[0.5625rem] tracking-[0.2em] uppercase text-white/45">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-accent animate-pulse" />
+              {t('hero.est')}
             </span>
           </div>
 
-          {/* Hero Content Grid: Text Left, Expanded 3D Model Right */}
-          <div className="hero-content-grid">
-            {/* Left: Text & CTA (Preserved without layout compression) */}
-            <div style={{ maxWidth: '640px', width: '100%' }}>
+          {/* Hero Content Grid: Text Left, Circular 3D Scanner Viewport Right */}
+          <div className="hero-content-grid items-center">
+            {/* Left: Text & CTA */}
+            <div className="max-w-[560px] w-full">
               <h1
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: 'clamp(2.5rem, 6.2vw, 6.25rem)',
-                  fontWeight: 700,
-                  color: 'var(--white)',
-                  lineHeight: 0.94,
-                  letterSpacing: '-0.035em',
-                  marginBottom: '40px',
-                  opacity: 0,
-                  animation: 'fadeInUp 0.9s var(--ease-smooth) 0.25s both',
-                }}
+                className="font-heading text-[clamp(2.25rem,4.5vw,4.5rem)] font-extrabold text-white leading-[1.02] tracking-[-0.03em] mb-7 animate-hero-title"
               >
-                Advanced Healthcare Technology{' '}
-                <span style={{ color: 'var(--teal-accent)' }}>Reliable Medical DI Solutions.</span>
+                {t('hero.title')}{" "}
+                <span className="text-teal-accent inline">
+                  {t('hero.titleHighlight')}
+                </span>
               </h1>
 
-              <div style={{
-                display: 'flex',
-                gap: '16px',
-                flexWrap: 'wrap',
-                opacity: 0,
-                animation: 'fadeInUp 0.9s var(--ease-smooth) 0.55s both',
-              }}>
-                <Link to="/products" className="btn btn-blue" style={{ gap: '8px' }}>
-                  Explore Our Solutions
+              <p
+                className="font-body text-[clamp(0.95rem,1.15vw,1.0625rem)] leading-[1.65] text-white/70 max-w-[520px] mb-8 animate-hero-sub"
+              >
+                {t('hero.subtitle')}
+              </p>
+
+              <div
+                className="flex gap-4 flex-wrap items-center animate-hero-cta"
+              >
+                <Link to="/products" className="btn btn-blue gap-2">
+                  {t('hero.exploreProducts')}
                   <ArrowRight size={15} />
                 </Link>
                 <Link to="/contact" className="btn btn-outline-white">
-                  Contact Our Team
+                  {t('hero.contactTeam')}
                 </Link>
               </div>
             </div>
 
-            {/* Right: Max Width Full Radius Circular 3D MRI Scanner Viewer */}
-            <div style={{
-              opacity: 0,
-              animation: 'fadeInUp 0.9s var(--ease-smooth) 0.45s both',
-              position: 'relative',
-              width: '100%',
-              maxWidth: '680px',
-              maxHeight: 'min(520px, 55vh)',
-              aspectRatio: '1/1',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              margin: '0 auto',
-            }}>
+            {/* Right: Circular 3D MRI Scanner Viewport */}
+            <div
+              className="relative w-full max-w-[680px] max-h-[min(520px,55vh)] aspect-square flex justify-center items-center mx-auto animate-hero-3d"
+            >
               {!isLoaderActive && <Mri3DViewer height="100%" />}
             </div>
           </div>
         </div>
 
         {/* Scroll prompt */}
-        <div style={{
-          position: 'absolute',
-          bottom: '32px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '6px',
-          color: 'rgba(255,255,255,0.3)',
-          animation: 'fadeIn 1s var(--ease-smooth) 1.2s both',
-        }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-            Scroll
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/30 animate-hero-scroll pointer-events-none"
+        >
+          <span className="font-mono text-[0.5rem] tracking-[0.2em] uppercase">
+            {t('hero.scroll')}
           </span>
-          <ChevronDown size={14} style={{ animation: 'fadeInUp 2s ease-in-out infinite' }} />
+          <ChevronDown size={14} className="animate-bounce" />
         </div>
 
         {/* Bottom stat bar */}
-        <div style={{
-          borderTop: '1px solid rgba(255,255,255,0.08)',
-          background: 'rgba(255,255,255,0.03)',
-          opacity: 0,
-          animation: 'fadeIn 0.8s var(--ease-smooth) 0.8s both',
-        }}>
+        <div
+          className="border-t border-white/[0.08] bg-white/[0.03] animate-hero-stats"
+        >
           <div className="container">
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-              gap: '0',
-              padding: '24px 0',
-            }}>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-0 py-6">
               {[
-                { value: '50+', label: 'Technical Personnel' },
-                { value: '25+', label: 'Cath-Lab Installs' },
-                { value: '40+', label: 'X-Ray AMCs' },
-                { value: '1,000 m²', label: 'Parts Facility' },
+                { value: t('stats.personnelValue'), label: t('stats.personnel') },
+                { value: t('stats.cathLabInstallsValue'), label: t('stats.cathLabInstalls') },
+                { value: t('stats.xrayAmcsValue'), label: t('stats.xrayAmcs') },
+                { value: t('stats.partsFacilityValue'), label: t('stats.partsFacility') },
               ].map((stat, i) => (
                 <div
                   key={stat.label}
-                  style={{
-                    padding: '12px 24px',
-                    borderRight: i < 3 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                  }}
+                  className={`py-3 px-6 ${
+                    locale === "ar"
+                      ? i < 3 ? "border-l border-white/[0.07]" : ""
+                      : i < 3 ? "border-r border-white/[0.07]" : ""
+                  }`}
                 >
-                  <div style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1.625rem',
-                    fontWeight: 700,
-                    color: 'var(--white)',
-                    letterSpacing: '-0.02em',
-                    lineHeight: 1,
-                  }}>
+                  <div className="font-heading text-2xl font-bold text-white tracking-tight leading-none mb-1">
                     {stat.value}
                   </div>
-                  <div style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.5rem',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.35)',
-                    marginTop: '4px',
-                  }}>
+                  <div className="font-mono text-[0.5625rem] tracking-widest uppercase text-white/40">
                     {stat.label}
                   </div>
                 </div>
@@ -246,55 +185,27 @@ export const HomePage: React.FC = () => {
       {/* ── 2. COMPANY INTRODUCTION ──────────────────────────── */}
       <section
         ref={introRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--white)',
-          opacity: introVisible ? 1 : 0,
-          transform: introVisible ? 'translateY(0)' : 'translateY(24px)',
-          transition: 'opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-white transition-all duration-700 ease-[var(--ease-smooth)] ${
+          introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}
       >
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 'clamp(40px, 6vw, 100px)',
-            alignItems: 'center',
-          }}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-center">
             <div>
-              <div className="section-label">About Nour Medical</div>
-              <h2 style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
-                fontWeight: 700,
-                color: 'var(--navy)',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.1,
-                marginBottom: '28px',
-              }}>
-                Healthcare Technology Built Around Reliability
+              <div className="section-label">{t('home.aboutLabel')}</div>
+              <h2 className="font-heading text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold text-navy tracking-[-0.02em] leading-[1.1] mb-7">
+                {t('home.aboutTitle')}
               </h2>
-              <Link to="/about" className="btn btn-outline" style={{ marginTop: '8px' }}>
-                Discover Nour Medical
+              <Link to="/about" className="btn btn-outline mt-2">
+                {t('home.aboutBtn')}
               </Link>
             </div>
             <div>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(0.9375rem, 1.2vw, 1.0625rem)',
-                lineHeight: 1.75,
-                color: 'var(--text-muted)',
-                marginBottom: '24px',
-              }}>
-                Established in {COMPANY_INFO.established}, Nour Medical Company has built its business around the healthcare sector, specializing in radiology devices, medical equipment, hospital furniture, consumables, spare parts, and technical maintenance.
+              <p className="font-body text-[clamp(0.9375rem,1.2vw,1.0625rem)] leading-[1.75] text-text-muted mb-6">
+                {t('home.aboutP1')}
               </p>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(0.9375rem, 1.2vw, 1.0625rem)',
-                lineHeight: 1.75,
-                color: 'var(--text-muted)',
-              }}>
-                Our experience in maintaining imported radiology systems, combined with access to a global supplier network spanning the USA, Taiwan, and China, enables us to deliver dependable products and responsive after-sales support.
+              <p className="font-body text-[clamp(0.9375rem,1.2vw,1.0625rem)] leading-[1.75] text-text-muted">
+                {t('home.aboutP2')}
               </p>
             </div>
           </div>
@@ -304,83 +215,34 @@ export const HomePage: React.FC = () => {
       {/* ── 3. KEY CAPABILITIES ──────────────────────────────── */}
       <section
         ref={capRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--warm-white)',
-          opacity: capVisible ? 1 : 0,
-          transition: 'opacity 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+          capVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
-          <div style={{ marginBottom: '60px' }}>
-            <div className="section-label">What We Offer</div>
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-              fontWeight: 700,
-              color: 'var(--navy)',
-              letterSpacing: '-0.02em',
-            }}>
-              Core Capabilities
+          <div className="mb-15">
+            <div className="section-label">{t('home.capLabel')}</div>
+            <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-navy tracking-[-0.02em]">
+              {t('home.capTitle')}
             </h2>
           </div>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: '20px',
-          }}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
             {KEY_CAPABILITIES.map((cap, i) => (
               <div
                 key={cap.id}
-                style={{
-                  padding: '36px 28px',
-                  background: 'var(--white)',
-                  border: '1px solid var(--gray-light)',
-                  borderRadius: '12px',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
-                  transition: 'all 0.3s var(--ease-smooth)',
-                  opacity: capVisible ? 1 : 0,
-                  transform: capVisible ? 'translateY(0)' : 'translateY(16px)',
-                  transitionDelay: `${i * 0.08}s`,
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'var(--blue-medical)';
-                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(27, 79, 216, 0.08)';
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'var(--gray-light)';
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.02)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                className={`p-9 px-7 bg-white border border-gray-light rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 ease-[var(--ease-smooth)] hover:border-blue-medical hover:shadow-[0_12px_28px_rgba(27,79,216,0.08)] hover:-translate-y-1 ${
+                  capVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: `${i * 0.08}s` }}
               >
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.5rem',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: 'var(--teal-accent)',
-                  marginBottom: '16px',
-                }}>
+                <div className="font-mono text-[0.5rem] tracking-[0.2em] uppercase text-teal-accent mb-4">
                   0{i + 1}
                 </div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.25rem',
-                  fontWeight: 700,
-                  color: 'var(--navy)',
-                  letterSpacing: '-0.01em',
-                  marginBottom: '10px',
-                }}>
-                  {cap.title}
+                <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2.5">
+                  {t(cap.titleKey) || cap.title}
                 </h3>
-                <p style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '1.125rem',
-                  lineHeight: 1.65,
-                  color: 'var(--text-muted)',
-                }}>
-                  {cap.description}
+                <p className="font-body text-base leading-[1.65] text-text-muted">
+                  {t(cap.descKey) || cap.description}
                 </p>
               </div>
             ))}
@@ -397,88 +259,44 @@ export const HomePage: React.FC = () => {
       {/* ── 6. WHY NOUR MEDICAL ──────────────────────────────── */}
       <section
         ref={whyRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--white)',
-          opacity: whyVisible ? 1 : 0,
-          transition: 'opacity 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+          whyVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: 'clamp(40px, 6vw, 100px)',
-            alignItems: 'start',
-          }}>
-            <div style={{ position: 'sticky', top: '100px' }}>
-              <div className="section-label">Why Nour Medical</div>
-              <h2 style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-                fontWeight: 700,
-                color: 'var(--navy)',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.1,
-                marginBottom: '20px',
-              }}>
-                From Equipment Supply to Long-Term Support
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-start">
+            <div className="sticky top-[100px]">
+              <div className="section-label">{t('home.whyLabel')}</div>
+              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-navy tracking-[-0.02em] leading-[1.1] mb-5">
+                {t('home.whyTitle')}
               </h2>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '1.0625rem',
-                lineHeight: 1.7,
-                color: 'var(--text-muted)',
-                marginBottom: '32px',
-              }}>
-                Nour Medical's value extends beyond supplying equipment — we support healthcare organizations throughout the operational life of their systems.
+              <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-8">
+                {t('home.whyDesc')}
               </p>
               <Link to="/services" className="btn btn-primary">
-                View Our Services
+                {t('nav.services')}
               </Link>
             </div>
 
             <div>
-              {WHY_NOUR_MEDICAL.map((item, i) => (
+              {whyItems.map((item, i) => (
                 <div
                   key={item.title}
-                  style={{
-                    padding: '28px 0',
-                    borderBottom: '1px solid var(--warm-neutral)',
-                    opacity: whyVisible ? 1 : 0,
-                    transform: whyVisible ? 'translateY(0)' : 'translateY(16px)',
-                    transition: `opacity 0.6s var(--ease-smooth) ${i * 0.08}s, transform 0.6s var(--ease-smooth) ${i * 0.08}s`,
-                  }}
+                  className={`py-7 border-b border-warm-neutral transition-all duration-600 ease-[var(--ease-smooth)] ${
+                    whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}
+                  style={{ transitionDelay: `${i * 0.08}s` }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px' }}>
+                  <div className="flex justify-between items-start gap-4">
                     <div>
-                      <h3 style={{
-                        fontFamily: 'var(--font-heading)',
-                        fontSize: '1.0625rem',
-                        fontWeight: 600,
-                        color: 'var(--navy)',
-                        letterSpacing: '-0.01em',
-                        marginBottom: '8px',
-                      }}>
+                      <h3 className="font-heading text-[1.0625rem] font-semibold text-navy tracking-[-0.01em] mb-2">
                         {item.title}
                       </h3>
-                      <p style={{
-                        fontFamily: 'var(--font-body)',
-                        fontSize: '1.125rem',
-                        lineHeight: 1.65,
-                        color: 'var(--text-muted)',
-                      }}>
+                      <p className="font-body text-lg leading-[1.65] text-text-muted">
                         {item.description}
                       </p>
                     </div>
-                    <span style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.5rem',
-                      letterSpacing: '0.15em',
-                      color: 'var(--stone)',
-                      flexShrink: 0,
-                      marginTop: '4px',
-                    }}>
+                    <span className="font-mono text-[0.5rem] tracking-[0.15em] text-stone shrink-0 mt-1">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
@@ -492,86 +310,43 @@ export const HomePage: React.FC = () => {
       {/* ── 7. VISION & MISSION ──────────────────────────────── */}
       <section
         ref={missionRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--navy)',
-          opacity: missionVisible ? 1 : 0,
-          transition: 'opacity 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-navy transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+          missionVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
           {/* Vision */}
-          <div style={{ marginBottom: '80px', maxWidth: '760px' }}>
-            <div className="section-label section-label-light" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '24px' }}>
-              Our Vision
+          <div className="mb-20 max-w-[760px]">
+            <div className="section-label section-label-light text-white/40 mb-6">
+              {t('home.visionTitle')}
             </div>
-            <blockquote style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
-              fontWeight: 600,
-              fontStyle: 'italic',
-              color: 'var(--white)',
-              lineHeight: 1.3,
-              letterSpacing: '-0.02em',
-            }}>
-              "{COMPANY_INFO.vision}"
+            <blockquote className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold italic text-white leading-[1.3] tracking-[-0.02em]">
+              "{locale === 'ar' ? t('home.visionDesc') : COMPANY_INFO.vision}"
             </blockquote>
           </div>
 
-          <div className="rule-dark" style={{ marginBottom: '80px' }} />
+          <div className="rule-dark mb-20" />
 
           {/* Mission Pillars */}
-          <div className="section-label section-label-light" style={{ color: 'rgba(255,255,255,0.4)', marginBottom: '48px' }}>
-            Our Mission
+          <div className="section-label section-label-light text-white/40 mb-12">
+            {t('home.missionTitlePillar')}
           </div>
           <div className="grid-3">
-            {COMPANY_INFO.mission.map((pillar, i) => (
+            {missionPillars.map((pillar, i) => (
               <div
                 key={pillar.title}
-                style={{
-                  padding: '36px',
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: '4px',
-                  transition: 'border-color var(--dur-mid), transform var(--dur-mid)',
-                  opacity: missionVisible ? 1 : 0,
-                  transform: missionVisible ? 'translateY(0)' : 'translateY(20px)',
-                  transitionDelay: `${i * 0.12}s`,
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
+                className={`p-9 bg-white/[0.03] border border-white/[0.07] rounded transition-all duration-300 hover:border-white/20 hover:-translate-y-0.5 ${
+                  missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                }`}
+                style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.625rem',
-                  letterSpacing: '0.15em',
-                  color: 'var(--teal-accent)',
-                  marginBottom: '16px',
-                }}>
+                <div className="font-mono text-[0.625rem] tracking-[0.15em] text-teal-accent mb-4">
                   0{i + 1}
                 </div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.625rem',
-                  fontWeight: 700,
-                  color: 'var(--white)',
-                  letterSpacing: '-0.01em',
-                  marginBottom: '12px',
-                }}>
+                <h3 className="font-heading text-xl font-bold text-white tracking-[-0.01em] mb-2.5">
                   {pillar.title}
                 </h3>
-                <p style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '1.125rem',
-                  lineHeight: 1.7,
-                  color: 'rgba(255,255,255,0.6)',
-                }}>
+                <p className="font-body text-lg leading-[1.65] text-white/60">
                   {pillar.description}
                 </p>
               </div>
@@ -580,86 +355,46 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── 8. GLOBAL SUPPLIERS ───────────────────────────────── */}
+      {/* ── 8. SUPPLIER NETWORK OVERVIEW ─────────────────────── */}
       <section
         ref={partnersRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--warm-white)',
-          opacity: partnersVisible ? 1 : 0,
-          transition: 'opacity 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+          partnersVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
-          <div style={{ marginBottom: '60px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px' }}>
+          <div className="flex justify-between items-end flex-wrap gap-6 mb-15">
             <div>
-              <div className="section-label">Global Technology Suppliers</div>
-              <h2 style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(2.25rem, 4vw, 3.25rem)',
-                fontWeight: 700,
-                color: 'var(--navy)',
-                letterSpacing: '-0.02em',
-              }}>
-                Global Technology. Local Expertise.
+              <div className="section-label">{t('nav.suppliers')}</div>
+              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-navy tracking-[-0.02em]">
+                {t('suppliers.title')}
               </h2>
             </div>
             <Link to="/suppliers" className="btn btn-outline">
-              View All Suppliers
+              {t('suppliers.viewProducts')}
             </Link>
           </div>
 
-          <div className="grid-4">
-            {SUPPLIER_PARTNERS.map((partner, i) => (
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
+            {SUPPLIER_PARTNERS.slice(0, 3).map((partner) => (
               <div
                 key={partner.id}
-                className="card"
-                style={{
-                  padding: '40px 32px',
-                  opacity: partnersVisible ? 1 : 0,
-                  transform: partnersVisible ? 'translateY(0)' : 'translateY(16px)',
-                  transition: `opacity 0.6s var(--ease-smooth) ${i * 0.1}s, transform 0.6s var(--ease-smooth) ${i * 0.1}s`,
-                }}
+                className="p-9 bg-white border border-gray-light rounded-xl"
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <span style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.5rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: 'var(--text-muted)',
-                    background: 'var(--warm-neutral)',
-                    padding: '4px 10px',
-                    borderRadius: '2px',
-                  }}>
-                    {partner.country}
-                  </span>
-                </div>
-                <h3 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.0625rem',
-                  fontWeight: 700,
-                  color: 'var(--navy)',
-                  letterSpacing: '-0.01em',
-                  marginBottom: '8px',
-                }}>
+                <div className="text-[1.75rem] mb-4">{partner.countryFlag}</div>
+                <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2">
                   {partner.name}
                 </h3>
-                <p style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.5625rem',
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: 'var(--teal-accent)',
-                  marginBottom: '16px',
-                }}>
+                <p className="font-mono text-[0.5625rem] tracking-[0.12em] uppercase text-teal-accent mb-4">
                   {partner.tagline}
                 </p>
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {partner.specialties.slice(0, 3).map(s => (
-                    <li key={s} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--blue-medical)', flexShrink: 0 }} />
-                      <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>{s}</span>
+                <ul className="flex flex-col gap-1.5 list-none m-0 p-0">
+                  {partner.specialties.slice(0, 3).map((s) => (
+                    <li key={s} className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-blue-medical shrink-0" />
+                      <span className="font-body text-[0.8125rem] text-text-muted">
+                        {s}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -672,47 +407,27 @@ export const HomePage: React.FC = () => {
       {/* ── 9. FINAL CTA ─────────────────────────────────────── */}
       <section
         ref={ctaRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--white)',
-          borderTop: '1px solid var(--gray-light)',
-          textAlign: 'center',
-          opacity: ctaVisible ? 1 : 0,
-          transform: ctaVisible ? 'translateY(0)' : 'translateY(24px)',
-          transition: 'opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-white border-t border-gray-light text-center transition-all duration-700 ease-[var(--ease-smooth)] ${
+          ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}
       >
-        <div className="container" style={{ maxWidth: '720px' }}>
-          <div className="section-label" style={{ justifyContent: 'center' }}>
-            Start a Conversation
+        <div className="container max-w-[720px]">
+          <div className="section-label justify-center">
+            {t('common.contactUs')}
           </div>
-          <h2 style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(2rem, 4.5vw, 4rem)',
-            fontWeight: 700,
-            color: 'var(--navy)',
-            letterSpacing: '-0.025em',
-            lineHeight: 1.05,
-            marginBottom: '24px',
-          }}>
-            Let's Build Better Healthcare Infrastructure
+          <h2 className="font-heading text-[clamp(2rem,4.5vw,4rem)] font-bold text-navy tracking-[-0.025em] leading-[1.05] mb-6">
+            {t('home.ctaTitle')}
           </h2>
-          <p style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '1.125rem',
-            lineHeight: 1.7,
-            color: 'var(--text-muted)',
-            marginBottom: '40px',
-          }}>
-            Whether you are equipping a new facility, upgrading imaging capabilities, or looking for dependable technical support, Nour Medical is ready to support your healthcare operation.
+          <p className="font-body text-lg leading-[1.7] text-text-muted mb-10">
+            {t('home.ctaDesc')}
           </p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" className="btn btn-primary" style={{ gap: '8px' }}>
-              Talk to Our Team
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Link to="/contact" className="btn btn-primary gap-2">
+              {t('home.ctaBtn')}
               <ArrowRight size={15} />
             </Link>
             <Link to="/products" className="btn btn-outline">
-              Explore Products
+              {t('hero.exploreProducts')}
             </Link>
           </div>
         </div>

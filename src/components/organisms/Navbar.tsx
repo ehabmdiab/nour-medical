@@ -1,29 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
-
-const NAV_LINKS = [
-  { label: 'About', href: '/about' },
-  { label: 'Products', href: '/products' },
-  { label: 'Services', href: '/services' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Clients', href: '/clients' },
-  { label: 'Suppliers', href: '/suppliers' },
-  { label: 'Contact', href: '/contact' },
-];
-
-const SERVICE_SUB_LINKS = [
-  { label: 'Services Overview', href: '/services', desc: 'Core capabilities & full-lifecycle care' },
-  { label: 'Technical Maintenance', href: '/services#maintenance', desc: 'Universal multi-vendor support & emergency repair' },
-  { label: 'Annual Contracts (AMC)', href: '/services#amc-portfolio', desc: 'Cath-Lab, CT, MRI, X-Ray & C-Arm systems' },
-  { label: 'Maadi Parts Warehouse', href: '/services#parts-infrastructure', desc: '1,000 m² dedicated spare parts facility' },
-];
+import { useLanguage } from '../../i18n';
+import { LanguageSwitch } from '../atoms/LanguageSwitch';
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const location = useLocation();
+  const { locale, t } = useLanguage();
+
+  const navLinks = useMemo(
+    () => [
+      { label: t('nav.about'), href: '/about' },
+      { label: t('nav.products'), href: '/products' },
+      { label: t('nav.services'), href: '/services' },
+      { label: t('nav.gallery'), href: '/gallery' },
+      { label: t('nav.clients'), href: '/clients' },
+      { label: t('nav.suppliers'), href: '/suppliers' },
+      { label: t('nav.contact'), href: '/contact' },
+    ],
+    [t]
+  );
+
+  const serviceSubLinks = useMemo(
+    () => [
+      {
+        label: t('nav.servicesOverview'),
+        href: '/services',
+        desc: locale === 'ar' ? 'القدرات الجوهرية ودورة الحياة الكاملة' : 'Core capabilities & full-lifecycle care',
+      },
+      {
+        label: t('nav.technicalMaintenance'),
+        href: '/services#maintenance',
+        desc: locale === 'ar' ? 'دعم شامل لمختلف المصنعين وصيانة الطوارئ' : 'Universal multi-vendor support & emergency repair',
+      },
+      {
+        label: t('nav.annualContracts'),
+        href: '/services#amc-portfolio',
+        desc: locale === 'ar' ? 'أنظمة القسطرة، المقطعية، الرنين، والسي آرم' : 'Cath-Lab, CT, MRI, X-Ray & C-Arm systems',
+      },
+      {
+        label: t('nav.partsFacility'),
+        href: '/services#parts-infrastructure',
+        desc: locale === 'ar' ? 'مستودع مخصص لقطع الغيار بمساحة ١٠٠٠ م²' : '1,000 m² dedicated spare parts facility',
+      },
+    ],
+    [locale, t]
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -38,50 +63,38 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [mobileOpen]);
 
   const isActive = (href: string) => {
     if (location.pathname === href) return true;
-    if (href === "/suppliers" && location.pathname === "/partners") return true;
-    if (href !== "/" && location.pathname.startsWith(`${href}/`)) return true;
+    if (href === '/suppliers' && location.pathname === '/partners') return true;
+    if (href !== '/' && location.pathname.startsWith(`${href}/`)) return true;
     return false;
   };
 
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`} role="navigation" aria-label="Main navigation">
-      <div className="container" style={{ height: '92px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* Logo */}
+      <div className="container h-[92px] flex items-center justify-between gap-5">
+        {/* Logo - Nour Medical stays always in English per branding guidelines */}
         <Link
           to="/"
-          style={{ display: 'flex', flexDirection: 'column', gap: '2px', textDecoration: 'none' }}
+          className="flex flex-col gap-[3px] no-underline shrink-0"
           aria-label="Nour Medical — Home"
         >
-          <span style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(2rem, 3vw, 2.6rem)',
-            fontWeight: 700,
-            letterSpacing: '-0.03em',
-            color: 'var(--navy)',
-            lineHeight: 1,
-          }}>
+          <span className="font-heading text-[clamp(1.35rem,1.8vw,1.65rem)] font-bold tracking-[-0.025em] text-navy leading-[1.1] whitespace-nowrap">
             Nour Medical
           </span>
-          <span style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.625rem',
-            letterSpacing: '0.22em',
-            textTransform: 'uppercase',
-            color: 'var(--text-muted)',
-            fontWeight: 600,
-          }}>
-            Healthcare Technology
+          <span className="font-mono text-[0.6rem] tracking-[0.14em] uppercase text-text-muted font-semibold whitespace-nowrap">
+            {locale === 'ar' ? 'تكنولوجيا الرعاية الصحية' : 'Healthcare Technology'}
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-          {NAV_LINKS.map((link) => {
+        <ul className="hide-mobile flex items-center gap-[clamp(14px,1.6vw,24px)] list-none m-0 p-0">
+          {navLinks.map((link) => {
             const isServices = link.href === '/services';
             const active = isActive(link.href);
 
@@ -89,94 +102,36 @@ export const Navbar: React.FC = () => {
               return (
                 <li
                   key={link.href}
-                  style={{ position: 'relative' }}
+                  className="relative"
                   onMouseEnter={() => setServicesDropdownOpen(true)}
                   onMouseLeave={() => setServicesDropdownOpen(false)}
                 >
                   <Link
                     to={link.href}
-                    className={`nav-tab-link${active ? " active" : ""}`}
-                    style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '0.8125rem',
-                      fontWeight: active ? 600 : 500,
-                      color: active ? 'var(--navy)' : 'var(--text-muted)',
-                      letterSpacing: '0.02em',
-                      transition: 'color var(--dur-fast)',
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      padding: '8px 0',
-                    }}
+                    className={`nav-tab-link${active ? ' active text-navy font-semibold' : ' text-text-muted font-medium'} font-body text-[0.8125rem] tracking-[0.02em] inline-flex items-center gap-1 py-2 no-underline transition-colors`}
                   >
                     {link.label}
                     <ChevronDown
                       size={13}
-                      style={{
-                        transition: 'transform 0.2s ease',
-                        transform: servicesDropdownOpen ? 'rotate(180deg)' : 'none',
-                        color: active ? 'var(--blue-medical)' : 'var(--text-muted)',
-                      }}
+                      className={`transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''} ${active ? 'text-blue-medical' : 'text-text-muted'}`}
                     />
                   </Link>
 
                   {/* Dropdown Menu */}
                   {servicesDropdownOpen && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        paddingTop: '8px',
-                        zIndex: 1050,
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: '320px',
-                          background: 'var(--white)',
-                          borderRadius: '16px',
-                          border: '1px solid var(--gray-light)',
-                          boxShadow: '0 16px 36px rgba(15, 23, 42, 0.1)',
-                          padding: '10px',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '2px',
-                        }}
-                      >
-                        {SERVICE_SUB_LINKS.map((sub) => (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[1050]">
+                      <div className="w-[320px] bg-white rounded-2xl border border-gray-light shadow-[0_16px_36px_rgba(15,23,42,0.1)] p-2.5 flex flex-col gap-0.5">
+                        {serviceSubLinks.map((sub) => (
                           <Link
                             key={sub.href}
                             to={sub.href}
                             onClick={() => setServicesDropdownOpen(false)}
-                            style={{
-                              padding: '10px 14px',
-                              borderRadius: '10px',
-                              textDecoration: 'none',
-                              transition: 'background 0.15s ease',
-                              display: 'flex',
-                              flexDirection: 'column',
-                              gap: '2px',
-                            }}
-                            onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--warm-neutral)'; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                            className="p-2.5 px-3.5 rounded-[10px] no-underline flex flex-col gap-0.5 hover:bg-warm-neutral transition-colors"
                           >
-                            <span style={{
-                              fontFamily: 'var(--font-heading)',
-                              fontSize: '1.125rem',
-                              fontWeight: 700,
-                              color: 'var(--navy)',
-                            }}>
+                            <span className="font-heading text-lg font-bold text-navy">
                               {sub.label}
                             </span>
-                            <span style={{
-                              fontFamily: 'var(--font-body)',
-                              fontSize: '0.75rem',
-                              color: 'var(--text-muted)',
-                              lineHeight: 1.3,
-                            }}>
+                            <span className="font-body text-xs text-text-muted leading-[1.3]">
                               {sub.desc}
                             </span>
                           </Link>
@@ -192,18 +147,7 @@ export const Navbar: React.FC = () => {
               <li key={link.href}>
                 <Link
                   to={link.href}
-                  className={`nav-tab-link${active ? " active" : ""}`}
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.8125rem',
-                    fontWeight: active ? 600 : 500,
-                    color: active ? 'var(--navy)' : 'var(--text-muted)',
-                    letterSpacing: '0.02em',
-                    transition: 'color var(--dur-fast)',
-                    textDecoration: 'none',
-                    padding: '8px 0',
-                    display: 'inline-block',
-                  }}
+                  className={`nav-tab-link${active ? ' active text-navy font-semibold' : ' text-text-muted font-medium'} font-body text-[0.8125rem] tracking-[0.02em] inline-block py-2 no-underline transition-colors`}
                 >
                   {link.label}
                 </Link>
@@ -212,98 +156,83 @@ export const Navbar: React.FC = () => {
           })}
         </ul>
 
-        {/* Desktop CTA */}
-        <div className="hide-mobile">
-          <Link to="/contact" className="btn btn-primary" style={{ padding: '10px 20px', fontSize: '0.8rem' }}>
-            Get in Touch
+        {/* Desktop Actions & Independent Language Switch */}
+        <div className="hide-mobile flex items-center gap-5 shrink-0">
+          <div className="flex items-center">
+            <LanguageSwitch size="sm" />
+          </div>
+          <div
+            className="w-px h-6 bg-gray-light opacity-85"
+            aria-hidden="true"
+          />
+          <Link
+            to="/contact"
+            className="btn btn-primary py-2.5 px-[22px] text-[0.8rem] whitespace-nowrap"
+          >
+            {t('common.getInTouch')}
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="hide-desktop"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-expanded={mobileOpen}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-          style={{ padding: '8px', color: 'var(--navy)', display: 'flex', alignItems: 'center' }}
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile Header Right (Switch + Independent Toggle with generous spacing) */}
+        <div className="hide-desktop flex items-center gap-5">
+          <LanguageSwitch size="sm" />
+          <div
+            className="w-px h-[18px] bg-gray-light opacity-80"
+            aria-hidden="true"
+          />
+          <button
+            className="hide-desktop p-2 text-navy flex items-center bg-transparent border-none cursor-pointer"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       {mobileOpen && (
         <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            top: 'var(--navbar-height, 92px)',
-            background: 'var(--white)',
-            zIndex: 999,
-            padding: '32px var(--container-pad)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0',
-            overflowY: 'auto',
-          }}
+          className="fixed inset-0 top-[var(--navbar-height,92px)] bg-white z-[999] px-[var(--container-pad)] py-6 flex flex-col gap-0 overflow-y-auto"
           role="dialog"
           aria-label="Mobile navigation menu"
         >
-          {NAV_LINKS.map((link, i) => (
+          {/* Prominent Language Switch in Mobile Drawer */}
+          <div className="flex items-center justify-between py-4 pb-5 border-b border-gray-light mb-4">
+            <span className="font-heading text-base font-semibold text-navy">
+              {t('common.language')}
+            </span>
+            <LanguageSwitch size="md" />
+          </div>
+
+          {navLinks.map((link, i) => (
             <React.Fragment key={link.href}>
               <Link
                 to={link.href}
                 onClick={() => setMobileOpen(false)}
+                className={`py-4 border-b ${isActive(link.href) ? 'border-b-2 border-blue-medical text-blue-medical font-semibold' : 'border-warm-neutral text-navy font-medium'} font-heading text-[1.35rem] no-underline flex items-center justify-between animate-fade-in-up`}
                 style={{
-                  padding: '18px 0',
-                  borderBottom: isActive(link.href) ? '2px solid var(--blue-medical)' : (link.href === '/services' ? 'none' : '1px solid var(--warm-neutral)'),
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.5rem',
-                  fontWeight: 600,
-                  color: isActive(link.href) ? 'var(--blue-medical)' : 'var(--navy)',
-                  textDecoration: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  opacity: 0,
-                  animation: `fadeInUp 0.4s var(--ease-smooth) ${i * 0.05 + 0.1}s both`,
+                  animationDelay: `${i * 0.04 + 0.05}s`,
                 }}
               >
                 {link.label}
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--text-muted)' }}>
+                <span className="font-mono text-[0.625rem] text-text-muted">
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </Link>
 
               {/* Sub-links under Service in Mobile */}
               {link.href === '/services' && (
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    paddingLeft: '16px',
-                    paddingBottom: '16px',
-                    gap: '12px',
-                    borderBottom: '1px solid var(--warm-neutral)',
-                  }}
-                >
-                  {SERVICE_SUB_LINKS.slice(1).map((sub) => (
+                <div className={`flex flex-col ${locale === 'ar' ? 'pr-4' : 'pl-4'} pb-4 gap-3 border-b border-warm-neutral`}>
+                  {serviceSubLinks.slice(1).map((sub) => (
                     <Link
                       key={sub.href}
                       to={sub.href}
                       onClick={() => setMobileOpen(false)}
-                      style={{
-                        fontFamily: 'var(--font-body)',
-                        fontSize: '1.125rem',
-                        color: 'var(--text-muted)',
-                        textDecoration: 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        padding: '4px 0',
-                      }}
+                      className="font-body text-base text-text-muted no-underline flex items-center gap-2.5 py-1"
                     >
-                      <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--teal-accent)', flexShrink: 0 }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-accent shrink-0" />
                       {sub.label}
                     </Link>
                   ))}
@@ -311,13 +240,13 @@ export const Navbar: React.FC = () => {
               )}
             </React.Fragment>
           ))}
+
           <Link
             to="/contact"
             onClick={() => setMobileOpen(false)}
-            className="btn btn-primary"
-            style={{ marginTop: '32px', justifyContent: 'center', opacity: 0, animation: 'fadeInUp 0.4s var(--ease-smooth) 0.5s both' }}
+            className="btn btn-primary mt-7 mb-6 justify-center animate-fade-in-up delay-300"
           >
-            Get in Touch
+            {t('common.getInTouch')}
           </Link>
         </div>
       )}

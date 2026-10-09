@@ -6,7 +6,12 @@ function useReveal(threshold = 0.1) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
       { threshold }
     );
     if (ref.current) observer.observe(ref.current);
@@ -21,90 +26,27 @@ export const SuppliersPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section style={{
-        background: 'var(--navy)',
-        padding: '130px 0 80px',
-        position: 'relative',
-        overflow: 'hidden',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-      }}>
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute',
-          right: '-5%',
-          top: '0%',
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 text-navy relative overflow-hidden border-b border-gray-light z-[1]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.625rem',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: 'var(--teal-accent)',
-            marginBottom: '24px',
-          }}>
-            <span style={{
-              width: '6px',
-              height: '6px',
-              borderRadius: '50%',
-              background: 'var(--teal-accent)',
-              boxShadow: '0 0 8px var(--teal-accent)',
-            }} />
+        <div className="container relative z-10">
+          <div className="section-label">
             Global Supplier Network
           </div>
-          <h1 style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(3rem, 6.5vw, 5.75rem)',
-            fontWeight: 700,
-            color: 'var(--white)',
-            letterSpacing: '-0.035em',
-            lineHeight: 0.94,
-            maxWidth: '880px',
-            marginBottom: '32px',
-          }}>
-            Global Technology. <span style={{ color: 'var(--teal-accent)' }}>Local Expertise.</span>
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.75rem] font-bold text-navy tracking-tight leading-[0.94] max-w-[880px] mb-8">
+            Global Technology. <span className="text-orange-accent">Local Expertise.</span>
           </h1>
-          <p style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
-            lineHeight: 1.7,
-            color: 'rgba(255, 255, 255, 0.7)',
-            maxWidth: '680px',
-          }}>
+          <p className="font-body text-xl md:text-2xl leading-[1.7] text-text-muted max-w-[680px]">
             Nour Medical works through a carefully selected global supplier network, bringing advanced medical technology from the USA, Taiwan, and China to the Egyptian healthcare market.
           </p>
 
           {/* Country Tags */}
-          <div style={{ display: 'flex', gap: '16px', marginTop: '48px', flexWrap: 'wrap' }}>
-            {['🇺🇸 USA', '🇹🇼 Taiwan', '🇨🇳 China'].map(country => (
+          <div className="flex gap-4 mt-12 flex-wrap">
+            {['🇺🇸 USA', '🇹🇼 Taiwan', '🇨🇳 China'].map((country) => (
               <span
                 key={country}
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.625rem',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255, 255, 255, 0.85)',
-                  border: '1px solid rgba(255, 255, 255, 0.18)',
-                  padding: '8px 16px',
-                  borderRadius: '30px',
-                  background: 'rgba(255, 255, 255, 0.08)',
-                }}
+                className="font-mono text-[0.8125rem] tracking-wide text-navy bg-white px-4.5 py-2 rounded-full border border-gray-light shadow-[0_2px_8px_rgba(10,22,40,0.04)]"
               >
                 {country}
               </span>
@@ -116,120 +58,64 @@ export const SuppliersPage: React.FC = () => {
       {/* Suppliers Grid */}
       <section
         ref={suppliersRef as React.RefObject<HTMLElement>}
-        style={{
-          padding: 'var(--section-gap) 0',
-          background: 'var(--white)',
-          opacity: suppliersVisible ? 1 : 0,
-          transition: 'opacity 0.7s var(--ease-smooth)',
-        }}
+        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${
+          suppliersVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
-          <div style={{ marginBottom: '60px' }}>
+          <div className="mb-14">
             <div className="section-label">Our Suppliers</div>
-            <h2 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2.25rem, 4.5vw, 3.5rem)',
-              fontWeight: 700,
-              color: 'var(--navy)',
-              letterSpacing: '-0.03em',
-              lineHeight: 1.05,
-            }}>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-navy tracking-tight leading-tight">
               Technology Suppliers
             </h2>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          <div className="flex flex-col">
             {SUPPLIER_PARTNERS.map((partner, i) => (
               <div
                 key={partner.id}
+                className={`grid grid-cols-1 md:grid-cols-[200px_1fr_1fr] gap-8 md:gap-12 items-start py-16 ${
+                  i < SUPPLIER_PARTNERS.length - 1 ? 'border-b border-gray-light' : ''
+                } transition-all duration-500 ${
+                  suppliersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                }`}
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: '200px 1fr 1fr',
-                  gap: '48px',
-                  alignItems: 'start',
-                  padding: '64px 0',
-                  borderBottom: i < SUPPLIER_PARTNERS.length - 1 ? '1px solid var(--gray-light)' : 'none',
-                  opacity: suppliersVisible ? 1 : 0,
-                  transform: suppliersVisible ? 'translateY(0)' : 'translateY(20px)',
-                  transition: `opacity 0.6s var(--ease-smooth) ${i * 0.15}s, transform 0.6s var(--ease-smooth) ${i * 0.15}s`,
+                  transitionDelay: `${i * 0.15}s`,
                 }}
               >
                 {/* Left: Country + Number */}
                 <div>
-                  <div style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '3rem',
-                    fontWeight: 300,
-                    color: 'var(--gray-light)',
-                    lineHeight: 1,
-                    marginBottom: '20px',
-                  }}>
+                  <div className="font-mono text-5xl font-light text-gray-light leading-none mb-5">
                     {String(i + 1).padStart(2, '0')}
                   </div>
-                  <span style={{
-                    display: 'inline-block',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.5rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: 'var(--text-muted)',
-                    border: '1px solid var(--gray-light)',
-                    padding: '6px 12px',
-                    borderRadius: '2px',
-                  }}>
+                  <span className="inline-block font-mono text-[0.5rem] tracking-widest uppercase text-text-muted border border-gray-light px-3 py-1.5 rounded-xs">
                     {partner.country}
                   </span>
                 </div>
 
                 {/* Center: Name + Tagline + Description */}
                 <div>
-                  <h3 style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
-                    fontWeight: 700,
-                    color: 'var(--navy)',
-                    letterSpacing: '-0.015em',
-                    marginBottom: '8px',
-                  }}>
+                  <h3 className="font-heading text-2xl md:text-3xl font-bold text-navy tracking-tight mb-2">
                     {partner.name}
                   </h3>
-                  <p style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.5625rem',
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    color: 'var(--teal-accent)',
-                    marginBottom: '20px',
-                  }}>
+                  <p className="font-mono text-[0.5625rem] tracking-widest uppercase text-teal-accent mb-5">
                     {partner.tagline}
                   </p>
-                  <p style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '1.0625rem',
-                    lineHeight: 1.7,
-                    color: 'var(--text-muted)',
-                  }}>
+                  <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted">
                     {partner.description}
                   </p>
                 </div>
 
                 {/* Right: Specialties */}
                 <div>
-                  <p style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.5rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: 'var(--text-muted)',
-                    marginBottom: '16px',
-                  }}>
+                  <p className="font-mono text-[0.5rem] tracking-widest uppercase text-text-muted mb-4">
                     Specialties
                   </p>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    {partner.specialties.map(s => (
-                      <li key={s} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                        <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--blue-medical)', flexShrink: 0, marginTop: '8px' }} />
-                        <span style={{ fontFamily: 'var(--font-body)', fontSize: '1.125rem', color: 'var(--text-body)', lineHeight: 1.5 }}>
+                  <ul className="flex flex-col gap-2.5">
+                    {partner.specialties.map((s) => (
+                      <li key={s} className="flex items-start gap-2.5">
+                        <span className="w-1 h-1 rounded-full bg-blue-medical shrink-0 mt-2" />
+                        <span className="font-body text-base text-text-body leading-normal">
                           {s}
                         </span>
                       </li>
@@ -243,20 +129,12 @@ export const SuppliersPage: React.FC = () => {
       </section>
 
       {/* Network Statement */}
-      <section style={{ padding: '80px 0', background: 'var(--warm-white)', borderTop: '1px solid var(--gray-light)' }}>
-        <div className="container" style={{ maxWidth: '720px', textAlign: 'center' }}>
-          <div className="section-label" style={{ justifyContent: 'center', marginBottom: '24px' }}>
+      <section className="py-20 bg-warm-white border-t border-gray-light">
+        <div className="container max-w-[720px] text-center">
+          <div className="section-label justify-center mb-6">
             Global to Local
           </div>
-          <p style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
-            fontWeight: 600,
-            fontStyle: 'italic',
-            color: 'var(--navy)',
-            lineHeight: 1.4,
-            letterSpacing: '-0.015em',
-          }}>
+          <p className="font-heading text-2xl md:text-3xl lg:text-[2.25rem] font-semibold italic text-navy leading-snug tracking-tight">
             "Nour Medical connects global medical technology with local healthcare expertise in Egypt — supplying radiology and medical equipment while providing the technical support, maintenance, spare parts, and after-sales service required to keep healthcare facilities operating reliably."
           </p>
         </div>

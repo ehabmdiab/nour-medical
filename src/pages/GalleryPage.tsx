@@ -1,21 +1,28 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PageTransition } from '../components/templates/PageTransition';
 import { SectionHeading } from '../components/atoms/SectionHeading';
-import { GALLERY_CATEGORIES, GALLERY_DATA } from '../data/galleryData';
-import type { GalleryItem } from '../data/galleryData';
 import { GalleryCard } from '../components/molecules/GalleryCard';
 import {
-  X,
-  ExternalLink,
+  GALLERY_CATEGORIES,
+  GALLERY_DATA,
+  type GalleryItem,
+  type GalleryCategoryType,
+} from '../data/galleryData';
+import {
   Image as ImageIcon,
+  X,
   ChevronLeft,
   ChevronRight,
   MapPin,
   Calendar,
+  ExternalLink,
 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 export const GalleryPage: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const { locale } = useLanguage();
+  const isAr = locale === 'ar';
+  const [activeCategory, setActiveCategory] = useState<GalleryCategoryType | 'all'>('all');
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
   const [modalImageIndex, setModalImageIndex] = useState<number>(0);
 
@@ -69,70 +76,25 @@ export const GalleryPage: React.FC = () => {
   return (
     <PageTransition>
       {/* Page Header */}
-      <section
-        style={{
-          background: 'var(--navy)',
-          padding: '130px 0 70px',
-          position: 'relative',
-          overflow: 'hidden',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-        }}
-      >
-        {/* Ambient Grid & Glow matching Hero Section */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage:
-              'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-            pointerEvents: 'none',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            right: '-5%',
-            top: '0%',
-            width: '500px',
-            height: '500px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(27,79,216,0.18) 0%, transparent 70%)',
-            pointerEvents: 'none',
-          }}
-        />
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
+        {/* Ambient Subtle Medical Grid & Warm Accent Glow */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="container relative z-10">
           <SectionHeading
-            eyebrow="MEDIA & FIELD EXHIBITION HUB"
-            title="Engineering Log & Photo Gallery"
-            subtitle="Explore high-resolution visual archives of dynamic digital radiography systems, hospital Cath-Lab installations, VIP clinical seminars, and factory-certified engineering operations."
-            theme="dark"
+            eyebrow={isAr ? "توثيق الفعاليات والمعارض والعمل الميداني" : "MEDIA & EVENTS DOCUMENTATION"}
+            title={isAr ? "سجل العمليات الميدانية ومعرض الصور" : "Field Operations & Photo Gallery"}
+            subtitle={isAr ? "توثيق مصور لأعمال مهندسي الصيانة الطبية، المؤتمرات والمعارض العلمية، واحتفالات تسليم وتشغيل الأجهزة في المستشفيات المصرية." : "Explore authentic visual documentation of our biomedical engineering team, scientific conferences & exhibitions, and hospital installation celebrations across Egypt."}
+            theme="light"
           />
         </div>
       </section>
 
-      <div
-        style={{
-          background: 'var(--white)',
-          color: 'var(--text-body)',
-          paddingTop: '60px',
-          paddingBottom: '140px',
-          minHeight: '80vh',
-        }}
-      >
+      <div className="bg-white text-text-body pt-16 pb-32 min-h-[80vh]">
         <div className="container">
           {/* Category Filter Tabs */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexWrap: 'wrap',
-              gap: '10px',
-              marginBottom: '64px',
-            }}
-          >
+          <div className="flex items-center justify-center flex-wrap gap-2.5 mb-16">
             {GALLERY_CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat.id;
               const count =
@@ -143,42 +105,21 @@ export const GalleryPage: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  style={{
-                    padding: '10px 22px',
-                    borderRadius: '30px',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    border: isActive
-                      ? '1.5px solid var(--navy)'
-                      : '1px solid var(--gray-light)',
-                    background: isActive ? 'var(--navy)' : 'var(--white)',
-                    color: isActive ? 'var(--white)' : 'var(--text-muted)',
-                    cursor: 'pointer',
-                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    boxShadow: isActive ? '0 4px 14px rgba(10, 22, 40, 0.15)' : 'none',
-                  }}
+                  className={`px-[22px] py-2.5 rounded-[30px] font-mono text-xs font-semibold tracking-wide uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                    isActive
+                      ? 'border-[1.5px] border-orange-accent bg-orange-accent text-white shadow-[0_4px_14px_rgba(10,22,40,0.15)]'
+                      : 'border border-gray-light bg-white text-navy hover:border-orange-accent/40'
+                  }`}
                 >
                   <ImageIcon size={14} />
-                  {cat.label} ({count})
+                  {isAr ? cat.labelAr : cat.label} ({count})
                 </button>
               );
             })}
           </div>
 
           {/* Media Grid of Topic Cards */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
-              gap: '32px',
-            }}
-          >
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-8">
             {filteredItems.map((item) => (
               <GalleryCard
                 key={item.id}
@@ -192,120 +133,40 @@ export const GalleryPage: React.FC = () => {
         {/* Modal Lightbox for Image / Video (Enhanced Multi-Photo Viewer) */}
         {selectedItem && (
           <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              zIndex: 1000,
-              background: 'rgba(10, 22, 40, 0.82)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '20px',
-            }}
+            className="fixed inset-0 z-[1000] bg-navy/80 backdrop-blur-md flex items-center justify-center p-5"
             onClick={() => setSelectedItem(null)}
           >
             <div
-              style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: '960px',
-                maxHeight: '90vh',
-                background: 'var(--white)',
-                border: '1px solid var(--gray-light)',
-                borderRadius: '24px',
-                overflowY: 'auto',
-                boxShadow: '0 25px 60px rgba(10, 22, 40, 0.4)',
-              }}
+              className="relative w-full max-w-[960px] max-h-[90vh] bg-white border border-gray-light rounded-3xl overflow-y-auto shadow-[0_25px_60px_rgba(10,22,40,0.4)]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedItem(null)}
                 aria-label="Close modal"
-                style={{
-                  position: 'absolute',
-                  top: '16px',
-                  right: '16px',
-                  zIndex: 20,
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  background: 'rgba(10, 22, 40, 0.85)',
-                  backdropFilter: 'blur(8px)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  color: '#fff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 14px rgba(0,0,0,0.3)',
-                  transition: 'transform 0.2s ease, background 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.1)';
-                  e.currentTarget.style.background = 'var(--blue-medical)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.background = 'rgba(10, 22, 40, 0.85)';
-                }}
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-navy/85 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 hover:bg-blue-medical transition-all duration-200"
               >
                 <X size={20} />
               </button>
 
               {/* Media Container with Next / Prev Overlay */}
               {selectedItem.videoUrl ? (
-                <div
-                  style={{
-                    position: 'relative',
-                    paddingBottom: '56.25%',
-                    height: 0,
-                    overflow: 'hidden',
-                    background: '#000',
-                  }}
-                >
+                <div className="relative pb-[56.25%] h-0 overflow-hidden bg-black">
                   <iframe
                     src={`${selectedItem.videoUrl}?autoplay=1`}
                     title={selectedItem.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      border: 'none',
-                    }}
+                    className="absolute top-0 left-0 w-full h-full border-none"
                   />
                 </div>
               ) : (
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '100%',
-                    height: '480px',
-                    overflow: 'hidden',
-                    background: '#0a1628',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
+                <div className="relative w-full h-[480px] overflow-hidden bg-navy flex items-center justify-center">
                   <img
                     key={currentModalImage}
                     src={currentModalImage}
                     alt={currentModalDetail?.caption || selectedItem.title}
-                    style={{
-                      maxWidth: '100%',
-                      maxHeight: '100%',
-                      width: 'auto',
-                      height: 'auto',
-                      objectFit: 'contain',
-                      transition: 'opacity 0.25s ease',
-                    }}
+                    className="max-w-full max-h-full w-auto h-auto object-contain transition-opacity duration-300"
                   />
 
                   {/* Left Arrow Button in Modal */}
@@ -314,35 +175,7 @@ export const GalleryPage: React.FC = () => {
                       type="button"
                       aria-label="Previous photo"
                       onClick={handleModalPrev}
-                      style={{
-                        position: 'absolute',
-                        left: '20px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '50%',
-                        background: 'rgba(10, 22, 40, 0.8)',
-                        backdropFilter: 'blur(10px)',
-                        WebkitBackdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255, 255, 255, 0.25)',
-                        color: '#fff',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        boxShadow: '0 4px 18px rgba(0, 0, 0, 0.4)',
-                        transition: 'all 0.2s ease',
-                        zIndex: 10,
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'var(--blue-medical)';
-                        e.currentTarget.style.transform = 'translateY(-50%) scale(1.12)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(10, 22, 40, 0.8)';
-                        e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-                      }}
+                      className="absolute left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-navy/80 backdrop-blur-md border border-white/25 text-white flex items-center justify-center cursor-pointer shadow-xl hover:bg-blue-medical hover:scale-110 transition-all duration-200 z-10"
                     >
                       <ChevronLeft size={24} />
                     </button>
@@ -354,35 +187,7 @@ export const GalleryPage: React.FC = () => {
                       type="button"
                       aria-label="Next photo"
                       onClick={handleModalNext}
-                      style={{
-                        position: 'absolute',
-                        right: '20px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '50%',
-                        background: 'rgba(10, 22, 40, 0.8)',
-                        backdropFilter: 'blur(10px)',
-                        WebkitBackdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255, 255, 255, 0.25)',
-                        color: '#fff',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        boxShadow: '0 4px 18px rgba(0, 0, 0, 0.4)',
-                        transition: 'all 0.2s ease',
-                        zIndex: 10,
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'var(--blue-medical)';
-                        e.currentTarget.style.transform = 'translateY(-50%) scale(1.12)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'rgba(10, 22, 40, 0.8)';
-                        e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-                      }}
+                      className="absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-navy/80 backdrop-blur-md border border-white/25 text-white flex items-center justify-center cursor-pointer shadow-xl hover:bg-blue-medical hover:scale-110 transition-all duration-200 z-10"
                     >
                       <ChevronRight size={24} />
                     </button>
@@ -390,27 +195,8 @@ export const GalleryPage: React.FC = () => {
 
                   {/* Photo Counter Pill inside Modal */}
                   {modalImages.length > 1 && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: '16px',
-                        right: '20px',
-                        padding: '6px 14px',
-                        borderRadius: '20px',
-                        background: 'rgba(10, 22, 40, 0.85)',
-                        backdropFilter: 'blur(8px)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        color: '#fff',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        zIndex: 10,
-                      }}
-                    >
-                      <ImageIcon size={14} color="var(--teal-accent)" />
+                    <div className="absolute bottom-4 right-5 px-3.5 py-1.5 rounded-full bg-navy/85 backdrop-blur-md border border-white/20 text-white font-mono text-xs font-semibold flex items-center gap-1.5 z-10">
+                      <ImageIcon size={14} className="text-teal-accent" />
                       <span>
                         Photo {modalImageIndex + 1} of {modalImages.length}
                       </span>
@@ -419,27 +205,7 @@ export const GalleryPage: React.FC = () => {
 
                   {/* Caption Overlay if available */}
                   {currentModalDetail?.caption && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: '16px',
-                        left: '20px',
-                        padding: '6px 14px',
-                        borderRadius: '12px',
-                        background: 'rgba(10, 22, 40, 0.85)',
-                        backdropFilter: 'blur(8px)',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                        color: 'var(--teal-accent)',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        maxWidth: '60%',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                        zIndex: 10,
-                      }}
-                    >
+                    <div className="absolute bottom-4 left-5 px-3.5 py-1.5 rounded-xl bg-navy/85 backdrop-blur-md border border-white/15 text-teal-accent font-mono text-xs font-semibold max-w-[60%] truncate z-10">
                       {currentModalDetail.caption}
                     </div>
                   )}
@@ -448,17 +214,7 @@ export const GalleryPage: React.FC = () => {
 
               {/* Thumbnail Strip inside Modal */}
               {modalImages.length > 1 && (
-                <div
-                  style={{
-                    padding: '12px 20px',
-                    background: 'var(--navy)',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-                    display: 'flex',
-                    gap: '10px',
-                    overflowX: 'auto',
-                    scrollbarWidth: 'thin',
-                  }}
-                >
+                <div className="px-5 py-3 bg-navy border-b border-white/10 flex gap-2.5 overflow-x-auto scrollbar-thin">
                   {modalImages.map((thumbSrc, idx) => {
                     const isCurrent = idx === modalImageIndex;
                     return (
@@ -467,27 +223,16 @@ export const GalleryPage: React.FC = () => {
                         type="button"
                         aria-label={`Select photo ${idx + 1}`}
                         onClick={() => setModalImageIndex(idx)}
-                        style={{
-                          flexShrink: 0,
-                          width: '64px',
-                          height: '48px',
-                          borderRadius: '8px',
-                          overflow: 'hidden',
-                          border: isCurrent
-                            ? '2px solid var(--teal-accent)'
-                            : '2px solid rgba(255, 255, 255, 0.2)',
-                          padding: 0,
-                          background: 'transparent',
-                          cursor: 'pointer',
-                          opacity: isCurrent ? 1 : 0.6,
-                          transform: isCurrent ? 'scale(1.05)' : 'scale(1)',
-                          transition: 'all 0.2s ease',
-                        }}
+                        className={`shrink-0 w-16 h-12 rounded-lg overflow-hidden p-0 bg-transparent cursor-pointer transition-all duration-200 ${
+                          isCurrent
+                            ? 'border-2 border-teal-accent scale-105 opacity-100'
+                            : 'border-2 border-white/20 opacity-60 hover:opacity-100'
+                        }`}
                       >
                         <img
                           src={thumbSrc}
                           alt=""
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          className="w-full h-full object-cover"
                         />
                       </button>
                     );
@@ -496,85 +241,27 @@ export const GalleryPage: React.FC = () => {
               )}
 
               {/* Info Container */}
-              <div style={{ padding: '32px' }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    marginBottom: '14px',
-                    flexWrap: 'wrap',
-                  }}
-                >
-                  <span
-                    style={{
-                      padding: '4px 12px',
-                      borderRadius: '12px',
-                      background: 'var(--navy)',
-                      color: 'var(--teal-accent)',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.6875rem',
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                    }}
-                  >
+              <div className="p-8">
+                <div className="flex items-center gap-3 mb-3.5 flex-wrap">
+                  <span className="px-3 py-1 rounded-xl bg-navy text-teal-accent font-mono text-[0.6875rem] font-semibold uppercase">
                     {selectedItem.categoryLabel}
                   </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.75rem',
-                      color: 'var(--text-muted)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                    }}
-                  >
-                    <MapPin size={13} style={{ color: 'var(--teal-accent)' }} />
+                  <span className="font-mono text-xs text-text-muted flex items-center gap-1.5">
+                    <MapPin size={13} className="text-teal-accent" />
                     {selectedItem.location} · <Calendar size={13} /> {selectedItem.date}
                   </span>
                 </div>
 
-                <h2
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: '1.75rem',
-                    fontWeight: 700,
-                    color: 'var(--navy)',
-                    marginBottom: '12px',
-                  }}
-                >
+                <h2 className="font-heading text-[1.75rem] font-bold text-navy mb-3">
                   {selectedItem.title}
                 </h2>
 
-                <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '1.0625rem',
-                    lineHeight: 1.7,
-                    color: 'var(--text-muted)',
-                    marginBottom: '24px',
-                  }}
-                >
+                <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-6">
                   {selectedItem.description}
                 </p>
 
-                <div
-                  style={{
-                    padding: '16px 20px',
-                    background: 'var(--warm-white)',
-                    borderRadius: '14px',
-                    border: '1px solid var(--warm-neutral)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.75rem',
-                    color: 'var(--navy)',
-                    fontWeight: 600,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                  }}
-                >
-                  <ExternalLink size={15} style={{ color: 'var(--teal-accent)' }} />
+                <div className="px-5 py-4 bg-warm-white rounded-[14px] border border-warm-neutral font-mono text-xs text-navy font-semibold flex items-center gap-2.5">
+                  <ExternalLink size={15} className="text-teal-accent" />
                   <span>Technical Specs: {selectedItem.specs}</span>
                 </div>
               </div>

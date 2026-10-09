@@ -3,7 +3,8 @@ import { GALLERY_DATA } from '../../data/galleryData';
 
 describe('GalleryCard - Carousel Logic', () => {
   it('cycles forwards and backwards with wrap-around', () => {
-    const seminar = GALLERY_DATA.find((c) => c.category === 'seminar')!;
+    const seminar = GALLERY_DATA.find((c) => c.id === 'gal-seminar-73')!;
+    expect(seminar).toBeDefined();
     const images = seminar.images;
     const total = images.length;
     expect(total).toBe(22);
