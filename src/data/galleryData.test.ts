@@ -3,8 +3,8 @@ import { GALLERY_DATA, GALLERY_CATEGORIES } from './galleryData';
 import type { GalleryCategoryType } from './galleryData';
 
 describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
-  it('consolidates gallery items into exactly 30 authentic field cards', () => {
-    expect(GALLERY_DATA.length).toBe(30);
+  it('consolidates gallery items into exactly 28 authentic field cards', () => {
+    expect(GALLERY_DATA.length).toBe(28);
   });
 
   it('eliminates standalone equipment brochure cards from gallery', () => {
@@ -18,8 +18,10 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
       'gal-machines-6',
       'gal-machines-7',
       'gal-machines-8',
+      'gal-machines-9',
       'gal-machines-19',
       'gal-machines-20',
+      'gal-machines-21',
     ];
     for (const mid of machineIds) {
       expect(GALLERY_DATA.find((item) => item.id === mid)).toBeUndefined();
@@ -72,9 +74,9 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
 
   it('filters by category matching category labels and counts', () => {
     const categoryCounts: Record<GalleryCategoryType, number> = {
-      all: 30,
+      all: 28,
       team: 6,
-      exhibitions: 7,
+      exhibitions: 5,
       events: 17,
     };
 

@@ -84,10 +84,10 @@ export const Navbar: React.FC = () => {
           className="flex flex-col gap-[3px] no-underline shrink-0"
           aria-label="Nour Medical — Home"
         >
-          <span className="font-heading text-[clamp(1.35rem,1.8vw,1.65rem)] font-bold tracking-[-0.025em] text-navy leading-[1.1] whitespace-nowrap">
+          <span className="font-heading text-[clamp(1.75rem,2.4vw,2.25rem)] font-extrabold tracking-[-0.03em] text-navy leading-[1.1] whitespace-nowrap">
             Nour Medical
           </span>
-          <span className="font-mono text-[0.6rem] tracking-[0.14em] uppercase text-text-muted font-semibold whitespace-nowrap">
+          <span className="font-mono text-[0.65rem] tracking-[0.16em] uppercase text-text-muted font-semibold whitespace-nowrap">
             {t('nav.tagline')}
           </span>
         </Link>

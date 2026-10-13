@@ -48,7 +48,6 @@ export const FloatingUniverseGallery: React.FC = () => {
       case "installations": return t("home.archiveFilterInstallations");
       case "doctors": return t("home.archiveFilterDoctors");
       case "team": return t("home.archiveFilterTeam");
-      case "nour": return t("home.archiveFilterNour");
       default: return id;
     }
   };
