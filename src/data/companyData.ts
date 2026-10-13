@@ -21,11 +21,15 @@ export const COMPANY_CONTACT = {
 export const COMPANY_INFO = {
   name: 'Nour Medical Company',
   established: 2015,
-  chairman: 'Eng. Sayed Awad',
+  chairman: 'Eng. El Sayed Awad',
   chairmanTitle: 'Chairman & CEO',
   chairmanImage: `${BASE}images/team/eng-sayed-awad.jpg`,
-  medicalDirector: 'Dr. Gehan',
-  medicalDirectorImage: `${BASE}images/team/dr-gehan.jpg`,
+  financeDirector: 'Dr. Gehan Awad',
+  financeDirectorTitle: 'Director of Fin. & Admin',
+  generalManager: 'Eng. Ahmed Hafez',
+  generalManagerTitle: 'General Manager',
+  medicalDirector: 'Dr. Gehan Awad',
+  medicalDirectorImage: '',
   location: 'Maadi, Cairo, Egypt',
   partsFacilityM2: 1000,
   totalPersonnel: 50,
@@ -196,15 +200,35 @@ export const SERVICES: ServicePillar[] = [
 ];
 
 // ── SUPPLIER PARTNERS ─────────────────────────────────────────────
-export const SUPPLIER_PARTNERS = [
+export interface SupplierPartner {
+  id: string;
+  name: string;
+  nameAr?: string;
+  country: string;
+  countryAr?: string;
+  countryFlag: string;
+  tagline: string;
+  taglineAr?: string;
+  description: string;
+  descriptionAr?: string;
+  specialties: string[];
+  specialtiesAr?: string[];
+}
+
+export const SUPPLIER_PARTNERS: SupplierPartner[] = [
   {
     id: 'angel',
     name: 'Angel (Anjian Technology)',
+    nameAr: 'أنجيل (Anjian Technology)',
     country: 'China',
+    countryAr: 'الصين',
     countryFlag: '🇨🇳',
     tagline: 'Dynamic Digital Radiography & Advanced DR Systems',
+    taglineAr: 'أنظمة الأشعة الرقمية الديناميكية والحلول المتقدمة',
     description:
       'A leading manufacturer of digital radiography systems, specializing in dynamic fluoroscopy DR (DTP580), mobile DR (QOMO & MTP), ceiling suspension systems (Lingxi & Fanghua), and weight-bearing 3D imaging (WR-3D).',
+    descriptionAr:
+      'شركة رائدة في تصنيع أنظمة الأشعة الرقمية، متخصصة في أجهزة الفلوروسكوبي الديناميكية (DTP580)، وأجهزة الأشعة الرقمية المتنقلة (QOMO & MTP)، وأنظمة التعليق السقفي (Lingxi & Fanghua)، والتصوير ثلاثي الأبعاد أثناء الوقوف وتحمل الوزن (WR-3D).',
     specialties: [
       'Dynamic Flat Panel Fluoroscopy (DTP580)',
       'Ceiling Suspension DR Systems (Lingxi & Fanghua)',
@@ -212,43 +236,75 @@ export const SUPPLIER_PARTNERS = [
       'Weight-Bearing 3D Imaging Systems (WR-3D)',
       'Multi-Functional Dynamic DR (Talent II & HUA II)',
     ],
+    specialtiesAr: [
+      'الفلوروسكوبي الرقمي باللوح المسطح (DTP580)',
+      'أنظمة الأشعة المعلقة بالسقف (Lingxi & Fanghua)',
+      'أجهزة الأشعة الرقمية المتنقلة (سلسلة QOMO & MTP)',
+      'أنظمة التصوير ثلاثي الأبعاد مع تحميل الوزن (WR-3D)',
+      'أنظمة الأشعة الرقمية متعددة الوظائف (Talent II & HUA II)',
+    ],
   },
   {
     id: 'radmedix',
     name: 'Radmedix',
+    nameAr: 'راد ميديكس (Radmedix)',
     country: 'USA',
+    countryAr: 'الولايات المتحدة',
     countryFlag: '🇺🇸',
     tagline: 'Digital Radiology Solutions',
+    taglineAr: 'حلول الأشعة التشخيصية الرقمية',
     description:
       'A US-based digital radiology supplier specializing in flat panel DR detectors, digital X-Ray systems, and cloud-based PACS solutions.',
+    descriptionAr:
+      'مورد أمريكي رائد لحلول الأشعة الرقمية متخصص في مستشعرات اللوح المسطح (DR)، وأجهزة الأشعة السينية الرقمية، وحلول أرشفة ومشاركة الصور الطبية السحابية (PACS).',
     specialties: [
       'Flat Panel DR Systems',
       'Digital X-Ray Equipment',
       'Cloud-Based PACS',
     ],
+    specialtiesAr: [
+      'أنظمة ومستشعرات اللوح المسطح (DR)',
+      'أجهزة الأشعة السينية الرقمية المتكاملة',
+      'أنظمة الأرشفة وإدارة الصور السحابية (PACS)',
+    ],
   },
   {
     id: 'innocare',
     name: 'InnoCare Optoelectronics Corporation',
+    nameAr: 'إينوكير (InnoCare Optoelectronics)',
     country: 'Taiwan',
+    countryAr: 'تايوان',
     countryFlag: '🇹🇼',
     tagline: 'X-Ray Flat Panel Sensor Technology',
+    taglineAr: 'تكنولوجيا مستشعرات الألواح المسطحة للأشعة',
     description:
       'Established in April 2019, InnoCare Optoelectronics is a Taiwanese manufacturer specializing in X-Ray flat panel sensors, recognized as a world leader in this field.',
+    descriptionAr:
+      'تأسست في أبريل ٢٠١٩، وتعد الشركة التايوانية إينوكير رائدة عالمياً في تصنيع مستشعرات اللوح الرقمي المسطح للأشعة السينية بأعلى معايير الدقة الضوئية والإلكترونية.',
     specialties: [
       'X-Ray Flat Panel Sensors',
       'Digital Detector Technology',
       'Optoelectronic Components',
     ],
+    specialtiesAr: [
+      'مستشعرات اللوح المسطح للأشعة السينية',
+      'تكنولوجيا الكواشف والمستشعرات الرقمية',
+      'المكونات الكهروضوئية الدقيقة',
+    ],
   },
   {
     id: 'lonwin',
     name: 'Suzhou Lonwin Medical Systems Co.',
+    nameAr: 'سوتشو لون وين للأنظمة الطبية (Lonwin)',
     country: 'China',
+    countryAr: 'الصين',
     countryFlag: '🇨🇳',
     tagline: 'Integrated Medical Imaging Systems',
+    taglineAr: 'أنظمة التصوير الطبي المتكاملة',
     description:
       'A Chinese medical systems manufacturer with a core business spanning MRI, CT, integrated imaging products, radiography, imaging-related products, and interventional therapy-related products.',
+    descriptionAr:
+      'شركة صينية متخصصة في الأنظمة الطبية المتطورة تغطي أعمالها الرئيسية الرنين المغناطيسي (MRI)، والأشعة المقطعية (CT)، وأجهزة الأشعة التشخيصية، ومنتجات العلاج التداخلي.',
     specialties: [
       'MRI Systems',
       'CT Systems',
@@ -256,20 +312,38 @@ export const SUPPLIER_PARTNERS = [
       'Radiography Equipment',
       'Interventional Therapy Products',
     ],
+    specialtiesAr: [
+      'أنظمة الرنين المغناطيسي (MRI)',
+      'أنظمة الأشعة المقطعية (CT)',
+      'منتجات وحلول التصوير المتكاملة',
+      'أجهزة الأشعة التشخيصية والتصويرية',
+      'منتجات العلاج والقسطرة التداخلية',
+    ],
   },
   {
     id: 'sennovision',
     name: 'Senno Vision (SennoVision Medical Technology)',
+    nameAr: 'سينو فيجن (Senno Vision)',
     country: 'China',
+    countryAr: 'الصين',
     countryFlag: '🇨🇳',
     tagline: 'Advanced Medical Imaging & Vision Systems',
+    taglineAr: 'أنظمة التصوير الطبي المتقدمة والرؤية الجراحية',
     description:
       'A medical systems manufacturer specializing in surgical C-arms, digital radiography (DR) solutions, medical vision systems, and specialized diagnostic imaging technology.',
+    descriptionAr:
+      'شركة تصنيع أنظمة طبية متخصصة في أجهزة C-arm الجراحية، وحلول الأشعة الرقمية (DR)، وأنظمة الرؤية الطبية أثناء العمليات، وتقنيات التصوير التشخيصي المتخصصة.',
     specialties: [
       'Surgical C-Arm Systems',
       'Digital Radiography (DR)',
       'Intraoperative Medical Vision',
       'Specialized Diagnostic Systems',
+    ],
+    specialtiesAr: [
+      'أجهزة C-Arm الجراحية المتطورة',
+      'حلول وتطبيقات الأشعة الرقمية (DR)',
+      'أنظمة الرؤية الطبية أثناء العمليات الجراحية',
+      'أنظمة التصوير التشخيصي التخصصية',
     ],
   },
 ];

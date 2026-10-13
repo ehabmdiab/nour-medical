@@ -13,16 +13,19 @@ export type DepthLayer = 1 | 2 | 3;
 export interface FloatingGalleryItem {
   id: string;
   title: string;
+  titleAr?: string;
   category: GalleryCategory;
   categoryLabel: string;
   year: string;
   location?: string;
+  locationAr?: string;
   imageUrl: string;
   aspectRatio: AspectRatio;
   size: ItemSize;
   depthLayer: DepthLayer;
   supplier?: string;
   specs?: string;
+  specsAr?: string;
 }
 
 export const GALLERY_CATEGORIES_FILTER: { id: GalleryCategory; label: string }[] = [
@@ -41,6 +44,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "nour-1",
     title: "Multi-Slice CT Scanner Assembly & Calibration",
+    titleAr: "تركيب ومعايرة جهاز الأشعة المقطعية متعدد المقاطع",
+    locationAr: "القاهرة، مصر",
+    specsAr: "أشعة مقطعية متعددة المقاطع",
     category: "nour",
     categoryLabel: "Official Archive",
     year: "2024",
@@ -55,6 +61,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "nour-2",
     title: "Turnkey Radiology Department Infrastructure",
+    titleAr: "تجهيز البنية التحتية المتكاملة لقسم الأشعة",
+    locationAr: "مصر",
+    specsAr: "تجهيز وتدريع كامل للغرف",
     category: "nour",
     categoryLabel: "Official Archive",
     year: "2023",
@@ -69,6 +78,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "nour-3",
     title: "Superconducting 3.0T MRI Cryogenic Shielding",
+    titleAr: "عزل وتدريع غرف الرنين المغناطيسي فائق التوصيل 3.0T",
+    locationAr: "مصر",
+    specsAr: "قفص فاراداي وتدريع مغناطيسي",
     category: "nour",
     categoryLabel: "Official Archive",
     year: "2024",
@@ -83,6 +95,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "nour-4",
     title: "Digital Radiography Wireless Flat Panel Retrofit",
+    titleAr: "تحديث أجهزة الأشعة بكواشف رقمية DR لاسلكية",
+    locationAr: "مصر",
+    specsAr: "كاشف ديجيتال DR فلات بانل",
     category: "nour",
     categoryLabel: "Official Archive",
     year: "2024",
@@ -97,6 +112,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "nour-5",
     title: "Interventional Cardiology Cath-Lab Suite",
+    titleAr: "جناح قسطرة القلب والأوعية الدموية التداخلية",
+    locationAr: "القاهرة",
+    specsAr: "قسطرة قلبية أحادية المستوى",
     category: "nour",
     categoryLabel: "Official Archive",
     year: "2023",
@@ -111,6 +129,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "nour-6",
     title: "High-Frequency Surgical Mobile C-Arm Deployment",
+    titleAr: "تشغيل أجهزة السي آرم المتنقلة لغرف العمليات",
+    locationAr: "مصر",
+    specsAr: "جهاز سي آرم عالي التردد",
     category: "nour",
     categoryLabel: "Official Archive",
     year: "2024",
@@ -125,6 +146,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "nour-7",
     title: "Pass-Through Double-Door CSSD Autoclave System",
+    titleAr: "وحدة تعقيم مركزي CSSD أوتوكلاف ثنائي الباب",
+    locationAr: "مصر",
+    specsAr: "تعقيم أوتوكلاف ثنائي الباب",
     category: "nour",
     categoryLabel: "Official Archive",
     year: "2024",
@@ -139,6 +163,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "nour-8",
     title: "Cairo Central Spare Parts Warehouse & Tube Stock",
+    titleAr: "مستودع المعادي المركزي لقطع الغيار وأنابيب الأشعة",
+    locationAr: "المعادي، القاهرة",
+    specsAr: "مستودع مركزي ١٠٠٠ م²",
     category: "nour",
     categoryLabel: "Official Archive",
     year: "2024",
@@ -156,6 +183,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "rad-angel-dtp580",
     title: "Angel DTP580 Dynamic Flat Panel Fluoroscopy System",
+    titleAr: "نظام أنجيل DTP580 للفلوروسكوبي والأشعة الديناميكية",
+    locationAr: "أنجيل ميديكال",
+    specsAr: "فلوروسكوبي ديناميكي فلات بانل",
     category: "radiology",
     categoryLabel: "Radiology Systems",
     year: "2024",
@@ -170,6 +200,9 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   {
     id: "rad-angel-talent-ii",
     title: "Angel Talent II Multi-Functional Dynamic DR System",
+    titleAr: "نظام أنجيل تالنت II الرقمي متعدد الوظائف",
+    locationAr: "أنجيل ميديكال",
+    specsAr: "أشعة رقمية ديجيتال ديناميكية",
     category: "radiology",
     categoryLabel: "Radiology Systems",
     year: "2024",
@@ -609,7 +642,7 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
   // ── NOUR MEDICAL TEAM & FIELD ENGINEERING ─────────────────────────────────
   {
     id: "team-chairman",
-    title: "Eng. Sayed Awad — Chairman & CEO",
+    title: "Eng. El Sayed Awad — Chairman & CEO",
     category: "team",
     categoryLabel: "Nour Medical Team",
     year: "2024",
@@ -622,18 +655,18 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
     specs: "Executive Leadership & Turnkey Medical Infrastructure",
   },
   {
-    id: "team-director",
-    title: "Dr. Gehan Mohamed — Clinical Operations Director",
+    id: "team-operations",
+    title: "Nour Medical Operational Excellence & Engineering",
     category: "team",
     categoryLabel: "Nour Medical Team",
     year: "2024",
     location: "Nour Medical Headquarters",
-    imageUrl: `${BASE}images/team/dr-gehan.jpg`,
+    imageUrl: `${BASE}images/team/team-dsc00614.jpg`,
     aspectRatio: "4/3",
     size: "lg",
     depthLayer: 2,
     supplier: "NOUR MEDICAL",
-    specs: "Medical Device Compliance & Quality Standards",
+    specs: "Turnkey Project Execution & Technical Service Operations",
   },
   {
     id: "team-engineers-crew",

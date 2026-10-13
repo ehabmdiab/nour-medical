@@ -10,11 +10,11 @@ import {
   ChevronRight,
   ChevronLeft,
   ArrowUpRight,
-  Filter,
 } from 'lucide-react';
 import { ClientMarquee } from '../components/organisms/ClientMarquee';
 import { DETAILED_CLIENTS } from '../data/clientsData';
 import type { ClientFacility, InstalledDevice } from '../data/clientsData';
+import { useLanguage } from '../i18n';
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null);
@@ -42,6 +42,7 @@ interface ModalCarouselProps {
 }
 
 const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => {
+  const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const prevSlide = (): void => {
@@ -77,7 +78,7 @@ const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => 
           <button
             onClick={prevSlide}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-slate-900/65 backdrop-blur-md border border-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-900 hover:scale-110 transition-all duration-200"
-            aria-label="Previous image"
+            aria-label={t('clients.prevImage')}
           >
             <ChevronLeft size={20} />
           </button>
@@ -85,7 +86,7 @@ const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => 
           <button
             onClick={nextSlide}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-slate-900/65 backdrop-blur-md border border-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-900 hover:scale-110 transition-all duration-200"
-            aria-label="Next image"
+            aria-label={t('clients.nextImage')}
           >
             <ChevronRight size={20} />
           </button>
@@ -111,6 +112,8 @@ const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => 
 
 // ── MAIN CLIENTS PAGE COMPONENT ──────────────────────────────────
 export const ClientsPage: React.FC = () => {
+  const { locale, t } = useLanguage();
+  const isAr = locale === 'ar';
   const { ref: gridRef, visible: gridVisible } = useReveal();
 
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -134,18 +137,49 @@ export const ClientsPage: React.FC = () => {
     };
   }, [activeClient]);
 
-  const categories = ['All', 'Cath-Lab', 'CT Scanner', 'MRI', 'C-Arm', 'DR X-Ray'];
+  const categories = [
+    { id: 'All', label: t('clients.catAll') },
+    { id: 'Cath-Lab', label: t('clients.catCathLab') },
+    { id: 'CT Scanner', label: t('clients.catCT') },
+    { id: 'MRI', label: t('clients.catMRI') },
+    { id: 'C-Arm', label: t('clients.catCArm') },
+    { id: 'DR X-Ray', label: t('clients.catDR') },
+  ];
+
+  const getStatusLabel = (status: string): string => {
+    switch (status) {
+      case 'Active Support': return t('clients.statusActive');
+      case 'Full Service Contract': return t('clients.statusAMC');
+      case 'Turnkey Installed': return t('clients.statusInstalled');
+      default: return status;
+    }
+  };
+
+  const getServiceTypeLabel = (serviceType: string): string => {
+    switch (serviceType) {
+      case 'Turnkey Supply & Installation': return t('clients.scopeTurnkey');
+      case 'Preventive Maintenance (AMC)': return t('clients.scopePreventive');
+      case 'Emergency Maintenance & Spare Parts': return t('clients.scopeEmergency');
+      case 'Multi-Vendor Support': return t('clients.scopeMultiVendor');
+      case 'Digital DR Retrofit': return t('clients.scopeRetrofit');
+      default: return serviceType;
+    }
+  };
 
   const filteredClients = useMemo(() => {
     return DETAILED_CLIENTS.filter((client) => {
       const matchesCategory =
         selectedCategory === 'All' ||
         client.primaryCategories.some((cat) => cat.toLowerCase().includes(selectedCategory.toLowerCase()));
+      const q = searchQuery.toLowerCase().trim();
       const matchesSearch =
-        searchQuery === '' ||
-        client.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        client.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        client.facilityType.toLowerCase().includes(searchQuery.toLowerCase());
+        q === '' ||
+        client.name.toLowerCase().includes(q) ||
+        Boolean(client.nameAr && client.nameAr.toLowerCase().includes(q)) ||
+        client.location.toLowerCase().includes(q) ||
+        Boolean(client.locationAr && client.locationAr.toLowerCase().includes(q)) ||
+        client.facilityType.toLowerCase().includes(q) ||
+        Boolean(client.facilityTypeAr && client.facilityTypeAr.toLowerCase().includes(q));
 
       return matchesCategory && matchesSearch;
     });
@@ -160,16 +194,16 @@ export const ClientsPage: React.FC = () => {
 
         <div className="container relative z-10">
           <div className="section-label">
-            Client Reference Portfolio
+            {t('clients.sectionLabel')}
           </div>
 
           <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-navy tracking-tight leading-[0.98] max-w-[920px] mb-6">
-            Healthcare Facilities Powered & Maintained by{' '}
-            <span className="text-orange-accent">Nour Medical</span>
+            {t('clients.heroTitle')}{' '}
+            <span className="text-orange-accent">{t('clients.heroTitleHighlight')}</span>
           </h1>
 
           <p className="font-body text-xl md:text-2xl leading-[1.65] text-text-muted max-w-[720px]">
-            Explore our trusted healthcare partners across Egypt, inspect installed diagnostic modalities, and review ongoing biomedical service operations.
+            {t('clients.heroSubtitle')}
           </p>
         </div>
       </section>
@@ -190,18 +224,18 @@ export const ClientsPage: React.FC = () => {
             {/* Category Pills */}
             <div className="flex gap-2 flex-wrap items-center">
               {categories.map((cat) => {
-                const isActive = selectedCategory === cat;
+                const isActive = selectedCategory === cat.id;
                 return (
                   <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
                     className={`px-4.5 py-2 rounded-full font-heading text-[0.8125rem] cursor-pointer transition-all duration-200 ${
                       isActive
                         ? 'font-semibold text-white bg-navy border border-navy shadow-[0_4px_14px_rgba(15,23,42,0.15)]'
                         : 'font-medium text-navy bg-white border border-gray-light hover:border-navy/40'
                     }`}
                   >
-                    {cat}
+                    {cat.label}
                   </button>
                 );
               })}
@@ -211,20 +245,20 @@ export const ClientsPage: React.FC = () => {
             <div className="relative min-w-[280px] flex-[0_1_340px]">
               <Search
                 size={16}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted rtl:left-auto rtl:right-4"
               />
               <input
                 type="text"
-                placeholder="Search hospital or city..."
+                placeholder={t('clients.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full py-2.5 pl-11 pr-4 rounded-full border border-gray-light font-body text-base text-navy bg-white outline-none focus:border-blue-medical transition-colors duration-200"
+                className="w-full py-2.5 pl-11 pr-4 rtl:pl-4 rtl:pr-11 rounded-full border border-gray-light font-body text-base text-navy bg-white outline-none focus:border-blue-medical transition-colors duration-200"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 bg-transparent border-0 cursor-pointer text-text-muted hover:text-navy"
-                  aria-label="Clear search"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 rtl:right-auto rtl:left-3.5 bg-transparent border-0 cursor-pointer text-text-muted hover:text-navy"
+                  aria-label={t('clients.clearSearch')}
                 >
                   <X size={14} />
                 </button>
@@ -232,81 +266,84 @@ export const ClientsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Cards Grid */}
+          {/* Client Grid */}
           {filteredClients.length === 0 ? (
-            <div className="p-15 px-5 text-center bg-white rounded-xl border border-gray-light">
-              <Filter size={32} className="text-stone-400 mb-4 mx-auto" />
-              <h4 className="font-heading text-xl text-navy">
-                No clients found matching your filter
-              </h4>
+            <div className="py-20 text-center text-text-muted font-body text-lg">
+              {t('clients.noResults')}
             </div>
           ) : (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
-              {filteredClients.map((client) => (
-                <div
-                  key={client.id}
-                  onClick={() => setActiveClient(client)}
-                  className="group bg-white rounded-[10px] border border-gray-light overflow-hidden cursor-pointer flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_32px_-8px_rgba(15,23,42,0.12)] hover:border-blue-medical"
-                >
-                  {/* Thumbnail Image */}
-                  <div className="relative h-[190px] overflow-hidden bg-slate-900">
-                    <img
-                      src={client.images[0]}
-                      alt={client.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredClients.map((client) => {
+                const displayName = isAr && client.nameAr ? client.nameAr : client.name;
+                const displayLocation = isAr && client.locationAr ? client.locationAr : client.location;
+                const displayFacilityType = isAr && client.facilityTypeAr ? client.facilityTypeAr : client.facilityType;
 
-                    {/* Image Carousel Count Indicator */}
-                    <div className="absolute top-3 right-3 bg-slate-900/75 backdrop-blur-sm text-white font-mono text-[0.625rem] px-2 py-0.5 rounded border border-white/15">
-                      📷 {client.images.length} Photos
-                    </div>
+                return (
+                  <div
+                    key={client.id}
+                    onClick={() => setActiveClient(client)}
+                    className="group bg-white rounded-xl border border-gray-light overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(0,51,102,0.08)] hover:-translate-y-1"
+                  >
+                    {/* Card Thumbnail Box with Count Indicator */}
+                    <div className="relative h-[210px] w-full overflow-hidden bg-slate-900">
+                      <img
+                        src={client.images[0]}
+                        alt={displayName}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
 
-                    <div className="absolute bottom-3 left-4 flex items-center gap-1.5 text-white/90">
-                      <MapPin size={14} className="text-teal-accent" />
-                      <span className="font-mono text-xs">{client.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Card Info Content */}
-                  <div className="p-5 flex-1 flex flex-col justify-between">
-                    <div>
-                      <div className="font-mono text-[0.5625rem] tracking-wider uppercase text-teal-accent font-semibold mb-1.5">
-                        {client.facilityType}
+                      {/* Image Carousel Count Indicator */}
+                      <div className="absolute top-3 right-3 rtl:right-auto rtl:left-3 bg-slate-900/75 backdrop-blur-sm text-white font-mono text-[0.625rem] px-2 py-0.5 rounded border border-white/15">
+                        📷 {t('clients.photoCount', { count: client.images.length })}
                       </div>
 
-                      <h3 className="font-heading text-xl font-bold text-navy tracking-tight mb-3 leading-snug">
-                        {client.name}
-                      </h3>
-
-                      {/* Primary Installed Devices Tags */}
-                      <div className="flex flex-wrap gap-1.5 mb-4">
-                        {client.devices.slice(0, 2).map((dev, i) => (
-                          <span
-                            key={i}
-                            className="font-mono text-[0.6875rem] px-2.5 py-0.5 rounded bg-blue-medical/[0.08] text-blue-medical font-medium"
-                          >
-                            {dev.name.split('–')[0].trim()}
-                          </span>
-                        ))}
-                        {client.devices.length > 2 && (
-                          <span className="font-mono text-[0.6875rem] px-2 py-0.5 rounded bg-warm-neutral text-text-muted font-medium">
-                            +{client.devices.length - 2} more
-                          </span>
-                        )}
+                      <div className="absolute bottom-3 left-4 rtl:left-auto rtl:right-4 flex items-center gap-1.5 text-white/90">
+                        <MapPin size={14} className="text-teal-accent" />
+                        <span className="font-mono text-xs">{displayLocation}</span>
                       </div>
                     </div>
 
-                    {/* Footer Row */}
-                    <div className="pt-3 border-t border-gray-light flex items-center justify-between font-mono text-xs text-navy font-semibold">
-                      <span className="flex items-center gap-1 text-blue-medical group-hover:translate-x-1 transition-transform duration-200">
-                        View Facility Profile <ChevronRight size={14} />
-                      </span>
-                      <ArrowUpRight size={16} className="text-text-muted group-hover:text-blue-medical transition-colors duration-200" />
+                    {/* Card Info Content */}
+                    <div className="p-5 flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="font-mono text-[0.5625rem] tracking-wider uppercase text-teal-accent font-semibold mb-1.5">
+                          {displayFacilityType}
+                        </div>
+
+                        <h3 className="font-heading text-xl font-bold text-navy tracking-tight mb-3 leading-snug">
+                          {displayName}
+                        </h3>
+
+                        {/* Primary Installed Devices Tags */}
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {client.devices.slice(0, 2).map((dev, i) => (
+                            <span
+                              key={i}
+                              className="font-mono text-[0.6875rem] px-2.5 py-0.5 rounded bg-blue-medical/[0.08] text-blue-medical font-medium"
+                            >
+                              {(isAr && dev.nameAr ? dev.nameAr : dev.name).split('–')[0].trim()}
+                            </span>
+                          ))}
+                          {client.devices.length > 2 && (
+                            <span className="font-mono text-[0.6875rem] px-2 py-0.5 rounded bg-warm-neutral text-text-muted font-medium">
+                              {t('clients.moreCount', { count: client.devices.length - 2 })}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Footer Row */}
+                      <div className="pt-3 border-t border-gray-light flex items-center justify-between font-mono text-xs text-navy font-semibold">
+                        <span className="flex items-center gap-1 text-blue-medical group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-200">
+                          {t('clients.viewProfile')} <ChevronRight size={14} className="rtl:rotate-180" />
+                        </span>
+                        <ArrowUpRight size={16} className="text-text-muted group-hover:text-blue-medical transition-colors duration-200 rtl:rotate-[-90deg]" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
@@ -325,15 +362,18 @@ export const ClientsPage: React.FC = () => {
             {/* Close Button */}
             <button
               onClick={() => setActiveClient(null)}
-              className="absolute top-4 right-4 z-20 bg-slate-900/70 backdrop-blur-md border border-white/20 text-white w-9 h-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-900 hover:scale-110 transition-all duration-200"
-              aria-label="Close dialog"
+              className="absolute top-4 right-4 rtl:right-auto rtl:left-4 z-20 bg-slate-900/70 backdrop-blur-md border border-white/20 text-white w-9 h-9 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-900 hover:scale-110 transition-all duration-200"
+              aria-label={t('common.close')}
             >
               <X size={18} />
             </button>
 
             {/* LEFT COLUMN: IMAGE CAROUSEL */}
             <div className="h-full min-h-[380px] relative">
-              <ModalCarousel images={activeClient.images} clientName={activeClient.name} />
+              <ModalCarousel
+                images={activeClient.images}
+                clientName={isAr && activeClient.nameAr ? activeClient.nameAr : activeClient.name}
+              />
             </div>
 
             {/* RIGHT COLUMN: TEXT DETAILS BESIDE THE IMAGE */}
@@ -342,53 +382,60 @@ export const ClientsPage: React.FC = () => {
                 {/* Header Tag & Location */}
                 <div className="flex items-center gap-2.5 mb-3 flex-wrap">
                   <span className="font-mono text-[0.625rem] tracking-widest uppercase text-teal-accent bg-teal-accent/[0.08] px-2.5 py-1 rounded inline-flex items-center gap-1.5 font-semibold">
-                    <Building2 size={12} /> {activeClient.facilityType}
+                    <Building2 size={12} /> {isAr && activeClient.facilityTypeAr ? activeClient.facilityTypeAr : activeClient.facilityType}
                   </span>
                   <span className="inline-flex items-center gap-1 text-[0.8125rem] text-text-muted">
-                    <MapPin size={14} className="text-blue-medical" /> {activeClient.location}
+                    <MapPin size={14} className="text-blue-medical" /> {isAr && activeClient.locationAr ? activeClient.locationAr : activeClient.location}
                   </span>
                 </div>
 
                 {/* Title */}
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy tracking-tight mb-5 leading-snug">
-                  {activeClient.name}
+                  {isAr && activeClient.nameAr ? activeClient.nameAr : activeClient.name}
                 </h2>
 
                 <div className="border-b border-gray-light pb-4 mb-6">
                   <div className="section-label text-blue-medical mb-1.5">
-                    Equipment & Maintenance Scope
+                    {t('clients.modalScopeTitle')}
                   </div>
                   <p className="text-base text-text-muted">
-                    Radiology devices supplied, installed, or maintained by Nour Medical engineers:
+                    {t('clients.modalScopeDesc')}
                   </p>
                 </div>
 
                 {/* Device List Stack */}
                 <div className="flex flex-col gap-4 mb-6">
-                  {activeClient.devices.map((dev: InstalledDevice, i: number) => (
-                    <div
-                      key={i}
-                      className="bg-warm-white border border-gray-light rounded-lg p-4 px-5"
-                    >
-                      <div className="flex justify-between items-start gap-2.5 mb-2">
-                        <h4 className="font-heading text-[0.975rem] font-bold text-navy">
-                          {dev.name}
-                        </h4>
-                        <span className="font-mono text-[0.5625rem] text-teal-accent border border-teal-accent px-2 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1 font-semibold">
-                          <ShieldCheck size={10} /> {dev.status}
-                        </span>
-                      </div>
+                  {activeClient.devices.map((dev: InstalledDevice, i: number) => {
+                    const devName = isAr && dev.nameAr ? dev.nameAr : dev.name;
+                    const devDesc = isAr && dev.descriptionAr ? dev.descriptionAr : dev.description;
+                    const devStatus = getStatusLabel(dev.status);
+                    const devScope = getServiceTypeLabel(dev.serviceType);
 
-                      <p className="text-[0.8125rem] leading-normal text-text-muted mb-2.5">
-                        {dev.description}
-                      </p>
+                    return (
+                      <div
+                        key={i}
+                        className="bg-warm-white border border-gray-light rounded-lg p-4 px-5"
+                      >
+                        <div className="flex justify-between items-start gap-2.5 mb-2">
+                          <h4 className="font-heading text-[0.975rem] font-bold text-navy">
+                            {devName}
+                          </h4>
+                          <span className="font-mono text-[0.5625rem] text-teal-accent border border-teal-accent px-2 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1 font-semibold">
+                            <ShieldCheck size={10} /> {devStatus}
+                          </span>
+                        </div>
 
-                      <div className="flex items-center gap-1.5 text-xs text-navy font-mono">
-                        <Wrench size={12} className="text-blue-medical" />
-                        <span>Scope: {dev.serviceType}</span>
+                        <p className="text-[0.8125rem] leading-normal text-text-muted mb-2.5">
+                          {devDesc}
+                        </p>
+
+                        <div className="flex items-center gap-1.5 text-xs text-navy font-mono">
+                          <Wrench size={12} className="text-blue-medical" />
+                          <span>{t('clients.scopeLabel')} {devScope}</span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
@@ -398,14 +445,14 @@ export const ClientsPage: React.FC = () => {
                   onClick={() => setActiveClient(null)}
                   className="btn btn-outline py-2 px-4 text-[0.8125rem]"
                 >
-                  Close
+                  {t('common.close')}
                 </button>
                 <Link
                   to="/contact"
                   className="btn btn-primary py-2 px-5 text-[0.8125rem] inline-flex items-center gap-1.5 rounded-md font-semibold no-underline"
                 >
-                  <span>Inquire Now</span>
-                  <ChevronRight size={14} />
+                  <span>{t('clients.inquireNow')}</span>
+                  <ChevronRight size={14} className="rtl:rotate-180" />
                 </Link>
               </div>
             </div>

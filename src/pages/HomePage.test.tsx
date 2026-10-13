@@ -67,7 +67,7 @@ describe('HomePage Component', () => {
       </LanguageProvider>
     );
 
-    expect(html).toContain('Next-Generation Medical Imaging Infrastructure');
+    expect(html).toContain('Advanced Healthcare Technology');
     expect(html).toContain('Explore Our Solutions');
     expect(html).toContain('About Nour Medical');
     expect(html).toContain('Radiology Devices');
@@ -86,7 +86,7 @@ describe('HomePage Component', () => {
       </LanguageProvider>
     );
 
-    expect(html).toContain('البنية التحتية المتطورة لأنظمة التصوير الطبي');
+    expect(html).toContain('تكنولوجيا الرعاية الصحية المتقدمة');
     expect(html).toContain('استكشف حلولنا وأجهزتنا');
     expect(html).toContain('عن نور الطبية');
     expect(html).toContain('أجهزة الأشعة والتصوير الطبي');

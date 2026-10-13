@@ -20,7 +20,7 @@ import {
 import { useLanguage } from '../i18n';
 
 export const GalleryPage: React.FC = () => {
-  const { locale } = useLanguage();
+  const { locale, t } = useLanguage();
   const isAr = locale === 'ar';
   const [activeCategory, setActiveCategory] = useState<GalleryCategoryType | 'all'>('all');
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
@@ -83,9 +83,9 @@ export const GalleryPage: React.FC = () => {
 
         <div className="container relative z-10">
           <SectionHeading
-            eyebrow={isAr ? "توثيق الفعاليات والمعارض والعمل الميداني" : "MEDIA & EVENTS DOCUMENTATION"}
-            title={isAr ? "سجل العمليات الميدانية ومعرض الصور" : "Field Operations & Photo Gallery"}
-            subtitle={isAr ? "توثيق مصور لأعمال مهندسي الصيانة الطبية، المؤتمرات والمعارض العلمية، واحتفالات تسليم وتشغيل الأجهزة في المستشفيات المصرية." : "Explore authentic visual documentation of our biomedical engineering team, scientific conferences & exhibitions, and hospital installation celebrations across Egypt."}
+            eyebrow={t('gallery.heroBadge')}
+            title={t('gallery.title')}
+            subtitle={t('gallery.subtitle')}
             theme="light"
           />
         </div>
@@ -143,7 +143,7 @@ export const GalleryPage: React.FC = () => {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedItem(null)}
-                aria-label="Close modal"
+                aria-label={t('common.close')}
                 className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-navy/85 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 hover:bg-blue-medical transition-all duration-200"
               >
                 <X size={20} />
@@ -173,7 +173,7 @@ export const GalleryPage: React.FC = () => {
                   {modalImages.length > 1 && (
                     <button
                       type="button"
-                      aria-label="Previous photo"
+                      aria-label={t('gallery.prevPhoto')}
                       onClick={handleModalPrev}
                       className="absolute left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-navy/80 backdrop-blur-md border border-white/25 text-white flex items-center justify-center cursor-pointer shadow-xl hover:bg-blue-medical hover:scale-110 transition-all duration-200 z-10"
                     >
@@ -185,7 +185,7 @@ export const GalleryPage: React.FC = () => {
                   {modalImages.length > 1 && (
                     <button
                       type="button"
-                      aria-label="Next photo"
+                      aria-label={t('gallery.nextPhoto')}
                       onClick={handleModalNext}
                       className="absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-navy/80 backdrop-blur-md border border-white/25 text-white flex items-center justify-center cursor-pointer shadow-xl hover:bg-blue-medical hover:scale-110 transition-all duration-200 z-10"
                     >
@@ -198,7 +198,7 @@ export const GalleryPage: React.FC = () => {
                     <div className="absolute bottom-4 right-5 px-3.5 py-1.5 rounded-full bg-navy/85 backdrop-blur-md border border-white/20 text-white font-mono text-xs font-semibold flex items-center gap-1.5 z-10">
                       <ImageIcon size={14} className="text-teal-accent" />
                       <span>
-                        Photo {modalImageIndex + 1} of {modalImages.length}
+                        {t('gallery.photoLabel')} {modalImageIndex + 1} {t('gallery.photoOf')} {modalImages.length}
                       </span>
                     </div>
                   )}
@@ -221,7 +221,7 @@ export const GalleryPage: React.FC = () => {
                       <button
                         key={idx}
                         type="button"
-                        aria-label={`Select photo ${idx + 1}`}
+                        aria-label={`${t('gallery.selectPhoto')} ${idx + 1}`}
                         onClick={() => setModalImageIndex(idx)}
                         className={`shrink-0 w-16 h-12 rounded-lg overflow-hidden p-0 bg-transparent cursor-pointer transition-all duration-200 ${
                           isCurrent
@@ -244,25 +244,28 @@ export const GalleryPage: React.FC = () => {
               <div className="p-8">
                 <div className="flex items-center gap-3 mb-3.5 flex-wrap">
                   <span className="px-3 py-1 rounded-xl bg-navy text-teal-accent font-mono text-[0.6875rem] font-semibold uppercase">
-                    {selectedItem.categoryLabel}
+                    {(() => {
+                    const catObj = GALLERY_CATEGORIES.find((c) => c.id === selectedItem.category);
+                    return isAr && catObj?.labelAr ? catObj.labelAr : selectedItem.categoryLabel;
+                  })()}
                   </span>
                   <span className="font-mono text-xs text-text-muted flex items-center gap-1.5">
                     <MapPin size={13} className="text-teal-accent" />
-                    {selectedItem.location} · <Calendar size={13} /> {selectedItem.date}
+                    {isAr && selectedItem.locationAr ? selectedItem.locationAr : selectedItem.location} · <Calendar size={13} /> {selectedItem.date}
                   </span>
                 </div>
 
                 <h2 className="font-heading text-[1.75rem] font-bold text-navy mb-3">
-                  {selectedItem.title}
+                  {isAr && selectedItem.titleAr ? selectedItem.titleAr : selectedItem.title}
                 </h2>
 
                 <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-6">
-                  {selectedItem.description}
+                  {isAr && selectedItem.descriptionAr ? selectedItem.descriptionAr : selectedItem.description}
                 </p>
 
                 <div className="px-5 py-4 bg-warm-white rounded-[14px] border border-warm-neutral font-mono text-xs text-navy font-semibold flex items-center gap-2.5">
                   <ExternalLink size={15} className="text-teal-accent" />
-                  <span>Technical Specs: {selectedItem.specs}</span>
+                  <span>{t('gallery.specsLabel')} {isAr && selectedItem.specsAr ? selectedItem.specsAr : selectedItem.specs}</span>
                 </div>
               </div>
             </div>

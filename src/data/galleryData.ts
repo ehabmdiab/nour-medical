@@ -12,16 +12,21 @@ export interface GalleryImageDetail {
 export interface GalleryItem {
   id: string;
   title: string;
+  titleAr?: string;
   category: GalleryCategoryType;
   categoryLabel: string;
   location: string;
+  locationAr?: string;
   description: string;
+  descriptionAr?: string;
   image: string;
   images: string[];
   imageDetails?: GalleryImageDetail[];
   videoUrl?: string;
   date: string;
+  dateAr?: string;
   specs: string;
+  specsAr?: string;
 }
 
 const BASE = import.meta.env.BASE_URL || '/';
@@ -37,6 +42,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-machines-9",
     title: "Angel Radiology Technology Presentation",
+    titleAr: "عرض تكنولوجيا الأشعة لشركة أنجيل",
+    locationAr: "أنظمة التصوير الطبي أنجيل / نور الطبية",
+    descriptionAr: "نظام تصوير رقمي عالي الأداء يوفر تباين تشخيصي فائق، تموضع آلي للأعضاء، وأقل جرعة إشعاعية ممكنة.",
+    specsAr: "عرض تكنولوجيا الأشعة الرقمية DTP580",
     category: "exhibitions",
     categoryLabel: "Exhibitions & Conferences",
     location: "Angel Medical Imaging / Nour Medical",
@@ -102,6 +111,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-machines-21",
     title: "Lonwin Medical Diagnostic Imaging Demonstration",
+    titleAr: "عرض أجهزة لون وين للتصوير التشخيصي الطبي",
+    locationAr: "سوتشو لون وين / نور الطبية",
+    descriptionAr: "أنظمة أشعة رقمية وفلوروسكوبي ديناميكي متطورة لغرف العمليات وأقسام الطوارئ والأشعة التداخلية.",
+    specsAr: "أنظمة الأشعة الرقمية والفلوروسكوبي الديناميكي",
     category: "exhibitions",
     categoryLabel: "Exhibitions & Conferences",
     location: "Lonwin Medical Systems / Nour Medical",
@@ -166,11 +179,15 @@ export const GALLERY_DATA: GalleryItem[] = [
   },
   {
     id: "gal-team-31",
-    title: "Eng. Sayed Awad — Chairman & CEO",
+    title: "Eng. El Sayed Awad — Chairman & CEO",
+    titleAr: "م. السيد عوض — رئيس مجلس الإدارة والرئيس التنفيذي",
+    locationAr: "المقر الرئيسي لنور الطبية، المعادي، القاهرة",
+    descriptionAr: "قيادة استراتيجية تشرف على توريد المعدات، وتوسيع شبكة الصيانة الميدانية في مصر، وشراكات كبرى المصنعين الدوليين.",
+    specsAr: "القيادة التنفيذية ورؤية التوسع",
     category: "team",
     categoryLabel: "Team & Staff",
     location: "Nour Medical Headquarters, Maadi, Cairo",
-    description: "Eng. Sayed Awad — Chairman & CEO — Professional biomedical service engineers, technicians, and executive leadership driving operational excellence across Egypt.",
+    description: "Eng. El Sayed Awad — Chairman & CEO — Professional biomedical service engineers, technicians, and executive leadership driving operational excellence across Egypt.",
     image: `${BASE}images/team/eng-sayed-awad.jpg`,
     images: [
       `${BASE}images/team/eng-sayed-awad.jpg`,
@@ -178,7 +195,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     imageDetails: [
       {
         src: `${BASE}images/team/eng-sayed-awad.jpg`,
-        caption: "Eng. Sayed Awad — Chairman & CEO",
+        caption: "Eng. El Sayed Awad — Chairman & CEO",
       },
     ],
     date: "2024-2025",
@@ -187,6 +204,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-team-33",
     title: "Nour Medical Engineering & Technical Team",
+    titleAr: "فريق المهندسين والفنيين بشركة نور الطبية",
+    locationAr: "مركز العمليات الفنية، المعادي، القاهرة",
+    descriptionAr: "نخبة المهندسين الطبيين الميدانيين المتخصصين في تركيب ومعايرة وصيانة أجهزة الرنين المغناطيسي، المقطعية، القسطرة، والأشعة الرقمية.",
+    specsAr: "فريق هندسي متخصص في الصيانة الميدانية ٢٤/٧",
     category: "team",
     categoryLabel: "Team & Staff",
     location: "Nour Medical Headquarters, Maadi, Cairo",
@@ -262,6 +283,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-team-45",
     title: "Nour Medical Team Gathering & Field Assembly",
+    titleAr: "ملتقى فريق عمل نور الطبية والاجتماع الميداني",
+    locationAr: "القاهرة، مصر",
+    descriptionAr: "لقاء دوري يجمع الطواقم الهندسية والميدانية والإدارية لمراجعة الجودة ومؤشرات سرعة الاستجابة الميدانية.",
+    specsAr: "التنسيق الميداني ومعايير الجودة",
     category: "team",
     categoryLabel: "Team & Staff",
     location: "Nour Medical Headquarters, Maadi, Cairo",
@@ -302,6 +327,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-doctors-50",
     title: "Prof. Dr. Mohamed Fawzy",
+    titleAr: "أ.د. محمد فوزي",
+    locationAr: "الندوة السنوية لنور الطبية، القاهرة",
+    descriptionAr: "استشاري ورئيس قسم الأشعة التشخيصية خلال مشاركته العلمية في ندوة التكنولوجيا الطبية المتقدمة.",
+    specsAr: "المؤتمر العلمي السنوي للأشعة التشخيصية",
     category: "exhibitions",
     categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
@@ -322,6 +351,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-doctors-51",
     title: "Prof. Dr. Ashraf Zaytoun",
+    titleAr: "أ.د. أشرف زيتون",
+    locationAr: "الندوة السنوية لنور الطبية، القاهرة",
+    descriptionAr: "أستاذ واستشاري الأشعة التداخلية والتشخيصية يلقي محاضرة حول أحدث تقنيات التصوير بالرنين المغناطيسي والمقطعية.",
+    specsAr: "محاضرة علمية حول أحدث تقنيات التصوير الطبي",
     category: "exhibitions",
     categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
@@ -352,6 +385,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-doctors-52",
     title: "Dr. Ghalia Elmohani",
+    titleAr: "د. غالية الموهني",
+    locationAr: "المؤتمر السنوي للأشعة، القاهرة",
+    descriptionAr: "استشارية الأشعة التشخيصية متحدثة حول تطبيقات الذكاء الاصطناعي وجودة الصورة في التصوير الطبي المتقدم.",
+    specsAr: "جلسة علمية حول تطبيقات الذكاء الاصطناعي في الأشعة",
     category: "exhibitions",
     categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
@@ -372,6 +409,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-doctors-55",
     title: "VIP Clinical Leadership & Radiology Symposium",
+    titleAr: "ملتقى القيادات الطبية وندوة الأشعة التشخيصية",
+    locationAr: "فندق إنتركونتيننتال سيتي ستارز، القاهرة",
+    descriptionAr: "ندوة علمية رفيعة المستوى تجمع نخبة استشاريي وأساتذة الأشعة من مختلف الجامعات والمستشفيات المصرية.",
+    specsAr: "ملتقى علمي لكبار استشاريي الأشعة",
     category: "exhibitions",
     categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
@@ -477,6 +518,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-seminar-73",
     title: "Nour Medical Annual Scientific Seminar — 10 July 2025",
+    titleAr: "الندوة العلمية السنوية لنور الطبية — ١٠ يوليو ٢٠٢٥",
+    locationAr: "القاهرة، مصر",
+    descriptionAr: "الحدث السنوي الأكبر لنور الطبية لاستعراض أحدث الأجهزة التشخيصية وتكريم المستشفيات والشركاء المتميزين.",
+    specsAr: "الندوة العلمية السنوية وتكريم الشركاء",
     category: "exhibitions",
     categoryLabel: "Exhibitions & Conferences",
     location: "Grand Nile Tower / Cairo Conference Center",
@@ -602,6 +647,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-95",
     title: "Elite Heart Center — Cath-Lab & Cardiology Facilities",
+    titleAr: "مركز إيليت للقلب — منشآت القسطرة وطب القلب",
+    locationAr: "المعادي، القاهرة",
+    descriptionAr: "تجهيز وتركيب قسطرة قلبية أحادية المستوى ودعم صيانة ميداني دوري مستمر.",
+    specsAr: "قسطرة قلبية تداخلية عالية الدقة",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Elite Heart Center, Maadi, Cairo",
@@ -632,6 +681,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-98",
     title: "El Assema Hospital",
+    titleAr: "مستشفى العاصمة",
+    locationAr: "المهندسين، الجيزة",
+    descriptionAr: "تشغيل وصيانة أنظمة الأشعة الرقمية والسي آرم لغرف العمليات الجراحية.",
+    specsAr: "أجهزة أشعة رقمية وسي آرم للعمليات",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "El Assema Hospital, Minya El Qamh, Sharqia",
@@ -652,6 +705,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-99",
     title: "Al-Marwa Hospital",
+    titleAr: "مستشفى المروة",
+    locationAr: "الدقي، الجيزة",
+    descriptionAr: "توريد وتركيب وحدة قسطرة قلبية كاملة وتحديث وحدة الأشعة بنظام ديجيتال DR.",
+    specsAr: "قسطرة قلبية ونظام أشعة رقمية DR",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Marwa Hospital, Dokki, Giza",
@@ -687,6 +744,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-103",
     title: "Al-Rayyan Scan Center",
+    titleAr: "مركز الريان سكان للأشعة",
+    locationAr: "فيصل، الجيزة",
+    descriptionAr: "نظام تصوير رنين مغناطيسي 1.5 تسلا وجهاز أشعة مقطعية متعدد المقاطع مع عقود صيانة شاملة.",
+    specsAr: "رنين مغناطيسي 1.5T وأشعة مقطعية متعددة المقاطع",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Rayyan Scan Center, Minya, Upper Egypt",
@@ -712,6 +773,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-105",
     title: "Al-Safwa Hospital & Diagnostic Centers",
+    titleAr: "مستشفى ومراكز الصفوة للأشعة",
+    locationAr: "مدينة نصر، القاهرة",
+    descriptionAr: "أنظمة أشعة رقمية وكواشف فلات بانل مسطحة عالية الكفاءة.",
+    specsAr: "كواشف رقمية DR فلات بانل",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Safwa Hospital (6th of October & Faqus)",
@@ -747,6 +812,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-109",
     title: "Al-Tayseer Hospitals",
+    titleAr: "مستشفيات التيسير",
+    locationAr: "الزقازيق، الشرقية",
+    descriptionAr: "عقد صيانة شامل AMC لأنظمة القسطرة التداخلية وغرف العمليات الجراحية.",
+    specsAr: "عقد صيانة شامل AMC لأنظمة القسطرة والعمليات",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Tayseer Hospitals, Zagazig, Sharqia",
@@ -782,6 +851,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-113",
     title: "Al-Zahra & El Nokhba Hospital",
+    titleAr: "مستشفى الزهراء والنخبة",
+    locationAr: "القاهرة الجديدة",
+    descriptionAr: "تركيب أجهزة سي آرم جراحية متنقلة وأنظمة تصوير رقمية متطورة.",
+    specsAr: "أجهزة سي آرم جراحية عالية الدقة",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Al-Zahra & El Nokhba Hospital, Kafr El Sheikh",
@@ -817,6 +890,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-117",
     title: "Aseel Hospital Hurghada",
+    titleAr: "مستشفى أصيل الغردقة",
+    locationAr: "الغردقة، البحر الأحمر",
+    descriptionAr: "أنظمة أشعة رقمية DR وكواشف لاسلكية متنقلة لقسم الطوارئ.",
+    specsAr: "أشعة رقمية وكواشف لاسلكية للطوارئ",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Aseel Hospital, Hurghada, Red Sea",
@@ -847,6 +924,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-120",
     title: "Banha University Hospital",
+    titleAr: "مستشفى بنها الجامعي",
+    locationAr: "بنها، القليوبية",
+    descriptionAr: "دعم فني استشاري وصيانة متقدمة لأنظمة التصوير الطبي والأشعة المقطعية.",
+    specsAr: "دعم فني وصيانة أجهزة الأشعة المقطعية",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Banha University Hospital, Qalyubia",
@@ -867,6 +948,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-121",
     title: "Capital Care Hospital",
+    titleAr: "مستشفى كابيتال كير",
+    locationAr: "٦ أكتوبر، الجيزة",
+    descriptionAr: "نظام أشعة مقطعية 64 مقطع حلزوني مع دعم هندسي شامل وتدريب للطاقم الطبي.",
+    specsAr: "أشعة مقطعية 64 شريحة متقدمة",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Capital Care Hospital, 6th of October",
@@ -892,6 +977,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-123",
     title: "El Gouna Hospital",
+    titleAr: "مستشفى الجونة",
+    locationAr: "الجونة، البحر الأحمر",
+    descriptionAr: "تحديث رقمي متكامل لأنظمة الأشعة السينية مع كواشف مسطحة وكاميرات ليزرية.",
+    specsAr: "ترقية رقمية شاملة DR لنظام الأشعة",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "El Gouna Hospital, Red Sea",
@@ -917,6 +1006,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-125",
     title: "El-Salama Hospital (Dr. Omar Nagy)",
+    titleAr: "مستشفى السلامة (د. عمر ناجي)",
+    locationAr: "المهندسين، الجيزة",
+    descriptionAr: "أجهزة سي آرم جراحية لجراحات العظام والعمود الفقري والمخ والأعصاب.",
+    specsAr: "أجهزة سي آرم متقدمة لجراحات العظام",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "El-Salama Hospital (Dr. Omar Nagy), Minya",
@@ -937,6 +1030,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-126",
     title: "Golden Heart Specialized Cardiac Center",
+    titleAr: "مركز جولدن هارت التخصصي للقلب",
+    locationAr: "المهندسين، الجيزة",
+    descriptionAr: "وحدة قسطرة قلبية أحادية المستوى ودعم صيانة طوارئ ٢٤/٧.",
+    specsAr: "قسطرة قلبية تداخلية متكاملة",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Golden Heart Specialized Hospital, Maadi, Cairo",
@@ -972,6 +1069,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-130",
     title: "International Center for Radiology and MRI (IRC)",
+    titleAr: "المركز الدولي للأشعة والرنين (IRC)",
+    locationAr: "مصر الجديدة، القاهرة",
+    descriptionAr: "نظام رنين مغناطيسي فائق التوصيل 1.5T ووحدة تبريد هيليوم مغلقة مع صيانة دورية.",
+    specsAr: "رنين مغناطيسي 1.5T عالي التباين",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "International Center for Radiology and MRI (IRC), Helwan",
@@ -992,6 +1093,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-131",
     title: "Nile Center for Radiology",
+    titleAr: "مركز النيل للأشعة",
+    locationAr: "المعادي، القاهرة",
+    descriptionAr: "أنظمة أشعة رقمية متنقلة وثابتة ووحدات معالجة صور رقمية متطورة.",
+    specsAr: "أشعة رقمية DR ثابتة ومتحركة",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Nile Center for Radiology, Cairo & Giza",
@@ -1012,6 +1117,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-132",
     title: "South Sinai Hospital",
+    titleAr: "مستشفى جنوب سيناء",
+    locationAr: "شرم الشيخ، جنوب سيناء",
+    descriptionAr: "تجهيز قسم الأشعة بالكامل بوحدات أشعة مقطعية ورقمية تخدم السياحة العلاجية والطوارئ.",
+    specsAr: "تجهيز متكامل لقسم الأشعة والطوارئ",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "South Sinai Hospital, Sharm El Sheikh",
@@ -1032,6 +1141,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-clients-133",
     title: "Tiba Scan & Diagnostic Center",
+    titleAr: "مركز طيبة سكان للأشعة",
+    locationAr: "الجيزة، مصر",
+    descriptionAr: "أنظمة تصوير رنين مغناطيسي ومقطعية عالية الدقة ودعم فني دوري متواصل.",
+    specsAr: "رنين مغناطيسي وأشعة مقطعية متطورة",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
     location: "Tiba Scan & Diagnostic Center, Minya",
@@ -1052,6 +1165,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-team-gouna",
     title: "El-Gouna Hospital Technical Operations & Deployment Team",
+    titleAr: "فريق العمليات الفنية والتركيب بمستشفى الجونة",
+    locationAr: "الجونة، البحر الأحمر",
+    descriptionAr: "طاقم المهندسين الطبيين أثناء تسليم وتشغيل وتدريب الكوادر على الأجهزة الرقمية الحديثة.",
+    specsAr: "تسليم وتشغيل وتدريب الكوادر الفنية",
     category: "team",
     categoryLabel: "Team & Staff",
     location: "El-Gouna Specialized Hospital, Red Sea",
@@ -1072,6 +1189,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-team-tayseer",
     title: "Al-Tayseer Hospital Technical Field Service Team",
+    titleAr: "فريق الصيانة الميدانية بمستشفيات التيسير",
+    locationAr: "الزقازيق، الشرقية",
+    descriptionAr: "مهندسو نور الطبية أثناء الفحص الدوري والمعايرة الوقائية لأنظمة القسطرة.",
+    specsAr: "معايرة وقائية وفحص دوري لأنظمة القسطرة",
     category: "team",
     categoryLabel: "Team & Staff",
     location: "Al-Tayseer International Hospital, Sharkia",
@@ -1092,6 +1213,10 @@ export const GALLERY_DATA: GalleryItem[] = [
   {
     id: "gal-team-ramadan",
     title: "Annual Corporate Ramadan Gathering & Team Celebration",
+    titleAr: "ملتقى إفطار رمضان السنوي واحتفال الشركة",
+    locationAr: "القاهرة، مصر",
+    descriptionAr: "الاحتفال السنوي لعائلة وفريق عمل نور الطبية تعزيزاً لروح الفريق والتميز المستمر.",
+    specsAr: "الاحتفال السنوي لفريق عمل نور الطبية",
     category: "team",
     categoryLabel: "Team & Staff",
     location: "Nour Medical Executive Gathering, Cairo",

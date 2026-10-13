@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 import { Mri3DViewer } from '../components/organisms/Mri3DViewer';
 import { LoaderContext } from '../context/LoaderContext';
@@ -89,38 +89,29 @@ export const HomePage: React.FC = () => {
           className="absolute -right-[10%] top-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.18)_0%,transparent_70%)] pointer-events-none"
         />
 
-        <div className="container flex-1 flex flex-col justify-center pt-8 pb-20 max-w-[1440px]">
+        <div className="container flex-1 flex flex-col justify-center pt-6 pb-14 max-w-[1440px]">
           {/* Label Badge */}
-          <div className="mb-6 animate-hero-est">
-            <span className="inline-flex items-center gap-2.5 font-mono text-[0.5625rem] tracking-[0.2em] uppercase text-white/45">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-accent animate-pulse" />
-              {t('hero.est')}
-            </span>
+          <div className="section-label mb-5 animate-hero-est">
+            {t('hero.est')}
           </div>
 
           {/* Hero Content Grid: Text Left, Circular 3D Scanner Viewport Right */}
           <div className="hero-content-grid items-center">
-            {/* Left: Text & CTA */}
-            <div className="max-w-[560px] w-full">
+            {/* Left: Text & CTA - Takes the full left column space */}
+            <div className="w-full max-w-[760px]">
               <h1
-                className="font-heading text-[clamp(2.25rem,4.5vw,4.5rem)] font-extrabold text-white leading-[1.02] tracking-[-0.03em] mb-7 animate-hero-title"
+                className="font-heading text-[clamp(2.35rem,4.2vw,4.4rem)] font-extrabold text-white leading-[1.04] md:leading-[1.02] tracking-[-0.03em] mb-9 animate-hero-title"
               >
-                {t('hero.title')}{" "}
-                <span className="text-teal-accent inline">
+                {t('hero.title')}{' '}
+                <span className="text-orange-accent block">
                   {t('hero.titleHighlight')}
                 </span>
               </h1>
 
-              <p
-                className="font-body text-[clamp(0.95rem,1.15vw,1.0625rem)] leading-[1.65] text-white/70 max-w-[520px] mb-8 animate-hero-sub"
-              >
-                {t('hero.subtitle')}
-              </p>
-
               <div
                 className="flex gap-4 flex-wrap items-center animate-hero-cta"
               >
-                <Link to="/products" className="btn btn-blue gap-2">
+                <Link to="/products" className="btn btn-blue gap-2 shadow-[0_4px_16px_rgba(27,79,216,0.35)]">
                   {t('hero.exploreProducts')}
                   <ArrowRight size={15} />
                 </Link>
@@ -130,23 +121,13 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Circular 3D MRI Scanner Viewport */}
+            {/* Right: Complete Circular 3D MRI Scanner Viewport */}
             <div
-              className="relative w-full max-w-[680px] max-h-[min(520px,55vh)] aspect-square flex justify-center items-center mx-auto animate-hero-3d"
+              className="relative w-[min(500px,50vh,100%)] h-[min(500px,50vh,100%)] aspect-square flex justify-center items-center mx-auto animate-hero-3d shrink-0"
             >
               {!isLoaderActive && <Mri3DViewer height="100%" />}
             </div>
           </div>
-        </div>
-
-        {/* Scroll prompt */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/30 animate-hero-scroll pointer-events-none"
-        >
-          <span className="font-mono text-[0.5rem] tracking-[0.2em] uppercase">
-            {t('hero.scroll')}
-          </span>
-          <ChevronDown size={14} className="animate-bounce" />
         </div>
 
         {/* Bottom stat bar */}
@@ -154,7 +135,7 @@ export const HomePage: React.FC = () => {
           className="border-t border-white/[0.08] bg-white/[0.03] animate-hero-stats"
         >
           <div className="container">
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-0 py-6">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-0 py-6">
               {[
                 { value: t('stats.personnelValue'), label: t('stats.personnel') },
                 { value: t('stats.cathLabInstallsValue'), label: t('stats.cathLabInstalls') },
@@ -169,10 +150,10 @@ export const HomePage: React.FC = () => {
                       : i < 3 ? "border-r border-white/[0.07]" : ""
                   }`}
                 >
-                  <div className="font-heading text-2xl font-bold text-white tracking-tight leading-none mb-1">
+                  <div className="font-heading text-[1.75rem] font-bold text-white tracking-[-0.02em] leading-none mb-1.5">
                     {stat.value}
                   </div>
-                  <div className="font-mono text-[0.5625rem] tracking-widest uppercase text-white/40">
+                  <div className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-white/45">
                     {stat.label}
                   </div>
                 </div>
@@ -376,30 +357,36 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
-            {SUPPLIER_PARTNERS.slice(0, 3).map((partner) => (
-              <div
-                key={partner.id}
-                className="p-9 bg-white border border-gray-light rounded-xl"
-              >
-                <div className="text-[1.75rem] mb-4">{partner.countryFlag}</div>
-                <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2">
-                  {partner.name}
-                </h3>
-                <p className="font-mono text-[0.5625rem] tracking-[0.12em] uppercase text-teal-accent mb-4">
-                  {partner.tagline}
-                </p>
-                <ul className="flex flex-col gap-1.5 list-none m-0 p-0">
-                  {partner.specialties.slice(0, 3).map((s) => (
-                    <li key={s} className="flex items-center gap-2">
-                      <span className="w-1 h-1 rounded-full bg-blue-medical shrink-0" />
-                      <span className="font-body text-[0.8125rem] text-text-muted">
-                        {s}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {SUPPLIER_PARTNERS.slice(0, 3).map((partner) => {
+              const name = locale === 'ar' && partner.nameAr ? partner.nameAr : partner.name;
+              const tagline = locale === 'ar' && partner.taglineAr ? partner.taglineAr : partner.tagline;
+              const specialties = locale === 'ar' && partner.specialtiesAr ? partner.specialtiesAr : partner.specialties;
+
+              return (
+                <div
+                  key={partner.id}
+                  className="p-9 bg-white border border-gray-light rounded-xl"
+                >
+                  <div className="text-[1.75rem] mb-4">{partner.countryFlag}</div>
+                  <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2">
+                    {name}
+                  </h3>
+                  <p className="font-mono text-[0.5625rem] tracking-[0.12em] uppercase text-teal-accent mb-4">
+                    {tagline}
+                  </p>
+                  <ul className="flex flex-col gap-1.5 list-none m-0 p-0">
+                    {specialties.slice(0, 3).map((s) => (
+                      <li key={s} className="flex items-center gap-2">
+                        <span className="w-1 h-1 rounded-full bg-blue-medical shrink-0" />
+                        <span className="font-body text-[0.8125rem] text-text-muted">
+                          {s}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

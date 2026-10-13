@@ -17,7 +17,7 @@ describe('AboutPage Component', () => {
     }
   });
 
-  it('renders AboutPage with Eng. Sayed Awad and Dr. Gehan without Dr. Gehan photo', () => {
+  it('renders AboutPage with Eng. El Sayed Awad, Dr. Gehan Awad, and Eng. Ahmed Hafez without Dr. Gehan photo', () => {
     const html = renderToString(
       <LanguageProvider defaultLocale="en">
         <MemoryRouter initialEntries={['/about']}>
@@ -30,13 +30,18 @@ describe('AboutPage Component', () => {
     expect(html).toContain('established 2015');
     expect(html).not.toContain('established in 2015');
 
-    // Verify Eng. Sayed Awad portrait is present
-    expect(html).toContain('Eng. Sayed Awad');
+    // Verify Eng. El Sayed Awad portrait and title are present
+    expect(html).toContain('Eng. El Sayed Awad');
+    expect(html).toContain('Chairman &amp; CEO');
     expect(html).toContain('eng-sayed-awad.jpg');
 
-    // Verify Dr. Gehan is present with title but without dr-gehan.jpg image
-    expect(html).toContain('Dr. Gehan');
-    expect(html).toContain('Medical Director &amp; Clinical Governance');
+    // Verify Dr. Gehan Awad is present with title but without dr-gehan.jpg image
+    expect(html).toContain('Dr. Gehan Awad');
+    expect(html).toContain('Director of Fin. &amp; Admin');
     expect(html).not.toContain('dr-gehan.jpg');
+
+    // Verify Eng. Ahmed Hafez is present with General Manager title
+    expect(html).toContain('Eng. Ahmed Hafez');
+    expect(html).toContain('General Manager');
   });
 });

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { useLanguage } from '../../i18n';
 import {
   Pause,
   Play,
@@ -38,6 +39,20 @@ interface PhysicsParticle {
 }
 
 export const FloatingUniverseGallery: React.FC = () => {
+  const { locale, t } = useLanguage();
+  const isAr = locale === 'ar';
+
+  const getCategoryLabel = (id: GalleryCategory): string => {
+    switch (id) {
+      case "all": return t("home.archiveFilterAll");
+      case "radiology": return t("home.archiveFilterRadiology");
+      case "installations": return t("home.archiveFilterInstallations");
+      case "doctors": return t("home.archiveFilterDoctors");
+      case "team": return t("home.archiveFilterTeam");
+      case "nour": return t("home.archiveFilterNour");
+      default: return id;
+    }
+  };
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
   const [viewMode, setViewMode] = useState<'universe' | 'grid'>('universe');
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -242,68 +257,88 @@ export const FloatingUniverseGallery: React.FC = () => {
   };
 
   return (
-    <section className="floating-universe-section" id="floating-gallery">
+    <section
+      className="floating-universe-section relative w-full min-h-[920px] bg-warm-white text-navy overflow-hidden select-none font-body py-20 md:py-28 lg:py-32 border-t border-gray-light/60"
+      id="floating-gallery"
+      aria-label="Interactive Medical Imaging Universe"
+    >
       {/* Ambient Backdrop */}
-      <div className="floating-universe-bg-grid" />
-      <div className="floating-universe-orb-1" />
-      <div className="floating-universe-orb-2" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+      <div className="absolute top-[8%] left-[12%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.07)_0%,transparent_70%)] pointer-events-none blur-[60px]" />
+      <div className="absolute bottom-[5%] right-[8%] w-[550px] h-[550px] rounded-full bg-[radial-gradient(circle,rgba(0,229,255,0.05)_0%,transparent_70%)] pointer-events-none blur-[60px]" />
 
       {/* Header & Luxury Control Bar */}
-      <div className="floating-universe-header">
-        <div className="floating-universe-title-group">
-          <div>
-            <div className="floating-universe-label">
-              <span className="floating-universe-label-dot" />
-              05 / Interactive Archive
+      <div className="relative z-50 max-w-[1440px] mx-auto px-6 lg:px-8 mb-8 md:mb-10">
+        <div className="flex flex-col gap-6 md:gap-8">
+          <div className="max-w-3xl">
+            <div className="section-label mb-3">
+              {t('home.archiveLabel')}
             </div>
-            <h2 className="floating-universe-heading">Medical Imaging Universe</h2>
-            <p className="floating-universe-subtitle">
-              Floating spatial composition of high-precision diagnostic systems, radiology suites, and global hospital installations. Hover any machine to inspect.
+            <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-navy tracking-tight mb-4">
+              {t('home.archiveTitle')}
+            </h2>
+            <p className="font-body text-text-muted text-base md:text-lg leading-relaxed">
+              {t('home.archiveSubtitle')}
             </p>
           </div>
 
-          {/* Controls */}
-          <div className="floating-universe-control-bar">
+          {/* Controls Bar */}
+          <div className="inline-flex items-center justify-between gap-2 sm:gap-3 bg-white/95 backdrop-blur-md border border-gray-light/80 shadow-[0_4px_20px_rgba(10,22,40,0.06)] rounded-full p-1.5 max-w-full sm:max-w-fit">
             {/* Category Filter Pills */}
-            <div className="floating-universe-filters">
-              {GALLERY_CATEGORIES_FILTER.map((cat) => (
-                <button
-                  key={cat.id}
-                  className={`floating-filter-pill ${activeCategory === cat.id ? 'active' : ''}`}
-                  onClick={() => setActiveCategory(cat.id)}
-                >
-                  {cat.label}
-                </button>
-              ))}
+            <div className="flex items-center gap-1 overflow-x-auto py-0.5 px-1 scrollbar-none flex-1 sm:flex-initial">
+              {GALLERY_CATEGORIES_FILTER.map((cat) => {
+                const isActive = activeCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 cursor-pointer whitespace-nowrap ${
+                      isActive
+                        ? 'bg-blue-medical text-white shadow-[0_2px_10px_rgba(27,79,216,0.35)]'
+                        : 'text-text-muted hover:text-navy hover:bg-slate-100'
+                    }`}
+                    onClick={() => setActiveCategory(cat.id)}
+                  >
+                    {getCategoryLabel(cat.id)}
+                  </button>
+                );
+              })}
             </div>
 
-            <div className="floating-universe-actions">
+            <div className="flex items-center gap-1.5 shrink-0 pl-1 border-l border-gray-light/60 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-1">
               {/* Reset Layout */}
               <button
-                className="floating-action-btn"
-                title="Reset Universe Trajectories"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-text-muted hover:text-navy hover:bg-slate-100 transition-all cursor-pointer"
+                title={t('home.archiveReset')}
                 onClick={initParticles}
-                aria-label="Reset Universe Layout"
+                aria-label={t('home.archiveReset')}
               >
                 <RotateCcw size={15} />
               </button>
 
               {/* Pause / Play Drift */}
               <button
-                className={`floating-action-btn ${!isPlaying ? 'active' : ''}`}
-                title={isPlaying ? 'Pause Drift' : 'Resume Drift'}
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+                  !isPlaying
+                    ? 'bg-blue-medical text-white shadow-sm'
+                    : 'text-text-muted hover:text-navy hover:bg-slate-100'
+                }`}
+                title={isPlaying ? t('home.archivePause') : t('home.archiveResume')}
                 onClick={() => setIsPlaying(!isPlaying)}
-                aria-label={isPlaying ? 'Pause Drift Animation' : 'Resume Drift Animation'}
+                aria-label={isPlaying ? t('home.archivePause') : t('home.archiveResume')}
               >
                 {isPlaying ? <Pause size={15} /> : <Play size={15} />}
               </button>
 
               {/* View Mode Toggle */}
               <button
-                className={`floating-action-btn ${viewMode === 'grid' ? 'active' : ''}`}
-                title={viewMode === 'universe' ? 'Switch to Grid View' : 'Switch to Spatial Universe'}
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+                  viewMode === 'grid'
+                    ? 'bg-blue-medical text-white shadow-sm'
+                    : 'text-text-muted hover:text-navy hover:bg-slate-100'
+                }`}
+                title={viewMode === 'universe' ? t('home.archiveGrid') : t('home.archiveUniverse')}
                 onClick={() => setViewMode(viewMode === 'universe' ? 'grid' : 'universe')}
-                aria-label="Toggle View Mode"
+                aria-label={viewMode === 'universe' ? t('home.archiveGrid') : t('home.archiveUniverse')}
               >
                 {viewMode === 'universe' ? <Grid size={15} /> : <Sparkles size={15} />}
               </button>
@@ -366,10 +401,10 @@ export const FloatingUniverseGallery: React.FC = () => {
               </div>
               <div className="grid-mode-info">
                 <span className="grid-mode-tag">
-                  {item.categoryLabel}
+                  {getCategoryLabel(item.category)}
                 </span>
-                <h4 className="grid-mode-title">{item.title}</h4>
-                <p className="grid-mode-specs">{item.specs || item.location}</p>
+                <h4 className="grid-mode-title">{isAr && item.titleAr ? item.titleAr : item.title}</h4>
+                <p className="grid-mode-specs">{(isAr && item.specsAr ? item.specsAr : item.specs) || (isAr && item.locationAr ? item.locationAr : item.location)}</p>
               </div>
             </div>
           ))}
@@ -383,7 +418,7 @@ export const FloatingUniverseGallery: React.FC = () => {
             <button
               className="floating-lightbox-close"
               onClick={() => setSelectedItem(null)}
-              aria-label="Close Lightbox"
+              aria-label={t('common.close')}
             >
               <X size={20} />
             </button>
@@ -401,46 +436,46 @@ export const FloatingUniverseGallery: React.FC = () => {
             <div className="p-9 flex flex-col justify-center">
               <div className="floating-universe-label mb-3">
                 <span className="floating-universe-label-dot" />
-                {selectedItem.categoryLabel}
+                {getCategoryLabel(selectedItem.category)}
               </div>
 
               <h3 className="font-heading text-2xl md:text-[1.625rem] font-bold text-navy leading-tight mb-4">
-                {selectedItem.title}
+                {isAr && selectedItem.titleAr ? selectedItem.titleAr : selectedItem.title}
               </h3>
 
               <div className="flex flex-col gap-3 my-4 mb-6">
                 <div className="flex items-center gap-2.5 text-slate-600 text-sm">
                   <Building2 size={16} className="text-teal-accent" />
-                  <span><strong>Location / Hospital:</strong> {selectedItem.location || 'Nour Medical Fleet'}</span>
+                  <span><strong>{t('home.archiveModalLocation')}</strong> {selectedItem.location || t('home.archiveFleet')}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-slate-600 text-sm">
                   <Calendar size={16} className="text-teal-accent" />
-                  <span><strong>Deployment Year:</strong> {selectedItem.year}</span>
+                  <span><strong>{t('home.archiveModalYear')}</strong> {selectedItem.year}</span>
                 </div>
                 {selectedItem.supplier && (
                   <div className="flex items-center gap-2.5 text-slate-600 text-sm">
                     <ShieldCheck size={16} className="text-teal-accent" />
-                    <span><strong>OEM Supplier:</strong> {selectedItem.supplier}</span>
+                    <span><strong>{t('home.archiveModalSupplier')}</strong> {selectedItem.supplier}</span>
                   </div>
                 )}
                 {selectedItem.specs && (
                   <div className="flex items-center gap-2.5 text-slate-600 text-sm">
                     <Layers size={16} className="text-teal-accent" />
-                    <span><strong>Technical Specs:</strong> {selectedItem.specs}</span>
+                    <span><strong>{t('home.archiveModalSpecs')}</strong> {selectedItem.specs}</span>
                   </div>
                 )}
               </div>
 
               <button
-                className="btn btn-primary inline-flex items-center gap-2 self-start"
+                className="btn btn-blue inline-flex items-center gap-2 self-start"
                 onClick={() => {
                   setSelectedItem(null);
                   const contactEl = document.getElementById('contact');
                   if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                Inquire About System
-                <ChevronRight size={16} />
+                {t('home.archiveModalInquire')}
+                <ChevronRight size={16} className="rtl:rotate-180" />
               </button>
             </div>
           </div>

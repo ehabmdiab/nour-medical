@@ -19,7 +19,7 @@ function useReveal(threshold = 0.1) {
 }
 
 export const ProductsPage: React.FC = () => {
-  const { locale } = useLanguage();
+  const { locale, t } = useLanguage();
   const isAr = locale === 'ar';
 
   const [activeFilter, setActiveFilter] = useState<string>('all');
@@ -80,17 +80,15 @@ export const ProductsPage: React.FC = () => {
 
         <div className="container relative z-[1]">
           <div className="section-label">
-            {isAr ? 'أنظمة التصوير الطبي المتقدمة' : 'Advanced Diagnostic Modalities'}
+            {t('products.heroLabel')}
           </div>
 
           <h1 className="font-heading text-[clamp(2.75rem,5.5vw,5rem)] font-bold text-navy tracking-[-0.035em] leading-[1.02] max-w-[900px] mb-5">
-            {isAr ? 'حلول وتجهيزات التصوير التشخيصي الطبي' : 'Medical Technology Solutions'}
+            {t('products.heroTitle')}
           </h1>
 
           <p className="font-body text-[clamp(1.125rem,1.8vw,1.375rem)] leading-[1.65] text-text-muted max-w-[720px] mb-10">
-            {isAr
-              ? 'توريد وتركيب وصيانة أحدث أجهزة الرنين المغناطيسي، الأشعة المقطعية، الأشعة السينية، القسطرة التداخلية، وأجهزة العمليات مدعومة بضمان شامل وهندسة طبية على مدار الساعة.'
-              : 'Supply, turnkey installation, and full lifecycle support for MRI, CT, X-Ray & DR, Cath-Lab, and Surgical C-Arm systems across Egypt.'}
+            {t('products.heroDesc')}
           </p>
 
           {/* Search & Modality Filters */}
@@ -103,7 +101,7 @@ export const ProductsPage: React.FC = () => {
               />
               <input
                 type="text"
-                placeholder={isAr ? 'ابحث عن جهاز أو مواصفات فنية...' : 'Search modalities, systems, or specifications...'}
+                placeholder={t('products.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={`w-full ${isAr ? 'pr-12 pl-4.5' : 'pl-12 pr-4.5'} py-3.5 rounded-xl border border-gray-light bg-white text-navy font-body text-[0.9375rem] outline-none shadow-[0_2px_8px_rgba(10,22,40,0.04)] focus:border-blue-medical focus:ring-2 focus:ring-blue-medical/20 transition-all`}
@@ -114,7 +112,7 @@ export const ProductsPage: React.FC = () => {
             <div
               className="flex gap-2.5 flex-wrap items-center"
               role="tablist"
-              aria-label="Modality Filter"
+              aria-label={t('products.modalityFilterAria')}
             >
               {PRODUCT_CATEGORIES.map((cat) => {
                 const isActive = activeFilter === cat.id;
@@ -192,7 +190,7 @@ export const ProductsPage: React.FC = () => {
                     <div className="p-3.5 px-4 rounded-xl bg-warm-white border border-gray-light mb-5">
                       <div className="font-mono text-[0.6875rem] font-bold text-navy uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                         <FileText size={13} className="text-orange-accent" />
-                        {isAr ? 'نبذة عن الجهاز:' : 'System Overview:'}
+                        {t('products.systemOverviewLabel')}
                       </div>
                       <p className="font-body text-sm leading-relaxed text-text-muted m-0 line-clamp-3">
                         {productOverview}
@@ -222,7 +220,7 @@ export const ProductsPage: React.FC = () => {
                       onClick={() => setSelectedProduct(product)}
                       className="mt-auto w-full py-3 px-5 rounded-xl border border-navy bg-transparent text-navy font-body text-sm font-bold inline-flex items-center justify-center gap-2 cursor-pointer transition-colors hover:bg-navy hover:text-white"
                     >
-                      {isAr ? 'عرض النبذة والمواصفات الكاملة' : 'View Full Specifications & Overview'}
+                      {t('products.viewFullSpecs')}
                       <ArrowRight size={15} />
                     </button>
                   </div>
@@ -258,7 +256,7 @@ export const ProductsPage: React.FC = () => {
 
               <button
                 type="button"
-                aria-label={isAr ? 'إغلاق' : 'Close'}
+                aria-label={t('products.close')}
                 onClick={handleCloseModal}
                 className="w-9 h-9 rounded-full bg-warm-white border border-gray-light flex items-center justify-center cursor-pointer text-navy hover:bg-gray-light transition-colors"
               >
@@ -293,7 +291,7 @@ export const ProductsPage: React.FC = () => {
               } mb-8`}>
                 <h3 className="font-heading text-[1.1875rem] font-bold text-navy mb-2.5 flex items-center gap-2">
                   <FileText size={18} className="text-orange-accent" />
-                  {isAr ? 'نبذة عن الجهاز والتكنولوجيا:' : 'System Overview & Clinical Purpose:'}
+                  {t('products.modalOverviewHeading')}
                 </h3>
                 <p className="font-body text-base leading-relaxed text-text-body m-0">
                   {isAr ? selectedProduct.overviewAr : selectedProduct.overview}
@@ -304,7 +302,7 @@ export const ProductsPage: React.FC = () => {
               <div className="mb-8">
                 <h3 className="font-heading text-xl font-bold text-navy mb-4 flex items-center gap-2">
                   <Activity size={18} className="text-blue-medical" />
-                  {isAr ? 'المواصفات الفنية الهندسية:' : 'Engineering Technical Specifications:'}
+                  {t('products.modalSpecsHeading')}
                 </h3>
                 <div className="border border-gray-light rounded-xl overflow-hidden">
                   {selectedProduct.specs.map((spec, idx) => (
@@ -329,7 +327,7 @@ export const ProductsPage: React.FC = () => {
               <div className="mb-8">
                 <h3 className="font-heading text-xl font-bold text-navy mb-4 flex items-center gap-2">
                   <ShieldCheck size={18} className="text-teal-accent" />
-                  {isAr ? 'التطبيقات السريرية والتشخيصية:' : 'Clinical Applications & Imaging Scope:'}
+                  {t('products.modalClinicalHeading')}
                 </h3>
                 <div className="flex flex-col gap-2">
                   {(isAr && selectedProduct.clinicalApplicationsAr
@@ -351,12 +349,10 @@ export const ProductsPage: React.FC = () => {
               <div className="flex items-center justify-between gap-4 pt-5 border-t border-gray-light flex-wrap">
                 <div>
                   <span className="font-mono text-[0.6875rem] text-text-muted uppercase block">
-                    {isAr ? 'الاعتماد والدعم الهندسي' : 'Turnkey Installation & Engineering'}
+                    {t('products.warrantyBadge')}
                   </span>
                   <strong className="text-sm text-navy">
-                    {isAr
-                      ? 'مشمول بضمان نور الطبية ودعم الصيانة الميدانية ٢٤/٧'
-                      : 'Covered by Nour Medical Warranty & 24/7 Field Support'}
+                    {t('products.warrantyText')}
                   </strong>
                 </div>
 
@@ -365,7 +361,7 @@ export const ProductsPage: React.FC = () => {
                   className="btn btn-primary py-3 px-6 rounded-lg bg-orange-accent border-orange-accent text-white font-bold"
                   onClick={handleCloseModal}
                 >
-                  {isAr ? 'طلب استشارة فنية وتوريد' : 'Request Technical Consultation'}
+                  {t('products.requestConsultation')}
                   <ArrowRight size={15} />
                 </Link>
               </div>
@@ -378,18 +374,16 @@ export const ProductsPage: React.FC = () => {
       <section className="py-20 bg-warm-white border-t border-gray-light text-center">
         <div className="container max-w-[640px]">
           <h2 className="font-heading text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold text-navy tracking-[-0.03em] leading-[1.08] mb-5">
-            {isAr ? 'هل تحتاج إلى استشارة فنية وتخطيط لغرفة الأشعة؟' : 'Looking for Custom Configurations?'}
+            {t('products.ctaHeading')}
           </h2>
           <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-9">
-            {isAr
-              ? 'يقدم مهندسونا الميدانيون تخطيطاً هندسياً متكاملاً لغرف الأشعة، حسابات الحماية والعزل بالرصاص، وتركيباً متكاملاً في مختلف مستشفيات ومراكز مصر.'
-              : 'Our field engineers provide tailored equipment quotations, room layout planning, lead shielding calculation, and turnkey installation across Egypt.'}
+            {t('products.ctaDesc')}
           </p>
           <Link
             to="/contact"
             className="btn btn-primary gap-2 bg-orange-accent border-orange-accent"
           >
-            {isAr ? 'تواصل مع الفريق الهندسي' : 'Request Quotation'}
+            {t('products.requestQuotation')}
             <ArrowRight size={15} />
           </Link>
         </div>

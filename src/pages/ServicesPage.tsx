@@ -6,10 +6,10 @@ import {
   Package,
   ShieldCheck,
   CheckCircle2,
-  Clock,
   PhoneCall,
 } from 'lucide-react';
-import { SERVICES, COMPANY_CONTACT, COMPANY_INFO } from '../data/companyData';
+import { COMPANY_CONTACT } from '../data/companyData';
+import { useLanguage } from '../i18n';
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null);
@@ -31,6 +31,7 @@ function useReveal(threshold = 0.1) {
 }
 
 export const ServicesPage: React.FC = () => {
+  const { t } = useLanguage();
   const { ref: overviewRef, visible: overviewVisible } = useReveal();
   const { ref: maintenanceRef, visible: maintenanceVisible } = useReveal();
   const { ref: amcRef, visible: amcVisible } = useReveal();
@@ -57,298 +58,256 @@ export const ServicesPage: React.FC = () => {
     }
   };
 
+  const servicesData = [
+    {
+      number: '01',
+      id: 'maintenance-support',
+      title: t('services.service1Title'),
+      tag: t('services.service1Tag'),
+      headline: t('services.service1Headline'),
+      description: t('services.service1Desc'),
+      highlights: [
+        { title: t('services.service1H1Title'), desc: t('services.service1H1Desc') },
+        { title: t('services.service1H2Title'), desc: t('services.service1H2Desc') },
+        { title: t('services.service1H3Title'), desc: t('services.service1H3Desc') },
+      ],
+      badge: t('services.service1Badge'),
+      link: '/services#maintenance',
+      linkText: t('services.service1LinkText'),
+    },
+    {
+      number: '02',
+      id: 'device-parts-supplier',
+      title: t('services.service2Title'),
+      tag: t('services.service2Tag'),
+      headline: t('services.service2Headline'),
+      description: t('services.service2Desc'),
+      highlights: [
+        { title: t('services.service2H1Title'), desc: t('services.service2H1Desc') },
+        { title: t('services.service2H2Title'), desc: t('services.service2H2Desc') },
+        { title: t('services.service2H3Title'), desc: t('services.service2H3Desc') },
+      ],
+      badge: t('services.service2Badge'),
+      link: '/products',
+      linkText: t('services.service2LinkText'),
+    },
+  ];
+
   const AMC_SYSTEMS = [
     {
-      title: 'Cath-Lab / Interventional',
-      badge: 'High-Demand Systems',
-      description:
-        'Priority emergency response, comprehensive component coverage, high-heat tube replacement programmes, and high-voltage calibration for cardiac angiography suites.',
+      title: t('maintenance.amcCathLabTitle'),
+      badge: t('maintenance.amcModalityLabel'),
+      description: t('maintenance.amcCathLabDesc'),
     },
     {
-      title: 'C-Arm Surgical Systems',
-      badge: 'Operating Theatres',
-      description:
-        'Preventive optics and laser alignment, image intensifier service, mechanical balance checks, and radiation dose calibration across major OEM brands.',
+      title: t('maintenance.amcCArmTitle'),
+      badge: t('maintenance.amcModalityLabel'),
+      description: t('maintenance.amcCArmDesc'),
     },
     {
-      title: 'Digital X-Ray Systems',
-      badge: 'Radiology Suites',
-      description:
-        'Flat panel detector pixel defect calibration, high-frequency generator maintenance, and software updates for legacy and digital DR rooms.',
+      title: t('maintenance.amcDrTitle'),
+      badge: t('maintenance.amcModalityLabel'),
+      description: t('maintenance.amcDrDesc'),
     },
     {
-      title: 'CT Scanners',
-      badge: 'Diagnostic Imaging',
-      description:
-        'Scheduled preventive maintenance, gantry slip-ring inspection, cooling subsystem audits, and tube performance monitoring regardless of original vendor.',
+      title: t('maintenance.amcCtTitle'),
+      badge: t('maintenance.amcModalityLabel'),
+      description: t('maintenance.amcCtDesc'),
     },
     {
-      title: 'MRI Modalities',
-      badge: 'Advanced Imaging',
-      description:
-        'Cryogenic pressure and level monitoring, RF coil verification, gradient amplifier calibration, and preventive maintenance for diagnostic MRI suites.',
+      title: t('maintenance.amcMriTitle'),
+      badge: t('maintenance.amcModalityLabel'),
+      description: t('maintenance.amcMriDesc'),
     },
   ];
 
   const INSTALLATION_MODALITIES = [
     {
-      label: 'Cath-Lab Systems',
-      description:
-        'Turnkey site preparation, floor weight distribution calculation, and comprehensive AEA radiation safety commissioning.',
+      label: t('maintenance.installCathLab'),
+      description: t('maintenance.installCathLabDesc'),
     },
     {
-      label: 'Digital X-Ray Suites',
-      description:
-        'Fixed room and mobile DR flat panel detector integration, generator synchronization, and PACS workstation setup.',
+      label: t('maintenance.installDr'),
+      description: t('maintenance.installDrDesc'),
     },
     {
-      label: 'CT Scanners',
-      description:
-        'Heavy gantry rigging, precision laser leveling, lead radiation shielding verification, and cooling loop commissioning.',
-    },
-    {
-      label: 'MRI Modalities',
-      description:
-        'Shielded RF enclosure setup, quench pipe routing, cold-line connection, and magnetic field shimming startup.',
+      label: t('maintenance.installCt'),
+      description: t('maintenance.installCtDesc'),
     },
   ];
 
   return (
     <>
-      {/* Page Header / Hero */}
-      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
+      {/* Page Header */}
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 text-navy relative overflow-hidden border-b border-gray-light z-[1]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
         <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container relative z-10">
           <div className="section-label">
-            Core Capabilities & Solutions
+            {t('services.heroBadge')}
           </div>
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.75rem] font-bold text-navy tracking-tight leading-[0.94] max-w-[920px] mb-8">
-            Healthcare Technology & Services
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.75rem] font-bold text-navy tracking-tight leading-[0.94] max-w-[880px] mb-8">
+            {t('services.heroTitle')}
           </h1>
-          <p className="font-body text-xl md:text-2xl leading-[1.7] text-text-muted max-w-[720px] mb-9">
-            Nour Medical supports hospitals and diagnostic centers across Egypt through integrated service bands — covering rapid technical maintenance, genuine OEM spare parts, annual maintenance contracts (AMC), and turnkey equipment supply.
+          <p className="font-body text-xl md:text-2xl leading-[1.7] text-text-muted max-w-[680px]">
+            {t('services.subtitle')}
           </p>
 
-          {/* Quick Jump Anchor Pills */}
-          <div className="flex flex-wrap gap-2.5">
-            <button
-              onClick={() => scrollToSection('overview')}
-              className="px-4 py-2 rounded-3xl bg-white border border-gray-light text-navy font-mono text-xs font-semibold cursor-pointer hover:border-blue-medical hover:text-blue-medical transition-all duration-200"
-            >
-              Overview
-            </button>
-            <button
-              onClick={() => scrollToSection('maintenance')}
-              className="px-4 py-2 rounded-3xl bg-white border border-gray-light text-navy font-mono text-xs font-semibold cursor-pointer hover:border-blue-medical hover:text-blue-medical transition-all duration-200"
-            >
-              Technical Maintenance
-            </button>
-            <button
-              onClick={() => scrollToSection('amc-portfolio')}
-              className="px-4 py-2 rounded-3xl bg-white border border-gray-light text-navy font-mono text-xs font-semibold cursor-pointer hover:border-blue-medical hover:text-blue-medical transition-all duration-200"
-            >
-              AMC Portfolio
-            </button>
-            <button
-              onClick={() => scrollToSection('installation-records')}
-              className="px-4 py-2 rounded-3xl bg-white border border-gray-light text-navy font-mono text-xs font-semibold cursor-pointer hover:border-blue-medical hover:text-blue-medical transition-all duration-200"
-            >
-              Installations
-            </button>
-            <button
-              onClick={() => scrollToSection('parts-infrastructure')}
-              className="px-4 py-2 rounded-3xl bg-white border border-gray-light text-navy font-mono text-xs font-semibold cursor-pointer hover:border-blue-medical hover:text-blue-medical transition-all duration-200"
-            >
-              Parts Facility
-            </button>
+          {/* Jump Anchors */}
+          <div className="flex gap-3 mt-12 flex-wrap">
+            {[
+              { label: t('services.navOverview'), id: 'overview' },
+              { label: t('services.navMaintenance'), id: 'maintenance' },
+              { label: t('services.navAmc'), id: 'amc' },
+              { label: t('services.navInstallation'), id: 'installation-records' },
+              { label: t('services.navInfrastructure'), id: 'parts-infrastructure' },
+            ].map((anchor) => (
+              <button
+                key={anchor.id}
+                onClick={() => scrollToSection(anchor.id)}
+                className="font-mono text-[0.8125rem] tracking-wide text-navy bg-white px-4 py-2 rounded-full border border-gray-light cursor-pointer shadow-[0_2px_8px_rgba(10,22,40,0.04)] hover:border-blue-medical hover:text-blue-medical transition-colors"
+              >
+                &darr; {anchor.label}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Services Overview — The 2 Core Pillars */}
+      {/* Overview — Core Capabilities */}
       <section
         id="overview"
         ref={overviewRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${overviewVisible ? 'opacity-100' : 'opacity-0'}`}
+        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${
+          overviewVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
-          <div className="mb-12">
-            <div className="section-label">Core Operations</div>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight">
-              Our Service Pillars
+          <div className="mb-14">
+            <div className="section-label">{t('services.pillarsLabel')}</div>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-navy tracking-tight leading-tight">
+              {t('services.pillarsTitle')}
             </h2>
           </div>
 
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-8">
-            {SERVICES.map((service, i) => {
-              const isMaintenancePillar = service.id === 'maintenance-support';
-
-              return (
-                <div
-                  key={service.number}
-                  className={`bg-white border border-gray-light rounded-3xl p-8 md:p-12 flex flex-col shadow-[0_4px_24px_rgba(15,23,42,0.04)] hover:border-blue-medical hover:shadow-[0_16px_40px_rgba(27,79,216,0.08)] transition-all duration-300 ${
-                    overviewVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                  }`}
-                  style={{
-                    transitionDelay: `${i * 0.15}s`,
-                  }}
-                >
-                  {/* Top Tag & Number */}
-                  <div className="flex items-center justify-between mb-7">
-                    <span
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-mono text-xs font-bold tracking-wide uppercase ${
-                        i === 0
-                          ? 'bg-teal-accent/10 text-teal-accent'
-                          : 'bg-blue-medical/[0.08] text-blue-medical'
-                      }`}
-                    >
-                      {i === 0 ? <Wrench size={14} /> : <Package size={14} />}
-                      {service.tag}
-                    </span>
-
-                    <span className="font-mono text-4xl font-light text-navy/20 leading-none">
-                      {service.number}
-                    </span>
+          <div className="flex flex-col gap-16">
+            {servicesData.map((svc, i) => (
+              <div
+                key={svc.id}
+                id={svc.id}
+                className={`grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 lg:gap-16 items-start pb-16 ${
+                  i < servicesData.length - 1 ? 'border-b border-gray-light' : ''
+                } transition-all duration-500 ${
+                  overviewVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                }`}
+                style={{
+                  transitionDelay: `${i * 0.15}s`,
+                }}
+              >
+                <div>
+                  <div className="font-mono text-5xl font-light text-gray-light leading-none mb-4">
+                    {svc.number}
                   </div>
-
-                  {/* Title & Subtitle */}
-                  <h3 className="font-heading text-2xl md:text-[1.625rem] font-bold text-navy tracking-tight mb-1.5 leading-snug">
-                    {service.title}
+                  <h3 className="font-heading text-2xl font-bold text-navy tracking-tight mb-2">
+                    {svc.title}
                   </h3>
+                  <div className="font-mono text-[0.5625rem] tracking-widest uppercase text-teal-accent font-bold mb-4">
+                    {svc.tag}
+                  </div>
+                  <span className="inline-block px-3 py-1 bg-warm-neutral text-navy font-mono text-[0.625rem] rounded font-semibold">
+                    {svc.badge}
+                  </span>
+                </div>
 
-                  <p className="font-mono text-[0.8125rem] text-blue-medical font-semibold mb-4">
-                    {service.headline}
+                <div>
+                  <h4 className="font-heading text-xl md:text-2xl font-semibold text-navy tracking-tight mb-4">
+                    {svc.headline}
+                  </h4>
+                  <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-8 max-w-[640px]">
+                    {svc.description}
                   </p>
 
-                  <p className="font-body text-[1.0625rem] leading-[1.65] text-text-muted mb-7">
-                    {service.description}
-                  </p>
-
-                  <div className="h-px bg-gray-light mb-7" />
-
-                  {/* Highlights Checklist */}
-                  <div className="flex flex-col gap-4 mb-8 flex-1">
-                    {service.highlights.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <CheckCircle2
-                          size={18}
-                          className="text-teal-accent shrink-0 mt-0.5"
-                        />
-                        <div>
-                          <h4 className="font-heading text-[1.125rem] font-bold text-navy mb-0.5">
-                            {item.title}
-                          </h4>
-                          <p className="font-body text-[0.8125rem] leading-normal text-text-muted m-0">
-                            {item.desc}
-                          </p>
-                        </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    {svc.highlights.map((h) => (
+                      <div
+                        key={h.title}
+                        className="p-5 bg-warm-white rounded-xl border border-warm-neutral"
+                      >
+                        <h5 className="font-heading text-base font-bold text-navy mb-2">
+                          {h.title}
+                        </h5>
+                        <p className="font-body text-[0.875rem] leading-relaxed text-text-muted m-0">
+                          {h.desc}
+                        </p>
                       </div>
                     ))}
                   </div>
 
-                  {/* Footer Link / CTA */}
-                  {isMaintenancePillar ? (
-                    <button
-                      onClick={() => scrollToSection('maintenance')}
-                      className="inline-flex items-center justify-between px-5 py-3.5 rounded-xl bg-warm-neutral border border-gray-light text-navy font-mono text-[0.8125rem] font-bold cursor-pointer transition-all duration-200 mt-auto hover:bg-navy hover:text-white"
-                    >
-                      <span>Explore Maintenance Band</span>
-                      <ArrowRight size={16} />
-                    </button>
-                  ) : (
-                    <Link
-                      to={service.link}
-                      className="inline-flex items-center justify-between px-5 py-3.5 rounded-xl bg-warm-neutral border border-gray-light text-navy font-mono text-[0.8125rem] font-bold no-underline transition-all duration-200 mt-auto hover:bg-navy hover:text-white"
-                    >
-                      <span>{service.linkText}</span>
-                      <ArrowRight size={16} />
-                    </Link>
-                  )}
+                  <Link
+                    to={svc.link}
+                    className="btn btn-outline gap-2 text-sm"
+                  >
+                    {svc.linkText}
+                    <ArrowRight size={14} />
+                  </Link>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ============================================================
-          BAND 01: TECHNICAL MAINTENANCE & FIELD ENGINEERING
-          ============================================================ */}
+      {/* Universal Multi-Vendor Maintenance Section */}
       <section
         id="maintenance"
         ref={maintenanceRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white border-y border-gray-light transition-opacity duration-700 ease-out ${maintenanceVisible ? 'opacity-100' : 'opacity-0'}`}
+        className={`py-[var(--section-gap)] bg-warm-white border-t border-gray-light transition-opacity duration-700 ease-out ${
+          maintenanceVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
-          {/* Band Header */}
-          <div className="max-w-[780px] mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-medical/10 text-blue-medical font-mono text-xs font-bold tracking-wide mb-4">
-              <Wrench size={14} />
-              SERVICE BAND 01 · TECHNICAL MAINTENANCE &amp; FIELD SUPPORT
-            </div>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight leading-tight mb-4">
-              Universal Multi-Vendor Maintenance &amp; AMC Support
+          <div className="mb-12">
+            <div className="section-label">{t('services.navMaintenance')}</div>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight mb-4">
+              {t('services.commitHeading')}
             </h2>
-            <p className="font-body text-base md:text-[1.0625rem] leading-[1.7] text-text-muted">
-              Nour Medical provides comprehensive biomedical field service maintenance, scheduled preventive health checks, and genuine spare parts for all radiology devices we support — including third-party equipment originally supplied by other vendors across Egypt.
-            </p>
           </div>
 
-          {/* Key Commitments: Multi-Vendor + Spare Parts + 24/7 Hotline */}
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-6 mb-16">
-            {/* Commitment 1: Multi-Vendor Support */}
-            <div className="bg-white border border-gray-light rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(15,23,42,0.03)] hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(27,79,216,0.08)] transition-all duration-300">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-accent/10 text-teal-accent font-mono text-xs font-bold tracking-wide mb-4.5 w-fit">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {/* Commitment 1: Multi-Vendor Service */}
+            <div className="bg-white border border-warm-neutral rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(0,51,102,0.06)] transition-all duration-300">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-accent/[0.08] text-teal-accent font-mono text-xs font-bold tracking-wide mb-4.5 w-fit">
                 <Wrench size={14} />
-                UNIVERSAL MAINTENANCE SUPPORT
+                {t('maintenance.commit1Badge')}
               </div>
               <h3 className="font-heading text-[1.625rem] font-bold text-navy mb-3 leading-snug">
-                Service for All Equipment — Direct or Third-Party
+                {t('maintenance.commit1Title')}
               </h3>
-              <p className="font-body text-[1.0625rem] leading-[1.65] text-text-muted mb-5">
-                We maintain, calibrate, and repair medical radiology devices regardless of whether they were originally supplied by Nour Medical or purchased through third-party vendors.
+              <p className="font-body text-[1.0625rem] leading-[1.65] text-text-muted mb-4">
+                {t('maintenance.commit1Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-[0.8125rem] font-mono">
                 <CheckCircle2 size={16} className="text-teal-accent" />
-                Multi-vendor technical coverage across all governorates
+                {t('maintenance.commit1Foot')}
               </div>
             </div>
 
-            {/* Commitment 2: Full Spare Parts Coverage */}
-            <div className="bg-white border border-gray-light rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(15,23,42,0.03)] hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(27,79,216,0.08)] transition-all duration-300">
+            {/* Commitment 2: Spare Parts for All Supported Modalities */}
+            <div className="bg-white border border-warm-neutral rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(0,51,102,0.06)] transition-all duration-300">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-medical/[0.08] text-blue-medical font-mono text-xs font-bold tracking-wide mb-4.5 w-fit">
                 <Package size={14} />
-                FULL SPARE PARTS COVERAGE
+                {t('maintenance.commit2Badge')}
               </div>
               <h3 className="font-heading text-[1.625rem] font-bold text-navy mb-3 leading-snug">
-                Spare Parts for Every Supported Modality
+                {t('maintenance.commit2Title')}
               </h3>
-              <p className="font-body text-[1.0625rem] leading-[1.65] text-text-muted mb-5">
-                We stock and supply genuine OEM spare parts, X-ray tubes, high-voltage generators, and flat panel detectors for all modalities we work with, eliminating operational downtime.
+              <p className="font-body text-[1.0625rem] leading-[1.65] text-text-muted mb-4">
+                {t('maintenance.commit2Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-[0.8125rem] font-mono">
                 <ShieldCheck size={16} className="text-blue-medical" />
-                1,000 m² central parts facility in Maadi, Cairo
-              </div>
-            </div>
-
-            {/* Commitment 3: 24/7 Hotline & Emergency Dispatch */}
-            <div className="bg-white border border-gray-light rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(15,23,42,0.03)] hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(27,79,216,0.08)] transition-all duration-300">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 text-amber-600 font-mono text-xs font-bold tracking-wide mb-4.5 w-fit">
-                <Clock size={14} />
-                24/7 RAPID DISPATCH
-              </div>
-              <h3 className="font-heading text-[1.625rem] font-bold text-navy mb-3 leading-snug">
-                Under 2-Hour Response in Greater Cairo
-              </h3>
-              <p className="font-body text-[1.0625rem] leading-[1.65] text-text-muted mb-5">
-                Immediate telephone diagnostic triage within 15 minutes and rapid field engineer mobilization with replacement parts to restore clinical operations without delay.
-              </p>
-              <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-[0.8125rem] font-mono">
-                <PhoneCall size={16} className="text-amber-600" />
-                Direct senior biomedical engineer hotline
+                {t('maintenance.commit2Foot')}
               </div>
             </div>
           </div>
@@ -357,30 +316,32 @@ export const ServicesPage: React.FC = () => {
 
       {/* AMC Portfolio */}
       <section
-        id="amc-portfolio"
+        id="amc"
         ref={amcRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${amcVisible ? 'opacity-100' : 'opacity-0'}`}
+        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${
+          amcVisible ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <div className="container">
           <div className="mb-12">
-            <div className="section-label">Annual Maintenance Contracts (AMC)</div>
+            <div className="section-label">{t('services.amcSectionLabel')}</div>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight mb-4">
-              Maintenance Portfolio by Modality
+              {t('services.amcSectionTitle')}
             </h2>
-            <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted max-w-[620px]">
-              Structured annual maintenance contracts providing scheduled preventive maintenance, priority emergency response, genuine replacement parts, and image quality calibration across all equipment modalities.
+            <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted max-w-[580px]">
+              {t('services.amcSectionDesc')}
             </p>
           </div>
 
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-6">
             {AMC_SYSTEMS.map((sys, i) => (
               <div
                 key={sys.title}
-                className={`p-8 px-7 bg-warm-white rounded-2xl border border-gray-light flex flex-col hover:border-blue-medical hover:shadow-[0_10px_25px_rgba(27,79,216,0.07)] transition-all duration-300 ${
+                className={`p-8 px-7 bg-warm-white rounded-2xl border border-warm-neutral flex flex-col transition-all duration-500 hover:border-blue-medical hover:shadow-[0_10px_25px_rgba(27,79,216,0.07)] ${
                   amcVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{
-                  transitionDelay: `${i * 0.08}s`,
+                  transitionDelay: `${i * 0.1}s`,
                 }}
               >
                 <div className="font-mono text-[0.625rem] tracking-widest uppercase text-teal-accent font-bold mb-3">
@@ -407,15 +368,15 @@ export const ServicesPage: React.FC = () => {
         <div className="container">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-start">
             <div>
-              <div className="section-label">Track Record Since {COMPANY_INFO.established}</div>
+              <div className="section-label">{t('services.installTrackLabel')}</div>
               <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight leading-tight mb-5">
-                System Installation &amp; Rigging Expertise
+                {t('services.installTrackTitle')}
               </h2>
               <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-6">
-                Since {COMPANY_INFO.established}, Nour Medical has installed advanced radiology and diagnostic imaging systems across hospitals, scan centers, and university facilities throughout Egypt.
+                {t('services.installTrackP1')}
               </p>
               <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted">
-                Our engineering team manages full architectural site planning, radiation shielding lead construction, floor load structural validation, and Atomic Energy Authority (AEA) safety sign-off.
+                {t('services.installTrackP2')}
               </p>
             </div>
 
@@ -453,26 +414,26 @@ export const ServicesPage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-center">
             <div>
               <div className="section-label mb-6">
-                Central Parts Infrastructure
+                {t('services.infraSectionLabel')}
               </div>
               <h2 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-navy leading-tight tracking-tight mb-4">
-                Dedicated Parts Warehouse
+                {t('services.infraSectionTitle')}
               </h2>
               <div className="font-mono text-xs tracking-widest uppercase text-blue-medical font-bold mb-8">
-                {COMPANY_INFO.partsFacilityM2} m² Storage Facility — {COMPANY_INFO.location}
+                {t('services.infraSectionSubtitle')}
               </div>
             </div>
 
             <div>
               <h3 className="font-heading text-2xl md:text-3xl font-bold text-navy tracking-tight leading-snug mb-5">
-                Comprehensive Inventory Supporting Direct &amp; Third-Party Systems
+                {t('services.infraHeading')}
               </h3>
               <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-8">
-                Maintaining Egypt's largest specialized inventory of OEM X-ray tubes, high-voltage generators, flat panel detectors, power supplies, and ICU components in Maadi allows Nour Medical to supply genuine replacement parts rapidly, eliminating costly hospital operational downtime.
+                {t('services.infraDesc')}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/contact" className="btn btn-primary gap-2">
-                  Request Technical Support or Parts
+                  {t('services.infraRequestBtn')}
                   <ArrowRight size={15} />
                 </Link>
                 <a
@@ -480,7 +441,7 @@ export const ServicesPage: React.FC = () => {
                   className="btn btn-outline gap-2 bg-white"
                 >
                   <PhoneCall size={15} />
-                  Emergency Hotline: {COMPANY_CONTACT.mobile[0]}
+                  {t('services.infraHotline')}
                 </a>
               </div>
             </div>
@@ -497,17 +458,17 @@ export const ServicesPage: React.FC = () => {
         <div className="container">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-center">
             <div>
-              <div className="section-label">Service Philosophy</div>
+              <div className="section-label">{t('services.philosophyLabel')}</div>
               <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight leading-tight">
-                Beyond Supply &amp; Installation
+                {t('services.philosophyTitle')}
               </h2>
             </div>
             <div>
-              <blockquote className="font-heading text-xl md:text-2xl italic text-navy leading-snug border-l-[3px] border-blue-medical pl-7 mb-6">
-                "Reliable equipment is only part of the equation. Continuous technical support and genuine local spare parts are essential to maintaining uninterrupted healthcare operations."
+              <blockquote className="font-heading text-xl md:text-2xl italic text-navy leading-snug border-l-[3px] border-blue-medical pl-7 rtl:border-l-0 rtl:border-r-[3px] rtl:pl-0 rtl:pr-7 mb-6">
+                {t('services.philosophyQuote')}
               </blockquote>
               <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted">
-                Our integrated approach ensures that healthcare facilities receive swift engineering assistance, instant access to our {COMPANY_INFO.partsFacilityM2} m² Maadi spare parts facility, and structured annual maintenance programs throughout the operational lifespan of their medical technology.
+                {t('services.philosophyDesc')}
               </p>
             </div>
           </div>
@@ -519,10 +480,10 @@ export const ServicesPage: React.FC = () => {
         <div className="container flex justify-between items-center flex-wrap gap-8">
           <div>
             <div className="section-label text-white/40 mb-4">
-              24/7 Technical Response
+              {t('services.bannerLabel')}
             </div>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-white tracking-tight max-w-[560px]">
-              Need Immediate Technical Field Assistance or AMC Consultation?
+              {t('services.bannerTitle')}
             </h2>
           </div>
           <div className="flex flex-wrap gap-4">
@@ -530,7 +491,7 @@ export const ServicesPage: React.FC = () => {
               to="/contact"
               className="btn btn-primary gap-2 shrink-0"
             >
-              Contact Engineering Team
+              {t('services.bannerBtn')}
               <ArrowRight size={15} />
             </Link>
             <a
@@ -538,7 +499,7 @@ export const ServicesPage: React.FC = () => {
               className="btn btn-outline-white gap-2 shrink-0"
             >
               <PhoneCall size={15} />
-              Cairo Office: {COMPANY_CONTACT.phone[0]}
+              {t('services.bannerPhone')}
             </a>
           </div>
         </div>

@@ -29,25 +29,25 @@ export const Navbar: React.FC = () => {
       {
         label: t('nav.servicesOverview'),
         href: '/services',
-        desc: locale === 'ar' ? 'القدرات الجوهرية ودورة الحياة الكاملة' : 'Core capabilities & full-lifecycle care',
+        desc: t('nav.servicesOverviewDesc'),
       },
       {
         label: t('nav.technicalMaintenance'),
         href: '/services#maintenance',
-        desc: locale === 'ar' ? 'دعم شامل لمختلف المصنعين وصيانة الطوارئ' : 'Universal multi-vendor support & emergency repair',
+        desc: t('nav.technicalMaintenanceDesc'),
       },
       {
         label: t('nav.annualContracts'),
         href: '/services#amc-portfolio',
-        desc: locale === 'ar' ? 'أنظمة القسطرة، المقطعية، الرنين، والسي آرم' : 'Cath-Lab, CT, MRI, X-Ray & C-Arm systems',
+        desc: t('nav.annualContractsDesc'),
       },
       {
         label: t('nav.partsFacility'),
         href: '/services#parts-infrastructure',
-        desc: locale === 'ar' ? 'مستودع مخصص لقطع الغيار بمساحة ١٠٠٠ م²' : '1,000 m² dedicated spare parts facility',
+        desc: t('nav.partsFacilityDesc'),
       },
     ],
-    [locale, t]
+    [t]
   );
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export const Navbar: React.FC = () => {
             Nour Medical
           </span>
           <span className="font-mono text-[0.6rem] tracking-[0.14em] uppercase text-text-muted font-semibold whitespace-nowrap">
-            {locale === 'ar' ? 'تكنولوجيا الرعاية الصحية' : 'Healthcare Technology'}
+            {t('nav.tagline')}
           </span>
         </Link>
 
@@ -196,7 +196,7 @@ export const Navbar: React.FC = () => {
         <div
           className="fixed inset-0 top-[var(--navbar-height,92px)] bg-white z-[999] px-[var(--container-pad)] py-6 flex flex-col gap-0 overflow-y-auto"
           role="dialog"
-          aria-label="Mobile navigation menu"
+          aria-label={t('nav.mobileNavLabel')}
         >
           {/* Prominent Language Switch in Mobile Drawer */}
           <div className="flex items-center justify-between py-4 pb-5 border-b border-gray-light mb-4">

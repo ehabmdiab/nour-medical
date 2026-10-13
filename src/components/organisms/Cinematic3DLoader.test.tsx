@@ -46,11 +46,11 @@ describe('Cinematic3DLoader', () => {
     }
   });
 
-  it('renders with accessibility dialog role and clean white background', () => {
+  it('renders with accessibility dialog role and old dark background', () => {
     const html = renderToString(<Cinematic3DLoader />);
     expect(html).toContain('role="dialog"');
     expect(html).toContain('aria-label="Loading Nour Medical"');
-    expect(html).toContain('bg-white');
+    expect(html).toContain('bg-[#07111e]');
     expect(html).toContain('Healthcare Technology · Est. 2015');
   });
 });

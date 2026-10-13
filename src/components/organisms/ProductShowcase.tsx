@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { PRODUCTS_DATA, PRODUCT_CATEGORIES } from '../../data/productsData';
-import { ProductCard } from '../molecules/ProductCard';
-import { SectionHeading } from '../atoms/SectionHeading';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from "react";
+import { PRODUCTS_DATA, PRODUCT_CATEGORIES } from "../../data/productsData";
+import { ProductCard } from "../molecules/ProductCard";
+import { SectionHeading } from "../atoms/SectionHeading";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../../i18n";
 
 export const ProductShowcase: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const { locale, t } = useLanguage();
+  const isAr = locale === "ar";
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const filteredProducts = selectedCategory === 'all'
+  const filteredProducts = selectedCategory === "all"
     ? PRODUCTS_DATA
     : PRODUCTS_DATA.filter((p) => p.category === selectedCategory);
 
@@ -17,9 +20,9 @@ export const ProductShowcase: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading
-          eyebrow="MEDICAL TECHNOLOGY ECOSYSTEM"
-          title="Radiology & Healthcare Equipment"
-          subtitle="Explore our advanced diagnostic imaging suites, flat panel detectors, hospital furniture, and spare parts inventory."
+          eyebrow={t("products.ecosystemEyebrow")}
+          title={t("products.ecosystemTitle")}
+          subtitle={t("products.ecosystemSubtitle")}
         />
 
         {/* Category Filter Tabs */}
@@ -30,11 +33,11 @@ export const ProductShowcase: React.FC = () => {
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-5 py-2.5 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-300 ${
                 selectedCategory === cat.id
-                  ? 'bg-cyan-600 text-white font-bold shadow-md shadow-cyan-500/20'
-                  : 'bg-white text-slate-700 hover:text-slate-900 border border-slate-300'
+                  ? "bg-cyan-600 text-white font-bold shadow-md shadow-cyan-500/20"
+                  : "bg-white text-slate-700 hover:text-slate-900 border border-slate-300"
               }`}
             >
-              {cat.label}
+              {isAr ? cat.labelAr : cat.label}
             </button>
           ))}
         </div>

@@ -17,11 +17,11 @@ function MriScannerModel(props: { position?: [number, number, number]; scale?: [
         if (!mat?.name || mat?.map) {
           child.visible = false;
         }
-        // Style bore interior to match dark navy theme
+        // Style bore interior to clean clinical white
         if (mat && mat.name === 'Bore_Interior') {
-          mat.color = new THREE.Color('#081326');
-          mat.roughness = 0.2;
-          mat.metalness = 0.5;
+          mat.color = new THREE.Color('#ffffff');
+          mat.roughness = 0.25;
+          mat.metalness = 0.05;
         }
       }
     });
@@ -159,11 +159,11 @@ function ScannerBoreLogo({ opacity }: { opacity: number }) {
   if (opacity <= 0.01) return null;
 
   // Aspect ratio is 221 / 66 (~3.348)
-  const width = 1.05;
+  const width = 1.38;
   const height = width / (221 / 66);
 
   return (
-    <group position={[0, 2.42, -0.05]}>
+    <group position={[0, 2.42, 0.05]}>
       <Float speed={1.5} rotationIntensity={0.02} floatIntensity={0.08}>
         <mesh>
           <planeGeometry args={[width, height]} />
@@ -216,7 +216,7 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
 
   return (
     <div
-      className="w-full relative overflow-hidden rounded-full select-none [mask-image:radial-gradient(circle_at_center,black_84%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_84%,transparent_100%)]"
+      className="w-full h-full aspect-square relative overflow-hidden rounded-full select-none [mask-image:radial-gradient(circle_at_center,black_84%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_center,black_84%,transparent_100%)]"
       style={{ height }}
       role="region"
       aria-label="Interactive 3D MRI Scanner Model Viewer"
@@ -226,12 +226,19 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
         camera={{ position: [0, 4.2, 14.5], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={0.9} />
+        <ambientLight intensity={1.0} />
         <directionalLight position={[5, 8, 5]} intensity={1.8} castShadow shadow-mapSize={1024} />
-        <pointLight position={[0, 2.42, 0.5]} color="#00e5ff" intensity={4.5} distance={6} />
+        {/* Soft interior clinical illumination and gentle cyan halo */}
+        <pointLight position={[0, 2.42, 0.5]} color="#ffffff" intensity={2.2} distance={6} />
+        <pointLight position={[0, 2.42, 1.2]} color="#00e5ff" intensity={1.5} distance={4} />
 
         <Suspense fallback={null}>
           <MriScannerModel position={[0, 0, 0]} scale={[1.6, 1.6, 1.6]} />
+          {/* Clinical white interior back plate ensuring solid white depth inside bore */}
+          <mesh position={[0, 2.42, -1.52]}>
+            <circleGeometry args={[0.78, 32]} />
+            <meshStandardMaterial color="#ffffff" roughness={0.25} metalness={0.05} />
+          </mesh>
           <ScannerBoreLogo opacity={textOpacity} />
           <ContactShadows position={[0, 0, 0]} opacity={0.6} scale={12} blur={1.5} far={4} />
           <Environment preset="city" />

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import type { GalleryItem } from '../../data/galleryData';
+import { GALLERY_CATEGORIES } from '../../data/galleryData';
+import { useLanguage } from '../../i18n';
 import {
   ChevronLeft,
   ChevronRight,
@@ -15,7 +17,14 @@ interface GalleryCardProps {
 }
 
 export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
+  const { locale } = useLanguage();
+  const isAr = locale === 'ar';
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const catObj = GALLERY_CATEGORIES.find((c) => c.id === item.category);
+  const displayCategoryLabel = isAr && catObj?.labelAr ? catObj.labelAr : item.categoryLabel;
+  const displayTitle = isAr && item.titleAr ? item.titleAr : item.title;
+  const displayDesc = isAr && item.descriptionAr ? item.descriptionAr : item.description;
+  const displayLocation = isAr && item.locationAr ? item.locationAr : item.location;
 
   const images = item.images && item.images.length > 0 ? item.images : [item.image];
   const hasMultipleImages = images.length > 1;
@@ -62,7 +71,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
 
         {/* Category Badge */}
         <span className="absolute top-3.5 left-3.5 px-3 py-1 rounded-xl bg-navy/85 backdrop-blur-sm border border-white/10 text-teal-accent font-mono text-[0.625rem] font-semibold tracking-wider uppercase shadow-md z-[2]">
-          {item.categoryLabel}
+          {displayCategoryLabel}
         </span>
 
         {/* Photo Count Pill Badge (when topic has multiple photos) */}
@@ -135,7 +144,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
       {/* Card Content Details */}
       <div className="p-6 pb-5 flex-1 flex flex-col">
         <h3 className="font-heading text-[1.4rem] font-bold text-navy mb-2 leading-tight">
-          {item.title}
+          {displayTitle}
         </h3>
 
         {/* Current Image Caption Sub-label if specific */}
@@ -147,14 +156,14 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
         )}
 
         <p className="font-body text-base leading-relaxed text-text-muted mb-5 flex-1 line-clamp-3">
-          {item.description}
+          {displayDesc}
         </p>
 
         {/* Meta Bar */}
         <div className="flex items-center justify-between pt-3.5 border-t border-warm-neutral font-mono text-xs text-text-muted">
           <span className="flex items-center gap-1.5 truncate max-w-[65%]">
             <MapPin size={14} className="text-teal-accent shrink-0" />
-            <span className="truncate">{item.location}</span>
+            <span className="truncate">{displayLocation}</span>
           </span>
           <span className="flex items-center gap-1.5 shrink-0">
             <Calendar size={14} />

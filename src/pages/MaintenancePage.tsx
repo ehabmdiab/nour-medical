@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Wrench, Package, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null);
@@ -22,6 +23,7 @@ function useReveal(threshold = 0.1) {
 }
 
 export const MaintenancePage: React.FC = () => {
+  const { t } = useLanguage();
   const { ref: commitmentRef, visible: commitmentVisible } = useReveal();
   const { ref: portfolioRef, visible: portfolioVisible } = useReveal();
   const { ref: installRef, visible: installVisible } = useReveal();
@@ -29,95 +31,86 @@ export const MaintenancePage: React.FC = () => {
 
   const AMC_SYSTEMS = [
     {
-      title: 'Cath-Lab / Interventional',
-      description:
-        'Priority response, comprehensive component coverage, and tube replacement programmes for all major systems.',
+      title: t('maintenance.amcCathLabTitle'),
+      description: t('maintenance.amcCathLabDesc'),
     },
     {
-      title: 'C-Arm Surgical Systems',
-      description:
-        'Preventive calibration, image intensifier service, and mechanical safety checks across multiple OEM brands.',
+      title: t('maintenance.amcCArmTitle'),
+      description: t('maintenance.amcCArmDesc'),
     },
     {
-      title: 'Digital X-Ray Systems',
-      description:
-        'Flat panel detector calibration, generator maintenance, and software updates for legacy & digital DR units.',
+      title: t('maintenance.amcDrTitle'),
+      description: t('maintenance.amcDrDesc'),
     },
     {
-      title: 'CT Scanners',
-      description:
-        'Regular preventive maintenance, tube monitoring, and cooling system inspection regardless of initial supplier.',
+      title: t('maintenance.amcCtTitle'),
+      description: t('maintenance.amcCtDesc'),
     },
     {
-      title: 'MRI Systems',
-      description:
-        'Cryogenic monitoring, coil inspection, gradient calibration, and preventative service for diagnostic MRI suites.',
+      title: t('maintenance.amcMriTitle'),
+      description: t('maintenance.amcMriDesc'),
     },
   ];
 
   const INSTALLATION_MODALITIES = [
     {
-      label: 'Cath-Lab Systems',
-      description: 'Turnkey site preparation, installation, and commissioning.',
+      label: t('maintenance.installCathLab'),
+      description: t('maintenance.installCathLabDesc'),
     },
     {
-      label: 'Digital X-Ray Suites',
-      description: 'Fixed room and mobile DR detector integration.',
+      label: t('maintenance.installDr'),
+      description: t('maintenance.installDrDesc'),
     },
     {
-      label: 'CT Scanners',
-      description: 'Full installation and room shielding compliance support.',
-    },
-    {
-      label: 'MRI Modalities',
-      description: 'Shielded enclosure setup, cold line connection, and system startup.',
+      label: t('maintenance.installCt'),
+      description: t('maintenance.installCtDesc'),
     },
   ];
 
   return (
     <>
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 text-navy relative overflow-hidden border-b border-gray-light z-[1]">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
         <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container relative z-10">
           <div className="section-label">
-            Engineering & Maintenance Division
+            {t('maintenance.heroBadge')}
           </div>
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.75rem] font-bold text-navy tracking-tight leading-[0.94] max-w-[900px] mb-8">
-            Medical Equipment Maintenance & Technical Services
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.75rem] font-bold text-navy tracking-tight leading-[0.94] max-w-[920px] mb-8">
+            {t('maintenance.heroTitle')}
           </h1>
-          <p className="font-body text-xl md:text-2xl leading-[1.7] text-text-muted max-w-[680px]">
-            From preventive calibration to emergency board repair and tube replacements — our certified engineering team keeps critical hospital equipment operational across Egypt.
+          <p className="font-body text-xl md:text-2xl leading-[1.7] text-text-muted max-w-[650px]">
+            {t('maintenance.heroSubtitle')}
           </p>
         </div>
       </section>
 
-      {/* Universal Service & Parts Commitments Banner */}
+      {/* Core Maintenance Commitments */}
       <section
         ref={commitmentRef as React.RefObject<HTMLElement>}
-        className={`py-16 bg-warm-white border-b border-warm-neutral transition-opacity duration-700 ease-out ${
+        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-out ${
           commitmentVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-6">
-            {/* Commitment 1: Multi-Vendor Maintenance */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {/* Commitment 1: Multi-Vendor Service */}
             <div className="bg-white border border-warm-neutral rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(0,51,102,0.06)] transition-all duration-300">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-accent/10 text-teal-accent font-mono text-xs font-bold tracking-wide mb-4.5 w-fit">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-accent/[0.08] text-teal-accent font-mono text-xs font-bold tracking-wide mb-4.5 w-fit">
                 <Wrench size={14} />
-                UNIVERSAL MAINTENANCE SUPPORT
+                {t('maintenance.commit1Badge')}
               </div>
               <h3 className="font-heading text-[1.625rem] font-bold text-navy mb-3 leading-snug">
-                Service for All Equipment — Direct or Third-Party
+                {t('maintenance.commit1Title')}
               </h3>
               <p className="font-body text-[1.0625rem] leading-[1.65] text-text-muted mb-4">
-                We maintain and repair medical radiology devices regardless of whether they were originally supplied by Nour Medical or purchased through third-party vendors.
+                {t('maintenance.commit1Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-[0.8125rem] font-mono">
                 <CheckCircle2 size={16} className="text-teal-accent" />
-                Multi-vendor technical coverage across Egypt
+                {t('maintenance.commit1Foot')}
               </div>
             </div>
 
@@ -125,17 +118,17 @@ export const MaintenancePage: React.FC = () => {
             <div className="bg-white border border-warm-neutral rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(0,51,102,0.06)] transition-all duration-300">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-medical/[0.08] text-blue-medical font-mono text-xs font-bold tracking-wide mb-4.5 w-fit">
                 <Package size={14} />
-                FULL SPARE PARTS COVERAGE
+                {t('maintenance.commit2Badge')}
               </div>
               <h3 className="font-heading text-[1.625rem] font-bold text-navy mb-3 leading-snug">
-                Spare Parts for Every Supported Device Category
+                {t('maintenance.commit2Title')}
               </h3>
               <p className="font-body text-[1.0625rem] leading-[1.65] text-text-muted mb-4">
-                We stock and supply genuine OEM spare parts, X-ray tubes, high-voltage generators, and flat panel detectors for all modalities we work with.
+                {t('maintenance.commit2Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-[0.8125rem] font-mono">
                 <ShieldCheck size={16} className="text-blue-medical" />
-                1,000 m² central parts facility in Maadi, Cairo
+                {t('maintenance.commit2Foot')}
               </div>
             </div>
           </div>
@@ -151,12 +144,12 @@ export const MaintenancePage: React.FC = () => {
       >
         <div className="container">
           <div className="mb-12">
-            <div className="section-label">AMC Portfolio</div>
+            <div className="section-label">{t('maintenance.amcLabel')}</div>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight mb-4">
-              Annual Maintenance Contracts
+              {t('maintenance.amcTitle')}
             </h2>
             <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted max-w-[580px]">
-              Structured annual maintenance contracts providing scheduled service, priority response, and genuine spare parts across all equipment modalities and third-party systems.
+              {t('maintenance.amcDesc')}
             </p>
           </div>
 
@@ -172,7 +165,7 @@ export const MaintenancePage: React.FC = () => {
                 }}
               >
                 <div className="font-mono text-[0.625rem] tracking-widest uppercase text-teal-accent font-bold mb-3">
-                  AMC Modality
+                  {t('maintenance.amcModalityLabel')}
                 </div>
                 <h3 className="font-heading text-xl font-bold text-navy mb-2.5">
                   {sys.title}
@@ -196,12 +189,12 @@ export const MaintenancePage: React.FC = () => {
         <div className="container">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-start">
             <div>
-              <div className="section-label">Track Record</div>
+              <div className="section-label">{t('maintenance.trackRecordLabel')}</div>
               <h2 className="font-heading text-4xl md:text-5xl font-bold text-navy tracking-tight leading-tight mb-5">
-                System Installation Expertise
+                {t('maintenance.trackRecordTitle')}
               </h2>
               <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted">
-                Since 2015, Nour Medical has installed advanced radiology and diagnostic imaging systems across hospitals, scan centers, and medical facilities throughout Egypt.
+                {t('maintenance.trackRecordDesc')}
               </p>
             </div>
 
@@ -240,25 +233,25 @@ export const MaintenancePage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-center">
             <div>
               <div className="section-label mb-6">
-                Parts Infrastructure
+                {t('maintenance.partsLabel')}
               </div>
               <h2 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-navy leading-tight tracking-tight mb-4">
-                Dedicated Parts Warehouse
+                {t('maintenance.partsTitle')}
               </h2>
               <div className="font-mono text-[0.625rem] tracking-widest uppercase text-teal-accent mb-8">
-                Spare Parts Storage Facility — Maadi, Cairo
+                {t('maintenance.partsSubtitle')}
               </div>
             </div>
 
             <div>
               <h3 className="font-heading text-2xl md:text-3xl font-bold text-navy tracking-tight leading-snug mb-5">
-                Full Spare Parts Inventory Supporting All Modalities &amp; Third-Party Equipment
+                {t('maintenance.partsHeading')}
               </h3>
               <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-8">
-                Maintaining a 1,000 m² dedicated spare parts facility in Maadi, Cairo allows Nour Medical to supply genuine replacement parts for all imaging modalities we work with, eliminating operational delays for both our clients and third-party systems.
+                {t('maintenance.partsDesc')}
               </p>
               <Link to="/contact" className="btn btn-primary gap-2">
-                Request Technical Support or Parts
+                {t('maintenance.partsBtn')}
                 <ArrowRight size={15} />
               </Link>
             </div>

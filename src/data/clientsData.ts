@@ -1,17 +1,26 @@
 export interface InstalledDevice {
   name: string;
+  nameAr?: string;
   category: 'Cath-Lab' | 'CT Scanner' | 'MRI' | 'C-Arm' | 'Digital X-Ray' | 'DR X-Ray' | 'CSSD & Sterilization';
+  categoryAr?: string;
   serviceType: 'Turnkey Supply & Installation' | 'Preventive Maintenance (AMC)' | 'Emergency Maintenance & Spare Parts' | 'Multi-Vendor Support' | 'Digital DR Retrofit';
+  serviceTypeAr?: string;
   status: 'Active Support' | 'Full Service Contract' | 'Turnkey Installed';
+  statusAr?: string;
   description: string;
+  descriptionAr?: string;
 }
 
 export interface ClientFacility {
   id: string;
   name: string;
+  nameAr?: string;
   location: string;
+  locationAr?: string;
   region: 'Greater Cairo' | 'Delta' | 'Upper Egypt' | 'Red Sea & Coast' | 'Nationwide';
+  regionAr?: string;
   facilityType: 'Hospital' | 'Scan Center' | 'University Hospital' | 'Specialized Heart Center' | 'Government & Military';
+  facilityTypeAr?: string;
   featured: boolean;
   images: string[];
   primaryCategories: ('Cath-Lab' | 'CT' | 'MRI' | 'C-Arm' | 'DR X-Ray' | 'CSSD & Sterilization')[];
@@ -23,6 +32,9 @@ const BASE = import.meta.env.BASE_URL || '/';
 export const DETAILED_CLIENTS: ClientFacility[] = [
   {
     id: 'capital-care',
+    nameAr: 'مستشفى كابيتال كير',
+    locationAr: '٦ أكتوبر، الجيزة',
+    facilityTypeAr: 'مستشفى',
     name: 'Capital Care Hospital',
     location: '6th of October, Giza',
     region: 'Greater Cairo',
@@ -45,6 +57,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'elite-heart',
+    nameAr: 'مركز إيليت للقلب (د. علاء عزت)',
+    locationAr: 'المعادي، القاهرة',
+    facilityTypeAr: 'مركز قلب تخصصي',
     name: 'Elite Heart Center (Dr. Alaa Ezat)',
     location: 'Maadi, Cairo',
     region: 'Greater Cairo',
@@ -68,6 +83,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'al-marwa',
+    nameAr: 'مستشفى المروة / د. منير عثمان',
+    locationAr: 'الدقي، الجيزة',
+    facilityTypeAr: 'مستشفى',
     name: 'Al-Marwa Hospital / Dr. Monir Othman',
     location: 'Dokki, Giza',
     region: 'Greater Cairo',
@@ -99,6 +117,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'al-tayseer',
+    nameAr: 'مستشفيات التيسير',
+    locationAr: 'الزقازيق، الشرقية',
+    facilityTypeAr: 'مستشفى',
     name: 'Al-Tayseer Hospitals',
     location: 'Zagazig, Sharqia',
     region: 'Delta',
@@ -123,6 +144,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'golden-heart',
+    nameAr: 'مستشفى جولدن هارت التخصصي',
+    locationAr: 'المعادي، القاهرة',
+    facilityTypeAr: 'مركز قلب تخصصي',
     name: 'Golden Heart Specialized Hospital',
     location: 'Maadi, Cairo',
     region: 'Greater Cairo',
@@ -147,6 +171,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'al-rayan',
+    nameAr: 'مركز الريان سكان للأشعة',
+    locationAr: 'المنيا',
+    facilityTypeAr: 'مركز أشعة وتشخيص',
     name: 'Al-Rayyan Scan Center',
     location: 'Minya',
     region: 'Upper Egypt',
@@ -169,6 +196,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'aseel-hospital',
+    nameAr: 'مستشفى أصيل',
+    locationAr: 'الغردقة، البحر الأحمر',
+    facilityTypeAr: 'مستشفى',
     name: 'Aseel Hospital',
     location: 'Hurghada, Red Sea',
     region: 'Red Sea & Coast',
@@ -192,6 +222,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'al-zahra-el-nokhba',
+    nameAr: 'مستشفى الزهراء والنخبة',
+    locationAr: 'كفر الشيخ',
+    facilityTypeAr: 'مستشفى',
     name: 'Al-Zahra & El Nokhba Hospital',
     location: 'Kafr El Sheikh',
     region: 'Delta',
@@ -216,6 +249,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'banha-university',
+    nameAr: 'مستشفى بنها الجامعي',
+    locationAr: 'بنها، القليوبية',
+    facilityTypeAr: 'مستشفى جامعي',
     name: 'Banha University Hospital',
     location: 'Banha, Qalyubia',
     region: 'Delta',
@@ -237,6 +273,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'el-gouna',
+    nameAr: 'مستشفى الجونة',
+    locationAr: 'الجونة، البحر الأحمر',
+    facilityTypeAr: 'مستشفى',
     name: 'El Gouna Hospital',
     location: 'El Gouna, Red Sea',
     region: 'Red Sea & Coast',
@@ -259,6 +298,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'el-salama',
+    nameAr: 'مستشفى السلامة (د. عمر ناجي)',
+    locationAr: 'المنيا',
+    facilityTypeAr: 'مستشفى',
     name: 'El-Salama Hospital (Dr. Omar Nagy)',
     location: 'Minya',
     region: 'Upper Egypt',
@@ -280,6 +322,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'al-safwa-faqous',
+    nameAr: 'مركز الصفوة',
+    locationAr: 'فاقوس، الشرقية',
+    facilityTypeAr: 'مركز أشعة وتشخيص',
     name: 'Al-Safwa Center',
     location: 'Faqus, Sharqia',
     region: 'Delta',
@@ -302,6 +347,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'al-safwa-6-october',
+    nameAr: 'مستشفى الصفوة',
+    locationAr: '٦ أكتوبر، الجيزة',
+    facilityTypeAr: 'مستشفى',
     name: 'Al-Safwa Hospital',
     location: '6th of October, Giza',
     region: 'Greater Cairo',
@@ -324,6 +372,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'intl-rad-mri',
+    nameAr: 'المركز الدولي للأشعة والرنين المغناطيسي (IRC)',
+    locationAr: 'حلوان، القاهرة',
+    facilityTypeAr: 'مركز أشعة وتشخيص',
     name: 'International Center for Radiology and MRI (IRC)',
     location: 'Helwan, Cairo',
     region: 'Greater Cairo',
@@ -345,6 +396,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'nile-center',
+    nameAr: 'مركز النيل للأشعة',
+    locationAr: 'القاهرة والجيزة',
+    facilityTypeAr: 'مركز أشعة وتشخيص',
     name: 'Nile Center for Radiology',
     location: 'Cairo & Giza',
     region: 'Greater Cairo',
@@ -366,6 +420,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'south-sinai',
+    nameAr: 'مستشفى جنوب سيناء',
+    locationAr: 'شرم الشيخ',
+    facilityTypeAr: 'مستشفى',
     name: 'South Sinai Hospital',
     location: 'Sharm El Sheikh',
     region: 'Red Sea & Coast',
@@ -387,6 +444,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'tiba-center',
+    nameAr: 'مركز طيبة سكان للتشخيص والأشعة',
+    locationAr: 'المنيا',
+    facilityTypeAr: 'مركز أشعة وتشخيص',
     name: 'Tiba Scan & Diagnostic Center',
     location: 'Minya',
     region: 'Upper Egypt',
@@ -408,6 +468,9 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
   },
   {
     id: 'el-assema',
+    nameAr: 'مستشفى العاصمة',
+    locationAr: 'منيا القمح، الشرقية',
+    facilityTypeAr: 'مستشفى',
     name: 'El Assema Hospital',
     location: 'Minya El Qamh, Sharqia',
     region: 'Delta',

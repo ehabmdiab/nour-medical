@@ -550,7 +550,7 @@
 
 .hero-content-grid {
   display: grid;
-  grid-template-columns: minmax(360px, 1.15fr) minmax(340px, 1fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, 490px);
   gap: clamp(32px, 4vw, 56px);
   align-items: center;
 }

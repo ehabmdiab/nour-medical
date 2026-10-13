@@ -5,7 +5,7 @@ import { COMPANY_CONTACT } from '../../data/companyData';
 import { useLanguage } from '../../i18n';
 
 export const Footer: React.FC = () => {
-  const { locale, t } = useLanguage();
+  const { t } = useLanguage();
 
   const footerLinks = useMemo(
     () => ({
@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
                   <span className="w-1.5 h-1.5 rounded-full bg-teal-accent" />
                 </span>
                 <span className="font-mono text-[0.5rem] tracking-widest uppercase text-white/45">
-                  {locale === 'ar' ? 'تكنولوجيا الرعاية الصحية' : 'Healthcare Technology'}
+                  {t('footer.tagline')}
                 </span>
               </Link>
               <p className="font-body text-[0.8125rem] leading-[1.7] text-white/55 max-w-[240px]">
@@ -85,7 +85,7 @@ export const Footer: React.FC = () => {
                 <li className="flex gap-2.5 items-start">
                   <MapPin size={13} className="text-teal-accent shrink-0 mt-0.5" />
                   <span className="font-body text-[0.8125rem] text-white/65 leading-relaxed">
-                    {locale === 'ar' ? '٣٠ طريق مصر حلوان الزراعي، المعادي، القاهرة، مصر' : COMPANY_CONTACT.address}
+                    {t('footer.address')}
                   </span>
                 </li>
                 <li className="flex gap-2.5 items-center">

@@ -8,21 +8,29 @@ function ScannerBoreLogo({ opacity }: { opacity: number }) {
   const logoTexture = useTexture(`${import.meta.env.BASE_URL}nour-medical-logo.png`);
 
   useMemo(() => {
-    logoTexture.wrapS = THREE.ClampToEdgeWrapping;
-    logoTexture.wrapT = THREE.ClampToEdgeWrapping;
-    logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
-    logoTexture.magFilter = THREE.LinearFilter;
-    logoTexture.generateMipmaps = true;
-    logoTexture.needsUpdate = true;
+    if (logoTexture) {
+      logoTexture.colorSpace = THREE.SRGBColorSpace;
+      logoTexture.wrapS = THREE.ClampToEdgeWrapping;
+      logoTexture.wrapT = THREE.ClampToEdgeWrapping;
+      logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
+      logoTexture.magFilter = THREE.LinearFilter;
+      logoTexture.generateMipmaps = true;
+      logoTexture.anisotropy = 16;
+      logoTexture.needsUpdate = true;
+    }
   }, [logoTexture]);
 
-  // Aspect ratio is 221 / 66 (~3.348)
-  const width = 2.15;
+  if (opacity <= 0.01) return null;
+
+  // Aspect ratio is 221 / 66 (~3.348).
+  // Bore inner diameter is ~1.40. Width of 1.26 fits cleanly inside the bore opening
+  // with ample breathing room, ensuring zero clipping of text or emblem.
+  const width = 1.26;
   const height = width / (221 / 66);
 
   return (
-    <group position={[0, 2.42, -0.05]}>
-      <Float speed={1.5} rotationIntensity={0.02} floatIntensity={0.08}>
+    <group position={[0, 2.45, -0.3]}>
+      <Float speed={1.2} rotationIntensity={0.015} floatIntensity={0.04}>
         <mesh>
           <planeGeometry args={[width, height]} />
           <meshBasicMaterial
@@ -55,15 +63,15 @@ function LoaderCameraController({
 
   // Responsive framing: scale distance on portrait/mobile so full gantry is framed with headroom
   const startZ = isPortrait ? 12.0 / Math.min(1, aspect * 1.35) : 12.0;
-  const zoomZ = isPortrait ? 2.85 / Math.min(1, aspect * 1.25) : 2.85;
+  const zoomZ = isPortrait ? 4.1 / Math.min(1, aspect * 1.25) : 3.8;
 
   const currentTarget = useRef(new THREE.Vector3(0, 2.25, 0));
 
   const startPos = useMemo(() => new THREE.Vector3(0, 2.45, startZ), [startZ]);
   const startTarget = useMemo(() => new THREE.Vector3(0, 2.25, 0.0), []);
 
-  const zoomPos = useMemo(() => new THREE.Vector3(0, 2.42, zoomZ), [zoomZ]);
-  const zoomTarget = useMemo(() => new THREE.Vector3(0, 2.42, 0.0), []);
+  const zoomPos = useMemo(() => new THREE.Vector3(0, 2.48, zoomZ), [zoomZ]);
+  const zoomTarget = useMemo(() => new THREE.Vector3(0, 2.48, 0.0), []);
 
   const targetPos = useRef(new THREE.Vector3().copy(startPos));
   const lookTarget = useRef(new THREE.Vector3().copy(startTarget));
@@ -108,9 +116,11 @@ function LoaderCameraController({
 function CleanScannerModel({
   mouse,
   zoomProgress,
+  logoOpacity,
 }: {
   mouse: { x: number; y: number };
   zoomProgress: number;
+  logoOpacity: number;
 }) {
   const modelUrl = `${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`;
   const { scene } = useGLTF(modelUrl);
@@ -125,10 +135,14 @@ function CleanScannerModel({
         if (!mat?.name || mat?.map) {
           child.visible = false;
         }
+        // Hide head coil shell & bracket from blocking clean view into the scanner bore
+        if (mat && (mat.name === 'Head_Coil_Shell' || child.name.includes('mesh_27') || child.name.includes('mesh_28') || child.name.includes('mesh_29'))) {
+          child.visible = false;
+        }
         if (mat && mat.name === 'Bore_Interior') {
-          mat.color = new THREE.Color('#0B1B33');
+          mat.color = new THREE.Color('#ffffff');
           mat.roughness = 0.25;
-          mat.metalness = 0.4;
+          mat.metalness = 0.05;
         }
       }
     });
@@ -159,13 +173,20 @@ function CleanScannerModel({
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
       <primitive object={scene} scale={[1.6, 1.6, 1.6]} />
+      {/* Clinical white interior back plate ensuring solid white depth inside bore as in home page */}
+      <mesh position={[0, 2.42, -1.52]}>
+        <circleGeometry args={[0.78, 32]} />
+        <meshStandardMaterial color="#ffffff" roughness={0.25} metalness={0.05} />
+      </mesh>
+      {/* Centered Bore Logo that moves synchronously with gantry parallax tilt */}
+      <ScannerBoreLogo opacity={logoOpacity} />
       {/* Floor Contact Shadow */}
       <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[2.8, 48]} />
         <meshBasicMaterial
-          color="#0A1628"
+          color="#000000"
           transparent
-          opacity={0.12}
+          opacity={0.35}
           depthWrite={false}
         />
       </mesh>
@@ -271,27 +292,29 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label="Loading Nour Medical"
-      className={`fixed inset-0 z-[99999] bg-white overflow-hidden transition-opacity duration-500 ease-out ${
+      className={`fixed inset-0 z-[99999] bg-[#07111e] overflow-hidden transition-opacity duration-500 ease-out ${
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
       }`}
     >
       {/* Ambient Radial Background matching Dark Navy Hero */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,#FFFFFF_0%,#F8FAFC_60%,#EBF1F6_100%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,#0e1c32_0%,#07111e_70%,#040911_100%)] pointer-events-none" />
 
       {/* Brand Header - floats at top with subtle fade during bore zoom */}
       <div
-        className="absolute top-[clamp(24px,5vh,44px)] inset-x-0 z-10 flex flex-col items-center gap-2 pointer-events-none transition-all duration-200"
+        className="absolute top-[clamp(24px,5vh,44px)] inset-x-0 z-10 flex flex-col items-center gap-2.5 pointer-events-none transition-all duration-300"
         style={{
           opacity: Math.max(0, 1 - (progress > 20 ? (progress - 20) / 45 : 0)),
           transform: `translateY(${progress > 20 ? -((progress - 20) * 0.3) : 0}px)`,
         }}
       >
-        <img
-          src={`${import.meta.env.BASE_URL}nour-medical-logo.png`}
-          alt="Nour Medical"
-          className="h-9 w-auto object-contain"
-        />
-        <span className="font-mono text-[0.625rem] tracking-widest uppercase text-text-muted">
+        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+          <img
+            src={`${import.meta.env.BASE_URL}nour-medical-logo.png`}
+            alt="Nour Medical"
+            className="h-7 w-auto object-contain brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,229,255,0.25)]"
+          />
+        </div>
+        <span className="font-mono text-[0.625rem] tracking-[0.18em] uppercase text-white/50">
           Healthcare Technology · Est. 2015
         </span>
       </div>
@@ -305,17 +328,26 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
           <ambientLight intensity={1.6} />
           <directionalLight position={[6, 9, 6]} intensity={1.5} color="#ffffff" />
           <directionalLight position={[-6, 4, -4]} intensity={0.9} color="#e2e8f0" />
-          {/* Subtle royal cyan interior bore lighting that highlights the logo during zoom */}
+          {/* Clinical white and gentle cyan halo lighting inside bore matching home page */}
           <pointLight
-            position={[0, 2.42, 0.4]}
-            color="#0284c7"
-            intensity={2.2 + logoOpacity * 3.0}
+            position={[0, 2.42, 0.5]}
+            color="#ffffff"
+            intensity={2.2 + logoOpacity * 1.5}
             distance={6}
+          />
+          <pointLight
+            position={[0, 2.42, 1.2]}
+            color="#00e5ff"
+            intensity={1.5 + logoOpacity * 1.5}
+            distance={4}
           />
 
           <Suspense fallback={null}>
-            <CleanScannerModel mouse={mouse} zoomProgress={zoomProgress} />
-            <ScannerBoreLogo opacity={logoOpacity} />
+            <CleanScannerModel
+              mouse={mouse}
+              zoomProgress={zoomProgress}
+              logoOpacity={logoOpacity}
+            />
           </Suspense>
 
           <LoaderCameraController
@@ -328,7 +360,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
 
       {/* Clean Minimal Progress Bar - anchored at bottom */}
       <div className="absolute bottom-[clamp(28px,6vh,52px)] inset-x-0 z-10 flex flex-col items-center gap-2.5 pointer-events-none">
-        <div className="w-[200px] h-0.5 bg-navy/[0.08] rounded-xs overflow-hidden">
+        <div className="w-[200px] h-0.5 bg-white/10 rounded-xs overflow-hidden">
           <div
             className="h-full bg-gradient-to-r from-blue-medical to-teal-accent transition-[width] duration-75 ease-out"
             style={{ width: `${progress}%` }}
@@ -336,7 +368,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[0.6875rem] text-text-muted tabular-nums tracking-wide">
+          <span className="font-mono text-[0.6875rem] text-white/45 tabular-nums tracking-wide">
             {progress}%
           </span>
           {logoOpacity > 0.4 && (
