@@ -45,7 +45,6 @@ export const FloatingUniverseGallery: React.FC = () => {
   const getCategoryLabel = (id: GalleryCategory): string => {
     switch (id) {
       case "all": return t("home.archiveFilterAll");
-      case "radiology": return t("home.archiveFilterRadiology");
       case "installations": return t("home.archiveFilterInstallations");
       case "doctors": return t("home.archiveFilterDoctors");
       case "team": return t("home.archiveFilterTeam");

@@ -76,17 +76,17 @@ export const GalleryPage: React.FC = () => {
   return (
     <PageTransition>
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
-        {/* Ambient Subtle Medical Grid & Warm Accent Glow */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-        <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
+      <section className="bg-navy text-white pt-36 pb-20 relative overflow-hidden border-b border-white/10">
+        {/* Ambient Medical Dark Grid & Blue Glow */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute -right-[10%] top-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.18)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container relative z-10">
           <SectionHeading
             eyebrow={t('gallery.heroBadge')}
             title={t('gallery.title')}
             subtitle={t('gallery.subtitle')}
-            theme="light"
+            theme="dark"
           />
         </div>
       </section>

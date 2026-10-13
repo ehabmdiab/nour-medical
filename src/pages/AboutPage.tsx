@@ -35,19 +35,19 @@ export const AboutPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
-        {/* Ambient Subtle Medical Grid & Glow */}
-        <div className="absolute inset-0 bg-[size:60px_60px] bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] pointer-events-none" />
-        <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
+      <section className="bg-navy text-white pt-36 pb-20 relative overflow-hidden border-b border-white/10">
+        {/* Ambient Medical Dark Grid & Glow */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute -right-[10%] top-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.18)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container relative z-[1]">
           <div className="section-label">
             {t('about.sectionLabel')}
           </div>
-          <h1 className="font-heading text-[clamp(3rem,6.5vw,5.75rem)] font-bold text-navy tracking-[-0.035em] leading-[0.94] max-w-[850px] mb-8">
+          <h1 className="font-heading text-[clamp(3rem,6.5vw,5.75rem)] font-bold text-white tracking-[-0.035em] leading-[0.94] max-w-[850px] mb-8">
             {t('about.title')}
           </h1>
-          <p className="font-body text-[clamp(1.25rem,2vw,1.5rem)] leading-[1.7] text-text-muted max-w-[680px]">
+          <p className="font-body text-[clamp(1.25rem,2vw,1.5rem)] leading-[1.7] text-white/80 max-w-[680px]">
             {t('about.subtitle')}
           </p>
         </div>
