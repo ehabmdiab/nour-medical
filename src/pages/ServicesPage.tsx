@@ -139,18 +139,18 @@ export const ServicesPage: React.FC = () => {
   return (
     <>
       {/* Page Header */}
-      <section className="bg-navy text-white pt-36 pb-20 relative overflow-hidden border-b border-white/10 z-[1]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-        <div className="absolute -right-[10%] top-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.18)_0%,transparent_70%)] pointer-events-none" />
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 text-navy relative overflow-hidden border-b border-gray-light z-[1]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container relative z-10">
           <div className="section-label">
             {t('services.heroBadge')}
           </div>
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.75rem] font-bold text-white tracking-tight leading-[0.94] max-w-[880px] mb-8">
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.75rem] font-bold text-navy tracking-tight leading-[0.94] max-w-[880px] mb-8">
             {t('services.heroTitle')}
           </h1>
-          <p className="font-body text-xl md:text-2xl leading-[1.7] text-white/80 max-w-[680px]">
+          <p className="font-body text-xl md:text-2xl leading-[1.7] text-text-muted max-w-[680px]">
             {t('services.subtitle')}
           </p>
 
@@ -166,7 +166,7 @@ export const ServicesPage: React.FC = () => {
               <button
                 key={anchor.id}
                 onClick={() => scrollToSection(anchor.id)}
-                className="font-mono text-[0.8125rem] tracking-wide text-white/90 bg-white/10 px-4 py-2 rounded-full border border-white/15 cursor-pointer backdrop-blur-sm shadow-[0_2px_8px_rgba(0,0,0,0.2)] hover:bg-white/20 hover:border-orange-accent hover:text-white transition-all"
+                className="font-mono text-[0.8125rem] tracking-wide text-navy bg-white px-4 py-2 rounded-full border border-gray-light cursor-pointer shadow-[0_2px_8px_rgba(10,22,40,0.04)] hover:border-blue-medical hover:text-blue-medical transition-colors"
               >
                 &darr; {anchor.label}
               </button>

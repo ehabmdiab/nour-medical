@@ -507,38 +507,28 @@ export const GALLERY_DATA: GalleryItem[] = [
     specs: "Keynote Addresses, Live Modality Showcases & Academic Panels",
   },
   {
-    id: "gal-clients-95",
-    title: "Elite Heart Center — Cath-Lab & Cardiology Facilities",
-    titleAr: "مركز إيليت للقلب — منشآت القسطرة وطب القلب",
-    locationAr: "المعادي، القاهرة",
-    descriptionAr: "تجهيز وتركيب قسطرة قلبية أحادية المستوى ودعم صيانة ميداني دوري مستمر.",
-    specsAr: "قسطرة قلبية تداخلية عالية الدقة",
+    id: "gal-event-aseel-handover",
+    title: "Aseel Hospital — Official Radiology Wing Handover",
+    titleAr: "مستشفى أصيل — حفل تسليم جناح الأشعة والعمليات",
+    locationAr: "الغردقة، البحر الأحمر",
+    descriptionAr: "حفل تسليم وتدشين رسمي لجناح الأشعة والعمليات الجراحية بحضور قيادات المستشفى وإدارة نور ميديكال.",
+    specsAr: "حفل تسليم رسمي وتدشين سريري معتمد",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
-    location: "Elite Heart Center, Maadi, Cairo",
-    description: "Interventional cardiology catheterization suite and specialized cardiac imaging deployment.",
-    image: `${BASE}images/clients/elite-heart-cathlab.jpg`,
+    location: "Aseel Hospital, Hurghada, Red Sea",
+    description: "Official department handover ceremony and clinical inauguration with hospital leadership and Nour Medical management.",
+    image: `${BASE}images/gallery/event-aseel-handover.jpg`,
     images: [
-      `${BASE}images/clients/elite-heart-cathlab.jpg`,
-      `${BASE}images/clients/elite-heart-logo-alaa-ezat.png`,
-      `${BASE}images/clients/elite-heart-logo.png`,
+      `${BASE}images/gallery/event-aseel-handover.jpg`,
     ],
     imageDetails: [
       {
-        src: `${BASE}images/clients/elite-heart-cathlab.jpg`,
-        caption: "Elite Heart Center — Cath-Lab Angiography Suite",
-      },
-      {
-        src: `${BASE}images/clients/elite-heart-logo-alaa-ezat.png`,
-        caption: "Elite Heart — Dr. Alaa Ezat Identity",
-      },
-      {
-        src: `${BASE}images/clients/elite-heart-logo.png`,
-        caption: "Elite Heart Center Logo",
+        src: `${BASE}images/gallery/event-aseel-handover.jpg`,
+        caption: "Aseel Hospital Radiology Wing Official Handover",
       },
     ],
     date: "2024-2025",
-    specs: "Single-Plane Cardiac Cath-Lab | Low Dose Protocol",
+    specs: "Hospital Commissioning & Handover Milestone",
   },
   {
     id: "gal-clients-98",
@@ -578,59 +568,39 @@ export const GALLERY_DATA: GalleryItem[] = [
     image: `${BASE}images/clients/al-marwah-building.jpeg`,
     images: [
       `${BASE}images/clients/al-marwah-building.jpeg`,
-      `${BASE}images/clients/al-marwah-cathlab.jpeg`,
-      `${BASE}images/clients/al-marwah-dr-1.jpg`,
-      `${BASE}images/clients/al-marwah-dr-2.jpg`,
     ],
     imageDetails: [
       {
         src: `${BASE}images/clients/al-marwah-building.jpeg`,
         caption: "Al-Marwa Hospital Building & Entrance",
       },
-      {
-        src: `${BASE}images/clients/al-marwah-cathlab.jpeg`,
-        caption: "Al-Marwa Hospital Cath-Lab Angiography Suite",
-      },
-      {
-        src: `${BASE}images/clients/al-marwah-dr-1.jpg`,
-        caption: "Al-Marwa Hospital Digital DR Diagnostic Suite 1",
-      },
-      {
-        src: `${BASE}images/clients/al-marwah-dr-2.jpg`,
-        caption: "Al-Marwa Hospital Digital DR Diagnostic Suite 2",
-      },
     ],
     date: "2024-2025",
     specs: "Interventional Cath-Lab & Wireless CsI DR Units",
   },
   {
-    id: "gal-clients-103",
-    title: "Al-Rayyan Scan Center",
-    titleAr: "مركز الريان سكان للأشعة",
-    locationAr: "فيصل، الجيزة",
-    descriptionAr: "نظام تصوير رنين مغناطيسي 1.5 تسلا وجهاز أشعة مقطعية متعدد المقاطع مع عقود صيانة شاملة.",
-    specsAr: "رنين مغناطيسي 1.5T وأشعة مقطعية متعددة المقاطع",
+    id: "gal-event-golden-heart-ceremony",
+    title: "Golden Heart Specialized Hospital — Strategic Partnership Ceremony",
+    titleAr: "مستشفى جولدن هارت — مراسم الشراكة الاستراتيجية والتكريم",
+    locationAr: "المعادي، القاهرة",
+    descriptionAr: "مراسم تكريم وتدشين الشراكة التكنولوجية الطبية بحضور نخبة استشاريي القلب وإدارة مستشفى جولدن هارت.",
+    specsAr: "مراسم تدشين وشراكة طبية استراتيجية",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
-    location: "Al-Rayyan Scan Center, Minya, Upper Egypt",
-    description: "Multi-slice helical CT scanner and volumetric diagnostic imaging unit.",
-    image: `${BASE}images/clients/al-rayan-ct.jpg`,
+    location: "Golden Heart Specialized Hospital, Maadi, Cairo",
+    description: "Technology partnership commemoration and clinical milestone celebration with senior cardiology consultants.",
+    image: `${BASE}images/gallery/event-golden-heart-ceremony.jpeg`,
     images: [
-      `${BASE}images/clients/al-rayan-ct.jpg`,
-      `${BASE}images/clients/al-rayan-vct.jpeg`,
+      `${BASE}images/gallery/event-golden-heart-ceremony.jpeg`,
     ],
     imageDetails: [
       {
-        src: `${BASE}images/clients/al-rayan-ct.jpg`,
-        caption: "Al-Rayyan Scan Center Multi-Slice CT Scanner",
-      },
-      {
-        src: `${BASE}images/clients/al-rayan-vct.jpeg`,
-        caption: "Al-Rayyan Scan Center Volumetric CT Suite",
+        src: `${BASE}images/gallery/event-golden-heart-ceremony.jpeg`,
+        caption: "Golden Heart Hospital Strategic Partnership Ceremony",
       },
     ],
     date: "2024-2025",
-    specs: "Helical CT System | Ultra-High Spatial Resolution",
+    specs: "Clinical Partnership & Recognition Ceremony",
   },
   {
     id: "gal-clients-105",
@@ -648,7 +618,6 @@ export const GALLERY_DATA: GalleryItem[] = [
       `${BASE}images/clients/al-safwaa-6-october-building-1.jpeg`,
       `${BASE}images/clients/al-safwaa-6-october-building-2.jpeg`,
       `${BASE}images/clients/al-safwaa-faqous-building.png`,
-      `${BASE}images/clients/al-safwaa-faqous-ct.jpeg`,
     ],
     imageDetails: [
       {
@@ -662,10 +631,6 @@ export const GALLERY_DATA: GalleryItem[] = [
       {
         src: `${BASE}images/clients/al-safwaa-faqous-building.png`,
         caption: "Al-Safwa Center Faqus Facility",
-      },
-      {
-        src: `${BASE}images/clients/al-safwaa-faqous-ct.jpeg`,
-        caption: "Al-Safwa Center Faqus CT Scanner Unit",
       },
     ],
     date: "2024-2025",
@@ -724,7 +689,6 @@ export const GALLERY_DATA: GalleryItem[] = [
     image: `${BASE}images/clients/al-zahraa-building.jpeg`,
     images: [
       `${BASE}images/clients/al-zahraa-building.jpeg`,
-      `${BASE}images/clients/al-zahraa-cathlab.jpeg`,
       `${BASE}images/clients/el-nokhba-logo.png`,
       `${BASE}images/clients/al-zahraa-dr-mohamed-salama.jpg`,
     ],
@@ -732,10 +696,6 @@ export const GALLERY_DATA: GalleryItem[] = [
       {
         src: `${BASE}images/clients/al-zahraa-building.jpeg`,
         caption: "Al-Zahra & El Nokhba Hospital Medical Complex",
-      },
-      {
-        src: `${BASE}images/clients/al-zahraa-cathlab.jpeg`,
-        caption: "Al-Zahra & El Nokhba Cath-Lab Suite",
       },
       {
         src: `${BASE}images/clients/el-nokhba-logo.png`,
@@ -763,17 +723,12 @@ export const GALLERY_DATA: GalleryItem[] = [
     image: `${BASE}images/clients/aseel-building.jpeg`,
     images: [
       `${BASE}images/clients/aseel-building.jpeg`,
-      `${BASE}images/clients/aseel-c-arm.jpeg`,
       `${BASE}images/clients/aseel-staff.jpg`,
     ],
     imageDetails: [
       {
         src: `${BASE}images/clients/aseel-building.jpeg`,
         caption: "Aseel Hospital Hurghada Exterior Facility",
-      },
-      {
-        src: `${BASE}images/clients/aseel-c-arm.jpeg`,
-        caption: "Aseel Hospital High-Frequency Surgical C-Arm Suite",
       },
       {
         src: `${BASE}images/clients/aseel-staff.jpg`,
@@ -808,33 +763,28 @@ export const GALLERY_DATA: GalleryItem[] = [
     specs: "Academic Teaching Hospital Radiology Infrastructure",
   },
   {
-    id: "gal-clients-121",
-    title: "Capital Care Hospital",
-    titleAr: "مستشفى كابيتال كير",
-    locationAr: "٦ أكتوبر، الجيزة",
-    descriptionAr: "نظام أشعة مقطعية 64 مقطع حلزوني مع دعم هندسي شامل وتدريب للطاقم الطبي.",
-    specsAr: "أشعة مقطعية 64 شريحة متقدمة",
+    id: "gal-event-cardiology-milestone",
+    title: "Cardiology Clinical Handover & Commissioning Milestone",
+    titleAr: "مراسم تسليم وتدشين مركز طب القلب التداخلي",
+    locationAr: "القاهرة، مصر",
+    descriptionAr: "مراسم اعتماد واكتمال التجهيزات الطبية لجناح القلب والقسطرة بحضور رؤساء الأقسام الطبية وفريق نور ميديكال.",
+    specsAr: "اعتماد تشغيلي وتدشين طبي ميداني",
     category: "events",
     categoryLabel: "Hospital Events & Celebrations",
-    location: "Capital Care Hospital, 6th of October",
-    description: "64-Slice volumetric CT scanner installation and diagnostic wing equipment.",
-    image: `${BASE}images/clients/capital-care-ct.jpg`,
+    location: "Specialized Cardiology Center, Greater Cairo",
+    description: "Official commissioning and handover celebration with clinical directors and technical operations leaders.",
+    image: `${BASE}images/gallery/event-cardiology-milestone.jpeg`,
     images: [
-      `${BASE}images/clients/capital-care-ct.jpg`,
-      `${BASE}images/clients/capital-care-logo.jpeg`,
+      `${BASE}images/gallery/event-cardiology-milestone.jpeg`,
     ],
     imageDetails: [
       {
-        src: `${BASE}images/clients/capital-care-ct.jpg`,
-        caption: "Capital Care Hospital 64-Slice Volumetric CT Suite",
-      },
-      {
-        src: `${BASE}images/clients/capital-care-logo.jpeg`,
-        caption: "Capital Care Hospital Brand Emblem",
+        src: `${BASE}images/gallery/event-cardiology-milestone.jpeg`,
+        caption: "Interventional Cardiology Center Handover Celebration",
       },
     ],
     date: "2024-2025",
-    specs: "64-Slice Volumetric CT | Turnkey Lead Shielding",
+    specs: "Turnkey Handover & Operational Commissioning",
   },
   {
     id: "gal-clients-123",
@@ -903,7 +853,6 @@ export const GALLERY_DATA: GalleryItem[] = [
     image: `${BASE}images/clients/golden-heart-building.jpeg`,
     images: [
       `${BASE}images/clients/golden-heart-building.jpeg`,
-      `${BASE}images/clients/golden-heart-cathlab.jpeg`,
       `${BASE}images/clients/golden-heart-staff-1.jpeg`,
       `${BASE}images/clients/golden-heart-staff-2.jpeg`,
     ],
@@ -911,10 +860,6 @@ export const GALLERY_DATA: GalleryItem[] = [
       {
         src: `${BASE}images/clients/golden-heart-building.jpeg`,
         caption: "Golden Heart Specialized Cardiac Center Maadi",
-      },
-      {
-        src: `${BASE}images/clients/golden-heart-cathlab.jpeg`,
-        caption: "Golden Heart Center Interventional Angiography Cath-Lab",
       },
       {
         src: `${BASE}images/clients/golden-heart-staff-1.jpeg`,

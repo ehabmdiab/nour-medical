@@ -69,7 +69,7 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
     );
     expect(goldenHeart).toBeDefined();
     expect(goldenHeart?.category).toBe('events');
-    expect(goldenHeart?.images.length).toBe(4);
+    expect(goldenHeart?.images.length).toBe(3);
   });
 
   it('filters by category matching category labels and counts', () => {

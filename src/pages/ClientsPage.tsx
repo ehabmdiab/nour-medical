@@ -188,21 +188,21 @@ export const ClientsPage: React.FC = () => {
   return (
     <>
       {/* ── 1. HERO HEADER ────────────────── */}
-      <section className="bg-navy text-white pt-36 pb-20 relative overflow-hidden border-b border-white/10 z-[1]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-        <div className="absolute -right-[10%] top-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.18)_0%,transparent_70%)] pointer-events-none" />
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 text-navy relative overflow-hidden border-b border-gray-light z-[1]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute -right-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container relative z-10">
           <div className="section-label">
             {t('clients.sectionLabel')}
           </div>
 
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white tracking-tight leading-[0.98] max-w-[920px] mb-6">
+          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-navy tracking-tight leading-[0.98] max-w-[920px] mb-6">
             {t('clients.heroTitle')}{' '}
             <span className="text-orange-accent">{t('clients.heroTitleHighlight')}</span>
           </h1>
 
-          <p className="font-body text-xl md:text-2xl leading-[1.65] text-white/80 max-w-[720px]">
+          <p className="font-body text-xl md:text-2xl leading-[1.65] text-text-muted max-w-[720px]">
             {t('clients.heroSubtitle')}
           </p>
         </div>

@@ -73,21 +73,21 @@ export const ProductsPage: React.FC = () => {
   return (
     <>
       {/* ── HERO SECTION ───────────────────────────────────────── */}
-      <section className="bg-navy text-white pt-36 pb-20 relative overflow-hidden border-b border-white/10">
-        {/* Ambient Medical Dark Grid & Glow */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-        <div className="absolute -right-[10%] top-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.18)_0%,transparent_70%)] pointer-events-none" />
+      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
+        {/* Subtle Ambient Grid */}
+        <div className="absolute inset-0 bg-[size:60px_60px] bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] pointer-events-none" />
+        <div className="absolute -right-[10%] top-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="container relative z-[1]">
           <div className="section-label">
             {t('products.heroLabel')}
           </div>
 
-          <h1 className="font-heading text-[clamp(2.75rem,5.5vw,5rem)] font-bold text-white tracking-[-0.035em] leading-[1.02] max-w-[900px] mb-5">
+          <h1 className="font-heading text-[clamp(2.75rem,5.5vw,5rem)] font-bold text-navy tracking-[-0.035em] leading-[1.02] max-w-[900px] mb-5">
             {t('products.heroTitle')}
           </h1>
 
-          <p className="font-body text-[clamp(1.125rem,1.8vw,1.375rem)] leading-[1.65] text-white/80 max-w-[720px] mb-10">
+          <p className="font-body text-[clamp(1.125rem,1.8vw,1.375rem)] leading-[1.65] text-text-muted max-w-[720px] mb-10">
             {t('products.heroDesc')}
           </p>
 
@@ -104,7 +104,7 @@ export const ProductsPage: React.FC = () => {
                 placeholder={t('products.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full ${isAr ? 'pr-12 pl-4.5' : 'pl-12 pr-4.5'} py-3.5 rounded-xl border border-white/15 bg-white text-navy font-body text-[0.9375rem] outline-none shadow-lg focus:ring-2 focus:ring-blue-medical/40 transition-all`}
+                className={`w-full ${isAr ? 'pr-12 pl-4.5' : 'pl-12 pr-4.5'} py-3.5 rounded-xl border border-gray-light bg-white text-navy font-body text-[0.9375rem] outline-none shadow-[0_2px_8px_rgba(10,22,40,0.04)] focus:border-blue-medical focus:ring-2 focus:ring-blue-medical/20 transition-all`}
               />
             </div>
 
@@ -124,8 +124,8 @@ export const ProductsPage: React.FC = () => {
                     onClick={() => setActiveFilter(cat.id)}
                     className={`py-2.5 px-4.5 rounded-full font-body text-sm font-semibold transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-orange-accent text-white border border-orange-accent shadow-[0_4px_14px_rgba(249,115,22,0.35)]'
-                        : 'bg-white/10 text-white/90 border border-white/15 backdrop-blur-sm shadow-sm hover:bg-white/20 hover:border-white/30'
+                        ? 'bg-orange-accent text-white border border-orange-accent shadow-[0_4px_14px_rgba(249,115,22,0.25)]'
+                        : 'bg-white text-navy border border-gray-light shadow-sm hover:border-gray-mid'
                     }`}
                   >
                     {isAr ? cat.labelAr : cat.label}
