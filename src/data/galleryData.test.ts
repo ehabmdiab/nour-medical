@@ -3,8 +3,8 @@ import { GALLERY_DATA, GALLERY_CATEGORIES } from './galleryData';
 import type { GalleryCategoryType } from './galleryData';
 
 describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
-  it('consolidates gallery items into exactly 28 authentic field cards', () => {
-    expect(GALLERY_DATA.length).toBe(28);
+  it('consolidates gallery items into exactly 11 authentic field cards', () => {
+    expect(GALLERY_DATA.length).toBe(11);
   });
 
   it('eliminates standalone equipment brochure cards from gallery', () => {
@@ -32,7 +32,7 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
     for (const card of GALLERY_DATA) {
       expect(card.id).toBeTruthy();
       expect(card.title).toBeTruthy();
-      expect(['team', 'exhibitions', 'events']).toContain(card.category);
+      expect(['team', 'exhibitions']).toContain(card.category);
       expect(card.categoryLabel).toBeTruthy();
       expect(card.location).toBeTruthy();
       expect(card.description).toBeTruthy();
@@ -63,21 +63,13 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
     expect(techTeam).toBeDefined();
     expect(techTeam?.category).toBe('team');
     expect(techTeam?.images.length).toBe(12);
-
-    const goldenHeart = GALLERY_DATA.find(
-      (c) => c.title === 'Golden Heart Specialized Cardiac Center'
-    );
-    expect(goldenHeart).toBeDefined();
-    expect(goldenHeart?.category).toBe('events');
-    expect(goldenHeart?.images.length).toBe(3);
   });
 
   it('filters by category matching category labels and counts', () => {
     const categoryCounts: Record<GalleryCategoryType, number> = {
-      all: 28,
+      all: 11,
       team: 6,
       exhibitions: 5,
-      events: 17,
     };
 
     for (const cat of GALLERY_CATEGORIES) {
@@ -88,6 +80,16 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
         expect(filtered.length).toBe(categoryCounts[cat.id]);
       }
     }
+  });
+
+  it('keeps client facility photos out of the gallery (they live on the Clients page)', () => {
+    for (const card of GALLERY_DATA) {
+      expect(card.id.startsWith('gal-clients-')).toBe(false);
+      for (const src of card.images) {
+        expect(src).not.toContain('images/clients/');
+      }
+    }
+    expect(GALLERY_CATEGORIES.find((c) => (c.id as string) === 'events')).toBeUndefined();
   });
 
   it('has detailed captions matching images length for multi-image cards', () => {

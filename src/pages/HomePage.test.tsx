@@ -68,6 +68,7 @@ describe('HomePage Component', () => {
     );
 
     expect(html).toContain('Advanced Healthcare Technology');
+    expect(html).toContain('from-white via-warm-white');
     expect(html).toContain('Explore Our Solutions');
     expect(html).toContain('About Nour Medical');
     expect(html).toContain('Radiology Devices');

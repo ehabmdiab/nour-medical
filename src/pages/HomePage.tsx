@@ -77,19 +77,22 @@ export const HomePage: React.FC = () => {
       {/* ── 1. HERO ──────────────────────────────────────────── */}
       <section
         id="hero"
-        className="min-h-screen bg-navy flex flex-col relative overflow-hidden pt-36 box-border"
+        className="min-h-screen bg-gradient-to-b from-white via-warm-white to-[#EEF4FB] bg-[image:var(--bg-hero-light)] text-navy flex flex-col relative overflow-hidden pt-36 box-border border-b border-gray-light"
       >
-        {/* Ambient Medical Dark Grid */}
+        {/* Ambient Medical Light Grid */}
         <div
-          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none"
+          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none"
         />
 
-        {/* Ambient Royal Blue Glow Orb */}
+        {/* Ambient Clinical Glow Orbs */}
         <div
-          className="absolute -right-[10%] top-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.18)_0%,transparent_70%)] pointer-events-none"
+          className="absolute -right-[10%] top-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.08)_0%,transparent_70%)] pointer-events-none"
+        />
+        <div
+          className="absolute -left-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none"
         />
 
-        <div className="container flex-1 flex flex-col justify-center pt-6 pb-14 max-w-[1440px]">
+        <div className="container relative z-10 flex-1 flex flex-col justify-center pt-6 pb-14 max-w-[1440px]">
           {/* Label Badge */}
           <div className="section-label mb-5 animate-hero-est">
             {t('hero.est')}
@@ -100,7 +103,7 @@ export const HomePage: React.FC = () => {
             {/* Left: Text & CTA - Takes the full left column space */}
             <div className="w-full max-w-[760px]">
               <h1
-                className="font-heading text-[clamp(2.35rem,4.2vw,4.4rem)] font-extrabold text-white leading-[1.04] md:leading-[1.02] tracking-[-0.03em] mb-9 animate-hero-title"
+                className="font-heading text-[clamp(2.35rem,4.2vw,4.4rem)] font-extrabold text-navy leading-[1.04] md:leading-[1.02] tracking-[-0.03em] mb-9 animate-hero-title"
               >
                 {t('hero.title')}{' '}
                 <span className="text-orange-accent block">
@@ -111,11 +114,11 @@ export const HomePage: React.FC = () => {
               <div
                 className="flex gap-4 flex-wrap items-center animate-hero-cta"
               >
-                <Link to="/products" className="btn btn-blue gap-2 shadow-[0_4px_16px_rgba(27,79,216,0.35)]">
+                <Link to="/products" className="btn btn-blue gap-2 shadow-[0_4px_16px_rgba(27,79,216,0.25)]">
                   {t('hero.exploreProducts')}
                   <ArrowRight size={15} />
                 </Link>
-                <Link to="/contact" className="btn btn-outline-white">
+                <Link to="/contact" className="btn btn-outline">
                   {t('hero.contactTeam')}
                 </Link>
               </div>
@@ -125,6 +128,9 @@ export const HomePage: React.FC = () => {
             <div
               className="relative w-[min(500px,50vh,100%)] h-[min(500px,50vh,100%)] aspect-square flex justify-center items-center mx-auto animate-hero-3d shrink-0"
             >
+              <div
+                className="absolute inset-4 rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.09)_0%,rgba(0,168,181,0.05)_50%,transparent_72%)] pointer-events-none"
+              />
               {!isLoaderActive && <Mri3DViewer height="100%" />}
             </div>
           </div>
@@ -132,7 +138,7 @@ export const HomePage: React.FC = () => {
 
         {/* Bottom stat bar */}
         <div
-          className="border-t border-white/[0.08] bg-white/[0.03] animate-hero-stats"
+          className="relative z-10 border-t border-gray-light bg-white/85 backdrop-blur-sm animate-hero-stats"
         >
           <div className="container">
             <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-0 py-6">
@@ -146,14 +152,14 @@ export const HomePage: React.FC = () => {
                   key={stat.label}
                   className={`py-3 px-6 ${
                     locale === "ar"
-                      ? i < 3 ? "border-l border-white/[0.07]" : ""
-                      : i < 3 ? "border-r border-white/[0.07]" : ""
+                      ? i < 3 ? "border-l border-gray-light" : ""
+                      : i < 3 ? "border-r border-gray-light" : ""
                   }`}
                 >
-                  <div className="font-heading text-[1.75rem] font-bold text-white tracking-[-0.02em] leading-none mb-1.5">
+                  <div className="font-heading text-[1.75rem] font-bold text-navy tracking-[-0.02em] leading-none mb-1.5">
                     {stat.value}
                   </div>
-                  <div className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-white/45">
+                  <div className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-text-muted">
                     {stat.label}
                   </div>
                 </div>

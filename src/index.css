@@ -100,7 +100,8 @@
   --white:         #FFFFFF;
   --warm-white:    #F8FAFC; /* Slate Light Background */
   --warm-neutral:  #EDE8E3;
-  --bg-hero-light: var(--navy);
+  --in-oklab: ;
+  --bg-hero-light: linear-gradient(to bottom var(--in-oklab), #FFFFFF 0%, #F8FAFC 55%, #EEF4FB 100%);
 
   --stone:         #94A3B8;
   --gray-mid:      #64748B;
@@ -127,6 +128,12 @@
   --dur-fast:      150ms;
   --dur-mid:       300ms;
   --dur-slow:      500ms;
+}
+
+@supports (background: linear-gradient(in oklab, white, black)) {
+  :root {
+    --in-oklab: in oklab;
+  }
 }
 
 /* ============================================================

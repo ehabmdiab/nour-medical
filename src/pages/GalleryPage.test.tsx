@@ -5,7 +5,7 @@ import { LanguageProvider } from '../i18n';
 import { GalleryPage } from './GalleryPage';
 
 describe('GalleryPage Component', () => {
-  it('renders GalleryPage with categories Team, Exhibitions, and Events in English', () => {
+  it('renders GalleryPage with categories Team and Exhibitions in English', () => {
     const html = renderToString(
       <LanguageProvider defaultLocale="en">
         <MemoryRouter initialEntries={['/gallery']}>
@@ -18,13 +18,13 @@ describe('GalleryPage Component', () => {
     expect(html).toContain('Field Operations &amp; Photo Gallery');
     expect(html).toContain('Team &amp; Staff');
     expect(html).toContain('Exhibitions &amp; Conferences');
-    expect(html).toContain('Hospital Events &amp; Celebrations');
+    expect(html).not.toContain('Hospital Events &amp; Celebrations');
 
     // Verify no standalone machine category exists
     expect(html).not.toContain('Radiology Systems &amp; Machines');
   });
 
-  it('renders GalleryPage with categories Team, Exhibitions, and Events in Arabic', () => {
+  it('renders GalleryPage with categories Team and Exhibitions in Arabic', () => {
     const html = renderToString(
       <LanguageProvider defaultLocale="ar">
         <MemoryRouter initialEntries={['/gallery']}>
@@ -36,6 +36,6 @@ describe('GalleryPage Component', () => {
     // Verify Arabic category labels
     expect(html).toContain('فريق العمل والمهندسون');
     expect(html).toContain('المعارض والمؤتمرات');
-    expect(html).toContain('الفعاليات والتسليمات');
+    expect(html).not.toContain('الفعاليات والتسليمات');
   });
 });

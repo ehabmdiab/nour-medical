@@ -1,13 +1,30 @@
 import React, { Suspense, useRef, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, useGLTF, useTexture, Environment, ContactShadows, Float } from '@react-three/drei';
+import { OrbitControls, useGLTF, useTexture, useEnvironment, Environment, ContactShadows, Float, Html, useProgress } from '@react-three/drei';
 import { Play, Pause, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import * as THREE from 'three';
 
+const MODEL_URL = `${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`;
+const LOGO_URL = `${import.meta.env.BASE_URL}nour-medical-logo.png`;
+// Same HDR drei serves for preset="city", self-hosted so it no longer depends on a third-party CDN.
+const ENV_URL = `${import.meta.env.BASE_URL}hdri/potsdamer_platz_1k.hdr`;
+
+function ModelLoadingFallback() {
+  const { progress } = useProgress();
+
+  return (
+    <Html center>
+      <div className="flex min-w-36 flex-col items-center gap-2 rounded-xl border border-white/10 bg-navy/85 px-4 py-3 text-xs text-white/80 shadow-xl backdrop-blur-md">
+        <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/20 border-t-teal-accent" />
+        <span>Loading scanner… {Math.round(progress)}%</span>
+      </div>
+    </Html>
+  );
+}
+
 // ── 3D MRI Scanner Model ──────────────────────────────────────────
 function MriScannerModel(props: { position?: [number, number, number]; scale?: [number, number, number] }) {
-  const modelUrl = `${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`;
-  const { scene } = useGLTF(modelUrl);
+  const { scene } = useGLTF(MODEL_URL);
 
   React.useMemo(() => {
     scene.traverse((child: THREE.Object3D) => {
@@ -30,10 +47,11 @@ function MriScannerModel(props: { position?: [number, number, number]; scale?: [
   return <primitive object={scene} {...props} />;
 }
 
-// Preload model & logo
+// Preload model, environment & logo in parallel (the HDR used to load only after the model/loader finished)
 try {
-  useGLTF.preload(`${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`);
-  useTexture.preload(`${import.meta.env.BASE_URL}nour-medical-logo.png`);
+  useGLTF.preload(MODEL_URL);
+  useEnvironment.preload({ files: ENV_URL });
+  useTexture.preload(LOGO_URL);
 } catch {
   // Safe preload fallback
 }
@@ -232,7 +250,7 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
         <pointLight position={[0, 2.42, 0.5]} color="#ffffff" intensity={2.2} distance={6} />
         <pointLight position={[0, 2.42, 1.2]} color="#00e5ff" intensity={1.5} distance={4} />
 
-        <Suspense fallback={null}>
+        <Suspense fallback={<ModelLoadingFallback />}>
           <MriScannerModel position={[0, 0, 0]} scale={[1.6, 1.6, 1.6]} />
           {/* Clinical white interior back plate ensuring solid white depth inside bore */}
           <mesh position={[0, 2.42, -1.52]}>
@@ -241,7 +259,11 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
           </mesh>
           <ScannerBoreLogo opacity={textOpacity} />
           <ContactShadows position={[0, 0, 0]} opacity={0.6} scale={12} blur={1.5} far={4} />
-          <Environment preset="city" />
+        </Suspense>
+        {/* The large HDR environment is independent of the scanner geometry. Let it
+            load in the background so it cannot keep the model hidden behind Suspense. */}
+        <Suspense fallback={null}>
+          <Environment files={ENV_URL} />
         </Suspense>
 
         <CameraController
