@@ -319,9 +319,10 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
       }`}
     >
-      {/* Ambient Medical Light Grid & Soft Clinical Glow matching Bright Hero */}
+      {/* Ambient Medical Light Grid & Upper-Right Orange Glow matching Bright Hero */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(27,79,216,0.09)_0%,rgba(0,168,181,0.05)_45%,transparent_75%)] pointer-events-none" />
+      <div className="absolute -right-[8%] -top-[12%] w-[720px] h-[720px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.035)_0%,rgba(251,146,60,0.015)_42%,transparent_72%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(27,79,216,0.08)_0%,rgba(0,168,181,0.04)_45%,transparent_75%)] pointer-events-none" />
 
       {/* Brand Header - floats at top with subtle fade during bore zoom */}
       <div

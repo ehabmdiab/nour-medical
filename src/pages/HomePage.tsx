@@ -82,12 +82,12 @@ export const HomePage: React.FC = () => {
           className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none"
         />
 
-        {/* Ambient Clinical Glow Orbs */}
+        {/* Upper-Right Whisper-Subtle Warm Orange Glow */}
         <div
-          className="absolute -right-[10%] top-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.08)_0%,transparent_70%)] pointer-events-none"
+          className="absolute -right-[8%] -top-[12%] w-[720px] h-[720px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.035)_0%,rgba(251,146,60,0.015)_42%,transparent_72%)] pointer-events-none"
         />
         <div
-          className="absolute -left-[5%] top-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none"
+          className="absolute right-[12%] top-[18%] w-[480px] h-[480px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.035)_0%,transparent_70%)] pointer-events-none"
         />
 
         <div className="container relative z-10 flex-1 flex flex-col justify-center pt-6 pb-14 max-w-[1440px]">

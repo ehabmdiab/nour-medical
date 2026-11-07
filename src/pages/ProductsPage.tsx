@@ -73,10 +73,10 @@ export const ProductsPage: React.FC = () => {
   return (
     <>
       {/* ── HERO SECTION ───────────────────────────────────────── */}
-      <section className="bg-gradient-to-b from-white to-warm-white pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
-        {/* Subtle Ambient Grid */}
+      <section className="bg-gradient-to-b from-white to-warm-white bg-[image:var(--bg-hero-light)] pt-36 pb-20 relative overflow-hidden border-b border-gray-light">
+        {/* Subtle Ambient Grid & Upper-Right Orange Glow */}
         <div className="absolute inset-0 bg-[size:60px_60px] bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] pointer-events-none" />
-        <div className="absolute -right-[10%] top-0 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.06)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -right-[6%] -top-[18%] w-[680px] h-[680px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.035)_0%,rgba(251,146,60,0.015)_42%,transparent_72%)] pointer-events-none" />
 
         <div className="container relative z-[1]">
           <div className="section-label">
