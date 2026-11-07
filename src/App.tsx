@@ -23,17 +23,7 @@ const ScrollToTop: React.FC = () => {
 };
 
 export const App: React.FC = () => {
-  const [showLoader, setShowLoader] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('loader') === 'true' || params.get('intro') === '1') {
-        return true;
-      }
-      const hasDismissed = sessionStorage.getItem('nour_loader_dismissed');
-      return !hasDismissed;
-    }
-    return true;
-  });
+  const [showLoader, setShowLoader] = useState<boolean>(true);
 
   const handleLoaderComplete = useCallback(() => {
     if (typeof window !== 'undefined') {

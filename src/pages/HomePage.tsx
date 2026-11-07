@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 import { Mri3DViewer } from '../components/organisms/Mri3DViewer';
-import { LoaderContext } from '../context/LoaderContext';
 import { ClientMarquee } from '../components/organisms/ClientMarquee';
 import { FloatingUniverseGallery } from '../components/organisms/FloatingUniverseGallery';
 import {
@@ -35,7 +34,6 @@ function useReveal(threshold = 0.15) {
 }
 
 export const HomePage: React.FC = () => {
-  const isLoaderActive = React.useContext(LoaderContext);
   const { locale, t } = useLanguage();
 
   const { ref: introRef, visible: introVisible } = useReveal();
@@ -131,7 +129,7 @@ export const HomePage: React.FC = () => {
               <div
                 className="absolute inset-4 rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.09)_0%,rgba(0,168,181,0.05)_50%,transparent_72%)] pointer-events-none"
               />
-              {!isLoaderActive && <Mri3DViewer height="100%" />}
+              <Mri3DViewer height="100%" />
             </div>
           </div>
         </div>

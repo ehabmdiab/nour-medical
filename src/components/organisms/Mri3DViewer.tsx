@@ -1,6 +1,6 @@
 import React, { Suspense, useRef, useState, useCallback } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, useGLTF, useTexture, useEnvironment, Environment, ContactShadows, Float, Html, useProgress } from '@react-three/drei';
+import { OrbitControls, useGLTF, useTexture, useEnvironment, Environment, ContactShadows, Float } from '@react-three/drei';
 import { Play, Pause, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import * as THREE from 'three';
 
@@ -9,25 +9,13 @@ const LOGO_URL = `${import.meta.env.BASE_URL}nour-medical-logo.png`;
 // Same HDR drei serves for preset="city", self-hosted so it no longer depends on a third-party CDN.
 const ENV_URL = `${import.meta.env.BASE_URL}hdri/potsdamer_platz_1k.hdr`;
 
-function ModelLoadingFallback() {
-  const { progress } = useProgress();
-
-  return (
-    <Html center>
-      <div className="flex min-w-36 flex-col items-center gap-2 rounded-xl border border-white/10 bg-navy/85 px-4 py-3 text-xs text-white/80 shadow-xl backdrop-blur-md">
-        <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/20 border-t-teal-accent" />
-        <span>Loading scanner… {Math.round(progress)}%</span>
-      </div>
-    </Html>
-  );
-}
-
 // ── 3D MRI Scanner Model ──────────────────────────────────────────
 function MriScannerModel(props: { position?: [number, number, number]; scale?: [number, number, number] }) {
   const { scene } = useGLTF(MODEL_URL);
 
-  React.useMemo(() => {
-    scene.traverse((child: THREE.Object3D) => {
+  const clonedScene = React.useMemo(() => {
+    const root = typeof scene.clone === 'function' ? scene.clone(true) : scene;
+    root.traverse((child: THREE.Object3D) => {
       if (child instanceof THREE.Mesh) {
         const mat = child.material as THREE.MeshStandardMaterial | undefined;
         // Hide unlit plane graphics inside bore
@@ -42,9 +30,10 @@ function MriScannerModel(props: { position?: [number, number, number]; scale?: [
         }
       }
     });
+    return root;
   }, [scene]);
 
-  return <primitive object={scene} {...props} />;
+  return <primitive object={clonedScene} {...props} />;
 }
 
 // Preload model, environment & logo in parallel (the HDR used to load only after the model/loader finished)
@@ -78,6 +67,9 @@ function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: Ca
   // Zoomed Position: Centered straight-on zoom directly into the circular bore
   const zoomPos = useRef(new THREE.Vector3(0, 2.42, 2.85)).current;
   const zoomTarget = useRef(new THREE.Vector3(0, 2.42, 0.0)).current;
+  const currentPos = useRef(new THREE.Vector3()).current;
+  const currentTarget = useRef(new THREE.Vector3()).current;
+  const lastOpacityRef = useRef<number>(0);
 
   // Reset time if reset button clicked
   if (resetTrigger !== lastResetTrigger.current) {
@@ -136,11 +128,18 @@ function CameraController({ mode, isPlaying, resetTrigger, onOpacityChange }: Ca
       }
     }
 
-    onOpacityChange(opacity);
+    if (
+      Math.abs(opacity - lastOpacityRef.current) > 0.01 ||
+      (opacity === 0 && lastOpacityRef.current !== 0) ||
+      (opacity === 1 && lastOpacityRef.current !== 1)
+    ) {
+      lastOpacityRef.current = opacity;
+      onOpacityChange(opacity);
+    }
 
     if (controlsRef.current) {
-      const currentPos = new THREE.Vector3().lerpVectors(startPos, zoomPos, progress);
-      const currentTarget = new THREE.Vector3().lerpVectors(startTarget, zoomTarget, progress);
+      currentPos.lerpVectors(startPos, zoomPos, progress);
+      currentTarget.lerpVectors(startTarget, zoomTarget, progress);
 
       camera.position.lerp(currentPos, 0.05);
       controlsRef.current.target.lerp(currentTarget, 0.05);
@@ -241,16 +240,17 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
     >
       <Canvas
         shadows
+        dpr={[1, 1.5]}
         camera={{ position: [0, 4.2, 14.5], fov: 45 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       >
         <ambientLight intensity={1.0} />
-        <directionalLight position={[5, 8, 5]} intensity={1.8} castShadow shadow-mapSize={1024} />
+        <directionalLight position={[5, 8, 5]} intensity={1.8} castShadow shadow-mapSize={512} />
         {/* Soft interior clinical illumination and gentle cyan halo */}
         <pointLight position={[0, 2.42, 0.5]} color="#ffffff" intensity={2.2} distance={6} />
         <pointLight position={[0, 2.42, 1.2]} color="#00e5ff" intensity={1.5} distance={4} />
 
-        <Suspense fallback={<ModelLoadingFallback />}>
+        <Suspense fallback={null}>
           <MriScannerModel position={[0, 0, 0]} scale={[1.6, 1.6, 1.6]} />
           {/* Clinical white interior back plate ensuring solid white depth inside bore */}
           <mesh position={[0, 2.42, -1.52]}>
@@ -258,7 +258,7 @@ export const Mri3DViewer: React.FC<Mri3DViewerProps> = ({ height = '100%' }) => 
             <meshStandardMaterial color="#ffffff" roughness={0.25} metalness={0.05} />
           </mesh>
           <ScannerBoreLogo opacity={textOpacity} />
-          <ContactShadows position={[0, 0, 0]} opacity={0.6} scale={12} blur={1.5} far={4} />
+          <ContactShadows position={[0, 0, 0]} opacity={0.5} scale={12} blur={1.5} far={4} frames={1} resolution={256} />
         </Suspense>
         {/* The large HDR environment is independent of the scanner geometry. Let it
             load in the background so it cannot keep the model hidden behind Suspense. */}

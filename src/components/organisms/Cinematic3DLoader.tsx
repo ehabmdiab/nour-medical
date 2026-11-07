@@ -117,18 +117,25 @@ function CleanScannerModel({
   mouse,
   zoomProgress,
   logoOpacity,
+  onModelReady,
 }: {
   mouse: { x: number; y: number };
   zoomProgress: number;
   logoOpacity: number;
+  onModelReady: () => void;
 }) {
   const modelUrl = `${import.meta.env.BASE_URL}models/nour-mri-scanner.glb`;
   const { scene } = useGLTF(modelUrl);
   const groupRef = useRef<THREE.Group>(null);
 
+  useEffect(() => {
+    onModelReady();
+  }, [onModelReady]);
+
   // Style materials to clean clinical finish matching Hero section
-  useMemo(() => {
-    scene.traverse((child: THREE.Object3D) => {
+  const clonedScene = useMemo(() => {
+    const root = typeof scene.clone === 'function' ? scene.clone(true) : scene;
+    root.traverse((child: THREE.Object3D) => {
       if (child instanceof THREE.Mesh) {
         const mat = child.material as THREE.MeshStandardMaterial | undefined;
         // Hide unlit plane graphics inside bore
@@ -146,6 +153,7 @@ function CleanScannerModel({
         }
       }
     });
+    return root;
   }, [scene]);
 
   // Subtle interactive parallax tilt (dampened when zoomed in to keep bore & logo centered)
@@ -172,7 +180,7 @@ function CleanScannerModel({
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      <primitive object={scene} scale={[1.6, 1.6, 1.6]} />
+      <primitive object={clonedScene} scale={[1.6, 1.6, 1.6]} />
       {/* Clinical white interior back plate ensuring solid white depth inside bore as in home page */}
       <mesh position={[0, 2.42, -1.52]}>
         <circleGeometry args={[0.78, 32]} />
@@ -184,9 +192,9 @@ function CleanScannerModel({
       <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <circleGeometry args={[2.8, 48]} />
         <meshBasicMaterial
-          color="#000000"
+          color="#0A1628"
           transparent
-          opacity={0.35}
+          opacity={0.1}
           depthWrite={false}
         />
       </mesh>
@@ -202,13 +210,18 @@ export interface Cinematic3DLoaderProps {
 
 export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
   onComplete,
-  minDurationMs = 2800,
+  minDurationMs = 1600,
 }) => {
   const [progress, setProgress] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(0);
   const [zoomProgress, setZoomProgress] = useState<number>(0);
   const [isFading, setIsFading] = useState<boolean>(false);
   const [mouse, setMouse] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const isModelReadyRef = useRef<boolean>(false);
+
+  const handleModelReady = useCallback((): void => {
+    isModelReadyRef.current = true;
+  }, []);
 
   const isDebugMode =
     typeof window !== 'undefined' &&
@@ -262,7 +275,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleFinish]);
 
-  // Smooth loading progression
+  // Smooth loading progression that waits until the 3D model is loaded
   useEffect(() => {
     if (freezeParam !== null) {
       setProgress(parseInt(freezeParam, 10));
@@ -273,13 +286,23 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
 
     const tick = (now: number): void => {
       const elapsed = now - startTime;
-      const raw = Math.min(100, (elapsed / effectiveDuration) * 100);
+      const rawRatio = elapsed / effectiveDuration;
+
+      if (!isModelReadyRef.current) {
+        // Hold up to 92% while waiting for the 3D model & textures to finish loading
+        const waitingProgress = Math.min(92, Math.floor(rawRatio * 92));
+        setProgress(waitingProgress);
+        frameId = requestAnimationFrame(tick);
+        return;
+      }
+
+      const raw = Math.min(100, rawRatio * 100);
       setProgress(Math.floor(raw));
 
       if (raw < 100) {
         frameId = requestAnimationFrame(tick);
       } else {
-        setTimeout(handleFinish, 250);
+        setTimeout(handleFinish, 200);
       }
     };
 
@@ -292,12 +315,13 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label="Loading Nour Medical"
-      className={`fixed inset-0 z-[99999] bg-[#07111e] overflow-hidden transition-opacity duration-500 ease-out ${
+      className={`fixed inset-0 z-[99999] bg-gradient-to-b from-white via-warm-white to-[#EEF4FB] bg-[image:var(--bg-hero-light)] text-navy overflow-hidden transition-opacity duration-500 ease-out ${
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
       }`}
     >
-      {/* Ambient Radial Background matching Dark Navy Hero */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,#0e1c32_0%,#07111e_70%,#040911_100%)] pointer-events-none" />
+      {/* Ambient Medical Light Grid & Soft Clinical Glow matching Bright Hero */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,22,40,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(10,22,40,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgba(27,79,216,0.09)_0%,rgba(0,168,181,0.05)_45%,transparent_75%)] pointer-events-none" />
 
       {/* Brand Header - floats at top with subtle fade during bore zoom */}
       <div
@@ -307,14 +331,14 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
           transform: `translateY(${progress > 20 ? -((progress - 20) * 0.3) : 0}px)`,
         }}
       >
-        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-gray-light backdrop-blur-md shadow-[0_4px_20px_rgba(10,22,40,0.06)]">
           <img
             src={`${import.meta.env.BASE_URL}nour-medical-logo.png`}
             alt="Nour Medical"
-            className="h-7 w-auto object-contain brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,229,255,0.25)]"
+            className="h-7 w-auto object-contain"
           />
         </div>
-        <span className="font-mono text-[0.625rem] tracking-[0.18em] uppercase text-white/50">
+        <span className="font-mono text-[0.625rem] tracking-[0.18em] uppercase text-text-muted">
           Healthcare Technology · Est. 2015
         </span>
       </div>
@@ -322,6 +346,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
       {/* Fullscreen 3D MRI Scanner Stage */}
       <div className="absolute inset-0 z-[2]">
         <Canvas
+          dpr={[1, 1.5]}
           camera={{ position: [0, 2.5, 12.0], fov: 38 }}
           gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         >
@@ -347,6 +372,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
               mouse={mouse}
               zoomProgress={zoomProgress}
               logoOpacity={logoOpacity}
+              onModelReady={handleModelReady}
             />
           </Suspense>
 
@@ -360,7 +386,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
 
       {/* Clean Minimal Progress Bar - anchored at bottom */}
       <div className="absolute bottom-[clamp(28px,6vh,52px)] inset-x-0 z-10 flex flex-col items-center gap-2.5 pointer-events-none">
-        <div className="w-[200px] h-0.5 bg-white/10 rounded-xs overflow-hidden">
+        <div className="w-[220px] h-1 bg-gray-light rounded-full overflow-hidden">
           <div
             className="h-full bg-gradient-to-r from-blue-medical to-teal-accent transition-[width] duration-75 ease-out"
             style={{ width: `${progress}%` }}
@@ -368,12 +394,12 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[0.6875rem] text-white/45 tabular-nums tracking-wide">
+          <span className="font-mono text-[0.6875rem] font-semibold text-navy tabular-nums tracking-wide">
             {progress}%
           </span>
           {logoOpacity > 0.4 && (
             <span
-              className="font-mono text-[0.5625rem] tracking-widest uppercase text-orange-accent transition-opacity duration-200"
+              className="font-mono text-[0.5625rem] font-semibold tracking-widest uppercase text-orange-accent transition-opacity duration-200"
               style={{
                 opacity: Math.min(1, (logoOpacity - 0.4) * 2),
               }}

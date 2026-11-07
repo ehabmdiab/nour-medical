@@ -28,4 +28,9 @@ describe('3D asset loading', () => {
   it('ships the model that index.html preloads', () => {
     expect(modelFiles.some((f) => f.endsWith('/nour-mri-scanner.glb'))).toBe(true);
   });
+
+  it('does not render a Suspense loading spinner overlay inside the hero 3D viewer', () => {
+    expect(viewerSource).not.toContain('Loading scanner');
+    expect(viewerSource).toContain('<Suspense fallback={null}>');
+  });
 });
