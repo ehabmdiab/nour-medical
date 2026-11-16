@@ -36,6 +36,15 @@ describe('ProductsPage Component', () => {
     // System overview section
     expect(html).toContain('System Overview:');
     expect(html).toContain('View Full Specifications &amp; Overview');
+
+    // DR gallery (Radmedix USA & InnoCare Taiwan)
+    expect(html).toContain('USA — Radmedix');
+    expect(html).toContain('Taiwan — InnoCare');
+    expect(html).toContain('dr-radmedix-usa.png');
+    expect(html).toContain('dr-innocare-taiwan-1.png');
+    expect(html).toContain('dr-innocare-taiwan-2.png');
+    expect(html).toContain('dr-innocare-taiwan-3.png');
+    expect(html).toContain('dr-innocare-taiwan-4.png');
   });
 
   it('renders ProductsPage with all 5 core modalities in Arabic', () => {
@@ -57,5 +66,10 @@ describe('ProductsPage Component', () => {
     // Arabic overview label
     expect(html).toContain('نبذة عن الجهاز:');
     expect(html).toContain('عرض النبذة والمواصفات الكاملة');
+
+    // DR gallery in Arabic
+    expect(html).toContain('منظومة الأشعة السينية الرقمية المتكاملة (DR)');
+    expect(html).toContain('أمريكا — Radmedix');
+    expect(html).toContain('تايوان — InnoCare');
   });
 });

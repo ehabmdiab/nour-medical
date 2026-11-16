@@ -9,6 +9,7 @@ export const useLenisScroll = () => {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
+      allowNestedScroll: true,
       wheelMultiplier: 1.0,
       touchMultiplier: 1.5,
     });

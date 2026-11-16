@@ -14,6 +14,7 @@ describe("FloatingUniverseGallery Component", () => {
     expect(html).toContain("floating-universe-section");
     expect(html).toContain("Medical Imaging Universe");
     expect(html).toContain("All Showcase");
+    expect(html).not.toContain("Hospital Installations");
   });
 
   it("renders floating universe gallery in Arabic", () => {
@@ -25,11 +26,14 @@ describe("FloatingUniverseGallery Component", () => {
     expect(html).toContain("floating-universe-section");
     expect(html).toContain("عالم التصوير الطبي التفاعلي");
     expect(html).toContain("جميع المعروضات");
+    expect(html).not.toContain("تجهيزات المستشفيات");
   });
 
-  it("keeps client facility photos out of the home gallery (they live on the Clients page)", () => {
+  it("keeps client facility and hospital installation photos out of the home gallery (they live on the Clients page)", () => {
     for (const item of FLOATING_GALLERY_DATA) {
       expect(item.imageUrl).not.toContain("images/clients/");
+      expect(item.category).not.toBe("installations");
+      expect(item.id.startsWith("inst-")).toBe(false);
     }
   });
 });

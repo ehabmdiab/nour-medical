@@ -84,10 +84,10 @@ export const Navbar: React.FC = () => {
           className="flex flex-col gap-[3px] no-underline shrink-0"
           aria-label="Nour Medical — Home"
         >
-          <span className="font-heading text-[clamp(1.75rem,2.4vw,2.25rem)] font-extrabold tracking-[-0.03em] text-navy leading-[1.1] whitespace-nowrap">
+          <span className="font-heading text-[clamp(1.75rem,2.4vw,2.25rem)] font-extrabold tracking-[-0.03em] text-orange-accent leading-[1.1] whitespace-nowrap">
             Nour Medical
           </span>
-          <span className="font-mono text-[0.65rem] tracking-[0.16em] uppercase text-text-muted font-semibold whitespace-nowrap">
+          <span className="font-mono text-xs tracking-[0.14em] uppercase text-navy font-semibold whitespace-nowrap">
             {t('nav.tagline')}
           </span>
         </Link>
@@ -108,30 +108,30 @@ export const Navbar: React.FC = () => {
                 >
                   <Link
                     to={link.href}
-                    className={`nav-tab-link${active ? ' active text-navy font-semibold' : ' text-text-muted font-medium'} font-body text-[0.8125rem] tracking-[0.02em] inline-flex items-center gap-1 py-2 no-underline transition-colors`}
+                    className={`nav-tab-link${active ? ' active text-orange-accent font-bold' : ' text-navy font-semibold'} font-body text-base tracking-[0.02em] inline-flex items-center gap-1 py-2 no-underline transition-colors`}
                   >
                     {link.label}
                     <ChevronDown
-                      size={13}
-                      className={`transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''} ${active ? 'text-blue-medical' : 'text-text-muted'}`}
+                      size={15}
+                      className={`transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''} ${active ? 'text-orange-accent' : 'text-navy'}`}
                     />
                   </Link>
 
                   {/* Dropdown Menu */}
                   {servicesDropdownOpen && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[1050]">
-                      <div className="w-[320px] bg-white rounded-2xl border border-gray-light shadow-[0_16px_36px_rgba(15,23,42,0.1)] p-2.5 flex flex-col gap-0.5">
+                      <div className="w-[340px] bg-white rounded-2xl border border-gray-light shadow-[0_16px_36px_rgba(15,23,42,0.1)] p-3 flex flex-col gap-1">
                         {serviceSubLinks.map((sub) => (
                           <Link
                             key={sub.href}
                             to={sub.href}
                             onClick={() => setServicesDropdownOpen(false)}
-                            className="p-2.5 px-3.5 rounded-[10px] no-underline flex flex-col gap-0.5 hover:bg-warm-neutral transition-colors"
+                            className="p-2.5 px-3.5 rounded-[10px] no-underline flex flex-col gap-1 hover:bg-warm-neutral transition-colors"
                           >
-                            <span className="font-heading text-lg font-bold text-navy">
+                            <span className="font-heading text-lg font-bold text-orange-accent">
                               {sub.label}
                             </span>
-                            <span className="font-body text-xs text-text-muted leading-[1.3]">
+                            <span className="font-body text-sm text-navy leading-[1.4]">
                               {sub.desc}
                             </span>
                           </Link>
@@ -147,7 +147,7 @@ export const Navbar: React.FC = () => {
               <li key={link.href}>
                 <Link
                   to={link.href}
-                  className={`nav-tab-link${active ? ' active text-navy font-semibold' : ' text-text-muted font-medium'} font-body text-[0.8125rem] tracking-[0.02em] inline-block py-2 no-underline transition-colors`}
+                  className={`nav-tab-link${active ? ' active text-orange-accent font-bold' : ' text-navy font-semibold'} font-body text-base tracking-[0.02em] inline-block py-2 no-underline transition-colors`}
                 >
                   {link.label}
                 </Link>
@@ -167,7 +167,7 @@ export const Navbar: React.FC = () => {
           />
           <Link
             to="/contact"
-            className="btn btn-primary py-2.5 px-[22px] text-[0.8rem] whitespace-nowrap"
+            className="btn btn-primary py-2.5 px-[22px] text-sm whitespace-nowrap"
           >
             {t('common.getInTouch')}
           </Link>
@@ -200,7 +200,7 @@ export const Navbar: React.FC = () => {
         >
           {/* Prominent Language Switch in Mobile Drawer */}
           <div className="flex items-center justify-between py-4 pb-5 border-b border-gray-light mb-4">
-            <span className="font-heading text-base font-semibold text-navy">
+            <span className="font-heading text-lg font-bold text-orange-accent">
               {t('common.language')}
             </span>
             <LanguageSwitch size="md" />
@@ -211,13 +211,13 @@ export const Navbar: React.FC = () => {
               <Link
                 to={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`py-4 border-b ${isActive(link.href) ? 'border-b-2 border-blue-medical text-blue-medical font-semibold' : 'border-warm-neutral text-navy font-medium'} font-heading text-[1.35rem] no-underline flex items-center justify-between animate-fade-in-up`}
+                className={`py-4 border-b ${isActive(link.href) ? 'border-b-2 border-orange-accent text-orange-accent font-bold' : 'border-warm-neutral text-navy font-semibold'} font-heading text-[1.35rem] no-underline flex items-center justify-between animate-fade-in-up`}
                 style={{
                   animationDelay: `${i * 0.04 + 0.05}s`,
                 }}
               >
                 {link.label}
-                <span className="font-mono text-[0.625rem] text-text-muted">
+                <span className="font-mono text-xs text-navy">
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </Link>
@@ -230,9 +230,9 @@ export const Navbar: React.FC = () => {
                       key={sub.href}
                       to={sub.href}
                       onClick={() => setMobileOpen(false)}
-                      className="font-body text-base text-text-muted no-underline flex items-center gap-2.5 py-1"
+                      className="font-body text-base text-navy no-underline flex items-center gap-2.5 py-1"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-accent shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-orange-accent shrink-0" />
                       {sub.label}
                     </Link>
                   ))}

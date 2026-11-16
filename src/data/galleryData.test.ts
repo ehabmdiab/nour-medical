@@ -3,8 +3,8 @@ import { GALLERY_DATA, GALLERY_CATEGORIES } from './galleryData';
 import type { GalleryCategoryType } from './galleryData';
 
 describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
-  it('consolidates gallery items into exactly 11 authentic field cards', () => {
-    expect(GALLERY_DATA.length).toBe(11);
+  it('consolidates gallery items into 9 authentic field cards (excluding relocated client hospital photos)', () => {
+    expect(GALLERY_DATA.length).toBe(9);
   });
 
   it('eliminates standalone equipment brochure cards from gallery', () => {
@@ -67,8 +67,8 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
 
   it('filters by category matching category labels and counts', () => {
     const categoryCounts: Record<GalleryCategoryType, number> = {
-      all: 11,
-      team: 6,
+      all: 9,
+      team: 4,
       exhibitions: 5,
     };
 
@@ -85,8 +85,12 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
   it('keeps client facility photos out of the gallery (they live on the Clients page)', () => {
     for (const card of GALLERY_DATA) {
       expect(card.id.startsWith('gal-clients-')).toBe(false);
+      expect(['gal-team-gouna', 'gal-team-tayseer', 'gal-team-ramadan']).not.toContain(card.id);
       for (const src of card.images) {
         expect(src).not.toContain('images/clients/');
+        expect(src).not.toContain('team-gouna-deployment.jpg');
+        expect(src).not.toContain('team-hospital-support.jpg');
+        expect(src).not.toContain('team-ramadan-celebration.jpg');
       }
     }
     expect(GALLERY_CATEGORIES.find((c) => (c.id as string) === 'events')).toBeUndefined();

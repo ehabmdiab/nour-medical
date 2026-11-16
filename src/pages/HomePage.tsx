@@ -101,7 +101,7 @@ export const HomePage: React.FC = () => {
             {/* Left: Text & CTA - Takes the full left column space */}
             <div className="w-full max-w-[760px]">
               <h1
-                className="font-heading text-[clamp(2.35rem,4.2vw,4.4rem)] font-extrabold text-navy leading-[1.04] md:leading-[1.02] tracking-[-0.03em] mb-9 animate-hero-title"
+                className="font-heading text-[clamp(2.5rem,4.5vw,4.5rem)] font-extrabold text-orange-accent leading-[1.1] tracking-[-0.03em] mb-9 animate-hero-title"
               >
                 {t('hero.title')}{' '}
                 <span className="text-orange-accent block">
@@ -114,7 +114,7 @@ export const HomePage: React.FC = () => {
               >
                 <Link to="/products" className="btn btn-blue gap-2 shadow-[0_4px_16px_rgba(27,79,216,0.25)]">
                   {t('hero.exploreProducts')}
-                  <ArrowRight size={15} />
+                  <ArrowRight size={16} />
                 </Link>
                 <Link to="/contact" className="btn btn-outline">
                   {t('hero.contactTeam')}
@@ -154,10 +154,10 @@ export const HomePage: React.FC = () => {
                       : i < 3 ? "border-r border-gray-light" : ""
                   }`}
                 >
-                  <div className="font-heading text-[1.75rem] font-bold text-navy tracking-[-0.02em] leading-none mb-1.5">
+                  <div className="font-heading text-3xl font-bold text-orange-accent tracking-[-0.02em] leading-none mb-2">
                     {stat.value}
                   </div>
-                  <div className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-text-muted">
+                  <div className="font-mono text-sm tracking-[0.1em] uppercase text-navy font-semibold">
                     {stat.label}
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-center">
             <div>
               <div className="section-label">{t('home.aboutLabel')}</div>
-              <h2 className="font-heading text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold text-navy tracking-[-0.02em] leading-[1.1] mb-7">
+              <h2 className="font-heading text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold text-orange-accent tracking-[-0.02em] leading-[1.1] mb-7">
                 {t('home.aboutTitle')}
               </h2>
               <Link to="/about" className="btn btn-outline mt-2">
@@ -186,10 +186,10 @@ export const HomePage: React.FC = () => {
               </Link>
             </div>
             <div>
-              <p className="font-body text-[clamp(0.9375rem,1.2vw,1.0625rem)] leading-[1.75] text-text-muted mb-6">
+              <p className="font-body text-lg md:text-xl leading-[1.75] text-navy mb-6">
                 {t('home.aboutP1')}
               </p>
-              <p className="font-body text-[clamp(0.9375rem,1.2vw,1.0625rem)] leading-[1.75] text-text-muted">
+              <p className="font-body text-lg md:text-xl leading-[1.75] text-navy">
                 {t('home.aboutP2')}
               </p>
             </div>
@@ -207,7 +207,7 @@ export const HomePage: React.FC = () => {
         <div className="container">
           <div className="mb-15">
             <div className="section-label">{t('home.capLabel')}</div>
-            <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-navy tracking-[-0.02em]">
+            <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-orange-accent tracking-[-0.02em]">
               {t('home.capTitle')}
             </h2>
           </div>
@@ -215,18 +215,18 @@ export const HomePage: React.FC = () => {
             {KEY_CAPABILITIES.map((cap, i) => (
               <div
                 key={cap.id}
-                className={`p-9 px-7 bg-white border border-gray-light rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 ease-[var(--ease-smooth)] hover:border-blue-medical hover:shadow-[0_12px_28px_rgba(27,79,216,0.08)] hover:-translate-y-1 ${
+                className={`p-9 px-7 bg-white border border-gray-light rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 ease-[var(--ease-smooth)] hover:border-orange-accent hover:shadow-[0_12px_28px_rgba(249,115,22,0.1)] hover:-translate-y-1 ${
                   capVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
                 style={{ transitionDelay: `${i * 0.08}s` }}
               >
-                <div className="font-mono text-[0.5rem] tracking-[0.2em] uppercase text-teal-accent mb-4">
+                <div className="font-heading text-sm tracking-[0.18em] uppercase text-orange-accent font-bold mb-4">
                   0{i + 1}
                 </div>
-                <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2.5">
+                <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-[-0.01em] mb-2.5">
                   {t(cap.titleKey) || cap.title}
                 </h3>
-                <p className="font-body text-base leading-[1.65] text-text-muted">
+                <p className="font-body text-lg leading-[1.65] text-navy">
                   {t(cap.descKey) || cap.description}
                 </p>
               </div>
@@ -252,10 +252,10 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-start">
             <div className="sticky top-[100px]">
               <div className="section-label">{t('home.whyLabel')}</div>
-              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-navy tracking-[-0.02em] leading-[1.1] mb-5">
+              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-orange-accent tracking-[-0.02em] leading-[1.1] mb-5">
                 {t('home.whyTitle')}
               </h2>
-              <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-8">
+              <p className="font-body text-lg leading-[1.7] text-navy mb-8">
                 {t('home.whyDesc')}
               </p>
               <Link to="/services" className="btn btn-primary">
@@ -274,14 +274,14 @@ export const HomePage: React.FC = () => {
                 >
                   <div className="flex justify-between items-start gap-4">
                     <div>
-                      <h3 className="font-heading text-[1.0625rem] font-semibold text-navy tracking-[-0.01em] mb-2">
+                      <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-[-0.01em] mb-2">
                         {item.title}
                       </h3>
-                      <p className="font-body text-lg leading-[1.65] text-text-muted">
+                      <p className="font-body text-lg leading-[1.65] text-navy">
                         {item.description}
                       </p>
                     </div>
-                    <span className="font-mono text-[0.5rem] tracking-[0.15em] text-stone shrink-0 mt-1">
+                    <span className="font-heading text-sm tracking-[0.15em] text-orange-accent font-bold shrink-0 mt-1">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
@@ -302,10 +302,10 @@ export const HomePage: React.FC = () => {
         <div className="container">
           {/* Vision */}
           <div className="mb-20 max-w-[760px]">
-            <div className="section-label section-label-light text-white/40 mb-6">
+            <div className="section-label section-label-light text-orange-accent mb-6">
               {t('home.visionTitle')}
             </div>
-            <blockquote className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold italic text-white leading-[1.3] tracking-[-0.02em]">
+            <blockquote className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold text-white leading-[1.3] tracking-[-0.02em]">
               "{locale === 'ar' ? t('home.visionDesc') : COMPANY_INFO.vision}"
             </blockquote>
           </div>
@@ -313,25 +313,25 @@ export const HomePage: React.FC = () => {
           <div className="rule-dark mb-20" />
 
           {/* Mission Pillars */}
-          <div className="section-label section-label-light text-white/40 mb-12">
+          <div className="section-label section-label-light text-orange-accent mb-12">
             {t('home.missionTitlePillar')}
           </div>
           <div className="grid-3">
             {missionPillars.map((pillar, i) => (
               <div
                 key={pillar.title}
-                className={`p-9 bg-white/[0.03] border border-white/[0.07] rounded transition-all duration-300 hover:border-white/20 hover:-translate-y-0.5 ${
+                className={`p-9 bg-white/[0.04] border border-white/[0.1] rounded transition-all duration-300 hover:border-orange-accent/50 hover:-translate-y-0.5 ${
                   missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                <div className="font-mono text-[0.625rem] tracking-[0.15em] text-teal-accent mb-4">
+                <div className="font-heading text-sm tracking-[0.15em] text-orange-accent font-bold mb-4">
                   0{i + 1}
                 </div>
-                <h3 className="font-heading text-xl font-bold text-white tracking-[-0.01em] mb-2.5">
+                <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-[-0.01em] mb-2.5">
                   {pillar.title}
                 </h3>
-                <p className="font-body text-lg leading-[1.65] text-white/60">
+                <p className="font-body text-lg leading-[1.65] text-white/90">
                   {pillar.description}
                 </p>
               </div>
@@ -351,7 +351,7 @@ export const HomePage: React.FC = () => {
           <div className="flex justify-between items-end flex-wrap gap-6 mb-15">
             <div>
               <div className="section-label">{t('nav.suppliers')}</div>
-              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-navy tracking-[-0.02em]">
+              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-orange-accent tracking-[-0.02em]">
                 {t('suppliers.title')}
               </h2>
             </div>
@@ -371,18 +371,18 @@ export const HomePage: React.FC = () => {
                   key={partner.id}
                   className="p-9 bg-white border border-gray-light rounded-xl"
                 >
-                  <div className="text-[1.75rem] mb-4">{partner.countryFlag}</div>
-                  <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2">
+                  <div className="text-3xl mb-4">{partner.countryFlag}</div>
+                  <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-[-0.01em] mb-2">
                     {name}
                   </h3>
-                  <p className="font-mono text-[0.5625rem] tracking-[0.12em] uppercase text-teal-accent mb-4">
+                  <p className="font-body text-xs tracking-[0.1em] uppercase text-navy font-bold mb-4">
                     {tagline}
                   </p>
-                  <ul className="flex flex-col gap-1.5 list-none m-0 p-0">
+                  <ul className="flex flex-col gap-2 list-none m-0 p-0">
                     {specialties.slice(0, 3).map((s) => (
-                      <li key={s} className="flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-blue-medical shrink-0" />
-                        <span className="font-body text-[0.8125rem] text-text-muted">
+                      <li key={s} className="flex items-center gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-accent shrink-0" />
+                        <span className="font-body text-base text-navy">
                           {s}
                         </span>
                       </li>
@@ -406,10 +406,10 @@ export const HomePage: React.FC = () => {
           <div className="section-label justify-center">
             {t('common.contactUs')}
           </div>
-          <h2 className="font-heading text-[clamp(2rem,4.5vw,4rem)] font-bold text-navy tracking-[-0.025em] leading-[1.05] mb-6">
+          <h2 className="font-heading text-[clamp(2rem,4.5vw,4rem)] font-bold text-orange-accent tracking-[-0.025em] leading-[1.08] mb-6">
             {t('home.ctaTitle')}
           </h2>
-          <p className="font-body text-lg leading-[1.7] text-text-muted mb-10">
+          <p className="font-body text-xl leading-[1.7] text-navy mb-10">
             {t('home.ctaDesc')}
           </p>
           <div className="flex gap-4 justify-center flex-wrap">

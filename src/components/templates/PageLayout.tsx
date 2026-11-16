@@ -11,7 +11,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
   useLenisScroll();
 
   return (
-    <div className="min-h-screen bg-white text-text-body flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-white text-navy flex flex-col overflow-x-hidden">
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />

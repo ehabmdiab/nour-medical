@@ -44,10 +44,10 @@ export const AboutPage: React.FC = () => {
           <div className="section-label">
             {t('about.sectionLabel')}
           </div>
-          <h1 className="font-heading text-[clamp(3rem,6.5vw,5.75rem)] font-bold text-navy tracking-[-0.035em] leading-[0.94] max-w-[850px] mb-8">
+          <h1 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-orange-accent tracking-[-0.03em] leading-[1.1] max-w-[850px] mb-8">
             {t('about.title')}
           </h1>
-          <p className="font-body text-[clamp(1.25rem,2vw,1.5rem)] leading-[1.7] text-text-muted max-w-[680px]">
+          <p className="font-body text-[clamp(1.25rem,2vw,1.5rem)] leading-[1.7] text-navy max-w-[680px]">
             {t('about.subtitle')}
           </p>
         </div>
@@ -59,18 +59,18 @@ export const AboutPage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-start">
             <div>
               <div className="section-label">{t('about.storyLabel')}</div>
-              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-navy tracking-[-0.03em] leading-[1.05] mb-6">
+              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-orange-accent tracking-[-0.03em] leading-[1.08] mb-6">
                 {t('about.storyTitle')}
               </h2>
             </div>
             <div>
-              <p className="font-body text-[1.0625rem] leading-[1.75] text-text-muted mb-5">
+              <p className="font-body text-lg leading-[1.75] text-navy mb-5">
                 {t('about.storyP1')}
               </p>
-              <p className="font-body text-[1.0625rem] leading-[1.75] text-text-muted mb-5">
+              <p className="font-body text-lg leading-[1.75] text-navy mb-5">
                 {t('about.storyP2')}
               </p>
-              <p className="font-body text-[1.0625rem] leading-[1.75] text-text-muted">
+              <p className="font-body text-lg leading-[1.75] text-navy">
                 {t('about.storyP3')}
               </p>
             </div>
@@ -88,7 +88,7 @@ export const AboutPage: React.FC = () => {
         <div className="container">
           <div className="mb-15">
             <div className="section-label">{t('about.foundationLabel')}</div>
-            <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-navy tracking-[-0.02em]">
+            <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-orange-accent tracking-[-0.02em]">
               {t('about.pillarsTitle')}
             </h2>
           </div>
@@ -96,18 +96,18 @@ export const AboutPage: React.FC = () => {
             {pillars.map((pillar, i) => (
               <div
                 key={pillar.id}
-                className={`p-12 px-9 border-l-2 border-blue-medical transition-all duration-600 ease-[var(--ease-smooth)] ${
+                className={`p-12 px-9 border-l-2 border-orange-accent transition-all duration-600 ease-[var(--ease-smooth)] ${
                   pillarsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                <div className="font-mono text-[0.5rem] tracking-[0.2em] uppercase text-blue-medical mb-5">
+                <div className="font-heading text-sm tracking-[0.16em] uppercase text-orange-accent font-bold mb-5">
                   {String(i + 1).padStart(2, '0')} — {pillar.id.toUpperCase()}
                 </div>
-                <h3 className="font-heading text-[1.625rem] font-bold text-navy tracking-[-0.015em] mb-3.5">
+                <h3 className="font-heading text-3xl font-bold text-orange-accent tracking-[-0.015em] mb-3.5">
                   {pillar.title}
                 </h3>
-                <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted">
+                <p className="font-body text-lg leading-[1.7] text-navy">
                   {pillar.description}
                 </p>
               </div>
@@ -147,13 +147,13 @@ export const AboutPage: React.FC = () => {
 
                 <div className="flex-1 min-w-[240px]">
                   <div className="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-[20px] bg-orange-subtle border border-orange-accent/30 mb-4">
-                    <Award size={14} className="text-teal-accent" />
-                    <span className="font-mono text-[0.6875rem] tracking-[0.15em] uppercase text-orange-accent font-semibold">
+                    <Award size={16} className="text-orange-accent" />
+                    <span className="font-mono text-sm sm:text-base tracking-[0.1em] uppercase text-orange-accent font-bold leading-[1.4]">
                       {t('about.chairmanTitle')}
                     </span>
                   </div>
 
-                  <h2 className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold text-white tracking-[-0.03em] leading-[1.1] mb-3">
+                  <h2 className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold text-orange-accent tracking-[-0.03em] leading-[1.1] mb-3">
                     {t('about.chairman')}
                   </h2>
 
@@ -163,9 +163,9 @@ export const AboutPage: React.FC = () => {
                     {[t('about.leaderTag1'), t('about.leaderTag2'), t('about.leaderTag3')].map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center gap-1.5 text-xs font-mono text-white/80 bg-white/[0.06] py-1 px-2.5 rounded border border-white/[0.08]"
+                        className="inline-flex items-center gap-1.5 text-sm font-mono text-white/90 bg-white/[0.08] py-1.5 px-3 rounded border border-white/[0.12]"
                       >
-                        <ShieldCheck size={12} className="text-teal-accent" />
+                        <ShieldCheck size={14} className="text-orange-accent" />
                         {tag}
                       </span>
                     ))}
@@ -175,11 +175,11 @@ export const AboutPage: React.FC = () => {
 
               {/* Right Column: Executive Quote / Vision Statement */}
               <div className="relative ltr:pl-[clamp(0px,3vw,24px)] rtl:pr-[clamp(0px,3vw,24px)] ltr:border-l rtl:border-r border-white/10">
-                <Quote size={32} className="text-orange-accent opacity-50 mb-4" />
-                <p className="font-body text-[clamp(1rem,1.5vw,1.1875rem)] leading-[1.65] text-white/90 font-normal italic mb-5">
+                <Quote size={32} className="text-orange-accent opacity-60 mb-4" />
+                <p className="font-body text-[clamp(1.125rem,1.6vw,1.35rem)] leading-[1.65] text-white/95 font-normal mb-5">
                   "{t('about.quoteText')}"
                 </p>
-                <div className="font-mono text-xs tracking-[0.1em] uppercase text-orange-accent font-semibold">
+                <div className="font-heading text-sm tracking-[0.1em] uppercase text-orange-accent font-bold">
                   {t('about.quoteAuthor')}
                 </div>
               </div>
@@ -202,49 +202,53 @@ export const AboutPage: React.FC = () => {
               <div className="section-label section-label-light mb-6">
                 {t('about.hrLabel')}
               </div>
-              <h3 className="font-heading text-[clamp(1.5rem,2.5vw,2.25rem)] font-bold text-navy tracking-[-0.02em] leading-[1.2] mb-4">
+              <h3 className="font-heading text-[clamp(1.75rem,2.75vw,2.5rem)] font-bold text-orange-accent tracking-[-0.02em] leading-[1.2] mb-3">
                 {t('about.hrTitle')}
               </h3>
-              <p className="font-mono text-[0.5625rem] tracking-[0.15em] uppercase text-orange-accent mb-5">
+              <p className="font-mono text-sm tracking-[0.12em] uppercase text-navy font-bold mb-5">
                 {t('about.hrSubtitle')}
               </p>
-              <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-6">
+              <p className="font-body text-lg leading-[1.7] text-navy mb-6">
                 {t('about.hrDesc')}
               </p>
 
               {/* Executive Management Cards */}
-              <div className="flex flex-col gap-3.5">
+              <div className="flex flex-col gap-4">
                 {/* Dr. Gehan Awad — Director of Fin. & Admin */}
-                <div className="flex gap-[18px] items-center p-4 sm:p-5 px-5 sm:px-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-orange-accent shadow-[0_4px_16px_rgba(10,22,40,0.04)]">
-                  <div className="w-[44px] h-[44px] rounded-[10px] bg-orange-subtle flex items-center justify-center text-orange-accent shrink-0 font-heading font-bold text-sm tracking-wider">
+                <div className="flex gap-[18px] items-center p-5 sm:p-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-orange-accent shadow-[0_4px_16px_rgba(10,22,40,0.04)]">
+                  <div className="w-[48px] h-[48px] rounded-[10px] bg-orange-subtle flex items-center justify-center text-orange-accent shrink-0 font-heading font-bold text-base tracking-wider">
                     GA
                   </div>
                   <div>
-                    <h4 className="font-heading text-lg sm:text-xl font-bold text-navy mb-0.5">
+                    <h4 className="font-heading text-xl sm:text-2xl font-bold text-orange-accent mb-1">
                       {t('about.directorName')}
                     </h4>
-                    <p className="font-mono text-xs text-orange-accent uppercase tracking-[0.08em] font-semibold">
+                    <p className="font-mono text-base sm:text-lg text-navy uppercase tracking-[0.05em] font-bold leading-[1.4]">
                       {t('about.directorTitle')}
                     </p>
-                    <p className="text-[0.8125rem] text-text-muted mt-1 leading-[1.45]">
+                    <p className="text-base text-navy mt-1.5 leading-[1.5]">
                       {t('about.directorDesc')}
                     </p>
                   </div>
                 </div>
 
                 {/* Eng. Ahmed Hafez — General Manager */}
-                <div className="flex gap-[18px] items-center p-4 sm:p-5 px-5 sm:px-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-blue-medical shadow-[0_4px_16px_rgba(10,22,40,0.04)]">
-                  <div className="w-[44px] h-[44px] rounded-[10px] bg-blue-subtle flex items-center justify-center text-blue-medical shrink-0 font-heading font-bold text-sm tracking-wider">
-                    AH
+                <div className="flex gap-[18px] items-center p-5 sm:p-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-orange-accent shadow-[0_4px_16px_rgba(10,22,40,0.04)]">
+                  <div className="w-[76px] h-[94px] sm:w-[88px] sm:h-[108px] rounded-[12px] overflow-hidden border-2 border-orange-accent/35 shadow-sm shrink-0 bg-navy-dark">
+                    <img
+                      src={COMPANY_INFO.generalManagerImage}
+                      alt={t('about.gmName')}
+                      className="w-full h-full object-cover object-[center_18%]"
+                    />
                   </div>
                   <div>
-                    <h4 className="font-heading text-lg sm:text-xl font-bold text-navy mb-0.5">
+                    <h4 className="font-heading text-xl sm:text-2xl font-bold text-orange-accent mb-1">
                       {t('about.gmName')}
                     </h4>
-                    <p className="font-mono text-xs text-blue-medical uppercase tracking-[0.08em] font-semibold">
+                    <p className="font-mono text-base sm:text-lg text-navy uppercase tracking-[0.05em] font-bold leading-[1.4]">
                       {t('about.gmTitle')}
                     </p>
-                    <p className="text-[0.8125rem] text-text-muted mt-1 leading-[1.45]">
+                    <p className="text-base text-navy mt-1.5 leading-[1.5]">
                       {t('about.gmDesc')}
                     </p>
                   </div>
@@ -257,13 +261,13 @@ export const AboutPage: React.FC = () => {
               <div className="section-label section-label-light mb-6">
                 {t('about.infraLabel')}
               </div>
-              <h3 className="font-heading text-[clamp(1.5rem,2.5vw,2.25rem)] font-bold text-navy tracking-[-0.02em] leading-[1.2] mb-4">
+              <h3 className="font-heading text-[clamp(1.75rem,2.75vw,2.5rem)] font-bold text-orange-accent tracking-[-0.02em] leading-[1.2] mb-3">
                 {t('about.infraTitle')}
               </h3>
-              <p className="font-mono text-[0.5625rem] tracking-[0.15em] uppercase text-orange-accent mb-5">
+              <p className="font-mono text-sm tracking-[0.12em] uppercase text-navy font-bold mb-5">
                 {t('about.infraSubtitle')}
               </p>
-              <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted">
+              <p className="font-body text-lg leading-[1.7] text-navy">
                 {t('about.infraDesc')}
               </p>
             </div>
@@ -272,10 +276,10 @@ export const AboutPage: React.FC = () => {
           {/* Engineering Team Photographic Strip */}
           <div className="mt-12">
             <div className="flex items-center justify-between mb-4.5">
-              <span className="font-mono text-[0.625rem] tracking-[0.15em] uppercase text-orange-accent font-semibold">
+              <span className="font-mono text-sm tracking-[0.12em] uppercase text-orange-accent font-bold">
                 {t('about.teamStripLabel')}
               </span>
-              <Link to="/gallery" className="font-mono text-xs text-navy no-underline font-semibold hover:text-blue-medical transition-colors">
+              <Link to="/gallery" className="font-mono text-sm text-navy no-underline font-bold hover:text-orange-accent transition-colors">
                 {t('about.viewGallery')}
               </Link>
             </div>
@@ -296,7 +300,7 @@ export const AboutPage: React.FC = () => {
 
           {/* CTA */}
           <div className="flex justify-between items-center flex-wrap gap-6">
-            <p className="font-heading text-[clamp(1.5rem,3vw,2.25rem)] font-semibold text-navy tracking-[-0.015em] max-w-[480px]">
+            <p className="font-heading text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-orange-accent tracking-[-0.015em] max-w-[540px]">
               {t('about.ctaTitle')}
             </p>
             <Link to="/contact" className="btn btn-primary gap-2">

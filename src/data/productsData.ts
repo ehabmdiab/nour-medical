@@ -7,6 +7,15 @@ export interface ProductSpec {
   valueAr?: string;
 }
 
+export interface ProductGalleryImage {
+  src: string;
+  alt: string;
+  altAr: string;
+  agency: string;
+  agencyAr: string;
+  countryFlag: string;
+}
+
 export interface ProductItem {
   id: string;
   category: string; // backwards compatibility
@@ -32,6 +41,7 @@ export interface ProductItem {
   clinicalApplications: string[];
   clinicalApplicationsAr?: string[];
   image: string;
+  gallery?: ProductGalleryImage[];
   featured?: boolean;
 }
 
@@ -177,8 +187,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
     descriptionAr: "منظومة أشعة سينية رقمية عالية التردد مؤتمتة بالكامل، مزودة بكواشف رقمية لاسلكية وتحريك آلي متزامن.",
     mainTask: "General skeletal, chest, abdominal, and emergency orthopedic radiography.",
     mainTaskAr: "تصوير العظام، الصدر، البطن، وطوارئ الكسور والإصابات بدقة رقمية فورية.",
-    supplier: "Angel / InnoCare / Global Imaging",
-    country: "International Technology",
+    supplier: "Radmedix (USA) / InnoCare (Taiwan)",
+    country: "USA & Taiwan",
     specs: [
       { label: "Detector Technology", value: "Wireless Cesium Iodide (CsI) Flat Panel Detector", labelAr: "تقنية الكاشف", valueAr: "كاشف مسطح لاسلكي من يوديد السيزيوم (CsI)" },
       { label: "Active Detector Area", value: "43 x 43 cm (17 x 17 in) Large Field of View", labelAr: "مساحة الكاشف", valueAr: "43 × 43 سم (17 × 17 بوصة) تغطية كاملة" },
@@ -211,7 +221,49 @@ export const PRODUCTS_DATA: ProductItem[] = [
       "المسالك والبطن: فحص الكلى والمسالك KUB وحالات البطن الحادة",
       "الأطفال: بروتوكولات مخصصة بجرعات إشعاعية متناهية الصغر لحماية الصغار",
     ],
-    image: `${BASE}images/products/digital-radiography-dr.jpg`,
+    image: `${BASE}images/products/dr-radmedix-usa.png`,
+    gallery: [
+      {
+        src: `${BASE}images/products/dr-radmedix-usa.png`,
+        alt: "Radmedix USA Digital Radiography Acquisition & Display System",
+        altAr: "وحدة العرض والتحكم للأشعة الرقمية — أمريكا Radmedix",
+        agency: "USA — Radmedix",
+        agencyAr: "أمريكا — Radmedix",
+        countryFlag: "🇺🇸",
+      },
+      {
+        src: `${BASE}images/products/dr-innocare-taiwan-1.png`,
+        alt: "InnoCare Taiwan Flat Panel DR Detector — Front View",
+        altAr: "كاشف الأشعة الرقمية المسطح (الواجهة الأمامية) — تايوان InnoCare",
+        agency: "Taiwan — InnoCare",
+        agencyAr: "تايوان — InnoCare",
+        countryFlag: "🇹🇼",
+      },
+      {
+        src: `${BASE}images/products/dr-innocare-taiwan-2.png`,
+        alt: "InnoCare Taiwan Flat Panel DR Detector — Rear Housing",
+        altAr: "كاشف الأشعة الرقمية المسطح (الواجهة الخلفية) — تايوان InnoCare",
+        agency: "Taiwan — InnoCare",
+        agencyAr: "تايوان — InnoCare",
+        countryFlag: "🇹🇼",
+      },
+      {
+        src: `${BASE}images/products/dr-innocare-taiwan-3.png`,
+        alt: "InnoCare Taiwan Flat Panel DR Detector — Ultra-Slim Side Profile",
+        altAr: "التصميم الجانبي فائق النحافة للكاشف — تايوان InnoCare",
+        agency: "Taiwan — InnoCare",
+        agencyAr: "تايوان — InnoCare",
+        countryFlag: "🇹🇼",
+      },
+      {
+        src: `${BASE}images/products/dr-innocare-taiwan-4.png`,
+        alt: "InnoCare Taiwan Flat Panel X-Ray Sensor — Perspective View",
+        altAr: "مستشعر اللوح الرقمي المسطح للأشعة — تايوان InnoCare",
+        agency: "Taiwan — InnoCare",
+        agencyAr: "تايوان — InnoCare",
+        countryFlag: "🇹🇼",
+      },
+    ],
     featured: true,
   },
 

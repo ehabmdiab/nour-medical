@@ -14,7 +14,7 @@ export const COMPANY_CONTACT = {
   fax: '02 25267178',
   mobile: ['01023515373', '01007361255'],
   website: 'www.nourmedical.com',
-  email: 'info@nourmedical.com',
+  email: 'marketing@nourmedical.com',
 };
 
 // ── COMPANY INFO ────────────────────────────────────────────────
@@ -28,6 +28,7 @@ export const COMPANY_INFO = {
   financeDirectorTitle: 'Director of Fin. & Admin',
   generalManager: 'Eng. Ahmed Hafez',
   generalManagerTitle: 'General Manager',
+  generalManagerImage: `${BASE}images/team/eng-ahmed-hafez.jpg`,
   medicalDirector: 'Dr. Gehan Awad',
   medicalDirectorImage: '',
   location: 'Maadi, Cairo, Egypt',
@@ -56,7 +57,7 @@ export const COMPANY_PILLARS = [
     id: 'technology',
     title: 'Technology',
     description:
-      'Access to advanced medical products through an international supplier network spanning the USA, Taiwan, and China.',
+      'Ensuring the availability of modern medical equipment compliant with international standards through a global supplier network from countries like the USA, China, and Taiwan.',
   },
   {
     id: 'expertise',
@@ -68,7 +69,7 @@ export const COMPANY_PILLARS = [
     id: 'reliability',
     title: 'Reliability',
     description:
-      'After-sales service and maintenance designed to support customers throughout the operational life of their systems.',
+      'After-sales service and maintenance designed to support customers throughout the operational life of their systems, with the availability of all spare parts enabling immediate completion of required maintenance.',
   },
 ];
 
@@ -93,17 +94,8 @@ export const PRODUCT_CATEGORIES = [
     tag: 'Healthcare Solutions',
   },
   {
-    id: 'hospital-furniture',
-    number: '03',
-    title: 'Hospital Furniture',
-    description:
-      'Durable, purpose-designed furniture solutions for patient care environments, wards, and clinical areas.',
-    subcategories: [],
-    tag: 'Facility Solutions',
-  },
-  {
     id: 'sterilization',
-    number: '04',
+    number: '03',
     title: 'Central Sterilization Equipment',
     description:
       'Equipment for central sterilization departments, supporting infection control and safety standards across healthcare facilities.',
@@ -112,7 +104,7 @@ export const PRODUCT_CATEGORIES = [
   },
   {
     id: 'consumables',
-    number: '05',
+    number: '04',
     title: 'Consumables',
     description:
       'Essential medical consumables supporting day-to-day clinical operations and patient care continuity.',
@@ -121,7 +113,7 @@ export const PRODUCT_CATEGORIES = [
   },
   {
     id: 'spare-parts',
-    number: '06',
+    number: '05',
     title: 'Spare Parts',
     description:
       'Genuine spare parts for radiology and medical equipment, backed by a dedicated local storage facility for rapid availability.',
@@ -150,14 +142,10 @@ export const SERVICES: ServicePillar[] = [
     id: 'maintenance-support',
     title: 'Maintenance & Technical Support',
     tag: 'Preventive & Corrective Engineering',
-    headline: '24/7 Field Service Engineering & Operational Uptime',
+    headline: 'Field Service Engineering & Operational Uptime',
     description:
-      'Proactive diagnostic maintenance programs, 24/7 emergency response, and annual service contracts (AMC) designed to eliminate system downtime and extend equipment lifespan.',
+      'Proactive diagnostic maintenance programs, rapid field response, and annual service contracts (AMC) designed to eliminate system downtime and extend equipment lifespan.',
     highlights: [
-      {
-        title: '24/7 Emergency Hotline',
-        desc: 'Direct line to biomedical engineers with under 2-hour response in Cairo and rapid nationwide dispatch.',
-      },
       {
         title: 'Preventive & Corrective Maintenance',
         desc: 'Scheduled diagnostic checks, X-ray tube wear analysis, high-voltage calibration, and detector mapping.',
@@ -167,7 +155,7 @@ export const SERVICES: ServicePillar[] = [
         desc: 'Structured contracts offering priority response, routine audits, and local spare parts coverage.',
       },
     ],
-    badge: '24/7 Hotline Support',
+    badge: 'Technical Field Support',
     link: '/services#maintenance',
     linkText: 'Explore Maintenance Services',
   },
@@ -178,11 +166,11 @@ export const SERVICES: ServicePillar[] = [
     tag: 'Turnkey Supply & Inventory',
     headline: 'Advanced Modalities & Stocked Central Warehouse',
     description:
-      'Turnkey supply of diagnostic radiology systems, central sterilization suites, hospital furniture, and genuine OEM spare parts backed by our 1,000 m² local storage facility.',
+      'Turnkey supply of diagnostic radiology systems, central sterilization suites, and genuine OEM spare parts backed by our 1,000 m² local storage facility.',
     highlights: [
       {
         title: 'Global OEM Supplier Network',
-        desc: 'Authorized partner for leading medical OEMs across USA, Taiwan, and China (Radmedix, InnoCare, Lonwin, Senno Vision).',
+        desc: 'Authorized partner for leading medical OEMs in countries like the USA, China, and Taiwan (Radmedix, Angel, Lonwin, Senno Vision, InnoCare).',
       },
       {
         title: '1,000 m² Central Warehouse',
@@ -217,6 +205,56 @@ export interface SupplierPartner {
 
 export const SUPPLIER_PARTNERS: SupplierPartner[] = [
   {
+    id: 'radmedix',
+    name: 'Radmedix',
+    nameAr: 'راد ميديكس (Radmedix)',
+    country: 'USA',
+    countryAr: 'الولايات المتحدة',
+    countryFlag: '🇺🇸',
+    tagline: 'Leading Provider of Digital Radiology Solutions',
+    taglineAr: 'المزود الرائد لحلول الأشعة التشخيصية الرقمية',
+    description:
+      'Radmedix is a US-based digital radiology supplier and the leading provider of innovative products and reliable solutions in flat panel DR, digital X-ray, and cloud-based PACS.',
+    descriptionAr:
+      'شركة أمريكية متخصصة في توريد أنظمة الأشعة الرقمية، وتُعد المزود الرائد للمنتجات المبتكرة والحلول الموثوقة في مجال ألواح التصوير الرقمي المسطحة (Flat Panel DR)، وأجهزة الأشعة السينية الرقمية (Digital X-Ray)، وأنظمة الأرشفة السحابية للصور الطبية (Cloud-Based PACS).',
+    specialties: [
+      'Flat Panel DR Solutions',
+      'Digital X-Ray Systems',
+      'Cloud-Based PACS',
+    ],
+    specialtiesAr: [
+      'حلول ومستشعرات اللوح الرقمي المسطح (Flat Panel DR)',
+      'أجهزة الأشعة السينية الرقمية المتكاملة (Digital X-Ray)',
+      'أنظمة الأرشفة وإدارة الصور السحابية (Cloud-Based PACS)',
+    ],
+  },
+  {
+    id: 'lonwin',
+    name: 'Suzhou Lonwin Medical Systems Co.',
+    nameAr: 'سوتشو لون وين للأنظمة الطبية (Lonwin Medical)',
+    country: 'China',
+    countryAr: 'الصين',
+    countryFlag: '🇨🇳',
+    tagline: 'Integrated Medical Imaging Products for Diagnosis & Treatment',
+    taglineAr: 'أنظمة التصوير الطبي المتكاملة للتشخيص والعلاج',
+    description:
+      'Located in China, Suzhou Lonwin Medical Systems Co., Ltd. (Lonwin Medical), with its core business in magnetic resonance imaging (MRI) and CT, is a manufacturer and service provider of integrated imaging products for medical diagnosis and treatment. Its product line covers four fields: magnetic resonance imaging (MRI), radiography (CT & DR), imaging-related products, and interventional therapy-related products.',
+    descriptionAr:
+      'تقع شركة سوتشو لون وين للأنظمة الطبية (Lonwin Medical) في الصين، ويرتكز نشاطها الأساسي على أنظمة الرنين المغناطيسي (MRI) والأشعة المقطعية (CT)، وهي شركة مصنعة ومزودة لمنتجات وحلول التصوير المتكاملة للتشخيص والعلاج الطبي. يغطي خط إنتاجها أربعة مجالات رئيسية تشمل: الرنين المغناطيسي (MRI)، التصوير الإشعاعي (CT & DR)، المنتجات المرتبطة بالتصوير الطبي، ومنتجات العلاج التداخلي.',
+    specialties: [
+      'Magnetic Resonance Imaging (MRI)',
+      'Radiography Systems (CT & DR)',
+      'Imaging-Related Medical Products',
+      'Interventional Therapy-Related Products',
+    ],
+    specialtiesAr: [
+      'أنظمة التصوير بالرنين المغناطيسي (MRI)',
+      'أنظمة التصوير الإشعاعي والأشعة المقطعية والرقمية (CT & DR)',
+      'المنتجات والتجهيزات المرتبطة بالتصوير الطبي',
+      'منتجات وحلول العلاج التداخلي',
+    ],
+  },
+  {
     id: 'angel',
     name: 'Angel (Anjian Technology)',
     nameAr: 'أنجيل (Anjian Technology)',
@@ -245,82 +283,6 @@ export const SUPPLIER_PARTNERS: SupplierPartner[] = [
     ],
   },
   {
-    id: 'radmedix',
-    name: 'Radmedix',
-    nameAr: 'راد ميديكس (Radmedix)',
-    country: 'USA',
-    countryAr: 'الولايات المتحدة',
-    countryFlag: '🇺🇸',
-    tagline: 'Digital Radiology Solutions',
-    taglineAr: 'حلول الأشعة التشخيصية الرقمية',
-    description:
-      'A US-based digital radiology supplier specializing in flat panel DR detectors, digital X-Ray systems, and cloud-based PACS solutions.',
-    descriptionAr:
-      'مورد أمريكي رائد لحلول الأشعة الرقمية متخصص في مستشعرات اللوح المسطح (DR)، وأجهزة الأشعة السينية الرقمية، وحلول أرشفة ومشاركة الصور الطبية السحابية (PACS).',
-    specialties: [
-      'Flat Panel DR Systems',
-      'Digital X-Ray Equipment',
-      'Cloud-Based PACS',
-    ],
-    specialtiesAr: [
-      'أنظمة ومستشعرات اللوح المسطح (DR)',
-      'أجهزة الأشعة السينية الرقمية المتكاملة',
-      'أنظمة الأرشفة وإدارة الصور السحابية (PACS)',
-    ],
-  },
-  {
-    id: 'innocare',
-    name: 'InnoCare Optoelectronics Corporation',
-    nameAr: 'إينوكير (InnoCare Optoelectronics)',
-    country: 'Taiwan',
-    countryAr: 'تايوان',
-    countryFlag: '🇹🇼',
-    tagline: 'X-Ray Flat Panel Sensor Technology',
-    taglineAr: 'تكنولوجيا مستشعرات الألواح المسطحة للأشعة',
-    description:
-      'Established in April 2019, InnoCare Optoelectronics is a Taiwanese manufacturer specializing in X-Ray flat panel sensors, recognized as a world leader in this field.',
-    descriptionAr:
-      'تأسست في أبريل ٢٠١٩، وتعد الشركة التايوانية إينوكير رائدة عالمياً في تصنيع مستشعرات اللوح الرقمي المسطح للأشعة السينية بأعلى معايير الدقة الضوئية والإلكترونية.',
-    specialties: [
-      'X-Ray Flat Panel Sensors',
-      'Digital Detector Technology',
-      'Optoelectronic Components',
-    ],
-    specialtiesAr: [
-      'مستشعرات اللوح المسطح للأشعة السينية',
-      'تكنولوجيا الكواشف والمستشعرات الرقمية',
-      'المكونات الكهروضوئية الدقيقة',
-    ],
-  },
-  {
-    id: 'lonwin',
-    name: 'Suzhou Lonwin Medical Systems Co.',
-    nameAr: 'سوتشو لون وين للأنظمة الطبية (Lonwin)',
-    country: 'China',
-    countryAr: 'الصين',
-    countryFlag: '🇨🇳',
-    tagline: 'Integrated Medical Imaging Systems',
-    taglineAr: 'أنظمة التصوير الطبي المتكاملة',
-    description:
-      'A Chinese medical systems manufacturer with a core business spanning MRI, CT, integrated imaging products, radiography, imaging-related products, and interventional therapy-related products.',
-    descriptionAr:
-      'شركة صينية متخصصة في الأنظمة الطبية المتطورة تغطي أعمالها الرئيسية الرنين المغناطيسي (MRI)، والأشعة المقطعية (CT)، وأجهزة الأشعة التشخيصية، ومنتجات العلاج التداخلي.',
-    specialties: [
-      'MRI Systems',
-      'CT Systems',
-      'Integrated Imaging Products',
-      'Radiography Equipment',
-      'Interventional Therapy Products',
-    ],
-    specialtiesAr: [
-      'أنظمة الرنين المغناطيسي (MRI)',
-      'أنظمة الأشعة المقطعية (CT)',
-      'منتجات وحلول التصوير المتكاملة',
-      'أجهزة الأشعة التشخيصية والتصويرية',
-      'منتجات العلاج والقسطرة التداخلية',
-    ],
-  },
-  {
     id: 'sennovision',
     name: 'Senno Vision (SennoVision Medical Technology)',
     nameAr: 'سينو فيجن (Senno Vision)',
@@ -344,6 +306,30 @@ export const SUPPLIER_PARTNERS: SupplierPartner[] = [
       'حلول وتطبيقات الأشعة الرقمية (DR)',
       'أنظمة الرؤية الطبية أثناء العمليات الجراحية',
       'أنظمة التصوير التشخيصي التخصصية',
+    ],
+  },
+  {
+    id: 'innocare',
+    name: 'InnoCare Optoelectronics Corporation',
+    nameAr: 'إينوكير للإلكترونيات الضوئية (InnoCare)',
+    country: 'Taiwan',
+    countryAr: 'تايوان',
+    countryFlag: '🇹🇼',
+    tagline: 'World Leader in X-Ray Flat Panel Sensor Technology',
+    taglineAr: 'الرائد العالمي في تكنولوجيا مستشعرات الألواح المسطحة للأشعة',
+    description:
+      'Established in April 2019 in Taiwan, InnoCare Optoelectronics Corporation ("InnoCare") specializes in the design and development of X-ray flat panel sensors. Their products are among the most technically advanced and highest-quality manufactured, making InnoCare the world leader in this field.',
+    descriptionAr:
+      'تأسست شركة إينوكير للإلكترونيات الضوئية (InnoCare) في أبريل ٢٠١٩ في تايوان، ويتركز نشاطها الرئيسي في تصميم وتطوير مستشعرات الألواح المسطحة للأشعة السينية (X-Ray Flat Panel Sensors). تمتاز منتجاتها بكونها الأكثر تطوراً من الناحية التقنية والأعلى جودة في التصنيع، مما يجعل إينوكير الشركة الرائدة عالمياً في هذا المجال.',
+    specialties: [
+      'X-Ray Flat Panel Sensor Design & Development',
+      'High-Precision Digital Detector Technology',
+      'Advanced Optoelectronic Manufacturing',
+    ],
+    specialtiesAr: [
+      'تصميم وتطوير مستشعرات اللوح المسطح للأشعة السينية',
+      'تكنولوجيا الكواشف الرقمية فائقة الدقة والجودة',
+      'تصنيع المكونات الكهروضوئية المتقدمة',
     ],
   },
 ];
@@ -458,7 +444,7 @@ export const WHY_NOUR_MEDICAL = [
   },
   {
     title: 'Global Supplier Network',
-    description: 'Direct access to technology from established suppliers in the USA, Taiwan, and China.',
+    description: 'Direct access to technology from established suppliers in countries like the USA, China, and Taiwan.',
   },
   {
     title: 'Radiology Specialization',
@@ -493,13 +479,6 @@ export const KEY_CAPABILITIES: KeyCapability[] = [
     descKey: "home.cap2Desc",
     title: "Medical Equipment",
     description: "Solutions supporting modern healthcare facilities.",
-  },
-  {
-    id: "furniture",
-    titleKey: "home.cap3Title",
-    descKey: "home.cap3Desc",
-    title: "Hospital Furniture",
-    description: "Durable furniture solutions for healthcare environments.",
   },
   {
     id: "consumables",

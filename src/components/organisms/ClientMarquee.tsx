@@ -19,12 +19,12 @@ export const ClientMarquee: React.FC = () => {
           {track.map((name, i) => (
             <span
               key={i}
-              className="text-xs md:text-sm tracking-wide text-white/65 whitespace-nowrap pr-0 inline-flex items-center"
+              className="text-base md:text-lg tracking-wide text-white whitespace-nowrap pr-0 inline-flex items-center"
             >
-              <span className={locale === 'ar' ? 'font-body font-medium' : 'font-mono uppercase text-[0.6875rem] tracking-widest'}>
+              <span className={locale === 'ar' ? 'font-body font-semibold text-base' : 'font-mono uppercase text-sm font-semibold tracking-widest'}>
                 {name}
               </span>
-              <span className="text-teal-accent mx-6 select-none font-bold">
+              <span className="text-orange-accent mx-6 select-none font-bold">
                 {SEPARATOR}
               </span>
             </span>

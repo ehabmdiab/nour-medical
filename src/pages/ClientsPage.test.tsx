@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import { LanguageProvider } from '../i18n';
 import { ClientsPage } from './ClientsPage';
+import { DETAILED_CLIENTS } from '../data/clientsData';
 
 describe('ClientsPage Component', () => {
   it('renders ClientsPage with header, filter pills, and client facilities', () => {
@@ -19,5 +20,17 @@ describe('ClientsPage Component', () => {
     expect(html).toContain('Nour Medical');
     expect(html).toContain('Search hospital or city...');
     expect(html).toContain('Cath-Lab');
+  });
+
+  it('includes El Gouna and Al-Tayseer hospital photos under Clients', () => {
+    const elGouna = DETAILED_CLIENTS.find((c) => c.id === 'el-gouna');
+    const alTayseer = DETAILED_CLIENTS.find((c) => c.id === 'al-tayseer');
+
+    expect(elGouna).toBeDefined();
+    expect(elGouna?.images.some((img) => img.includes('images/clients/el-gouna-team-work.jpg'))).toBe(true);
+
+    expect(alTayseer).toBeDefined();
+    expect(alTayseer?.images.some((img) => img.includes('images/clients/al-tayseer-team-work.jpg'))).toBe(true);
+    expect(alTayseer?.images.some((img) => img.includes('images/clients/al-tayseer-ramadan-event.jpg'))).toBe(true);
   });
 });

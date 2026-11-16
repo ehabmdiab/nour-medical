@@ -19,5 +19,19 @@ describe('ServicesPage Component', () => {
     expect(html).toContain('Our Service Pillars');
     expect(html).toContain('Universal Multi-Vendor Maintenance');
     expect(html).toContain('Annual Maintenance Contracts (AMC)');
+    expect(html.toLowerCase()).not.toContain('hospital furniture');
+  });
+
+  it('renders ServicesPage in Arabic without hospital furniture', () => {
+    const html = renderToString(
+      <LanguageProvider defaultLocale="ar">
+        <MemoryRouter initialEntries={['/services']}>
+          <ServicesPage />
+        </MemoryRouter>
+      </LanguageProvider>
+    );
+
+    expect(html).not.toContain('أثاث المستشفيات');
+    expect(html).not.toContain('الأثاث الطبي');
   });
 });

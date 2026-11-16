@@ -197,12 +197,12 @@ export const ClientsPage: React.FC = () => {
             {t('clients.sectionLabel')}
           </div>
 
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-navy tracking-tight leading-[0.98] max-w-[920px] mb-6">
+          <h1 className="font-heading text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-orange-accent tracking-tight leading-[1.08] max-w-[920px] mb-6">
             {t('clients.heroTitle')}{' '}
             <span className="text-orange-accent">{t('clients.heroTitleHighlight')}</span>
           </h1>
 
-          <p className="font-body text-xl md:text-2xl leading-[1.65] text-text-muted max-w-[720px]">
+          <p className="font-body text-xl md:text-2xl leading-[1.65] text-navy max-w-[720px]">
             {t('clients.heroSubtitle')}
           </p>
         </div>
@@ -222,17 +222,17 @@ export const ClientsPage: React.FC = () => {
           {/* Minimal Filter & Search Bar */}
           <div className="mb-10 flex justify-between items-center flex-wrap gap-5">
             {/* Category Pills */}
-            <div className="flex gap-2 flex-wrap items-center">
+            <div className="flex gap-2.5 flex-wrap items-center">
               {categories.map((cat) => {
                 const isActive = selectedCategory === cat.id;
                 return (
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-4.5 py-2 rounded-full font-heading text-[0.8125rem] cursor-pointer transition-all duration-200 ${
+                    className={`px-5 py-2.5 rounded-full font-heading text-sm cursor-pointer transition-all duration-200 ${
                       isActive
-                        ? 'font-semibold text-white bg-navy border border-navy shadow-[0_4px_14px_rgba(15,23,42,0.15)]'
-                        : 'font-medium text-navy bg-white border border-gray-light hover:border-navy/40'
+                        ? 'font-semibold text-white bg-orange-accent border border-orange-accent shadow-[0_4px_14px_rgba(249,115,22,0.25)]'
+                        : 'font-medium text-navy bg-white border border-gray-light hover:border-orange-accent/50'
                     }`}
                   >
                     {cat.label}
@@ -245,19 +245,19 @@ export const ClientsPage: React.FC = () => {
             <div className="relative min-w-[280px] flex-[0_1_340px]">
               <Search
                 size={16}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted rtl:left-auto rtl:right-4"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-navy rtl:left-auto rtl:right-4"
               />
               <input
                 type="text"
                 placeholder={t('clients.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full py-2.5 pl-11 pr-4 rtl:pl-4 rtl:pr-11 rounded-full border border-gray-light font-body text-base text-navy bg-white outline-none focus:border-blue-medical transition-colors duration-200"
+                className="w-full py-2.5 pl-11 pr-4 rtl:pl-4 rtl:pr-11 rounded-full border border-gray-light font-body text-base text-navy bg-white outline-none focus:border-orange-accent transition-colors duration-200"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 rtl:right-auto rtl:left-3.5 bg-transparent border-0 cursor-pointer text-text-muted hover:text-navy"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 rtl:right-auto rtl:left-3.5 bg-transparent border-0 cursor-pointer text-navy hover:text-orange-accent"
                   aria-label={t('clients.clearSearch')}
                 >
                   <X size={14} />
@@ -268,7 +268,7 @@ export const ClientsPage: React.FC = () => {
 
           {/* Client Grid */}
           {filteredClients.length === 0 ? (
-            <div className="py-20 text-center text-text-muted font-body text-lg">
+            <div className="py-20 text-center text-navy font-body text-lg">
               {t('clients.noResults')}
             </div>
           ) : (
@@ -282,7 +282,7 @@ export const ClientsPage: React.FC = () => {
                   <div
                     key={client.id}
                     onClick={() => setActiveClient(client)}
-                    className="group bg-white rounded-xl border border-gray-light overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:border-blue-medical hover:shadow-[0_12px_30px_rgba(0,51,102,0.08)] hover:-translate-y-1"
+                    className="group bg-white rounded-xl border border-gray-light overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:border-orange-accent hover:shadow-[0_12px_30px_rgba(249,115,22,0.1)] hover:-translate-y-1"
                   >
                     {/* Card Thumbnail Box with Count Indicator */}
                     <div className="relative h-[210px] w-full overflow-hidden bg-slate-900">
@@ -294,39 +294,39 @@ export const ClientsPage: React.FC = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
 
                       {/* Image Carousel Count Indicator */}
-                      <div className="absolute top-3 right-3 rtl:right-auto rtl:left-3 bg-slate-900/75 backdrop-blur-sm text-white font-mono text-[0.625rem] px-2 py-0.5 rounded border border-white/15">
+                      <div className="absolute top-3 right-3 rtl:right-auto rtl:left-3 bg-slate-900/80 backdrop-blur-sm text-white font-mono text-xs px-2.5 py-1 rounded border border-white/15">
                         📷 {t('clients.photoCount', { count: client.images.length })}
                       </div>
 
-                      <div className="absolute bottom-3 left-4 rtl:left-auto rtl:right-4 flex items-center gap-1.5 text-white/90">
-                        <MapPin size={14} className="text-teal-accent" />
-                        <span className="font-mono text-xs">{displayLocation}</span>
+                      <div className="absolute bottom-3 left-4 rtl:left-auto rtl:right-4 flex items-center gap-1.5 text-white">
+                        <MapPin size={15} className="text-orange-accent" />
+                        <span className="font-mono text-sm font-medium">{displayLocation}</span>
                       </div>
                     </div>
 
                     {/* Card Info Content */}
-                    <div className="p-5 flex-1 flex flex-col justify-between">
+                    <div className="p-6 flex-1 flex flex-col justify-between">
                       <div>
-                        <div className="font-mono text-[0.5625rem] tracking-wider uppercase text-teal-accent font-semibold mb-1.5">
+                        <div className="font-mono text-xs tracking-wider uppercase text-navy font-bold mb-2">
                           {displayFacilityType}
                         </div>
 
-                        <h3 className="font-heading text-xl font-bold text-navy tracking-tight mb-3 leading-snug">
+                        <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-tight mb-3 leading-snug">
                           {displayName}
                         </h3>
 
                         {/* Primary Installed Devices Tags */}
-                        <div className="flex flex-wrap gap-1.5 mb-4">
+                        <div className="flex flex-wrap gap-2 mb-4">
                           {client.devices.slice(0, 2).map((dev, i) => (
                             <span
                               key={i}
-                              className="font-mono text-[0.6875rem] px-2.5 py-0.5 rounded bg-blue-medical/[0.08] text-blue-medical font-medium"
+                              className="font-mono text-xs px-3 py-1 rounded bg-orange-subtle text-navy font-semibold"
                             >
                               {(isAr && dev.nameAr ? dev.nameAr : dev.name).split('–')[0].trim()}
                             </span>
                           ))}
                           {client.devices.length > 2 && (
-                            <span className="font-mono text-[0.6875rem] px-2 py-0.5 rounded bg-warm-neutral text-text-muted font-medium">
+                            <span className="font-mono text-xs px-2.5 py-1 rounded bg-warm-neutral text-navy font-semibold">
                               {t('clients.moreCount', { count: client.devices.length - 2 })}
                             </span>
                           )}
@@ -334,11 +334,11 @@ export const ClientsPage: React.FC = () => {
                       </div>
 
                       {/* Footer Row */}
-                      <div className="pt-3 border-t border-gray-light flex items-center justify-between font-mono text-xs text-navy font-semibold">
-                        <span className="flex items-center gap-1 text-blue-medical group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-200">
-                          {t('clients.viewProfile')} <ChevronRight size={14} className="rtl:rotate-180" />
+                      <div className="pt-3 border-t border-gray-light flex items-center justify-between font-mono text-sm text-navy font-semibold">
+                        <span className="flex items-center gap-1 text-navy group-hover:text-orange-accent group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-all duration-200">
+                          {t('clients.viewProfile')} <ChevronRight size={15} className="rtl:rotate-180" />
                         </span>
-                        <ArrowUpRight size={16} className="text-text-muted group-hover:text-blue-medical transition-colors duration-200 rtl:rotate-[-90deg]" />
+                        <ArrowUpRight size={17} className="text-navy group-hover:text-orange-accent transition-colors duration-200 rtl:rotate-[-90deg]" />
                       </div>
                     </div>
                   </div>
@@ -352,11 +352,13 @@ export const ClientsPage: React.FC = () => {
       {/* ── 4. DETAILED CLIENT MODAL (WITH CAROUSEL + DETAILS) ──────── */}
       {activeClient && (
         <div
-          className="fixed inset-0 z-[1000] bg-navy/80 backdrop-blur-md flex items-center justify-center p-4 md:p-6"
+          data-lenis-prevent
+          className="fixed inset-0 z-[1000] bg-navy/80 backdrop-blur-md overflow-y-auto overscroll-contain flex items-center justify-center p-4 md:p-6"
           onClick={() => setActiveClient(null)}
         >
           <div
-            className="relative w-full max-w-[1080px] bg-white rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.5)] border border-gray-light grid grid-cols-1 md:grid-cols-[1.1fr_1fr] max-h-[90vh]"
+            data-lenis-prevent
+            className="relative w-full max-w-[1080px] bg-white rounded-2xl overflow-y-auto md:overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.5)] border border-gray-light grid grid-cols-1 md:grid-cols-[1.1fr_1fr] max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -381,24 +383,24 @@ export const ClientsPage: React.FC = () => {
               <div>
                 {/* Header Tag & Location */}
                 <div className="flex items-center gap-2.5 mb-3 flex-wrap">
-                  <span className="font-mono text-[0.625rem] tracking-widest uppercase text-teal-accent bg-teal-accent/[0.08] px-2.5 py-1 rounded inline-flex items-center gap-1.5 font-semibold">
-                    <Building2 size={12} /> {isAr && activeClient.facilityTypeAr ? activeClient.facilityTypeAr : activeClient.facilityType}
+                  <span className="font-mono text-xs tracking-widest uppercase text-orange-accent bg-orange-subtle px-3 py-1 rounded inline-flex items-center gap-1.5 font-bold">
+                    <Building2 size={13} /> {isAr && activeClient.facilityTypeAr ? activeClient.facilityTypeAr : activeClient.facilityType}
                   </span>
-                  <span className="inline-flex items-center gap-1 text-[0.8125rem] text-text-muted">
-                    <MapPin size={14} className="text-blue-medical" /> {isAr && activeClient.locationAr ? activeClient.locationAr : activeClient.location}
+                  <span className="inline-flex items-center gap-1 text-sm text-navy font-medium">
+                    <MapPin size={15} className="text-orange-accent" /> {isAr && activeClient.locationAr ? activeClient.locationAr : activeClient.location}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-navy tracking-tight mb-5 leading-snug">
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-orange-accent tracking-tight mb-5 leading-snug">
                   {isAr && activeClient.nameAr ? activeClient.nameAr : activeClient.name}
                 </h2>
 
                 <div className="border-b border-gray-light pb-4 mb-6">
-                  <div className="section-label text-blue-medical mb-1.5">
+                  <div className="section-label text-orange-accent mb-1.5">
                     {t('clients.modalScopeTitle')}
                   </div>
-                  <p className="text-base text-text-muted">
+                  <p className="text-base text-navy">
                     {t('clients.modalScopeDesc')}
                   </p>
                 </div>
@@ -417,20 +419,20 @@ export const ClientsPage: React.FC = () => {
                         className="bg-warm-white border border-gray-light rounded-lg p-4 px-5"
                       >
                         <div className="flex justify-between items-start gap-2.5 mb-2">
-                          <h4 className="font-heading text-[0.975rem] font-bold text-navy">
+                          <h4 className="font-heading text-lg font-bold text-orange-accent">
                             {devName}
                           </h4>
-                          <span className="font-mono text-[0.5625rem] text-teal-accent border border-teal-accent px-2 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1 font-semibold">
-                            <ShieldCheck size={10} /> {devStatus}
+                          <span className="font-mono text-xs text-navy border border-orange-accent px-2.5 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1 font-semibold">
+                            <ShieldCheck size={12} className="text-orange-accent" /> {devStatus}
                           </span>
                         </div>
 
-                        <p className="text-[0.8125rem] leading-normal text-text-muted mb-2.5">
+                        <p className="text-base leading-normal text-navy mb-2.5">
                           {devDesc}
                         </p>
 
-                        <div className="flex items-center gap-1.5 text-xs text-navy font-mono">
-                          <Wrench size={12} className="text-blue-medical" />
+                        <div className="flex items-center gap-1.5 text-sm text-navy font-mono font-semibold">
+                          <Wrench size={14} className="text-orange-accent" />
                           <span>{t('clients.scopeLabel')} {devScope}</span>
                         </div>
                       </div>
@@ -443,16 +445,16 @@ export const ClientsPage: React.FC = () => {
               <div className="pt-5 border-t border-gray-light flex justify-between items-center gap-4">
                 <button
                   onClick={() => setActiveClient(null)}
-                  className="btn btn-outline py-2 px-4 text-[0.8125rem]"
+                  className="btn btn-outline py-2.5 px-5 text-sm"
                 >
                   {t('common.close')}
                 </button>
                 <Link
                   to="/contact"
-                  className="btn btn-primary py-2 px-5 text-[0.8125rem] inline-flex items-center gap-1.5 rounded-md font-semibold no-underline"
+                  className="btn btn-primary py-2.5 px-5 text-sm inline-flex items-center gap-1.5 rounded-md font-semibold no-underline"
                 >
                   <span>{t('clients.inquireNow')}</span>
-                  <ChevronRight size={14} className="rtl:rotate-180" />
+                  <ChevronRight size={15} className="rtl:rotate-180" />
                 </Link>
               </div>
             </div>

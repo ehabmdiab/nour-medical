@@ -34,14 +34,34 @@ describe('AboutPage Component', () => {
     expect(html).toContain('Eng. El Sayed Awad');
     expect(html).toContain('Chairman &amp; CEO');
     expect(html).toContain('eng-sayed-awad.jpg');
+    expect(html).toContain('text-sm sm:text-base');
 
     // Verify Dr. Gehan Awad is present with title but without dr-gehan.jpg image
     expect(html).toContain('Dr. Gehan Awad');
     expect(html).toContain('Director of Fin. &amp; Admin');
     expect(html).not.toContain('dr-gehan.jpg');
+    expect(html).toContain('text-base sm:text-lg');
 
-    // Verify Eng. Ahmed Hafez is present with General Manager title
+    // Verify Eng. Ahmed Hafez is present with General Manager title and portrait
     expect(html).toContain('Eng. Ahmed Hafez');
     expect(html).toContain('General Manager');
+    expect(html).toContain('eng-ahmed-hafez.jpg');
+  });
+
+  it('renders AboutPage executive titles in Arabic', () => {
+    const html = renderToString(
+      <LanguageProvider defaultLocale="ar">
+        <MemoryRouter initialEntries={['/about']}>
+          <AboutPage />
+        </MemoryRouter>
+      </LanguageProvider>
+    );
+
+    expect(html).toContain('م. السيد عوض');
+    expect(html).toContain('رئيس مجلس الإدارة والرئيس التنفيذي');
+    expect(html).toContain('د. جيهان عوض');
+    expect(html).toContain('مدير الشؤون المالية والإدارية');
+    expect(html).toContain('م. أحمد حافظ');
+    expect(html).toContain('المدير العام');
   });
 });

@@ -339,7 +339,7 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
             className="h-7 w-auto object-contain"
           />
         </div>
-        <span className="font-mono text-[0.625rem] tracking-[0.18em] uppercase text-text-muted">
+        <span className="font-mono text-xs tracking-[0.16em] uppercase text-navy font-semibold">
           Healthcare Technology · Est. 2015
         </span>
       </div>
@@ -395,12 +395,12 @@ export const Cinematic3DLoader: React.FC<Cinematic3DLoaderProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[0.6875rem] font-semibold text-navy tabular-nums tracking-wide">
+          <span className="font-mono text-sm font-bold text-navy tabular-nums tracking-wide">
             {progress}%
           </span>
           {logoOpacity > 0.4 && (
             <span
-              className="font-mono text-[0.5625rem] font-semibold tracking-widest uppercase text-orange-accent transition-opacity duration-200"
+              className="font-mono text-xs font-bold tracking-widest uppercase text-orange-accent transition-opacity duration-200"
               style={{
                 opacity: Math.min(1, (logoOpacity - 0.4) * 2),
               }}

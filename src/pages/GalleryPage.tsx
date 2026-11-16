@@ -15,7 +15,6 @@ import {
   ChevronRight,
   MapPin,
   Calendar,
-  ExternalLink,
 } from 'lucide-react';
 import { useLanguage } from '../i18n';
 
@@ -52,9 +51,12 @@ export const GalleryPage: React.FC = () => {
     setModalImageIndex((prev) => (prev === modalImages.length - 1 ? 0 : prev + 1));
   }, [modalImages.length]);
 
-  // Keyboard navigation for lightbox
+  // Keyboard navigation and body scroll lock for lightbox
   useEffect(() => {
     if (!selectedItem) return;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key === 'Escape') {
@@ -67,7 +69,10 @@ export const GalleryPage: React.FC = () => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [selectedItem, handleModalPrev, handleModalNext]);
 
   const currentModalImage = modalImages[modalImageIndex] ?? selectedItem?.image;
@@ -105,13 +110,13 @@ export const GalleryPage: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-[22px] py-2.5 rounded-[30px] font-mono text-xs font-semibold tracking-wide uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                  className={`px-6 py-3 rounded-[30px] font-mono text-sm font-semibold tracking-wide uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                     isActive
-                      ? 'border-[1.5px] border-orange-accent bg-orange-accent text-white shadow-[0_4px_14px_rgba(10,22,40,0.15)]'
-                      : 'border border-gray-light bg-white text-navy hover:border-orange-accent/40'
+                      ? 'border-[1.5px] border-orange-accent bg-orange-accent text-white shadow-[0_4px_14px_rgba(249,115,22,0.25)]'
+                      : 'border border-gray-light bg-white text-navy hover:border-orange-accent/50'
                   }`}
                 >
-                  <ImageIcon size={14} />
+                  <ImageIcon size={15} />
                   {isAr ? cat.labelAr : cat.label} ({count})
                 </button>
               );
@@ -133,22 +138,29 @@ export const GalleryPage: React.FC = () => {
         {/* Modal Lightbox for Image / Video (Enhanced Multi-Photo Viewer) */}
         {selectedItem && (
           <div
-            className="fixed inset-0 z-[1000] bg-navy/80 backdrop-blur-md flex items-center justify-center p-5"
+            data-lenis-prevent
+            className="fixed inset-0 z-[1000] bg-navy/80 backdrop-blur-md overflow-hidden overscroll-contain flex items-center justify-center p-4 sm:p-6"
             onClick={() => setSelectedItem(null)}
           >
             <div
-              className="relative w-full max-w-[960px] max-h-[90vh] bg-white border border-gray-light rounded-3xl overflow-y-auto shadow-[0_25px_60px_rgba(10,22,40,0.4)]"
+              data-lenis-prevent
+              className="relative w-full max-w-[960px] max-h-[88vh] bg-white border border-gray-light rounded-2xl flex flex-col overflow-hidden shadow-[0_25px_60px_rgba(10,22,40,0.4)]"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
+              {/* Close Button (Pinned above scrollable body) */}
               <button
                 onClick={() => setSelectedItem(null)}
                 aria-label={t('common.close')}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-navy/85 backdrop-blur-sm border border-white/20 text-white flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 hover:bg-blue-medical transition-all duration-200"
+                className="absolute top-4 right-4 rtl:right-auto rtl:left-4 z-30 w-10 h-10 rounded-full bg-navy/90 backdrop-blur-sm border border-white/25 text-white flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 hover:bg-orange-accent transition-all duration-200"
               >
                 <X size={20} />
               </button>
 
+              {/* Scrollable Modal Body */}
+              <div
+                data-lenis-prevent
+                className="flex-1 min-h-0 overflow-y-auto overscroll-contain"
+              >
               {/* Media Container with Next / Prev Overlay */}
               {selectedItem.videoUrl ? (
                 <div className="relative pb-[56.25%] h-0 overflow-hidden bg-black">
@@ -161,7 +173,7 @@ export const GalleryPage: React.FC = () => {
                   />
                 </div>
               ) : (
-                <div className="relative w-full h-[480px] overflow-hidden bg-navy flex items-center justify-center">
+                <div className="relative w-full h-[clamp(260px,48vh,460px)] overflow-hidden bg-navy flex items-center justify-center p-3 sm:p-5">
                   <img
                     key={currentModalImage}
                     src={currentModalImage}
@@ -195,8 +207,8 @@ export const GalleryPage: React.FC = () => {
 
                   {/* Photo Counter Pill inside Modal */}
                   {modalImages.length > 1 && (
-                    <div className="absolute bottom-4 right-5 px-3.5 py-1.5 rounded-full bg-navy/85 backdrop-blur-md border border-white/20 text-white font-mono text-xs font-semibold flex items-center gap-1.5 z-10">
-                      <ImageIcon size={14} className="text-teal-accent" />
+                    <div className="absolute bottom-4 right-5 px-3.5 py-1.5 rounded-full bg-navy/85 backdrop-blur-md border border-white/20 text-white font-body text-xs font-semibold flex items-center gap-1.5 z-10">
+                      <ImageIcon size={14} className="text-orange-accent" />
                       <span>
                         {t('gallery.photoLabel')} {modalImageIndex + 1} {t('gallery.photoOf')} {modalImages.length}
                       </span>
@@ -205,7 +217,7 @@ export const GalleryPage: React.FC = () => {
 
                   {/* Caption Overlay if available */}
                   {currentModalDetail?.caption && (
-                    <div className="absolute bottom-4 left-5 px-3.5 py-1.5 rounded-xl bg-navy/85 backdrop-blur-md border border-white/15 text-teal-accent font-mono text-xs font-semibold max-w-[60%] truncate z-10">
+                    <div className="absolute bottom-4 left-5 px-3.5 py-1.5 rounded-xl bg-navy/85 backdrop-blur-md border border-white/15 text-orange-accent font-body text-xs font-semibold max-w-[60%] truncate z-10">
                       {currentModalDetail.caption}
                     </div>
                   )}
@@ -225,7 +237,7 @@ export const GalleryPage: React.FC = () => {
                         onClick={() => setModalImageIndex(idx)}
                         className={`shrink-0 w-16 h-12 rounded-lg overflow-hidden p-0 bg-transparent cursor-pointer transition-all duration-200 ${
                           isCurrent
-                            ? 'border-2 border-teal-accent scale-105 opacity-100'
+                            ? 'border-2 border-orange-accent scale-105 opacity-100'
                             : 'border-2 border-white/20 opacity-60 hover:opacity-100'
                         }`}
                       >
@@ -243,30 +255,26 @@ export const GalleryPage: React.FC = () => {
               {/* Info Container */}
               <div className="p-8">
                 <div className="flex items-center gap-3 mb-3.5 flex-wrap">
-                  <span className="px-3 py-1 rounded-xl bg-navy text-teal-accent font-mono text-[0.6875rem] font-semibold uppercase">
+                  <span className="px-3.5 py-1 rounded-xl bg-navy text-orange-accent font-mono text-xs font-bold uppercase">
                     {(() => {
                     const catObj = GALLERY_CATEGORIES.find((c) => c.id === selectedItem.category);
                     return isAr && catObj?.labelAr ? catObj.labelAr : selectedItem.categoryLabel;
                   })()}
                   </span>
-                  <span className="font-mono text-xs text-text-muted flex items-center gap-1.5">
-                    <MapPin size={13} className="text-teal-accent" />
-                    {isAr && selectedItem.locationAr ? selectedItem.locationAr : selectedItem.location} · <Calendar size={13} /> {selectedItem.date}
+                  <span className="font-mono text-sm text-navy font-medium flex items-center gap-1.5">
+                    <MapPin size={14} className="text-orange-accent" />
+                    {isAr && selectedItem.locationAr ? selectedItem.locationAr : selectedItem.location} · <Calendar size={14} className="text-orange-accent" /> {selectedItem.date}
                   </span>
                 </div>
 
-                <h2 className="font-heading text-[1.75rem] font-bold text-navy mb-3">
+                <h2 className="font-heading text-3xl font-bold text-orange-accent mb-3">
                   {isAr && selectedItem.titleAr ? selectedItem.titleAr : selectedItem.title}
                 </h2>
 
-                <p className="font-body text-[1.0625rem] leading-[1.7] text-text-muted mb-6">
+                <p className="font-body text-lg leading-[1.7] text-navy mb-0">
                   {isAr && selectedItem.descriptionAr ? selectedItem.descriptionAr : selectedItem.description}
                 </p>
-
-                <div className="px-5 py-4 bg-warm-white rounded-[14px] border border-warm-neutral font-mono text-xs text-navy font-semibold flex items-center gap-2.5">
-                  <ExternalLink size={15} className="text-teal-accent" />
-                  <span>{t('gallery.specsLabel')} {isAr && selectedItem.specsAr ? selectedItem.specsAr : selectedItem.specs}</span>
-                </div>
+              </div>
               </div>
             </div>
           </div>

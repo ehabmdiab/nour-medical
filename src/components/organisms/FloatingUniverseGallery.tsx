@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Building2,
   Calendar,
-  Layers,
   RotateCcw,
 } from 'lucide-react';
 import {
@@ -45,7 +44,6 @@ export const FloatingUniverseGallery: React.FC = () => {
   const getCategoryLabel = (id: GalleryCategory): string => {
     switch (id) {
       case "all": return t("home.archiveFilterAll");
-      case "installations": return t("home.archiveFilterInstallations");
       case "doctors": return t("home.archiveFilterDoctors");
       case "team": return t("home.archiveFilterTeam");
       default: return id;
@@ -272,27 +270,27 @@ export const FloatingUniverseGallery: React.FC = () => {
             <div className="section-label mb-3">
               {t('home.archiveLabel')}
             </div>
-            <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-navy tracking-tight mb-4">
+            <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-orange-accent tracking-tight mb-4">
               {t('home.archiveTitle')}
             </h2>
-            <p className="font-body text-text-muted text-base md:text-lg leading-relaxed">
+            <p className="font-body text-navy text-lg md:text-xl leading-relaxed">
               {t('home.archiveSubtitle')}
             </p>
           </div>
 
           {/* Controls Bar */}
-          <div className="inline-flex items-center justify-between gap-2 sm:gap-3 bg-white/95 backdrop-blur-md border border-gray-light/80 shadow-[0_4px_20px_rgba(10,22,40,0.06)] rounded-full p-1.5 max-w-full sm:max-w-fit">
+          <div className="inline-flex items-center justify-between gap-2 sm:gap-3 bg-white/95 backdrop-blur-md border border-gray-light/80 shadow-[0_4px_20px_rgba(10,22,40,0.06)] rounded-full p-2 max-w-full sm:max-w-fit">
             {/* Category Filter Pills */}
-            <div className="flex items-center gap-1 overflow-x-auto py-0.5 px-1 scrollbar-none flex-1 sm:flex-initial">
+            <div className="flex items-center gap-1.5 overflow-x-auto py-0.5 px-1 scrollbar-none flex-1 sm:flex-initial">
               {GALLERY_CATEGORIES_FILTER.map((cat) => {
                 const isActive = activeCategory === cat.id;
                 return (
                   <button
                     key={cat.id}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 cursor-pointer whitespace-nowrap ${
+                    className={`px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer whitespace-nowrap ${
                       isActive
-                        ? 'bg-blue-medical text-white shadow-[0_2px_10px_rgba(27,79,216,0.35)]'
-                        : 'text-text-muted hover:text-navy hover:bg-slate-100'
+                        ? 'bg-orange-accent text-white shadow-[0_2px_10px_rgba(249,115,22,0.35)]'
+                        : 'text-navy hover:text-orange-accent hover:bg-slate-100'
                     }`}
                     onClick={() => setActiveCategory(cat.id)}
                   >
@@ -305,40 +303,40 @@ export const FloatingUniverseGallery: React.FC = () => {
             <div className="flex items-center gap-1.5 shrink-0 pl-1 border-l border-gray-light/60 rtl:border-l-0 rtl:border-r rtl:pl-0 rtl:pr-1">
               {/* Reset Layout */}
               <button
-                className="w-8 h-8 rounded-full flex items-center justify-center text-text-muted hover:text-navy hover:bg-slate-100 transition-all cursor-pointer"
+                className="w-9 h-9 rounded-full flex items-center justify-center text-navy hover:text-orange-accent hover:bg-slate-100 transition-all cursor-pointer"
                 title={t('home.archiveReset')}
                 onClick={initParticles}
                 aria-label={t('home.archiveReset')}
               >
-                <RotateCcw size={15} />
+                <RotateCcw size={16} />
               </button>
 
               {/* Pause / Play Drift */}
               <button
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer ${
                   !isPlaying
-                    ? 'bg-blue-medical text-white shadow-sm'
-                    : 'text-text-muted hover:text-navy hover:bg-slate-100'
+                    ? 'bg-orange-accent text-white shadow-sm'
+                    : 'text-navy hover:text-orange-accent hover:bg-slate-100'
                 }`}
                 title={isPlaying ? t('home.archivePause') : t('home.archiveResume')}
                 onClick={() => setIsPlaying(!isPlaying)}
                 aria-label={isPlaying ? t('home.archivePause') : t('home.archiveResume')}
               >
-                {isPlaying ? <Pause size={15} /> : <Play size={15} />}
+                {isPlaying ? <Pause size={16} /> : <Play size={16} />}
               </button>
 
               {/* View Mode Toggle */}
               <button
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer ${
                   viewMode === 'grid'
-                    ? 'bg-blue-medical text-white shadow-sm'
-                    : 'text-text-muted hover:text-navy hover:bg-slate-100'
+                    ? 'bg-orange-accent text-white shadow-sm'
+                    : 'text-navy hover:text-orange-accent hover:bg-slate-100'
                 }`}
                 title={viewMode === 'universe' ? t('home.archiveGrid') : t('home.archiveUniverse')}
                 onClick={() => setViewMode(viewMode === 'universe' ? 'grid' : 'universe')}
                 aria-label={viewMode === 'universe' ? t('home.archiveGrid') : t('home.archiveUniverse')}
               >
-                {viewMode === 'universe' ? <Grid size={15} /> : <Sparkles size={15} />}
+                {viewMode === 'universe' ? <Grid size={16} /> : <Sparkles size={16} />}
               </button>
             </div>
           </div>
@@ -402,7 +400,7 @@ export const FloatingUniverseGallery: React.FC = () => {
                   {getCategoryLabel(item.category)}
                 </span>
                 <h4 className="grid-mode-title">{isAr && item.titleAr ? item.titleAr : item.title}</h4>
-                <p className="grid-mode-specs">{(isAr && item.specsAr ? item.specsAr : item.specs) || (isAr && item.locationAr ? item.locationAr : item.location)}</p>
+                <p className="grid-mode-specs">{(isAr && item.locationAr ? item.locationAr : item.location) || item.year}</p>
               </div>
             </div>
           ))}
@@ -411,8 +409,16 @@ export const FloatingUniverseGallery: React.FC = () => {
 
       {/* LIGHTBOX MODAL DETAIL OVERLAY */}
       {selectedItem && (
-        <div className="floating-universe-lightbox" onClick={() => setSelectedItem(null)}>
-          <div className="floating-lightbox-content" onClick={(e) => e.stopPropagation()}>
+        <div
+          data-lenis-prevent
+          className="floating-universe-lightbox"
+          onClick={() => setSelectedItem(null)}
+        >
+          <div
+            data-lenis-prevent
+            className="floating-lightbox-content"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="floating-lightbox-close"
               onClick={() => setSelectedItem(null)}
@@ -422,44 +428,38 @@ export const FloatingUniverseGallery: React.FC = () => {
             </button>
 
             {/* Left Image View */}
-            <div className="relative w-full min-h-[380px] bg-slate-50">
+            <div className="relative w-full min-h-[280px] max-h-[65vh] md:max-h-[82vh] bg-navy flex items-center justify-center p-4">
               <img
                 src={selectedItem.imageUrl}
                 alt={selectedItem.title}
-                className="w-full h-full object-cover"
+                className="max-w-full max-h-[60vh] md:max-h-[76vh] w-auto h-auto object-contain rounded-lg"
               />
             </div>
 
             {/* Right Information Details */}
-            <div className="p-9 flex flex-col justify-center">
+            <div className="p-6 sm:p-9 flex flex-col justify-center overflow-y-auto">
               <div className="floating-universe-label mb-3">
                 <span className="floating-universe-label-dot" />
                 {getCategoryLabel(selectedItem.category)}
               </div>
 
-              <h3 className="font-heading text-2xl md:text-[1.625rem] font-bold text-navy leading-tight mb-4">
+              <h3 className="font-heading text-2xl md:text-3xl font-bold text-orange-accent leading-tight mb-4">
                 {isAr && selectedItem.titleAr ? selectedItem.titleAr : selectedItem.title}
               </h3>
 
-              <div className="flex flex-col gap-3 my-4 mb-6">
-                <div className="flex items-center gap-2.5 text-slate-600 text-sm">
-                  <Building2 size={16} className="text-teal-accent" />
-                  <span><strong>{t('home.archiveModalLocation')}</strong> {selectedItem.location || t('home.archiveFleet')}</span>
+              <div className="flex flex-col gap-3.5 my-4 mb-6">
+                <div className="flex items-center gap-2.5 text-navy text-base">
+                  <Building2 size={18} className="text-orange-accent" />
+                  <span><strong>{t('home.archiveModalLocation')}</strong> {(isAr && selectedItem.locationAr ? selectedItem.locationAr : selectedItem.location) || t('home.archiveFleet')}</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-slate-600 text-sm">
-                  <Calendar size={16} className="text-teal-accent" />
+                <div className="flex items-center gap-2.5 text-navy text-base">
+                  <Calendar size={18} className="text-orange-accent" />
                   <span><strong>{t('home.archiveModalYear')}</strong> {selectedItem.year}</span>
                 </div>
                 {selectedItem.supplier && (
-                  <div className="flex items-center gap-2.5 text-slate-600 text-sm">
-                    <ShieldCheck size={16} className="text-teal-accent" />
+                  <div className="flex items-center gap-2.5 text-navy text-base">
+                    <ShieldCheck size={18} className="text-orange-accent" />
                     <span><strong>{t('home.archiveModalSupplier')}</strong> {selectedItem.supplier}</span>
-                  </div>
-                )}
-                {selectedItem.specs && (
-                  <div className="flex items-center gap-2.5 text-slate-600 text-sm">
-                    <Layers size={16} className="text-teal-accent" />
-                    <span><strong>{t('home.archiveModalSpecs')}</strong> {selectedItem.specs}</span>
                   </div>
                 )}
               </div>

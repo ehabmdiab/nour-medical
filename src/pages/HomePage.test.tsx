@@ -73,7 +73,7 @@ describe('HomePage Component', () => {
     expect(html).toContain('About Nour Medical');
     expect(html).toContain('Radiology Devices');
     expect(html).toContain('Medical Equipment');
-    expect(html).toContain('Hospital Furniture');
+    expect(html).not.toContain('Hospital Furniture');
     expect(html).toContain('Maintenance');
     expect(html).toContain('Capital Care Hospital');
   });
@@ -89,10 +89,10 @@ describe('HomePage Component', () => {
 
     expect(html).toContain('تكنولوجيا الرعاية الصحية المتقدمة');
     expect(html).toContain('استكشف حلولنا وأجهزتنا');
-    expect(html).toContain('عن نور الطبية');
+    expect(html).toContain('عن نور للهندسة الطبية');
     expect(html).toContain('أجهزة الأشعة والتصوير الطبي');
     expect(html).toContain('المعدات والأجهزة الطبية');
-    expect(html).toContain('الأثاث الطبي للمستشفيات');
+    expect(html).not.toContain('الأثاث الطبي للمستشفيات');
     expect(html).toContain('المستلزمات وقطع الغيار');
     expect(html).toContain('الصيانة والدعم الفني');
     expect(html).toContain('مستشفى كابيتال كير');

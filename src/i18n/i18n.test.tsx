@@ -86,7 +86,7 @@ describe('LanguageProvider & react-intl integration', () => {
     expect(html).toContain('ar');
     expect(html).toContain('rtl');
     expect(html).toContain('true');
-    expect(html).toContain('نور الطبية');
+    expect(html).toContain('نور للهندسة الطبية');
     expect(html).toContain('اتصل بنا');
   });
 

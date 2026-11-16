@@ -20,6 +20,9 @@ describe('Footer Component', () => {
     expect(html).toContain('Solutions');
     expect(html).toContain('Support');
     expect(html).toContain('About Us');
+    expect(html).toContain('No. 30 Misr Helwan Agricultural St., Maadi, Cairo, Egypt');
+    expect(html).toContain('mailto:marketing@nourmedical.com');
+    expect(html).toContain('marketing@nourmedical.com');
     expect(html).toContain('All rights reserved');
     expect(html).toContain('Replay Intro');
   });
@@ -40,6 +43,8 @@ describe('Footer Component', () => {
     expect(html).toContain('الحلول والتجهيزات');
     expect(html).toContain('الدعم والخدمات');
     expect(html).toContain('من نحن');
+    expect(html).toContain('رقم 30 شارع مصر حلوان الزراعي - المعادي - القاهرة');
+    expect(html).toContain('marketing@nourmedical.com');
     expect(html).toContain('جميع الحقوق محفوظة');
     expect(html).toContain('إعادة العرض التقديمي');
   });

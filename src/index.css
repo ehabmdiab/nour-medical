@@ -17,65 +17,44 @@
   --color-stone: #94A3B8;
   --color-gray-mid: #64748B;
   --color-gray-light: #E2E8F0;
-  --color-text-body: #1E2532;
-  --color-text-muted: #4B5565;
+  --color-text-body: #0A1628;
+  --color-text-muted: #0A1628;
   --color-text-invert: #FFFFFF;
 
-  --font-heading: 'Hyperlegible Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Hyperlegible Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  --font-heading: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 
 /* ============================================================
-   HYPERLEGIBLE SANS — HIGH-LEGIBILITY MODERN SANS-SERIF
+   CAIRO — UNIFIED BILINGUAL SANS-SERIF (ARABIC + LATIN)
    ============================================================ */
 @font-face {
-  font-family: 'Hyperlegible Sans';
-  src: url('./assets/fonts/hyperlegible-sans/HyperlegibleSans-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Cairo';
+  src: url('./assets/fonts/cairo/Cairo-Arabic.woff2') format('woff2');
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
 }
 
 @font-face {
-  font-family: 'Hyperlegible Sans';
-  src: url('./assets/fonts/hyperlegible-sans/HyperlegibleSans-Italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Hyperlegible Sans';
-  src: url('./assets/fonts/hyperlegible-sans/HyperlegibleSans-Medium.woff2') format('woff2');
-  font-weight: 500;
+  font-family: 'Cairo';
+  src: url('./assets/fonts/cairo/Cairo-LatinExt.woff2') format('woff2');
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
-  font-family: 'Hyperlegible Sans';
-  src: url('./assets/fonts/hyperlegible-sans/HyperlegibleSans-MediumItalic.woff2') format('woff2');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Hyperlegible Sans';
-  src: url('./assets/fonts/hyperlegible-sans/HyperlegibleSans-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-family: 'Cairo';
+  src: url('./assets/fonts/cairo/Cairo-Latin.woff2') format('woff2');
+  font-weight: 400 800;
   font-style: normal;
   font-display: swap;
-}
-
-@font-face {
-  font-family: 'Hyperlegible Sans';
-  src: url('./assets/fonts/hyperlegible-sans/HyperlegibleSans-BoldItalic.woff2') format('woff2');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* ============================================================
@@ -109,14 +88,14 @@
   --gray-mid:      #64748B;
   --gray-light:    #E2E8F0;
   
-  --text-body:     #1E2532; /* Sleek Deep Charcoal Obsidian */
-  --text-muted:    #4B5565; /* Elegant High-Contrast Slate */
+  --text-body:     #0A1628; /* Rich Executive Slate Navy */
+  --text-muted:    #0A1628; /* Rich Executive Slate Navy */
   --text-invert:   #FFFFFF;
 
-  /* Typography Scale */
-  --font-heading:  'Hyperlegible Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body:     'Hyperlegible Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono:     ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  /* Typography Scale — Unified Single Bilingual Font */
+  --font-heading:  'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body:     'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:     'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Spacing */
   --section-gap:   clamp(80px, 10vw, 140px);
@@ -148,12 +127,18 @@
 
   html {
     scroll-behavior: smooth;
-    font-size: 18px;
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 18px;
+    }
   }
 
   body {
     background-color: var(--white);
-    color: var(--text-body);
+    color: var(--navy);
     font-family: var(--font-body);
     font-weight: 400;
     line-height: 1.65;
@@ -185,7 +170,7 @@
   }
 
   ::selection {
-    background: rgba(27, 79, 216, 0.18);
+    background: rgba(249, 115, 22, 0.18);
     color: var(--navy);
   }
 
@@ -194,81 +179,83 @@
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    color: var(--navy);
+    color: var(--orange-accent);
   }
 }
 
-.font-heading { font-family: var(--font-heading); }
-.font-body    { font-family: var(--font-body); }
-.font-mono    { font-family: var(--font-mono); }
+@layer base {
+  .font-heading { font-family: var(--font-heading); }
+  .font-body    { font-family: var(--font-body); }
+  .font-mono    { font-family: var(--font-mono); }
 
-/* Display Sizes — Space Grotesk Grand Scale */
-.text-display-xl {
-  font-size: clamp(4.5rem, 10vw, 9.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-}
-.text-display-lg {
-  font-size: clamp(3.5rem, 7.5vw, 7rem);
-  line-height: 0.96;
-  letter-spacing: -0.035em;
-}
-.text-display-md {
-  font-size: clamp(2.5rem, 5.2vw, 4.75rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-}
-.text-headline {
-  font-size: clamp(1.875rem, 3.5vw, 3rem);
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-}
-.text-title {
-  font-size: clamp(1.375rem, 2.2vw, 1.875rem);
-  line-height: 1.22;
-  letter-spacing: -0.02em;
-}
-.text-body-lg {
-  font-size: clamp(1.1875rem, 1.5vw, 1.4375rem);
-  line-height: 1.7;
-}
-.text-body {
-  font-size: 1.1875rem;
-  line-height: 1.7;
-}
-.text-small {
-  font-size: 1.0625rem;
-  line-height: 1.55;
-}
+  /* Display Sizes — Space Grotesk Grand Scale */
+  .text-display-xl {
+    font-size: clamp(4.5rem, 10vw, 9.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+  }
+  .text-display-lg {
+    font-size: clamp(3.5rem, 7.5vw, 7rem);
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+  }
+  .text-display-md {
+    font-size: clamp(2.5rem, 5.2vw, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+  }
+  .text-headline {
+    font-size: clamp(1.875rem, 3.5vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+  .text-title {
+    font-size: clamp(1.375rem, 2.2vw, 1.875rem);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+  }
+  .text-body-lg {
+    font-size: clamp(1.1875rem, 1.5vw, 1.4375rem);
+    line-height: 1.7;
+  }
+  .text-body {
+    font-size: 1.1875rem;
+    line-height: 1.7;
+  }
+  .text-small {
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
 
-/* Mono Label (section anchors) */
-.label-mono {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 400;
+  /* Mono Label (section anchors) */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ============================================================
+     COLOR UTILITIES
+     ============================================================ */
+  .text-navy   { color: var(--navy); }
+  .text-blue   { color: var(--blue-medical); }
+  .text-orange { color: var(--orange-accent); }
+  .text-teal   { color: var(--teal-accent); }
+  .text-muted  { color: var(--navy); }
+  .text-stone  { color: var(--stone); }
+  .text-white  { color: var(--white); }
+
+  .bg-navy       { background-color: var(--navy); }
+  .bg-navy-mid   { background-color: var(--navy-mid); }
+  .bg-warm-white { background-color: var(--warm-white); }
+  .bg-warm-neutral { background-color: var(--warm-neutral); }
+  .bg-white      { background-color: var(--white); }
+  .bg-blue       { background-color: var(--blue-medical); }
+  .bg-orange     { background-color: var(--orange-accent); }
+  .bg-orange-subtle { background-color: var(--orange-subtle); }
 }
-
-/* ============================================================
-   COLOR UTILITIES
-   ============================================================ */
-.text-navy   { color: var(--navy); }
-.text-blue   { color: var(--blue-medical); }
-.text-orange { color: var(--orange-accent); }
-.text-teal   { color: var(--teal-accent); }
-.text-muted  { color: var(--text-muted); }
-.text-stone  { color: var(--stone); }
-.text-white  { color: var(--white); }
-
-.bg-navy       { background-color: var(--navy); }
-.bg-navy-mid   { background-color: var(--navy-mid); }
-.bg-warm-white { background-color: var(--warm-white); }
-.bg-warm-neutral { background-color: var(--warm-neutral); }
-.bg-white      { background-color: var(--white); }
-.bg-blue       { background-color: var(--blue-medical); }
-.bg-orange     { background-color: var(--orange-accent); }
-.bg-orange-subtle { background-color: var(--orange-subtle); }
 
 /* ============================================================
    LAYOUT (in @layer components so utility padding classes apply)
@@ -349,7 +336,7 @@
   gap: 8px;
   padding: 14px 28px;
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   border-radius: 6px;
@@ -510,9 +497,9 @@
   left: 0;
   width: 0;
   height: 2.5px;
-  background-color: var(--blue-medical);
+  background-color: var(--orange-accent);
   border-radius: 9999px;
-  box-shadow: 0 2px 8px rgba(27, 79, 216, 0.35);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
   transition: width var(--dur-mid) var(--ease-smooth);
 }
 .nav-tab-link:hover::after,
@@ -520,11 +507,11 @@
   width: 100%;
 }
 .nav-tab-link.active {
-  color: var(--navy) !important;
-  font-weight: 600 !important;
+  color: var(--orange-accent) !important;
+  font-weight: 700 !important;
 }
 .nav-tab-link:hover {
-  color: var(--navy);
+  color: var(--orange-accent);
 }
 
 /* ============================================================
@@ -594,32 +581,34 @@
 /* ============================================================
    SECTION LABEL STYLE
    ============================================================ */
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.78125rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--orange-accent);
-  margin-bottom: 24px;
-  font-weight: 700;
-}
-.section-label::before {
-  content: '';
-  display: inline-block;
-  width: 28px;
-  height: 2px;
-  background-color: var(--orange-accent);
-  border-radius: 2px;
-}
+@layer components {
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 2.5px;
+    background-color: var(--orange-accent);
+    border-radius: 2px;
+  }
 
-.section-label-light {
-  color: var(--orange-accent);
-}
-.section-label-light::before {
-  background-color: var(--orange-accent);
+  .section-label-light {
+    color: var(--orange-accent);
+  }
+  .section-label-light::before {
+    background-color: var(--orange-accent);
+  }
 }
 
 /* ============================================================
@@ -647,13 +636,22 @@
 ::-webkit-scrollbar-thumb:hover { background: var(--blue-medical); }
 
 /* ============================================================
-   LENIS SMOOTH SCROLL
+   LENIS SMOOTH SCROLL & MODAL SCROLL CONTAINMENT
    ============================================================ */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
 
 /* ============================================================
    RESPONSIVE UTILITIES
@@ -674,12 +672,12 @@ html.lenis, html.lenis body { height: auto; }
   border-radius: 6px;
   font-family: var(--font-body);
   font-size: 1.0625rem;
-  color: var(--text-body);
+  color: var(--navy);
   transition: border-color var(--dur-fast) var(--ease-out);
   outline: none;
 }
 .form-input:focus {
-  border-color: var(--blue-medical);
+  border-color: var(--orange-accent);
 }
 .form-input::placeholder {
   color: var(--gray-mid);
@@ -687,10 +685,11 @@ html.lenis, html.lenis body { height: auto; }
 .form-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  font-size: 0.9375rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--navy);
+  font-weight: 600;
   margin-bottom: 8px;
 }
 
@@ -701,11 +700,11 @@ html.lenis, html.lenis body { height: auto; }
 }
 .data-table th {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  font-weight: 500;
+  color: var(--orange-accent);
+  font-weight: 700;
   padding: 12px 16px;
   text-align: left;
   border-bottom: 1px solid var(--gray-light);
@@ -714,7 +713,7 @@ html.lenis, html.lenis body { height: auto; }
   padding: 16px;
   border-bottom: 1px solid var(--warm-neutral);
   font-size: 1.0625rem;
-  color: var(--text-body);
+  color: var(--navy);
 }
 .data-table tr:hover td {
   background-color: var(--warm-white);

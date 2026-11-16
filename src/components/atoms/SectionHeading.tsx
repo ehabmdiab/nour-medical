@@ -40,13 +40,13 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-widest uppercase mb-4 shadow-sm ${
+          className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-mono font-bold tracking-widest uppercase mb-4 shadow-sm ${
             isDark
-              ? 'bg-cyan-950/70 border border-cyan-500/30 text-cyan-400'
-              : 'bg-cyan-50 border border-cyan-200 text-cyan-700'
+              ? 'bg-orange-accent/15 border border-orange-accent/35 text-orange-accent'
+              : 'bg-orange-subtle border border-orange-accent/30 text-navy'
           }`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+          <span className="w-2 h-2 rounded-full bg-orange-accent animate-ping" />
           {eyebrow}
         </motion.div>
       )}
@@ -56,9 +56,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.1 }}
-        className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold tracking-tight leading-[1.04] max-w-5xl ${
-          isDark ? 'text-white' : 'text-slate-900'
-        }`}
+        className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold tracking-tight leading-[1.08] max-w-5xl text-orange-accent`}
       >
         {title}
       </motion.h2>
@@ -69,8 +67,8 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className={`mt-6 text-base sm:text-lg md:text-xl max-w-3xl font-normal leading-relaxed ${
-            isDark ? 'text-slate-300' : 'text-slate-600'
+          className={`mt-6 text-lg sm:text-xl md:text-2xl max-w-3xl font-normal leading-relaxed ${
+            isDark ? 'text-white/90' : 'text-navy'
           }`}
         >
           {subtitle}

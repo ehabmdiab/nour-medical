@@ -1,6 +1,5 @@
 export type GalleryCategory =
   | "all"
-  | "installations"
   | "doctors"
   | "team";
 
@@ -28,7 +27,6 @@ export interface FloatingGalleryItem {
 
 export const GALLERY_CATEGORIES_FILTER: { id: GalleryCategory; label: string }[] = [
   { id: "all", label: "All Showcase" },
-  { id: "installations", label: "Hospital Installations" },
   { id: "doctors", label: "VIP Doctors & Seminars" },
   { id: "team", label: "Nour Medical Team" },
 ];
@@ -36,76 +34,6 @@ export const GALLERY_CATEGORIES_FILTER: { id: GalleryCategory; label: string }[]
 const BASE = import.meta.env.BASE_URL || "/";
 
 export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
-  // ── HOSPITAL INSTALLATIONS & CELEBRATIONS ─────────────────────────────
-  {
-    id: "inst-aseel-handover",
-    title: "Aseel Hospital — Official Handover & Clinical Partnership",
-    titleAr: "مستشفى أسيل الغردقة — مراسم التسليم والشراكة الطبية",
-    category: "installations",
-    categoryLabel: "Hospital Installations",
-    year: "2024",
-    location: "Hurghada, Red Sea",
-    locationAr: "الغردقة، البحر الأحمر",
-    imageUrl: `${BASE}images/gallery/event-aseel-handover.jpg`,
-    aspectRatio: "16/9",
-    size: "xl",
-    depthLayer: 3,
-    supplier: "NOUR MEDICAL",
-    specs: "Official Turnkey Hospital Commissioning & Partnership",
-    specsAr: "التسليم الرسمي وتدشين الشراكة الطبية",
-  },
-  {
-    id: "inst-golden-heart-ceremony",
-    title: "Golden Heart Center — Handover & Leadership Ceremony",
-    titleAr: "مركز القلب الذهبي التخصصي — حفل التسليم والقيادة",
-    category: "installations",
-    categoryLabel: "Hospital Installations",
-    year: "2024",
-    location: "Maadi, Cairo",
-    locationAr: "المعادي، القاهرة",
-    imageUrl: `${BASE}images/gallery/event-golden-heart-ceremony.jpeg`,
-    aspectRatio: "16/9",
-    size: "lg",
-    depthLayer: 2,
-    supplier: "NOUR MEDICAL",
-    specs: "Executive Handover Ceremony & Clinical Partnership",
-    specsAr: "مراسم التسليم التنفيذي وتدشين المركز",
-  },
-  {
-    id: "inst-cardiology-milestone",
-    title: "Specialized Cardiology Center — Milestone Celebration",
-    titleAr: "مركز القلب التخصصي — الاحتفال بالإنجاز الطبي الميداني",
-    category: "installations",
-    categoryLabel: "Hospital Installations",
-    year: "2024",
-    location: "Cairo, Egypt",
-    locationAr: "القاهرة، مصر",
-    imageUrl: `${BASE}images/gallery/event-cardiology-milestone.jpeg`,
-    aspectRatio: "16/9",
-    size: "md",
-    depthLayer: 2,
-    supplier: "NOUR MEDICAL",
-    specs: "Clinical Milestone & Operations Celebration",
-    specsAr: "احتفالية الإنجاز والتشغيل الطبي",
-  },
-  {
-    id: "inst-tayseer-specialists",
-    title: "Al-Tayseer Hospitals — Biomedical Specialists Delegation",
-    titleAr: "مستشفيات التيسير — وفد استشاريي الهندسة الطبية",
-    category: "installations",
-    categoryLabel: "Hospital Installations",
-    year: "2024",
-    location: "Zagazig, Sharqia",
-    locationAr: "الزقازيق، الشرقية",
-    imageUrl: `${BASE}images/gallery/event-tayseer-specialists.jpg`,
-    aspectRatio: "16/9",
-    size: "lg",
-    depthLayer: 2,
-    supplier: "NOUR MEDICAL",
-    specs: "Technical Operations Delegation & Field Supervision",
-    specsAr: "إشراف هندسي ميداني وتشغيل مستمر",
-  },
-
   // ── VIP DOCTORS & SCIENTIFIC SEMINARS ─────────────────────────────────────
   {
     id: "doc-ashraf-zaytoun",
@@ -234,6 +162,23 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
     depthLayer: 3,
     supplier: "NOUR MEDICAL",
     specs: "Executive Leadership & Turnkey Medical Infrastructure",
+  },
+  {
+    id: "team-general-manager",
+    title: "Eng. Ahmed Hafez — General Manager",
+    titleAr: "م. أحمد حافظ — المدير العام",
+    category: "team",
+    categoryLabel: "Nour Medical Team",
+    year: "2025",
+    location: "Nour Medical Headquarters",
+    locationAr: "المقر الرئيسي لنور للهندسة الطبية",
+    imageUrl: `${BASE}images/team/eng-ahmed-hafez.jpg`,
+    aspectRatio: "3/4",
+    size: "lg",
+    depthLayer: 3,
+    supplier: "NOUR MEDICAL",
+    specs: "Executive Operations & Biomedical Engineering Management",
+    specsAr: "الإدارة التنفيذية والعمليات الهندسية",
   },
   {
     id: "team-operations",

@@ -53,7 +53,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
   return (
     <div
       onClick={() => onSelect(item, currentImageIndex)}
-      className="group bg-white border border-warm-neutral rounded-[20px] overflow-hidden cursor-pointer transition-all duration-300 relative flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(10,22,40,0.12)] hover:border-blue-medical"
+      className="group bg-white border border-warm-neutral rounded-[20px] overflow-hidden cursor-pointer transition-all duration-300 relative flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(10,22,40,0.12)] hover:border-orange-accent"
     >
       {/* Media Image Container with Carousel Controls */}
       <div className="relative w-full h-[250px] overflow-hidden bg-warm-white">
@@ -63,21 +63,21 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
           alt={currentDetail?.caption || item.title}
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover object-[center_20%] transition-transform duration-500 group-hover:scale-105"
         />
 
         {/* Subtle Dark Vignette / Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-navy/40 via-transparent to-navy/50 pointer-events-none" />
 
         {/* Category Badge */}
-        <span className="absolute top-3.5 left-3.5 px-3 py-1 rounded-xl bg-navy/85 backdrop-blur-sm border border-white/10 text-teal-accent font-mono text-[0.625rem] font-semibold tracking-wider uppercase shadow-md z-[2]">
+        <span className="absolute top-3.5 left-3.5 px-3.5 py-1 rounded-xl bg-navy/90 backdrop-blur-sm border border-white/15 text-orange-accent font-mono text-xs font-bold tracking-wider uppercase shadow-md z-[2]">
           {displayCategoryLabel}
         </span>
 
         {/* Photo Count Pill Badge (when topic has multiple photos) */}
         {hasMultipleImages && (
-          <div className="absolute top-3.5 right-3.5 px-2.5 py-1 rounded-xl bg-navy/80 backdrop-blur-sm border border-white/15 text-white font-mono text-[0.6875rem] font-semibold flex items-center gap-1.5 shadow-md z-[2]">
-            <ImageIcon size={12} className="text-teal-accent" />
+          <div className="absolute top-3.5 right-3.5 px-3 py-1 rounded-xl bg-navy/85 backdrop-blur-sm border border-white/15 text-white font-mono text-xs font-semibold flex items-center gap-1.5 shadow-md z-[2]">
+            <ImageIcon size={13} className="text-orange-accent" />
             <span>
               {currentImageIndex + 1} / {images.length}
             </span>
@@ -110,8 +110,8 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
 
         {/* Video Play Badge if videoUrl */}
         {item.videoUrl && (
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-navy border-2 border-teal-accent flex items-center justify-center shadow-xl z-[2]">
-            <Play size={24} className="text-teal-accent ml-0.5" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-navy border-2 border-orange-accent flex items-center justify-center shadow-xl z-[2]">
+            <Play size={24} className="text-orange-accent ml-0.5" />
           </div>
         )}
 
@@ -124,7 +124,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
                 type="button"
                 aria-label={`Go to photo ${idx + 1}`}
                 onClick={(e) => handleDotClick(e, idx)}
-                className={`h-[5px] rounded-[3px] p-0 border-0 cursor-pointer transition-all duration-200 ${idx === currentImageIndex ? 'w-4 bg-teal-accent' : 'w-1.5 bg-white/45'}`}
+                className={`h-[5px] rounded-[3px] p-0 border-0 cursor-pointer transition-all duration-200 ${idx === currentImageIndex ? 'w-4 bg-orange-accent' : 'w-1.5 bg-white/45'}`}
               />
             ))}
           </div>
@@ -134,7 +134,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
         {hasMultipleImages && images.length > 8 && (
           <div className="absolute bottom-0 left-0 right-0 h-[3.5px] bg-white/25 z-[3]">
             <div
-              className="h-full bg-teal-accent transition-[width] duration-300 ease-out"
+              className="h-full bg-orange-accent transition-[width] duration-300 ease-out"
               style={{ width: `${((currentImageIndex + 1) / images.length) * 100}%` }}
             />
           </div>
@@ -143,30 +143,30 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
 
       {/* Card Content Details */}
       <div className="p-6 pb-5 flex-1 flex flex-col">
-        <h3 className="font-heading text-[1.4rem] font-bold text-navy mb-2 leading-tight">
+        <h3 className="font-heading text-2xl font-bold text-orange-accent mb-2 leading-tight">
           {displayTitle}
         </h3>
 
         {/* Current Image Caption Sub-label if specific */}
         {hasSpecificCaption && (
-          <div className="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-lg bg-blue-medical/[0.08] text-blue-medical font-mono text-xs font-semibold">
-            <ImageIcon size={12} />
+          <div className="inline-flex items-center gap-1.5 mb-3 px-3 py-1 rounded-lg bg-orange-subtle text-navy font-mono text-sm font-semibold">
+            <ImageIcon size={13} className="text-orange-accent" />
             <span className="truncate">{currentDetail.caption}</span>
           </div>
         )}
 
-        <p className="font-body text-base leading-relaxed text-text-muted mb-5 flex-1 line-clamp-3">
+        <p className="font-body text-base leading-relaxed text-navy mb-5 flex-1 line-clamp-3">
           {displayDesc}
         </p>
 
         {/* Meta Bar */}
-        <div className="flex items-center justify-between pt-3.5 border-t border-warm-neutral font-mono text-xs text-text-muted">
+        <div className="flex items-center justify-between pt-3.5 border-t border-warm-neutral font-mono text-sm text-navy font-medium">
           <span className="flex items-center gap-1.5 truncate max-w-[65%]">
-            <MapPin size={14} className="text-teal-accent shrink-0" />
+            <MapPin size={15} className="text-orange-accent shrink-0" />
             <span className="truncate">{displayLocation}</span>
           </span>
           <span className="flex items-center gap-1.5 shrink-0">
-            <Calendar size={14} />
+            <Calendar size={15} className="text-orange-accent" />
             {item.date}
           </span>
         </div>
