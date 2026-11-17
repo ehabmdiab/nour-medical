@@ -75,7 +75,7 @@ export const HomePage: React.FC = () => {
       {/* ── 1. HERO ──────────────────────────────────────────── */}
       <section
         id="hero"
-        className="min-h-screen bg-gradient-to-b from-white via-warm-white to-[#EEF4FB] bg-[image:var(--bg-hero-light)] text-navy flex flex-col relative overflow-hidden pt-36 box-border border-b border-gray-light"
+        className="bg-gradient-to-b from-white via-warm-white to-[#EEF4FB] bg-[image:var(--bg-hero-light)] text-navy flex flex-col relative overflow-hidden hero-section-pad box-border border-b border-gray-light"
       >
         {/* Ambient Medical Light Grid */}
         <div
@@ -90,9 +90,9 @@ export const HomePage: React.FC = () => {
           className="absolute right-[12%] top-[18%] w-[480px] h-[480px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.035)_0%,transparent_70%)] pointer-events-none"
         />
 
-        <div className="container relative z-10 flex-1 flex flex-col justify-center pt-6 pb-14 max-w-[1440px]">
+        <div className="container relative z-10 flex-1 flex flex-col justify-start pt-1 pb-8 lg:pb-12 max-w-[1440px]">
           {/* Label Badge */}
-          <div className="section-label mb-5 animate-hero-est">
+          <div className="section-label mb-4 animate-hero-est">
             {t('hero.est')}
           </div>
 
@@ -101,7 +101,7 @@ export const HomePage: React.FC = () => {
             {/* Left: Text & CTA - Takes the full left column space */}
             <div className="w-full max-w-[760px]">
               <h1
-                className="font-heading text-[clamp(2.5rem,4.5vw,4.5rem)] font-extrabold text-orange-accent leading-[1.1] tracking-[-0.03em] mb-9 animate-hero-title"
+                className="font-heading text-[clamp(2.15rem,4.3vw,4.35rem)] font-extrabold text-orange-accent leading-[1.1] tracking-[-0.03em] mb-7 lg:mb-9 animate-hero-title"
               >
                 {t('hero.title')}{' '}
                 <span className="text-orange-accent block">
@@ -124,7 +124,7 @@ export const HomePage: React.FC = () => {
 
             {/* Right: Complete Circular 3D MRI Scanner Viewport */}
             <div
-              className="relative w-[min(500px,50vh,100%)] h-[min(500px,50vh,100%)] aspect-square flex justify-center items-center mx-auto animate-hero-3d shrink-0"
+              className="relative w-[min(320px,80vw)] sm:w-[min(420px,60vw)] lg:w-[min(460px,46vh,100%)] aspect-square flex justify-center items-center mx-auto animate-hero-3d shrink-0"
             >
               <div
                 className="absolute inset-4 rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.09)_0%,rgba(0,168,181,0.05)_50%,transparent_72%)] pointer-events-none"

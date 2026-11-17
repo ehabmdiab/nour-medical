@@ -100,8 +100,8 @@
   /* Spacing */
   --section-gap:   clamp(80px, 10vw, 140px);
   --container-max: 1280px;
-  --container-pad: clamp(24px, 5vw, 80px);
-  --navbar-height: 92px;
+  --container-pad: clamp(16px, 4.5vw, 72px);
+  --navbar-height: 72px;
 
   /* Motion */
   --ease-smooth:   cubic-bezier(0.16, 1, 0.3, 1);
@@ -109,6 +109,12 @@
   --dur-fast:      150ms;
   --dur-mid:       300ms;
   --dur-slow:      500ms;
+}
+
+@media (min-width: 769px) {
+  :root {
+    --navbar-height: 84px;
+  }
 }
 
 @supports (background: linear-gradient(in oklab, white, black)) {
@@ -278,6 +284,10 @@
   .section-sm {
     padding-top: calc(var(--section-gap) * 0.6);
     padding-bottom: calc(var(--section-gap) * 0.6);
+  }
+
+  .hero-section-pad {
+    padding-top: calc(var(--navbar-height) + clamp(16px, 2.2vw, 32px));
   }
 }
 
@@ -486,6 +496,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
   text-decoration: none;
   padding: 8px 0;
   transition: color var(--dur-fast);
@@ -656,10 +667,10 @@ dialog::backdrop {
 /* ============================================================
    RESPONSIVE UTILITIES
    ============================================================ */
-@media (max-width: 768px) {
+@media (max-width: 1120px) {
   .hide-mobile { display: none !important; }
 }
-@media (min-width: 769px) {
+@media (min-width: 1121px) {
   .hide-desktop { display: none !important; }
 }
 

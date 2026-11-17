@@ -30,7 +30,7 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
     >
       {/* Globe Icon Accent */}
       <span
-        className={`flex items-center justify-center text-orange-accent ${isSmall ? 'pl-1.5 pr-1' : 'pl-2 pr-1.5'}`}
+        className={`flex items-center justify-center text-orange-accent ${isSmall ? 'hidden sm:flex pl-1.5 pr-1' : 'pl-2 pr-1.5'}`}
         aria-hidden="true"
       >
         <Globe size={iconSize} />
@@ -44,7 +44,7 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
         aria-label="Switch to English"
         onClick={() => handleSelect('en')}
         className={`border-0 outline-none cursor-pointer rounded-full font-heading tracking-[0.02em] transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] inline-flex items-center justify-center ${
-          isSmall ? 'py-1.5 px-3 text-sm min-w-[40px]' : 'py-2 px-4 text-base min-w-[48px]'
+          isSmall ? 'py-1 px-2 sm:py-1.5 sm:px-3 text-xs sm:text-sm min-w-[32px] sm:min-w-[40px]' : 'py-2 px-4 text-base min-w-[48px]'
         } ${
           locale === 'en'
             ? 'bg-white text-orange-accent font-bold shadow-[0_2px_8px_rgba(10,22,40,0.08),0_1px_2px_rgba(10,22,40,0.04)]'
@@ -62,7 +62,7 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
         aria-label="التبديل إلى العربية"
         onClick={() => handleSelect('ar')}
         className={`border-0 outline-none cursor-pointer rounded-full font-heading tracking-[0.01em] transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] inline-flex items-center justify-center ${
-          isSmall ? 'py-1.5 px-3 text-sm min-w-[50px]' : 'py-2 px-4 text-base min-w-[58px]'
+          isSmall ? 'py-1 px-2 sm:py-1.5 sm:px-3 text-xs sm:text-sm min-w-[42px] sm:min-w-[50px]' : 'py-2 px-4 text-base min-w-[58px]'
         } ${
           locale === 'ar'
             ? 'bg-white text-orange-accent font-bold shadow-[0_2px_8px_rgba(10,22,40,0.08),0_1px_2px_rgba(10,22,40,0.04)]'

@@ -23,6 +23,21 @@ describe('Navbar Component', () => {
     expect(html).toContain('aria-label="Language selection"');
     expect(html).toContain('EN');
     expect(html).toContain('العربية');
+    // Mobile menu button accessible attributes
+    expect(html).toContain('aria-controls="mobile-nav-drawer"');
+    expect(html).toContain('aria-label="Open menu"');
+  });
+
+  it('marks the active route with aria-current="page"', () => {
+    const html = renderToString(
+      <LanguageProvider defaultLocale="en">
+        <MemoryRouter initialEntries={['/about']}>
+          <Navbar />
+        </MemoryRouter>
+      </LanguageProvider>
+    );
+
+    expect(html).toContain('aria-current="page"');
   });
 
   it('keeps "Nour Medical" in English even in Arabic mode and localizes navigation links', () => {
