@@ -42,7 +42,7 @@ export const StatsSection: React.FC = () => {
         >
           <div>
             <div className="section-label">Technical Infrastructure</div>
-            <h2 className="font-heading text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-orange-accent tracking-tight leading-tight">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight leading-tight">
               Core Operational Strength
             </h2>
           </div>
@@ -59,9 +59,9 @@ export const StatsSection: React.FC = () => {
                 transitionDelay: `${i * 0.1}s`,
               }}
             >
-              <div className="font-heading text-2xl md:text-3xl font-bold text-orange-accent leading-none tracking-tight mb-2">
+              <div className="font-heading text-2xl md:text-3xl font-bold text-navy leading-none tracking-tight mb-2">
                 {m.number}
-                <span className="text-navy text-[0.75em]">{m.suffix}</span>
+                <span className="text-navy/75 text-[0.75em]">{m.suffix}</span>
               </div>
               <p className="font-body text-sm tracking-wide uppercase text-navy font-semibold">
                 {m.label}

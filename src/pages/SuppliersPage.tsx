@@ -1,5 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { SUPPLIER_PARTNERS, type SupplierPartner } from '../data/companyData';
+import {
+  SupplierDeviceCard,
+  SupplierDeviceCarousel,
+} from '../components/organisms/SupplierDeviceCarousel';
+import { SUPPLIER_PARTNERS, type SupplierDevice, type SupplierPartner } from '../data/companyData';
 import { useLanguage } from '../i18n';
 
 function useReveal(threshold = 0.1) {
@@ -25,6 +29,48 @@ export const SuppliersPage: React.FC = () => {
   const { locale, t } = useLanguage();
   const isAr = locale === 'ar';
   const { ref: suppliersRef, visible: suppliersVisible } = useReveal();
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [selectedDevice, setSelectedDevice] = useState<{
+    device: SupplierDevice;
+    supplierName: string;
+  } | null>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    dialog.setAttribute('closedby', 'any');
+  }, []);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog || !selectedDevice) return;
+    if (typeof dialog.showModal === 'function' && !dialog.open) {
+      dialog.showModal();
+    }
+  }, [selectedDevice]);
+
+  const closeDeviceDialog = () => {
+    const dialog = dialogRef.current;
+    if (dialog && typeof dialog.close === 'function' && dialog.open) {
+      dialog.close();
+    }
+    setSelectedDevice(null);
+  };
+
+  const handleDialogBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+    const dialog = dialogRef.current;
+    if (!dialog || e.target !== dialog) return;
+    if (e.clientX === 0 && e.clientY === 0) return;
+    const rect = dialog.getBoundingClientRect();
+    const clickedOutside =
+      e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom;
+    if (clickedOutside) {
+      closeDeviceDialog();
+    }
+  };
 
   const countryGroups = useMemo(() => {
     const groups: { country: string; countryAr?: string; partners: SupplierPartner[] }[] = [];
@@ -54,11 +100,11 @@ export const SuppliersPage: React.FC = () => {
           <div className="section-label">
             {t('suppliers.heroLabel')}
           </div>
-          <h1 className="font-heading text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-orange-accent tracking-tight leading-[1.12] max-w-[880px] mb-8">
+          <h1 className="font-heading text-[clamp(2.25rem,3.6vw,3.375rem)] font-bold text-navy tracking-tight leading-[1.16] max-w-[1040px] mb-6">
             {t('suppliers.heroTitle1')}{' '}
-            <span className="text-orange-accent">{t('suppliers.heroTitle2')}</span>
+            <span className="text-navy">{t('suppliers.heroTitle2')}</span>
           </h1>
-          <p className="font-body text-xl md:text-2xl leading-[1.7] text-navy max-w-[680px]">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy max-w-[860px]">
             {t('suppliers.heroSubtitle')}
           </p>
 
@@ -84,9 +130,9 @@ export const SuppliersPage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="mb-14">
+          <div className="mb-12">
             <div className="section-label">{t('suppliers.sectionLabel')}</div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-orange-accent tracking-tight leading-tight">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight leading-tight">
               {t('suppliers.sectionTitle')}
             </h2>
           </div>
@@ -109,7 +155,7 @@ export const SuppliersPage: React.FC = () => {
                 >
                   {/* Left: Country + Number */}
                   <div>
-                    <div className="font-heading text-5xl font-bold text-orange-accent leading-none mb-5">
+                    <div className="font-heading text-3xl md:text-4xl font-bold text-navy leading-none mb-4">
                       {String(groupIdx + 1).padStart(2, '0')}
                     </div>
                     <span className="inline-block font-body text-sm tracking-wide text-navy font-bold border border-gray-light bg-warm-white px-3.5 py-1.5 rounded-xs">
@@ -118,7 +164,7 @@ export const SuppliersPage: React.FC = () => {
                   </div>
 
                   {/* Right: Grouped Suppliers of the Same Country */}
-                  <div className="flex flex-col gap-12">
+                  <div className="min-w-0 flex flex-col gap-12">
                     {group.partners.map((partner) => {
                       const name = isAr && partner.nameAr ? partner.nameAr : partner.name;
                       const tagline = isAr && partner.taglineAr ? partner.taglineAr : partner.tagline;
@@ -126,39 +172,72 @@ export const SuppliersPage: React.FC = () => {
                       const specialties = isAr && partner.specialtiesAr ? partner.specialtiesAr : partner.specialties;
 
                       return (
-                        <div
-                          key={partner.id}
-                          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
-                        >
-                          {/* Center: Name + Tagline + Description */}
-                          <div>
-                            <h3 className="font-heading text-2xl md:text-3xl font-bold text-orange-accent tracking-tight mb-2">
-                              {name}
-                            </h3>
-                            <p className="font-body text-xs tracking-widest uppercase text-navy font-bold mb-5">
-                              {tagline}
-                            </p>
-                            <p className="font-body text-lg leading-[1.7] text-navy">
-                              {description}
-                            </p>
+                        <div key={partner.id} className="flex flex-col gap-6">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+                            {/* Center: Name + Tagline + Description */}
+                            <div>
+                              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-tight mb-2">
+                                {name}
+                              </h3>
+                              <p className="font-body text-sm tracking-wide uppercase text-navy/80 font-bold mb-4">
+                                {tagline}
+                              </p>
+                              <p className="font-body text-base leading-[1.7] text-navy">
+                                {description}
+                              </p>
+                            </div>
+
+                            {/* Right: Specialties */}
+                            <div>
+                              <p className="font-heading text-sm tracking-widest uppercase text-navy font-bold mb-4">
+                                {t('suppliers.specialtiesLabel')}
+                              </p>
+                              <ul className="flex flex-col gap-2.5">
+                                {specialties.map((s) => (
+                                  <li key={s} className="flex items-start gap-2.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-orange-accent shrink-0 mt-2.5" />
+                                    <span className="font-body text-base text-navy leading-normal">
+                                      {s}
+                                    </span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
                           </div>
 
-                          {/* Right: Specialties */}
-                          <div>
-                            <p className="font-heading text-xs tracking-widest uppercase text-orange-accent font-bold mb-4">
-                              {t('suppliers.specialtiesLabel')}
-                            </p>
-                            <ul className="flex flex-col gap-3">
-                              {specialties.map((s) => (
-                                <li key={s} className="flex items-start gap-2.5">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-orange-accent shrink-0 mt-2.5" />
-                                  <span className="font-body text-lg text-navy leading-normal">
-                                    {s}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                          {/* Supplier Devices Showcase (Grid or Moving Carousel) */}
+                          {partner.devices && partner.devices.length > 0 && (
+                            <div className="pt-2">
+                              <p className="font-heading text-sm tracking-widest uppercase text-navy font-bold mb-4">
+                                {t('suppliers.devicesLabel')}
+                              </p>
+                              {partner.deviceLayout === 'carousel' || partner.devices.length > 2 ? (
+                                <SupplierDeviceCarousel
+                                  supplierName={name}
+                                  devices={partner.devices}
+                                  isAr={isAr}
+                                  isPausedExternally={selectedDevice !== null}
+                                  onSelectDevice={(device, supplierName) =>
+                                    setSelectedDevice({ device, supplierName })
+                                  }
+                                />
+                              ) : (
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                  {partner.devices.map((device) => (
+                                    <SupplierDeviceCard
+                                      key={device.id}
+                                      device={device}
+                                      supplierName={name}
+                                      isAr={isAr}
+                                      onSelect={(selected, supplierName) =>
+                                        setSelectedDevice({ device: selected, supplierName })
+                                      }
+                                    />
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
                       );
                     })}
@@ -172,15 +251,68 @@ export const SuppliersPage: React.FC = () => {
 
       {/* Network Statement */}
       <section className="py-20 bg-warm-white border-t border-gray-light">
-        <div className="container max-w-[760px] text-center">
+        <div className="container max-w-[960px] text-center">
           <div className="section-label justify-center mb-6">
             {t('suppliers.quoteLabel')}
           </div>
-          <p className="font-heading text-2xl md:text-3xl lg:text-[2.25rem] font-semibold text-orange-accent leading-snug tracking-tight">
+          <p className="font-heading text-xl md:text-2xl font-semibold text-navy leading-snug tracking-tight">
             {t('suppliers.quoteText')}
           </p>
         </div>
       </section>
+
+      {/* Native Device Description Dialog */}
+      <dialog
+        ref={dialogRef}
+        aria-labelledby="supplier-device-dialog-title"
+        onClose={() => setSelectedDevice(null)}
+        onClick={handleDialogBackdropClick}
+        className="m-auto w-[min(92vw,680px)] max-h-[90vh] overflow-y-auto rounded-lg border border-gray-light bg-white p-0 text-navy shadow-[0_24px_64px_rgba(10,22,40,0.22)] backdrop:bg-navy/55 backdrop:backdrop-blur-[2px]"
+      >
+        {selectedDevice && (
+          <div className="flex flex-col">
+            <div className="flex items-start justify-between gap-4 border-b border-gray-light px-6 py-5 bg-warm-white">
+              <div>
+                <p className="font-body text-xs font-bold uppercase tracking-widest text-navy/75 mb-1">
+                  {selectedDevice.supplierName} ·{' '}
+                  {isAr ? selectedDevice.device.categoryAr : selectedDevice.device.category}
+                </p>
+                <h2
+                  id="supplier-device-dialog-title"
+                  className="font-heading text-xl md:text-2xl font-bold text-navy leading-snug"
+                >
+                  {isAr ? selectedDevice.device.nameAr : selectedDevice.device.name}
+                </h2>
+              </div>
+              <button
+                type="button"
+                autoFocus
+                onClick={closeDeviceDialog}
+                aria-label={t('suppliers.closeDialog')}
+                className="shrink-0 w-9 h-9 rounded-full border border-gray-light bg-white text-navy hover:bg-navy hover:text-white transition-colors flex items-center justify-center font-heading text-base font-bold cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="bg-white p-6 flex items-center justify-center border-b border-gray-light/70">
+              <img
+                src={selectedDevice.device.image}
+                alt={isAr ? selectedDevice.device.nameAr : selectedDevice.device.name}
+                className="max-h-[340px] w-auto max-w-full object-contain"
+              />
+            </div>
+
+            <div className="p-6">
+              <p className="font-body text-base leading-[1.75] text-navy">
+                {isAr
+                  ? selectedDevice.device.shortDescriptionAr
+                  : selectedDevice.device.shortDescription}
+              </p>
+            </div>
+          </div>
+        )}
+      </dialog>
     </>
   );
 };

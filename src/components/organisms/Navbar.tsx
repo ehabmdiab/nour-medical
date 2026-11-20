@@ -98,16 +98,16 @@ export const Navbar: React.FC = () => {
             className="flex flex-col gap-[2px] no-underline min-w-0 shrink"
             aria-label="Nour Medical — Home"
           >
-            <span className="font-heading text-[clamp(1.1rem,3.6vw,1.95rem)] font-extrabold tracking-[-0.03em] text-orange-accent leading-[1.08] whitespace-nowrap">
+            <span className="font-heading text-[clamp(1.2rem,4vw,1.6rem)] sm:text-[clamp(1.45rem,2.2vw,2rem)] font-extrabold tracking-[-0.03em] text-navy leading-[1.1] whitespace-nowrap">
               Nour Medical
             </span>
-            <span className="hidden min-[360px]:block font-mono text-[0.54rem] sm:text-xs tracking-[0.03em] sm:tracking-[0.14em] uppercase text-navy font-semibold whitespace-nowrap">
+            <span className="hidden sm:block font-mono text-[0.8125rem] sm:text-[0.9375rem] tracking-[0.04em] sm:tracking-[0.12em] uppercase text-navy/80 font-semibold whitespace-nowrap">
               {t('nav.tagline')}
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <ul className="hide-mobile flex items-center gap-[clamp(10px,1.2vw,20px)] list-none m-0 p-0">
+          <ul className="hide-mobile flex items-center gap-[clamp(14px,1.5vw,24px)] list-none m-0 p-0">
             {navLinks.map((link) => {
               const isServices = link.href === '/services';
               const active = isActive(link.href);
@@ -123,13 +123,13 @@ export const Navbar: React.FC = () => {
                     <Link
                       to={link.href}
                       aria-current={active ? 'page' : undefined}
-                      className={`nav-tab-link${active ? ' active text-orange-accent font-bold' : ' text-navy font-semibold'} font-body text-[0.8125rem] xl:text-[0.875rem] tracking-[0.015em] inline-flex items-center gap-1 py-2 no-underline transition-colors`}
+                      className={`nav-tab-link${active ? ' active text-navy font-bold' : ' text-navy font-semibold'} font-body text-[1.0625rem] xl:text-[1.1875rem] tracking-[0.01em] inline-flex items-center gap-1 py-2 no-underline transition-colors`}
                     >
                       {link.label}
                       <ChevronDown
-                        size={14}
+                        size={15}
                         aria-hidden="true"
-                        className={`transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''} ${active ? 'text-orange-accent' : 'text-navy'}`}
+                        className={`transition-transform duration-200 ${servicesDropdownOpen ? 'rotate-180' : ''} text-navy`}
                       />
                     </Link>
 
@@ -144,10 +144,10 @@ export const Navbar: React.FC = () => {
                               onClick={() => setServicesDropdownOpen(false)}
                               className="p-2.5 px-3.5 rounded-[10px] no-underline flex flex-col gap-1 hover:bg-warm-neutral transition-colors"
                             >
-                              <span className="font-heading text-lg font-bold text-orange-accent">
+                              <span className="font-heading text-base font-bold text-navy">
                                 {sub.label}
                               </span>
-                              <span className="font-body text-sm text-navy leading-[1.4]">
+                              <span className="font-body text-sm text-navy/85 leading-[1.4]">
                                 {sub.desc}
                               </span>
                             </Link>
@@ -164,7 +164,7 @@ export const Navbar: React.FC = () => {
                   <Link
                     to={link.href}
                     aria-current={active ? 'page' : undefined}
-                    className={`nav-tab-link${active ? ' active text-orange-accent font-bold' : ' text-navy font-semibold'} font-body text-[0.8125rem] xl:text-[0.875rem] tracking-[0.015em] inline-block py-2 no-underline transition-colors`}
+                    className={`nav-tab-link${active ? ' active text-navy font-bold' : ' text-navy font-semibold'} font-body text-[1.0625rem] xl:text-[1.1875rem] tracking-[0.01em] inline-block py-2 no-underline transition-colors`}
                   >
                     {link.label}
                   </Link>
@@ -184,17 +184,17 @@ export const Navbar: React.FC = () => {
             />
             <Link
               to="/contact"
-              className="btn btn-primary py-2 px-4 xl:px-5 text-[0.8125rem] whitespace-nowrap"
+              className="btn btn-primary py-2.5 px-5 text-[1.0625rem] xl:text-[1.1875rem] whitespace-nowrap"
             >
               {t('common.getInTouch')}
             </Link>
           </div>
 
           {/* Mobile Header Right (Switch + Independent Toggle) */}
-          <div className="hide-desktop flex items-center gap-2 sm:gap-3.5 shrink-0">
+          <div className="hide-desktop flex items-center gap-1.5 sm:gap-3.5 shrink-0">
             <LanguageSwitch size="sm" />
             <div
-              className="w-px h-[18px] bg-gray-light opacity-80"
+              className="w-px h-4 sm:h-[18px] bg-gray-light opacity-80"
               aria-hidden="true"
             />
             <button
@@ -224,7 +224,7 @@ export const Navbar: React.FC = () => {
         >
           {/* Prominent Language Switch in Mobile Drawer */}
           <div className="flex items-center justify-between py-3 pb-4 border-b border-gray-light mb-3">
-            <span className="font-heading text-lg font-bold text-orange-accent">
+            <span className="font-heading text-lg font-bold text-navy">
               {t('common.language')}
             </span>
             <LanguageSwitch size="md" />
@@ -238,7 +238,7 @@ export const Navbar: React.FC = () => {
                   to={link.href}
                   aria-current={active ? 'page' : undefined}
                   onClick={() => setMobileOpen(false)}
-                  className={`py-3.5 border-b ${active ? 'border-b-2 border-orange-accent text-orange-accent font-bold' : 'border-warm-neutral text-navy font-semibold'} font-heading text-xl no-underline flex items-center justify-between animate-fade-in-up`}
+                  className={`py-3.5 border-b ${active ? 'border-b-2 border-orange-accent text-navy font-bold' : 'border-warm-neutral text-navy font-semibold'} font-heading text-lg no-underline flex items-center justify-between animate-fade-in-up`}
                   style={{
                     animationDelay: `${i * 0.04 + 0.05}s`,
                   }}

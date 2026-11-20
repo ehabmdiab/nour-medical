@@ -24,6 +24,26 @@
   --font-heading: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Harmonious Executive Bilingual Typography Scale (UI/UX Pro Max modular scale, blended ~1.12-1.22x steps) */
+  --text-xs: 1rem;               /* 16px desktop */
+  --text-xs--line-height: 1.45;
+  --text-sm: 1.125rem;           /* 18px desktop */
+  --text-sm--line-height: 1.55;
+  --text-base: 1.25rem;          /* 20px desktop */
+  --text-base--line-height: 1.65;
+  --text-lg: 1.375rem;           /* 22px desktop */
+  --text-lg--line-height: 1.58;
+  --text-xl: 1.625rem;           /* 26px desktop */
+  --text-xl--line-height: 1.32;
+  --text-2xl: 1.875rem;          /* 30px desktop */
+  --text-2xl--line-height: 1.24;
+  --text-3xl: 2.25rem;           /* 36px desktop */
+  --text-3xl--line-height: 1.18;
+  --text-4xl: 2.75rem;           /* 44px desktop */
+  --text-4xl--line-height: 1.14;
+  --text-5xl: 3.375rem;          /* 54px desktop */
+  --text-5xl--line-height: 1.1;
 }
 
 
@@ -98,9 +118,9 @@
   --font-mono:     'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Spacing */
-  --section-gap:   clamp(80px, 10vw, 140px);
-  --container-max: 1280px;
-  --container-pad: clamp(16px, 4.5vw, 72px);
+  --section-gap:   clamp(72px, 8vw, 120px);
+  --container-max: 1840px;
+  --container-pad: clamp(16px, 2.5vw, 40px);
   --navbar-height: 72px;
 
   /* Motion */
@@ -113,7 +133,21 @@
 
 @media (min-width: 769px) {
   :root {
-    --navbar-height: 84px;
+    --navbar-height: 88px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --text-xs: 0.90625rem;       /* 14.5px mobile */
+    --text-sm: 1rem;             /* 16px mobile */
+    --text-base: 1.125rem;       /* 18px mobile */
+    --text-lg: 1.25rem;          /* 20px mobile */
+    --text-xl: 1.375rem;         /* 22px mobile */
+    --text-2xl: 1.5625rem;       /* 25px mobile */
+    --text-3xl: 1.8125rem;       /* 29px mobile */
+    --text-4xl: 2.125rem;        /* 34px mobile */
+    --text-5xl: 2.375rem;        /* 38px mobile */
   }
 }
 
@@ -133,21 +167,17 @@
 
   html {
     scroll-behavior: smooth;
-    font-size: 22px;
-  }
-
-  @media (max-width: 768px) {
-    html {
-      font-size: 19px;
-    }
+    font-size: 16px;
   }
 
   body {
     background-color: var(--white);
     color: var(--navy);
     font-family: var(--font-body);
+    font-size: var(--text-base);
     font-weight: 400;
     line-height: 1.65;
+    font-optical-sizing: auto;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -183,9 +213,13 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.18;
     letter-spacing: -0.02em;
-    color: var(--orange-accent);
+    color: var(--navy);
+  }
+
+  h1, h2 {
+    text-wrap: balance;
   }
 }
 
@@ -194,50 +228,50 @@
   .font-body    { font-family: var(--font-body); }
   .font-mono    { font-family: var(--font-mono); }
 
-  /* Display Sizes — Space Grotesk Grand Scale */
+  /* Balanced Typographic Scale */
   .text-display-xl {
-    font-size: clamp(4.5rem, 10vw, 9.5rem);
-    line-height: 0.92;
-    letter-spacing: -0.04em;
-  }
-  .text-display-lg {
-    font-size: clamp(3.5rem, 7.5vw, 7rem);
-    line-height: 0.96;
-    letter-spacing: -0.035em;
-  }
-  .text-display-md {
-    font-size: clamp(2.5rem, 5.2vw, 4.75rem);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-  }
-  .text-headline {
-    font-size: clamp(1.875rem, 3.5vw, 3rem);
-    line-height: 1.12;
+    font-size: clamp(2.375rem, 4vw, 3.75rem);
+    line-height: 1.08;
     letter-spacing: -0.025em;
   }
-  .text-title {
-    font-size: clamp(1.375rem, 2.2vw, 1.875rem);
-    line-height: 1.22;
+  .text-display-lg {
+    font-size: clamp(2.25rem, 3.6vw, 3.375rem);
+    line-height: 1.12;
+    letter-spacing: -0.022em;
+  }
+  .text-display-md {
+    font-size: clamp(1.875rem, 2.7vw, 2.75rem);
+    line-height: 1.16;
     letter-spacing: -0.02em;
   }
+  .text-headline {
+    font-size: clamp(1.625rem, 2.2vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+  }
+  .text-title {
+    font-size: clamp(1.5rem, 1.8vw, 1.875rem);
+    line-height: 1.26;
+    letter-spacing: -0.012em;
+  }
   .text-body-lg {
-    font-size: clamp(1.1875rem, 1.5vw, 1.4375rem);
-    line-height: 1.7;
+    font-size: var(--text-lg);
+    line-height: 1.62;
   }
   .text-body {
-    font-size: 1.1875rem;
-    line-height: 1.7;
+    font-size: var(--text-base);
+    line-height: 1.65;
   }
   .text-small {
-    font-size: 1.0625rem;
+    font-size: var(--text-sm);
     line-height: 1.55;
   }
 
   /* Mono Label (section anchors) */
   .label-mono {
     font-family: var(--font-mono);
-    font-size: 0.875rem;
-    letter-spacing: 0.15em;
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 500;
   }
@@ -264,18 +298,17 @@
 }
 
 /* ============================================================
-   LAYOUT (in @layer components so utility padding classes apply)
+   LAYOUT — Full-width fluid container overriding Tailwind v4's
+   stepped container breakpoints so wide screens use available space
    ============================================================ */
-@layer components {
-  .container {
-    width: 100%;
-    max-width: var(--container-max);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--container-pad);
-    padding-right: var(--container-pad);
-  }
+@utility container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
 
+@layer components {
   .section {
     padding-top: var(--section-gap);
     padding-bottom: var(--section-gap);
@@ -287,7 +320,7 @@
   }
 
   .hero-section-pad {
-    padding-top: calc(var(--navbar-height) + clamp(16px, 2.2vw, 32px));
+    padding-top: calc(var(--navbar-height) + clamp(12px, 1.6vw, 24px));
   }
 }
 
@@ -344,12 +377,12 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 28px;
+  padding: 15px 30px;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.1875rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
-  border-radius: 6px;
+  letter-spacing: 0.015em;
+  border-radius: 8px;
   transition: all var(--dur-mid) var(--ease-smooth);
   cursor: pointer;
   white-space: nowrap;
@@ -518,11 +551,11 @@
   width: 100%;
 }
 .nav-tab-link.active {
-  color: var(--orange-accent) !important;
+  color: var(--navy) !important;
   font-weight: 700 !important;
 }
 .nav-tab-link:hover {
-  color: var(--orange-accent);
+  color: var(--navy);
 }
 
 /* ============================================================
@@ -557,15 +590,18 @@
 
 .hero-content-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(340px, 490px);
-  gap: clamp(32px, 4vw, 56px);
-  align-items: center;
+  grid-template-columns: minmax(0, auto) auto;
+  justify-content: start;
+  gap: clamp(24px, calc(12vw - 110px), 136px);
+  align-items: start;
+  width: 100%;
 }
 
 @media (max-width: 960px) {
   .hero-content-grid {
     grid-template-columns: 1fr !important;
-    gap: 40px;
+    justify-content: stretch;
+    gap: 28px;
   }
 }
 
@@ -598,8 +634,8 @@
     align-items: center;
     gap: 12px;
     font-family: var(--font-mono);
-    font-size: 0.9375rem;
-    letter-spacing: 0.14em;
+    font-size: var(--text-sm);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--navy);
     margin-bottom: 24px;
@@ -627,15 +663,23 @@
    ============================================================ */
 .stat-number {
   font-family: var(--font-heading);
-  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-size: clamp(2.375rem, 3.6vw, 3.5rem);
   font-weight: 800;
   color: var(--navy);
-  line-height: 1;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
 }
 
 .stat-number-light {
   color: var(--white);
+}
+
+/* ============================================================
+   ARABIC TYPOGRAPHY — connected script must never be tracked
+   (letter-spacing breaks the joins between Arabic letters)
+   ============================================================ */
+html[dir='rtl'] * {
+  letter-spacing: 0 !important;
 }
 
 /* ============================================================
@@ -665,6 +709,42 @@ dialog::backdrop {
 }
 
 /* ============================================================
+   SUPPLIER DEVICE CAROUSEL
+   ============================================================ */
+.supplier-carousel-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  touch-action: manipulation;
+  scrollbar-width: none;
+}
+
+.supplier-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .supplier-carousel-track {
+    scroll-behavior: smooth;
+  }
+}
+
+.supplier-carousel-track > * {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+
+.supplier-carousel-track > :first-child {
+  order: clamp(0, var(--current) - (var(--children-count, sibling-count()) - 3), 1);
+}
+
+.supplier-carousel-track > :last-child {
+  order: calc(-1 * clamp(0, 2 - var(--current), 1));
+}
+
+/* ============================================================
    RESPONSIVE UTILITIES
    ============================================================ */
 @media (max-width: 1120px) {
@@ -682,7 +762,7 @@ dialog::backdrop {
   border: 1px solid var(--gray-light);
   border-radius: 6px;
   font-family: var(--font-body);
-  font-size: 1.0625rem;
+  font-size: var(--text-base);
   color: var(--navy);
   transition: border-color var(--dur-fast) var(--ease-out);
   outline: none;
@@ -696,8 +776,8 @@ dialog::backdrop {
 .form-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.9375rem;
-  letter-spacing: 0.12em;
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--navy);
   font-weight: 600;
@@ -711,8 +791,8 @@ dialog::backdrop {
 }
 .data-table th {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
-  letter-spacing: 0.14em;
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--orange-accent);
   font-weight: 700;
@@ -723,7 +803,7 @@ dialog::backdrop {
 .data-table td {
   padding: 16px;
   border-bottom: 1px solid var(--warm-neutral);
-  font-size: 1.0625rem;
+  font-size: var(--text-base);
   color: var(--navy);
 }
 .data-table tr:hover td {

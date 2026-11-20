@@ -170,7 +170,7 @@ export const SERVICES: ServicePillar[] = [
     highlights: [
       {
         title: 'Global OEM Supplier Network',
-        desc: 'Authorized partner for leading medical OEMs in countries like the USA, China, and Taiwan (Radmedix, Angel, Lonwin, Senno Vision, InnoCare).',
+        desc: 'Authorized partner for leading medical OEMs in countries like the USA, China, and Taiwan (Radmedix, Angel, Lonwin, Sino Vision, InnoCare).',
       },
       {
         title: '1,000 m² Central Warehouse',
@@ -188,6 +188,17 @@ export const SERVICES: ServicePillar[] = [
 ];
 
 // ── SUPPLIER PARTNERS ─────────────────────────────────────────────
+export interface SupplierDevice {
+  id: string;
+  name: string;
+  nameAr: string;
+  category: string;
+  categoryAr: string;
+  image: string;
+  shortDescription: string;
+  shortDescriptionAr: string;
+}
+
 export interface SupplierPartner {
   id: string;
   name: string;
@@ -201,6 +212,8 @@ export interface SupplierPartner {
   descriptionAr?: string;
   specialties: string[];
   specialtiesAr?: string[];
+  deviceLayout?: 'grid' | 'carousel';
+  devices?: SupplierDevice[];
 }
 
 export const SUPPLIER_PARTNERS: SupplierPartner[] = [
@@ -227,6 +240,56 @@ export const SUPPLIER_PARTNERS: SupplierPartner[] = [
       'أجهزة الأشعة السينية الرقمية المتكاملة (Digital X-Ray)',
       'أنظمة الأرشفة وإدارة الصور السحابية (Cloud-Based PACS)',
     ],
+    devices: [
+      {
+        id: 'radmedix-acuity-dr',
+        name: 'Radmedix Acuity DR Table System',
+        nameAr: 'نظام الأشعة الرقمية Radmedix Acuity DR',
+        category: 'Full-Room Digital Radiography',
+        categoryAr: 'غرفة أشعة رقمية متكاملة',
+        image: `${BASE}images/products/radmedix-acuity-dr.png`,
+        shortDescription:
+          'Radmedix Acuity digital radiography table and integrated monitor column engineered for streamlined clinical X-ray positioning, rapid image preview, and dependable hospital throughput.',
+        shortDescriptionAr:
+          'نظام الأشعة الرقمية Radmedix Acuity المزود بطاولة فحص متكاملة وشاشة عرض مباشرة لتسهيل أوضاع التصوير وسرعة المعاينة داخل أقسام الأشعة.',
+      },
+      {
+        id: 'radmedix-portable-xray',
+        name: 'Radmedix Portable X-Ray & Folding Stand',
+        nameAr: 'جهاز الأشعة المحمول مع الحامل المتنقل من راد ميديكس',
+        category: 'Portable & Mobile X-Ray',
+        categoryAr: 'أشعة سينية محمولة ومتنقلة',
+        image: `${BASE}images/products/radmedix-portable-xray.png`,
+        shortDescription:
+          'Lightweight high-frequency portable X-ray generator paired with a wheeled rapid-deployment stand for emergency clinics, field care, and bedside radiography.',
+        shortDescriptionAr:
+          'مولد أشعة سينية محمول عالي التردد مع حامل متحرك سريع التركيب لتلبية فحوصات الطوارئ والزيارات السريرية والميدانية بكفاءة عالية.',
+      },
+      {
+        id: 'radmedix-floor-dr-system',
+        name: 'Radmedix Floor-Mounted DR & Chest Stand',
+        nameAr: 'نظام الأشعة الأرضي وحامل الصدر الرأسي من راد ميديكس',
+        category: 'Floor-Mounted Digital X-Ray',
+        categoryAr: 'أشعة سينية رقمية ثنائية',
+        image: `${BASE}images/products/radmedix-floor-dr-system.png`,
+        shortDescription:
+          'Dual-position digital radiography suite featuring a floor-mounted touchscreen tube stand, radiographic table, and upright chest wall bucky for comprehensive exams.',
+        shortDescriptionAr:
+          'منظومة أشعة رقمية متكاملة تضم عمود أنبوب بشاشة لمس وطاولة فحص وحامل صدر رأسي لتغطية فحوصات الوقوف والاستلقاء بمرونة كاملة.',
+      },
+      {
+        id: 'radmedix-tablet-pacs',
+        name: 'Radmedix Tablet Workstation & Cloud PACS',
+        nameAr: 'محطة التحكم اللوحية ونظام الأرشفة السحابية Cloud PACS',
+        category: 'Acquisition & Cloud PACS',
+        categoryAr: 'الاستحواذ والأرشفة السحابية PACS',
+        image: `${BASE}images/products/radmedix-tablet-pacs.png`,
+        shortDescription:
+          'Rugged handled tablet acquisition workstation running Radmedix imaging software and Cloud-Based PACS for immediate DICOM review, measurements, and multi-site sharing.',
+        shortDescriptionAr:
+          'وحدة تحكم لوحية طبية متينة تعمل ببرمجيات راد ميديكس ونظام الأرشفة السحابية Cloud PACS لمراجعة صور DICOM وإجراء القياسات ومشاركتها عن بُعد.',
+      },
+    ],
   },
   {
     id: 'lonwin',
@@ -252,6 +315,32 @@ export const SUPPLIER_PARTNERS: SupplierPartner[] = [
       'أنظمة التصوير الإشعاعي والأشعة المقطعية والرقمية (CT & DR)',
       'المنتجات والتجهيزات المرتبطة بالتصوير الطبي',
       'منتجات وحلول العلاج التداخلي',
+    ],
+    devices: [
+      {
+        id: 'lonwin-supervan-15t-system',
+        name: 'SuperVan 1.5T Superconducting MRI',
+        nameAr: 'جهاز الرنين المغناطيسي فائق التوصيل SuperVan 1.5T',
+        category: '1.5T MRI System',
+        categoryAr: 'نظام رنين مغناطيسي ١.٥ تسلا',
+        image: `${BASE}images/products/lonwin-supervan-15t-1.png`,
+        shortDescription:
+          'Flagship SuperVan 1.5T superconducting MRI built on Lonwin MUSIC technology for high clinical flexibility, precision, and scan speed across whole-spine, neuro, and body imaging.',
+        shortDescriptionAr:
+          'نظام الرنين المغناطيسي فائق التوصيل SuperVan 1.5T المبني على تقنية MUSIC من لون وين لتحقيق مرونة سريرية عالية ودقة وسرعة فائقة في فحوصات العمود الفقري والمخ والجسم.',
+      },
+      {
+        id: 'lonwin-supervan-15t-workflow',
+        name: 'SuperVan 1.5T — MUSIC Coils & Compressed Sensing',
+        nameAr: 'SuperVan 1.5T — ملفات التصوير MUSIC والاستشعار المضغوط',
+        category: 'Clinical Workflow & Coils',
+        categoryAr: 'ملفات التصوير وسير العمل السريع',
+        image: `${BASE}images/products/lonwin-supervan-15t-2.png`,
+        shortDescription:
+          'Multi-channel MUSIC phased-array coils paired with Compressed Sensing acceleration, gantry touchscreen workflow controls, and patient-friendly VR guidance for fast, sharp exams.',
+        shortDescriptionAr:
+          'ملفات تصوير متعددة القنوات بتقنية MUSIC مع تقنية الاستشعار المضغوط لتقليل زمن الفحص، وشاشة تحكم مدمجة على الجهاز، وتجربة مريحة للمريض بدقة تصوير فائقة.',
+      },
     ],
   },
   {
@@ -281,11 +370,110 @@ export const SUPPLIER_PARTNERS: SupplierPartner[] = [
       'أنظمة التصوير ثلاثي الأبعاد مع تحميل الوزن (WR-3D)',
       'أنظمة الأشعة الرقمية متعددة الوظائف (Talent II & HUA II)',
     ],
+    deviceLayout: 'carousel',
+    devices: [
+      {
+        id: 'angel-u-arm-dr',
+        name: 'Angel U-Arm Digital Radiography System',
+        nameAr: 'نظام الأشعة الرقمية U-Arm من أنجيل',
+        category: 'U-Arm Digital X-Ray',
+        categoryAr: 'أشعة رقمية بذراع U-Arm',
+        image: `${BASE}images/products/angel-u-arm-dr.jpg`,
+        shortDescription:
+          'Motorized single-column U-arm digital radiography system enabling upright, seated, and mobile-table examinations inside compact radiology rooms.',
+        shortDescriptionAr:
+          'نظام أشعة رقمية بذراع U-Arm أحادي العمود يدعم الفحوصات في وضع الوقوف والجلوس وعلى الطاولة المتحركة بكفاءة عالية.',
+      },
+      {
+        id: 'angel-mammography',
+        name: 'Angel Digital Mammography System',
+        nameAr: 'جهاز الماموجرافي الرقمي من أنجيل',
+        category: 'Women’s Health Imaging',
+        categoryAr: 'تصوير الثدي الرقمي (الماموجرافي)',
+        image: `${BASE}images/products/angel-mammography.jpg`,
+        shortDescription:
+          'Full-field digital mammography platform with ergonomic soft compression, dual foot-switch controls, and high-resolution low-dose breast diagnostics.',
+        shortDescriptionAr:
+          'منصة ماموجرافي رقمية متكاملة مزودة بنظام ضغط مريح وتحكم مزدوج بالقدم لتقديم صور عالية الدقة بأقل جرعة إشعاعية.',
+      },
+      {
+        id: 'angel-surgical-c-arm',
+        name: 'Angel Mobile Surgical C-Arm',
+        nameAr: 'جهاز الأشعة الجراحي المتنقل C-Arm من أنجيل',
+        category: 'Intraoperative C-Arm',
+        categoryAr: 'التصوير الجراحي C-Arm',
+        image: `${BASE}images/products/angel-surgical-c-arm.jpg`,
+        shortDescription:
+          'Flat-panel mobile surgical C-arm paired with a dual-monitor workstation for crisp real-time orthopedic, spine, and trauma fluoroscopy.',
+        shortDescriptionAr:
+          'جهاز C-Arm جراحي متنقل بلوح مسطح ومحطة عمل بشاشتين لمتابعة العمليات الجراحية والعظام والعمود الفقري لحظياً بوضوح فائق.',
+      },
+      {
+        id: 'angel-mobile-dr',
+        name: 'Angel Mobile Digital Radiography (QOMO / MTP)',
+        nameAr: 'جهاز الأشعة الرقمية المتنقل (QOMO / MTP)',
+        category: 'Portable Bedside DR',
+        categoryAr: 'أشعة رقمية متنقلة',
+        image: `${BASE}images/products/angel-mobile-dr.jpg`,
+        shortDescription:
+          'Compact cordless-ready mobile DR cart designed for effortless bedside ICU, ward, and emergency imaging with an onboard wireless flat panel bay.',
+        shortDescriptionAr:
+          'جهاز أشعة رقمية متنقل مدمج ومجهز لحمل الكاشف اللاسلكي لتسهيل الفحوصات الفورية داخل غرف العناية المركزة والطوارئ.',
+      },
+      {
+        id: 'angel-floor-dr',
+        name: 'Angel Floor-Mounted Dual-Detector DR',
+        nameAr: 'نظام الأشعة الرقمية الأرضي ثنائي الكاشف',
+        category: 'Floor-Mounted DR',
+        categoryAr: 'نظام أشعة أرضي متكامل',
+        image: `${BASE}images/products/angel-floor-dr.jpg`,
+        shortDescription:
+          'Precision floor-mounted tube column integrated with an elevating radiographic table and upright chest wall stand for versatile daily hospital workloads.',
+        shortDescriptionAr:
+          'نظام أشعة رقمية أرضي يضم عمود أنبوب دقيق وطاولة فحص وحامل صدر رأسي لتغطية كافة فحوصات الأشعة اليومية بالمستشفيات.',
+      },
+      {
+        id: 'angel-ceiling-dr',
+        name: 'Angel Ceiling-Suspended DR (Lingxi / Fanghua)',
+        nameAr: 'نظام الأشعة المعلق بالسقف (Lingxi / Fanghua)',
+        category: 'Overhead Tube Crane DR',
+        categoryAr: 'أشعة رقمية معلقة بالسقف',
+        image: `${BASE}images/products/angel-ceiling-dr.jpg`,
+        shortDescription:
+          'Automated ceiling-suspended overhead X-ray tube crane synchronized with the floating table and vertical bucky for high-throughput emergency imaging.',
+        shortDescriptionAr:
+          'نظام أشعة رقمية معلق بالسقف مع تحكم آلي وتزامن كامل مع طاولة الفحص وحامل الصدر لاستيعاب معدلات الفحص المرتفعة.',
+      },
+      {
+        id: 'angel-talent-ii',
+        name: 'Angel TALENT II Multi-Functional Dynamic DR',
+        nameAr: 'نظام الأشعة الديناميكية متعدد الوظائف TALENT II',
+        category: 'Dynamic Fluoroscopy & DR',
+        categoryAr: 'أشعة ديناميكية وفلوروسكوبي TALENT II',
+        image: `${BASE}images/products/angel-talent-ii-dr.jpg`,
+        shortDescription:
+          'Motorized tilting dynamic DR and remote-controlled fluoroscopy table combining GI contrast studies, orthopedics, and routine DR on a single system.',
+        shortDescriptionAr:
+          'طاولة أشعة ديناميكية مائلة متعددة الوظائف تجمع بين فحوصات الصبغة والفلوروسكوبي وتصوير العظام والأشعة العامة في جهاز واحد.',
+      },
+      {
+        id: 'angel-wr-3d',
+        name: 'Angel WR-3D Weight-Bearing 3D Imaging',
+        nameAr: 'نظام التصوير ثلاثي الأبعاد أثناء الوقوف WR-3D',
+        category: '3D Orthopedic CBCT',
+        categoryAr: 'تصوير ثلاثي الأبعاد للعظام والمفاصل',
+        image: `${BASE}images/products/angel-wr-3d-system.jpg`,
+        shortDescription:
+          'Weight-bearing 3D cone-beam imaging system designed for functional spine, knee, and ankle orthopedic diagnostics under natural standing load.',
+        shortDescriptionAr:
+          'نظام تصوير ثلاثي الأبعاد مخصص لتشخيص العمود الفقري والركبة والكاحل أثناء الوقوف وتحمل الوزن الطبيعي لتقييم الإصابات والمفاصل بدقة متناهية.',
+      },
+    ],
   },
   {
-    id: 'sennovision',
-    name: 'Senno Vision (SennoVision Medical Technology)',
-    nameAr: 'سينو فيجن (Senno Vision)',
+    id: 'sinovision',
+    name: 'Sino Vision (SinoVision Medical Technology)',
+    nameAr: 'سينو فيجن (Sino Vision)',
     country: 'China',
     countryAr: 'الصين',
     countryFlag: '🇨🇳',
@@ -306,6 +494,69 @@ export const SUPPLIER_PARTNERS: SupplierPartner[] = [
       'حلول وتطبيقات الأشعة الرقمية (DR)',
       'أنظمة الرؤية الطبية أثناء العمليات الجراحية',
       'أنظمة التصوير التشخيصي التخصصية',
+    ],
+    deviceLayout: 'carousel',
+    devices: [
+      {
+        id: 'sinovision-alpha-ct-system',
+        name: 'SinoVision Alpha CT 64-Slice Scanner',
+        nameAr: 'جهاز الأشعة المقطعية SinoVision Alpha CT (٦٤ مقطعاً)',
+        category: 'Large-Bore 64-Slice CT',
+        categoryAr: 'أشعة مقطعية ٦٤ مقطعاً بفتحة واسعة',
+        image: `${BASE}images/products/sinovision-alpha-ct-system.jpg`,
+        shortDescription:
+          'Smart 75 cm large-bore 64-slice CT scanner engineered for high-definition 21 lp/cm imaging at low radiation dose, featuring a 32-row V-Pixel detector, 0.3125 mm thin-slice acquisition, and 1024-matrix reconstruction.',
+        shortDescriptionAr:
+          'جهاز أشعة مقطعية ذكي ٦٤ مقطعاً بفتحة واسعة ٧٥ سم يوفر دقة تصوير عالية (21 lp/cm) بجرعة إشعاعية منخفضة، مزود بكاشف V-Pixel من ٣٢ صفاً بدقة التقاط ٠.٣١٢٥ مم وإعادة بناء بمصفوفة ١٠٢٤.',
+      },
+      {
+        id: 'sinovision-alpha-ct-suite',
+        name: 'Alpha CT Combined Diagnosis & CT Simulation Suite',
+        nameAr: 'منظومة Alpha CT المتكاملة للتشخيص والمحاكاة العلاجية',
+        category: 'Diagnostic & Radiotherapy CT',
+        categoryAr: 'التشخيص والمحاكاة للعلاج الإشعاعي',
+        image: `${BASE}images/products/sinovision-alpha-ct-suite.png`,
+        shortDescription:
+          'Integrated Alpha CT configuration pairing the 75 cm wide-bore gantry and overhead 3D-Vision camera with dual alignment laser pillars for whole-body diagnostics, surgical planning, and radiotherapy CT simulation.',
+        shortDescriptionAr:
+          'تكوين متكامل لجهاز Alpha CT يجمع بين الفتحة الواسعة ٧٥ سم والكاميرا العلوية ثلاثية الأبعاد مع أعمدة الليزر المزدوجة لإجراء الفحوصات التشخيصية وتخطيط الجراحة ومحاكاة العلاج الإشعاعي.',
+      },
+      {
+        id: 'sinovision-alpha-ct-3d-vision',
+        name: 'Alpha CT 3D-Vision HD Camera Positioning System',
+        nameAr: 'نظام التوجيه الذكي بكاميرا 3D-Vision HD لجهاز Alpha CT',
+        category: 'Smart Automated Positioning',
+        categoryAr: 'التمركز الذكي والتصوير الآلي',
+        image: `${BASE}images/products/sinovision-alpha-ct-3d-vision.png`,
+        shortDescription:
+          'Ceiling-mounted 3D-Vision HD camera with a 60-degree fan angle that automatically recognizes patient size and position, adjusts couch height, and enables quick remote-controlled standardized scanning.',
+        shortDescriptionAr:
+          'كاميرا 3D-Vision HD مثبتة بالسقف بزاوية تغطية ٦٠ درجة تتعرف تلقائياً على حجم وموضع المريض وتضبط ارتفاع الطاولة لتسريع الفحوصات القياسية والتحكم بها عن بُعد.',
+      },
+      {
+        id: 'sinovision-alpha-ct-large-bore',
+        name: 'Alpha CT 75 cm Ultra-Wide Bore Patient Experience',
+        nameAr: 'تجربة الفحص المريحة بفتحة ٧٥ سم الواسعة في Alpha CT',
+        category: '75 cm Wide-Bore Clinical Workflow',
+        categoryAr: 'فتحة ٧٥ سم واسعة لراحة المرضى',
+        image: `${BASE}images/products/sinovision-alpha-ct-large-bore.jpg`,
+        shortDescription:
+          'Generous 75 cm gantry aperture with integrated gantry touchscreen controls designed to comfortably accommodate obese and claustrophobic patients across daily diagnostic and interventional workflows.',
+        shortDescriptionAr:
+          'فتحة جانتري واسعة بقطر ٧٥ سم مع شاشة تحكم مدمجة على الجهاز لاستيعاب المرضى ذوي الأوزان الكبيرة وتقليل الشعور بالرهبة من الأماكن المغلقة خلال الفحوصات اليومية والتداخلية.',
+      },
+      {
+        id: 'sinovision-alpha-ct-simulation',
+        name: 'Alpha CT 75 cm Bore & Radiotherapy CT Simulation Table',
+        nameAr: 'طاولة المحاكاة الإشعاعية والفتحة الواسعة ٧٥ سم في Alpha CT',
+        category: 'CT Simulation & Oncology',
+        categoryAr: 'المحاكاة الإشعاعية وتطبيقات الأورام',
+        image: `${BASE}images/products/sinovision-alpha-ct-simulation.jpg`,
+        shortDescription:
+          'Precision flat-top carbon-fiber CT simulation accessory setup inside the 75 cm wide bore, supporting daily diagnostic scanning alongside accurate oncology CT simulation and interventional procedures.',
+        shortDescriptionAr:
+          'منظومة تثبيت دقيقة وطاولة مسطحة مخصصة للمحاكاة الإشعاعية داخل الفتحة الواسعة ٧٥ سم، تدعم الفحوصات التشخيصية اليومية وتطبيقات الأورام والأشعة التداخلية بكفاءة عالية.',
+      },
     ],
   },
   {
@@ -330,6 +581,56 @@ export const SUPPLIER_PARTNERS: SupplierPartner[] = [
       'تصميم وتطوير مستشعرات اللوح المسطح للأشعة السينية',
       'تكنولوجيا الكواشف الرقمية فائقة الدقة والجودة',
       'تصنيع المكونات الكهروضوئية المتقدمة',
+    ],
+    devices: [
+      {
+        id: 'innocare-wireless-fpd',
+        name: 'InnoCare Wireless Flat Panel Sensor',
+        nameAr: 'مستشعر اللوح المسطح اللاسلكي من إينوكير',
+        category: 'Wireless DR Detector',
+        categoryAr: 'كاشف أشعة رقمي لاسلكي',
+        image: `${BASE}images/products/dr-innocare-taiwan-1.png`,
+        shortDescription:
+          'Lightweight cassette-sized wireless flat panel X-ray sensor delivering high DQE sensitivity, dual-band Wi-Fi transfer, and durable IP-rated protection for mobile and stationary DR.',
+        shortDescriptionAr:
+          'مستشعر أشعة سينية لاسلكي خفيف الوزن بحجم الكاسيت القياسي، يتميز بحساسية عالية ونقل بيانات سريع عبر الواي فاي وحماية فائقة للاستخدام الثابت والمتنقل.',
+      },
+      {
+        id: 'innocare-csi-detector',
+        name: 'InnoCare High-Resolution CsI Flat Panel Detector',
+        nameAr: 'كاشف إينوكير عالي الدقة بتقنية CsI',
+        category: 'Optoelectronic X-Ray Sensor',
+        categoryAr: 'مستشعر كهروضوئي عالي الدقة',
+        image: `${BASE}images/products/dr-innocare-taiwan-2.png`,
+        shortDescription:
+          'Precision CsI scintillator flat panel detector engineered in Taiwan for superior spatial resolution and reduced patient X-ray dose across general and orthopedic radiography.',
+        shortDescriptionAr:
+          'كاشف لوح مسطح بتقنية CsI مصمم في تايوان لتقديم أعلى تباين مكاني ودقة تشخيصية مع تقليل الجرعة الإشعاعية للمريض في فحوصات الأشعة العامة والعظام.',
+      },
+      {
+        id: 'innocare-slim-profile-fpd',
+        name: 'InnoCare Ultra-Slim Side-Profile Flat Panel Sensor',
+        nameAr: 'التصميم الجانبي فائق النحافة لكاشف إينوكير المسطح',
+        category: 'Ultra-Slim Cassette Design',
+        categoryAr: 'تصميم كاسيت فائق النحافة',
+        image: `${BASE}images/products/dr-innocare-taiwan-3.png`,
+        shortDescription:
+          'ISO 4090 cassette-sized ultra-slim flat panel profile featuring a sealed magnetic charging interface, integrated LED battery and wireless status indicators, and effortless retrofit compatibility with existing bucky trays.',
+        shortDescriptionAr:
+          'تصميم فائق النحافة بمقاس الكاسيت القياسي ISO 4090 مزود بمنفذ شحن مغناطيسي محكم ومؤشرات LED مدمجة لحالة البطارية والاتصال اللاسلكي لسهولة التوافق والتركيب مع أدراج الأشعة القياسية.',
+      },
+      {
+        id: 'innocare-portable-fpd-perspective',
+        name: 'InnoCare Multi-Application Wireless Flat Panel Sensor',
+        nameAr: 'مستشعر اللوح الرقمي اللاسلكي متعدد الاستخدامات من إينوكير',
+        category: 'Portable & Specialty DR Sensor',
+        categoryAr: 'كاشف رقمي لاسلكي متعدد الاستخدامات',
+        image: `${BASE}images/products/dr-innocare-taiwan-4.png`,
+        shortDescription:
+          'Versatile wireless flat panel X-ray detector with precision carbon-fiber imaging surface, low-dose high-sensitivity scintillator, and rugged portable housing built for clinical, mobile, and veterinary digital radiography.',
+        shortDescriptionAr:
+          'كاشف أشعة رقمي لاسلكي متعدد الاستخدامات بسطح تصوير دقيق من ألياف الكربون ومستشعر عالي الحساسية بجرعة إشعاعية منخفضة، مصمم بهيكل متين للفحوصات الإكلينيكية والمتنقلة والبيطرية.',
+      },
     ],
   },
 ];

@@ -56,7 +56,9 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.1 }}
-        className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold tracking-tight leading-[1.08] max-w-5xl text-orange-accent`}
+        className={`text-[clamp(2.25rem,3.6vw,3.375rem)] font-heading font-bold tracking-tight leading-[1.16] max-w-5xl ${
+          isDark ? 'text-white' : 'text-navy'
+        }`}
       >
         {title}
       </motion.h2>
@@ -67,7 +69,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className={`mt-6 text-lg sm:text-xl md:text-2xl max-w-3xl font-normal leading-relaxed ${
+          className={`mt-4 text-base sm:text-lg max-w-4xl font-normal leading-relaxed ${
             isDark ? 'text-white/90' : 'text-navy'
           }`}
         >

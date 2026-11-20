@@ -29,6 +29,7 @@ describe('AboutPage Component', () => {
     // Verify established 2015 is present without "established in 2015"
     expect(html).toContain('established 2015');
     expect(html).not.toContain('established in 2015');
+    expect(html).toContain('Est. 2015 · Maadi, Cairo, Egypt');
 
     // Verify Eng. El Sayed Awad portrait and title are present
     expect(html).toContain('Eng. El Sayed Awad');
@@ -40,7 +41,7 @@ describe('AboutPage Component', () => {
     expect(html).toContain('Dr. Gehan Awad');
     expect(html).toContain('Director of Fin. &amp; Admin');
     expect(html).not.toContain('dr-gehan.jpg');
-    expect(html).toContain('text-base sm:text-lg');
+    expect(html).toContain('font-mono text-base text-navy');
 
     // Verify Eng. Ahmed Hafez is present with General Manager title and portrait
     expect(html).toContain('Eng. Ahmed Hafez');
@@ -63,5 +64,6 @@ describe('AboutPage Component', () => {
     expect(html).toContain('مدير الشؤون المالية والإدارية');
     expect(html).toContain('م. أحمد حافظ');
     expect(html).toContain('المدير العام');
+    expect(html).toContain('تأسست ٢٠١٥ · المعادي، القاهرة، مصر');
   });
 });

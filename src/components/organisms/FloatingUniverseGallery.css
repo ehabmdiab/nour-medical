@@ -93,7 +93,7 @@
 
 .floating-universe-heading {
   font-family: var(--font-heading);
-  font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+  font-size: clamp(2rem, 3.4vw, 2.875rem);
   font-weight: 800;
   color: var(--orange-accent, #F97316);
   letter-spacing: -0.02em;
@@ -102,7 +102,7 @@
 }
 
 .floating-universe-subtitle {
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  font-size: var(--text-base);
   color: var(--navy, #0A1628);
   max-width: 540px;
   margin: 8px 0 0 0;

@@ -13,8 +13,38 @@ import { useLanguage } from "../i18n";
 import {
   PRODUCTS_DATA,
   PRODUCT_CATEGORIES,
+  type ProductGalleryImage,
   type ProductItem,
 } from "../data/productsData";
+
+interface AgencyGalleryGroup {
+  agencyKey: string;
+  label: string;
+  labelAr: string;
+  countryFlag: string;
+  firstIndex: number;
+  items: { item: ProductGalleryImage; index: number }[];
+}
+
+function groupGalleryByAgency(gallery: ProductGalleryImage[]): AgencyGalleryGroup[] {
+  const groups: AgencyGalleryGroup[] = [];
+  gallery.forEach((item, index) => {
+    const existing = groups.find((g) => g.agencyKey === item.agency);
+    if (existing) {
+      existing.items.push({ item, index });
+    } else {
+      groups.push({
+        agencyKey: item.agency,
+        label: item.agency,
+        labelAr: item.agencyAr,
+        countryFlag: item.countryFlag,
+        firstIndex: index,
+        items: [{ item, index }],
+      });
+    }
+  });
+  return groups;
+}
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLElement>(null);
@@ -101,18 +131,18 @@ export const ProductsPage: React.FC = () => {
         <div className="container relative z-[1]">
           <div className="section-label">{t("products.heroLabel")}</div>
 
-          <h1 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-orange-accent tracking-[-0.03em] leading-[1.08] max-w-[900px] mb-5">
+          <h1 className="font-heading text-[clamp(2.25rem,3.6vw,3.375rem)] font-bold text-navy tracking-[-0.025em] leading-[1.16] max-w-[1040px] mb-5">
             {t("products.heroTitle")}
           </h1>
 
-          <p className="font-body text-[clamp(1.125rem,1.8vw,1.375rem)] leading-[1.65] text-navy max-w-[720px] mb-10">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy max-w-[880px] mb-10">
             {t("products.heroDesc")}
           </p>
 
           {/* Search & Modality Filters */}
           <div className="flex flex-col gap-5">
             {/* Search Input */}
-            <div className="relative max-w-[480px]">
+            <div className="relative max-w-[560px]">
               <Search
                 size={18}
                 className={`absolute top-1/2 -translate-y-1/2 text-navy ${isAr ? "right-4" : "left-4"}`}
@@ -163,7 +193,7 @@ export const ProductsPage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredProducts.map((product) => {
               const productName = isAr ? product.nameAr : product.name;
               const productTagline = isAr ? product.taglineAr : product.tagline;
@@ -231,92 +261,72 @@ export const ProductsPage: React.FC = () => {
                     )}
                   </div>
 
-                  {/* Multi-Agency Gallery Switcher (Radmedix USA & InnoCare Taiwan) */}
-                  {product.gallery && product.gallery.length > 1 && (
+                  {/* Supplier Source Pills & Multi-Image Thumbnail Switcher */}
+                  {product.gallery && product.gallery.length > 0 && (
                     <div className="bg-slate-50 border-b border-gray-light px-4 py-3 flex flex-col gap-2.5">
                       {/* Agency Selector Pills */}
                       <div className="flex flex-wrap items-center gap-2">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setCardImageIndices((prev) => ({
-                              ...prev,
-                              [product.id]: 0,
-                            }))
-                          }
-                          className={`px-3 py-1 rounded-full text-xs font-body font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                            activeImgIdx === 0
-                              ? "bg-navy text-white shadow-xs"
-                              : "bg-white text-navy border border-gray-light hover:border-orange-accent"
-                          }`}
-                        >
-                          <span>🇺🇸</span>
-                          <span>
-                            {isAr
-                              ? "أمريكا — Radmedix"
-                              : "USA — Radmedix"}
-                          </span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setCardImageIndices((prev) => ({
-                              ...prev,
-                              [product.id]:
-                                (prev[product.id] ?? 0) >= 1
-                                  ? (prev[product.id] ?? 1)
-                                  : 1,
-                            }))
-                          }
-                          className={`px-3 py-1 rounded-full text-xs font-body font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                            activeImgIdx >= 1
-                              ? "bg-navy text-white shadow-xs"
-                              : "bg-white text-navy border border-gray-light hover:border-orange-accent"
-                          }`}
-                        >
-                          <span>🇹🇼</span>
-                          <span>
-                            {isAr
-                              ? "تايوان — InnoCare"
-                              : "Taiwan — InnoCare"}
-                          </span>
-                        </button>
-                      </div>
-
-                      {/* Thumbnails Row */}
-                      <div className="grid grid-cols-5 gap-2">
-                        {product.gallery.map((item, idx) => {
-                          const isThumbActive = activeImgIdx === idx;
+                        {groupGalleryByAgency(product.gallery).map((group) => {
+                          const isGroupActive =
+                            activeGalleryItem?.agency === group.agencyKey;
                           return (
                             <button
-                              key={item.src}
+                              key={group.agencyKey}
                               type="button"
-                              aria-label={isAr ? item.altAr : item.alt}
                               onClick={() =>
                                 setCardImageIndices((prev) => ({
                                   ...prev,
-                                  [product.id]: idx,
+                                  [product.id]: group.firstIndex,
                                 }))
                               }
-                              className={`relative h-12 rounded-lg overflow-hidden bg-white p-1 border transition-all cursor-pointer ${
-                                isThumbActive
-                                  ? "border-orange-accent ring-2 ring-orange-accent/30 shadow-xs"
-                                  : "border-gray-light opacity-75 hover:opacity-100 hover:border-navy/40"
+                              className={`px-3 py-1 rounded-full text-xs font-body font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                                isGroupActive
+                                  ? "bg-navy text-white shadow-xs"
+                                  : "bg-white text-navy border border-gray-light hover:border-orange-accent"
                               }`}
                             >
-                              <img
-                                src={item.src}
-                                alt={isAr ? item.altAr : item.alt}
-                                className="w-full h-full object-contain"
-                              />
-                              <span className="absolute bottom-0.5 right-1 text-[10px] leading-none">
-                                {item.countryFlag}
-                              </span>
+                              <span>{group.countryFlag}</span>
+                              <span>{isAr ? group.labelAr : group.label}</span>
                             </button>
                           );
                         })}
                       </div>
+
+                      {/* Thumbnails Row (shown when supplier gallery has multiple photos) */}
+                      {product.gallery.length > 1 && (
+                        <div className="flex flex-wrap gap-2">
+                          {product.gallery.map((item, idx) => {
+                            const isThumbActive = activeImgIdx === idx;
+                            return (
+                              <button
+                                key={item.src}
+                                type="button"
+                                aria-label={isAr ? item.altAr : item.alt}
+                                onClick={() =>
+                                  setCardImageIndices((prev) => ({
+                                    ...prev,
+                                    [product.id]: idx,
+                                  }))
+                                }
+                                className={`relative w-14 h-12 rounded-lg overflow-hidden bg-white p-1 border transition-all cursor-pointer ${
+                                  isThumbActive
+                                    ? "border-orange-accent ring-2 ring-orange-accent/30 shadow-xs"
+                                    : "border-gray-light opacity-75 hover:opacity-100 hover:border-navy/40"
+                                }`}
+                              >
+                                <img
+                                  src={item.src}
+                                  alt={isAr ? item.altAr : item.alt}
+                                  className="w-full h-full object-contain"
+                                />
+                                <span className="absolute bottom-0.5 right-1 text-[12px] leading-none">
+                                  {item.countryFlag}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   )}
 
@@ -328,13 +338,13 @@ export const ProductsPage: React.FC = () => {
                     </span>
 
                     {/* Machine Name */}
-                    <h3 className="font-heading text-2xl font-bold text-orange-accent mb-3.5 leading-[1.25]">
+                    <h3 className="font-heading text-xl font-bold text-navy mb-3 leading-[1.3]">
                       {productName}
                     </h3>
 
                     {/* Machine Overview (نبذة عن الجهاز) */}
                     <div className="p-4 rounded-xl bg-warm-white border border-gray-light mb-5">
-                      <div className="font-mono text-xs font-bold text-orange-accent uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                      <div className="font-mono text-xs font-bold text-navy uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                         <FileText size={14} className="text-orange-accent" />
                         {t("products.systemOverviewLabel")}
                       </div>
@@ -401,7 +411,7 @@ export const ProductsPage: React.FC = () => {
                     ? selectedProduct.modalityLabelAr
                     : selectedProduct.modalityLabel}
                 </span>
-                <span className="font-heading text-xl font-bold text-orange-accent">
+                <span className="font-heading text-lg font-bold text-navy">
                   {isAr ? selectedProduct.nameAr : selectedProduct.name}
                 </span>
               </div>
@@ -452,79 +462,48 @@ export const ProductsPage: React.FC = () => {
                           </span>
                         </div>
 
-                        {/* Grouped Agency Gallery in Modal */}
-                        <div className="grid grid-cols-1 md:grid-cols-[1fr_2.5fr] gap-4 p-4 rounded-xl bg-slate-50 border border-gray-light">
-                          {/* USA — Radmedix */}
-                          <div>
-                            <div className="font-body text-xs font-bold text-navy mb-2 flex items-center gap-1.5">
-                              <span>🇺🇸</span>
-                              <span>
-                                {isAr
-                                  ? "أمريكا — Radmedix"
-                                  : "USA — Radmedix"}
-                              </span>
-                            </div>
-                            {selectedProduct.gallery
-                              .slice(0, 1)
-                              .map((item, idx) => (
-                                <button
-                                  key={item.src}
-                                  type="button"
-                                  onClick={() => setModalImageIndex(idx)}
-                                  className={`w-full h-16 rounded-lg overflow-hidden bg-white p-1.5 border transition-all cursor-pointer ${
-                                    modalImageIndex === idx
-                                      ? "border-orange-accent ring-2 ring-orange-accent/30"
-                                      : "border-gray-light opacity-80 hover:opacity-100"
-                                  }`}
-                                >
-                                  <img
-                                    src={item.src}
-                                    alt={isAr ? item.altAr : item.alt}
-                                    className="w-full h-full object-contain"
-                                  />
-                                </button>
-                              ))}
+                        {/* Dynamic Grouped Agency Gallery in Modal */}
+                        {selectedProduct.gallery.length > 1 && (
+                          <div className="flex flex-wrap gap-5 p-4 rounded-xl bg-slate-50 border border-gray-light">
+                            {groupGalleryByAgency(selectedProduct.gallery).map(
+                              (group) => (
+                                <div key={group.agencyKey} className="min-w-[140px]">
+                                  <div className="font-body text-xs font-bold text-navy mb-2 flex items-center gap-1.5">
+                                    <span>{group.countryFlag}</span>
+                                    <span>
+                                      {isAr ? group.labelAr : group.label}
+                                    </span>
+                                  </div>
+                                  <div className="flex flex-wrap gap-2">
+                                    {group.items.map(({ item, index }) => (
+                                      <button
+                                        key={item.src}
+                                        type="button"
+                                        aria-label={
+                                          isAr ? item.altAr : item.alt
+                                        }
+                                        onClick={() =>
+                                          setModalImageIndex(index)
+                                        }
+                                        className={`w-20 h-16 rounded-lg overflow-hidden bg-white p-1.5 border transition-all cursor-pointer ${
+                                          modalImageIndex === index
+                                            ? "border-orange-accent ring-2 ring-orange-accent/30"
+                                            : "border-gray-light opacity-80 hover:opacity-100"
+                                        }`}
+                                      >
+                                        <img
+                                          src={item.src}
+                                          alt={isAr ? item.altAr : item.alt}
+                                          className="w-full h-full object-contain"
+                                        />
+                                      </button>
+                                    ))}
+                                  </div>
+                                </div>
+                              ),
+                            )}
                           </div>
-
-                          {/* Taiwan — InnoCare */}
-                          <div>
-                            <div className="font-body text-xs font-bold text-navy mb-2 flex items-center gap-1.5">
-                              <span>🇹🇼</span>
-                              <span>
-                                {isAr
-                                  ? "تايوان — InnoCare"
-                                  : "Taiwan — InnoCare"}
-                              </span>
-                            </div>
-                            <div className="grid grid-cols-4 gap-2">
-                              {selectedProduct.gallery
-                                .slice(1)
-                                .map((item, offsetIdx) => {
-                                  const actualIdx = offsetIdx + 1;
-                                  return (
-                                    <button
-                                      key={item.src}
-                                      type="button"
-                                      onClick={() =>
-                                        setModalImageIndex(actualIdx)
-                                      }
-                                      className={`h-16 rounded-lg overflow-hidden bg-white p-1.5 border transition-all cursor-pointer ${
-                                        modalImageIndex === actualIdx
-                                          ? "border-orange-accent ring-2 ring-orange-accent/30"
-                                          : "border-gray-light opacity-80 hover:opacity-100"
-                                      }`}
-                                    >
-                                      <img
-                                        src={item.src}
-                                        alt={isAr ? item.altAr : item.alt}
-                                        className="w-full h-full object-contain"
-                                      />
-                                    </button>
-                                  );
-                                })}
-                            </div>
-                          </div>
-                        </div>
+                        )}
                       </>
                     );
                   })()}
@@ -544,7 +523,7 @@ export const ProductsPage: React.FC = () => {
                 <span className="font-mono text-sm font-bold text-navy uppercase tracking-wider block mb-1.5">
                   {isAr ? selectedProduct.taglineAr : selectedProduct.tagline}
                 </span>
-                <h2 className="font-heading text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-orange-accent leading-[1.2]">
+                <h2 className="font-heading text-[clamp(1.75rem,2.4vw,2.5rem)] font-bold text-navy leading-[1.2]">
                   {isAr ? selectedProduct.nameAr : selectedProduct.name}
                 </h2>
               </div>
@@ -557,18 +536,18 @@ export const ProductsPage: React.FC = () => {
                     : "border-l-4 border-l-orange-accent"
                 } mb-8`}
               >
-                <h3 className="font-heading text-xl font-bold text-orange-accent mb-2.5 flex items-center gap-2">
+                <h3 className="font-heading text-lg font-bold text-navy mb-2.5 flex items-center gap-2">
                   <FileText size={18} className="text-orange-accent" />
                   {t("products.modalOverviewHeading")}
                 </h3>
-                <p className="font-body text-lg leading-relaxed text-navy m-0">
+                <p className="font-body text-base leading-relaxed text-navy m-0">
                   {isAr ? selectedProduct.overviewAr : selectedProduct.overview}
                 </p>
               </div>
 
               {/* SECTION: Technical Specifications Table (المواصفات الفنية) */}
               <div className="mb-8">
-                <h3 className="font-heading text-xl font-bold text-orange-accent mb-4 flex items-center gap-2">
+                <h3 className="font-heading text-lg font-bold text-navy mb-4 flex items-center gap-2">
                   <Activity size={18} className="text-orange-accent" />
                   {t("products.modalSpecsHeading")}
                 </h3>
@@ -593,7 +572,7 @@ export const ProductsPage: React.FC = () => {
 
               {/* SECTION: Clinical Applications */}
               <div className="mb-8">
-                <h3 className="font-heading text-xl font-bold text-orange-accent mb-4 flex items-center gap-2">
+                <h3 className="font-heading text-lg font-bold text-navy mb-4 flex items-center gap-2">
                   <ShieldCheck size={18} className="text-orange-accent" />
                   {t("products.modalClinicalHeading")}
                 </h3>
@@ -643,11 +622,11 @@ export const ProductsPage: React.FC = () => {
 
       {/* ── CTA SECTION ────────────────────────────────────────── */}
       <section className="py-20 bg-warm-white border-t border-gray-light text-center">
-        <div className="container max-w-[640px]">
-          <h2 className="font-heading text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold text-orange-accent tracking-[-0.03em] leading-[1.08] mb-5">
+        <div className="container max-w-[860px]">
+          <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.16] mb-5">
             {t("products.ctaHeading")}
           </h2>
-          <p className="font-body text-lg leading-[1.7] text-navy mb-9">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy mb-8">
             {t("products.ctaDesc")}
           </p>
           <Link

@@ -143,7 +143,7 @@ export const GalleryCard: React.FC<GalleryCardProps> = ({ item, onSelect }) => {
 
       {/* Card Content Details */}
       <div className="p-6 pb-5 flex-1 flex flex-col">
-        <h3 className="font-heading text-2xl font-bold text-orange-accent mb-2 leading-tight">
+        <h3 className="font-heading text-xl font-bold text-navy mb-2 leading-tight">
           {displayTitle}
         </h3>
 

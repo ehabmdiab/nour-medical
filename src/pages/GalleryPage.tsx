@@ -267,11 +267,11 @@ export const GalleryPage: React.FC = () => {
                   </span>
                 </div>
 
-                <h2 className="font-heading text-3xl font-bold text-orange-accent mb-3">
+                <h2 className="font-heading text-2xl font-bold text-navy mb-3">
                   {isAr && selectedItem.titleAr ? selectedItem.titleAr : selectedItem.title}
                 </h2>
 
-                <p className="font-body text-lg leading-[1.7] text-navy mb-0">
+                <p className="font-body text-base leading-[1.7] text-navy mb-0">
                   {isAr && selectedItem.descriptionAr ? selectedItem.descriptionAr : selectedItem.description}
                 </p>
               </div>

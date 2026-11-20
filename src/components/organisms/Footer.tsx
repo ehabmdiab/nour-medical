@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
                 to="/"
                 className="no-underline inline-flex flex-col gap-1 mb-5"
               >
-                <span className="font-heading text-2xl font-bold text-orange-accent tracking-tight flex items-center gap-2">
+                <span className="font-heading text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                   <span>Nour Medical</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-orange-accent" />
                 </span>
@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
                   {t('footer.tagline')}
                 </span>
               </Link>
-              <p className="font-body text-base leading-[1.7] text-white/85 max-w-[260px]">
+              <p className="font-body text-base leading-[1.7] text-white/85 max-w-[340px]">
                 {t('footer.bio')}
               </p>
             </div>
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
             {/* Link Columns */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <p className="font-heading text-base font-bold tracking-wider uppercase text-orange-accent mb-4">
+                <p className="font-heading text-base font-bold tracking-wider uppercase text-white mb-4">
                   {category}
                 </p>
                 <ul className="flex flex-col gap-3 list-none p-0 m-0">
@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
 
             {/* Contact Column */}
             <div>
-              <p className="font-heading text-base font-bold tracking-wider uppercase text-orange-accent mb-4">
+              <p className="font-heading text-base font-bold tracking-wider uppercase text-white mb-4">
                 {t('footer.colContact')}
               </p>
               <ul className="flex flex-col gap-3.5 list-none p-0 m-0">

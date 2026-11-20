@@ -44,12 +44,16 @@ export const AboutPage: React.FC = () => {
           <div className="section-label">
             {t('about.sectionLabel')}
           </div>
-          <h1 className="font-heading text-[clamp(2.5rem,5vw,4.5rem)] font-bold text-orange-accent tracking-[-0.03em] leading-[1.1] max-w-[850px] mb-8">
+          <h1 className="font-heading text-[clamp(2.25rem,3.6vw,3.375rem)] font-bold text-navy tracking-[-0.025em] leading-[1.16] max-w-[1040px] mb-6">
             {t('about.title')}
           </h1>
-          <p className="font-body text-[clamp(1.25rem,2vw,1.5rem)] leading-[1.7] text-navy max-w-[680px]">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy max-w-[860px]">
             {t('about.subtitle')}
           </p>
+          <div className="inline-flex items-center gap-2.5 mt-6 px-4 py-2 rounded-full bg-white border border-gray-light shadow-[0_2px_8px_rgba(10,22,40,0.04)] font-mono text-sm font-bold text-navy">
+            <span className="w-2 h-2 rounded-full bg-orange-accent shrink-0" />
+            <span>{t('common.established')}</span>
+          </div>
         </div>
       </section>
 
@@ -59,18 +63,18 @@ export const AboutPage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-start">
             <div>
               <div className="section-label">{t('about.storyLabel')}</div>
-              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.5rem)] font-bold text-orange-accent tracking-[-0.03em] leading-[1.08] mb-6">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.15] mb-6">
                 {t('about.storyTitle')}
               </h2>
             </div>
             <div>
-              <p className="font-body text-lg leading-[1.75] text-navy mb-5">
+              <p className="font-body text-base leading-[1.75] text-navy mb-5">
                 {t('about.storyP1')}
               </p>
-              <p className="font-body text-lg leading-[1.75] text-navy mb-5">
+              <p className="font-body text-base leading-[1.75] text-navy mb-5">
                 {t('about.storyP2')}
               </p>
-              <p className="font-body text-lg leading-[1.75] text-navy">
+              <p className="font-body text-base leading-[1.75] text-navy">
                 {t('about.storyP3')}
               </p>
             </div>
@@ -86,9 +90,9 @@ export const AboutPage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="mb-15">
+          <div className="mb-12">
             <div className="section-label">{t('about.foundationLabel')}</div>
-            <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-orange-accent tracking-[-0.02em]">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em]">
               {t('about.pillarsTitle')}
             </h2>
           </div>
@@ -96,18 +100,18 @@ export const AboutPage: React.FC = () => {
             {pillars.map((pillar, i) => (
               <div
                 key={pillar.id}
-                className={`p-12 px-9 border-l-2 border-orange-accent transition-all duration-600 ease-[var(--ease-smooth)] ${
+                className={`p-9 px-7 border-l-2 border-orange-accent transition-all duration-600 ease-[var(--ease-smooth)] ${
                   pillarsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                <div className="font-heading text-sm tracking-[0.16em] uppercase text-orange-accent font-bold mb-5">
+                <div className="font-heading text-sm tracking-[0.16em] uppercase text-orange-accent font-bold mb-4">
                   {String(i + 1).padStart(2, '0')} — {pillar.id.toUpperCase()}
                 </div>
-                <h3 className="font-heading text-3xl font-bold text-orange-accent tracking-[-0.015em] mb-3.5">
+                <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-[-0.015em] mb-3">
                   {pillar.title}
                 </h3>
-                <p className="font-body text-lg leading-[1.7] text-navy">
+                <p className="font-body text-base leading-[1.7] text-navy">
                   {pillar.description}
                 </p>
               </div>
@@ -153,7 +157,7 @@ export const AboutPage: React.FC = () => {
                     </span>
                   </div>
 
-                  <h2 className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold text-orange-accent tracking-[-0.03em] leading-[1.1] mb-3">
+                  <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-white tracking-[-0.02em] leading-[1.15] mb-3">
                     {t('about.chairman')}
                   </h2>
 
@@ -176,10 +180,10 @@ export const AboutPage: React.FC = () => {
               {/* Right Column: Executive Quote / Vision Statement */}
               <div className="relative ltr:pl-[clamp(0px,3vw,24px)] rtl:pr-[clamp(0px,3vw,24px)] ltr:border-l rtl:border-r border-white/10">
                 <Quote size={32} className="text-orange-accent opacity-60 mb-4" />
-                <p className="font-body text-[clamp(1.125rem,1.6vw,1.35rem)] leading-[1.65] text-white/95 font-normal mb-5">
+                <p className="font-body text-base md:text-lg leading-[1.65] text-white/95 font-normal mb-5">
                   "{t('about.quoteText')}"
                 </p>
-                <div className="font-heading text-sm tracking-[0.1em] uppercase text-orange-accent font-bold">
+                <div className="font-heading text-sm tracking-[0.1em] uppercase text-white/80 font-bold">
                   {t('about.quoteAuthor')}
                 </div>
               </div>
@@ -202,13 +206,13 @@ export const AboutPage: React.FC = () => {
               <div className="section-label section-label-light mb-6">
                 {t('about.hrLabel')}
               </div>
-              <h3 className="font-heading text-[clamp(1.75rem,2.75vw,2.5rem)] font-bold text-orange-accent tracking-[-0.02em] leading-[1.2] mb-3">
+              <h3 className="font-heading text-[clamp(1.625rem,2.2vw,2.25rem)] font-bold text-navy tracking-[-0.02em] leading-[1.2] mb-3">
                 {t('about.hrTitle')}
               </h3>
-              <p className="font-mono text-sm tracking-[0.12em] uppercase text-navy font-bold mb-5">
+              <p className="font-mono text-sm tracking-[0.1em] uppercase text-navy font-bold mb-5">
                 {t('about.hrSubtitle')}
               </p>
-              <p className="font-body text-lg leading-[1.7] text-navy mb-6">
+              <p className="font-body text-base leading-[1.7] text-navy mb-6">
                 {t('about.hrDesc')}
               </p>
 
@@ -220,10 +224,10 @@ export const AboutPage: React.FC = () => {
                     GA
                   </div>
                   <div>
-                    <h4 className="font-heading text-xl sm:text-2xl font-bold text-orange-accent mb-1">
+                    <h4 className="font-heading text-xl font-bold text-navy mb-1">
                       {t('about.directorName')}
                     </h4>
-                    <p className="font-mono text-base sm:text-lg text-navy uppercase tracking-[0.05em] font-bold leading-[1.4]">
+                    <p className="font-mono text-base text-navy uppercase tracking-[0.05em] font-bold leading-[1.4]">
                       {t('about.directorTitle')}
                     </p>
                     <p className="text-base text-navy mt-1.5 leading-[1.5]">
@@ -242,10 +246,10 @@ export const AboutPage: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <h4 className="font-heading text-xl sm:text-2xl font-bold text-orange-accent mb-1">
+                    <h4 className="font-heading text-xl font-bold text-navy mb-1">
                       {t('about.gmName')}
                     </h4>
-                    <p className="font-mono text-base sm:text-lg text-navy uppercase tracking-[0.05em] font-bold leading-[1.4]">
+                    <p className="font-mono text-base text-navy uppercase tracking-[0.05em] font-bold leading-[1.4]">
                       {t('about.gmTitle')}
                     </p>
                     <p className="text-base text-navy mt-1.5 leading-[1.5]">
@@ -261,13 +265,13 @@ export const AboutPage: React.FC = () => {
               <div className="section-label section-label-light mb-6">
                 {t('about.infraLabel')}
               </div>
-              <h3 className="font-heading text-[clamp(1.75rem,2.75vw,2.5rem)] font-bold text-orange-accent tracking-[-0.02em] leading-[1.2] mb-3">
+              <h3 className="font-heading text-[clamp(1.625rem,2.2vw,2.25rem)] font-bold text-navy tracking-[-0.02em] leading-[1.2] mb-3">
                 {t('about.infraTitle')}
               </h3>
-              <p className="font-mono text-sm tracking-[0.12em] uppercase text-navy font-bold mb-5">
+              <p className="font-mono text-sm tracking-[0.1em] uppercase text-navy font-bold mb-5">
                 {t('about.infraSubtitle')}
               </p>
-              <p className="font-body text-lg leading-[1.7] text-navy">
+              <p className="font-body text-base leading-[1.7] text-navy">
                 {t('about.infraDesc')}
               </p>
             </div>
@@ -276,7 +280,7 @@ export const AboutPage: React.FC = () => {
           {/* Engineering Team Photographic Strip */}
           <div className="mt-12">
             <div className="flex items-center justify-between mb-4.5">
-              <span className="font-mono text-sm tracking-[0.12em] uppercase text-orange-accent font-bold">
+              <span className="font-mono text-sm tracking-[0.12em] uppercase text-navy font-bold">
                 {t('about.teamStripLabel')}
               </span>
               <Link to="/gallery" className="font-mono text-sm text-navy no-underline font-bold hover:text-orange-accent transition-colors">
@@ -300,7 +304,7 @@ export const AboutPage: React.FC = () => {
 
           {/* CTA */}
           <div className="flex justify-between items-center flex-wrap gap-6">
-            <p className="font-heading text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-orange-accent tracking-[-0.015em] max-w-[540px]">
+            <p className="font-heading text-[clamp(1.625rem,2.3vw,2.25rem)] font-bold text-navy tracking-[-0.015em] max-w-[740px]">
               {t('about.ctaTitle')}
             </p>
             <Link to="/contact" className="btn btn-primary gap-2">

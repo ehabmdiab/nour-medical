@@ -78,10 +78,10 @@ export const MaintenancePage: React.FC = () => {
           <div className="section-label">
             {t('maintenance.heroBadge')}
           </div>
-          <h1 className="font-heading text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-orange-accent tracking-tight leading-[1.08] max-w-[920px] mb-8">
+          <h1 className="font-heading text-[clamp(2.25rem,3.6vw,3.375rem)] font-bold text-navy tracking-tight leading-[1.16] max-w-[1040px] mb-6">
             {t('maintenance.heroTitle')}
           </h1>
-          <p className="font-body text-xl md:text-2xl leading-[1.7] text-navy max-w-[650px]">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy max-w-[860px]">
             {t('maintenance.heroSubtitle')}
           </p>
         </div>
@@ -102,10 +102,10 @@ export const MaintenancePage: React.FC = () => {
                 <Wrench size={14} />
                 {t('maintenance.commit1Badge')}
               </div>
-              <h3 className="font-heading text-xl md:text-2xl font-bold text-orange-accent mb-3 leading-snug">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy mb-3 leading-snug">
                 {t('maintenance.commit1Title')}
               </h3>
-              <p className="font-body text-[1.0625rem] leading-[1.65] text-navy mb-4">
+              <p className="font-body text-base leading-[1.65] text-navy mb-4">
                 {t('maintenance.commit1Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-sm font-body">
@@ -120,10 +120,10 @@ export const MaintenancePage: React.FC = () => {
                 <Package size={14} />
                 {t('maintenance.commit2Badge')}
               </div>
-              <h3 className="font-heading text-xl md:text-2xl font-bold text-orange-accent mb-3 leading-snug">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy mb-3 leading-snug">
                 {t('maintenance.commit2Title')}
               </h3>
-              <p className="font-body text-[1.0625rem] leading-[1.65] text-navy mb-4">
+              <p className="font-body text-base leading-[1.65] text-navy mb-4">
                 {t('maintenance.commit2Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-sm font-body">
@@ -145,10 +145,10 @@ export const MaintenancePage: React.FC = () => {
         <div className="container">
           <div className="mb-12">
             <div className="section-label">{t('maintenance.amcLabel')}</div>
-            <h2 className="font-heading text-[clamp(1.85rem,3vw,2.5rem)] font-bold text-orange-accent tracking-tight mb-4">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight mb-4">
               {t('maintenance.amcTitle')}
             </h2>
-            <p className="font-body text-[1.0625rem] leading-[1.7] text-navy max-w-[580px]">
+            <p className="font-body text-base leading-[1.7] text-navy max-w-[780px]">
               {t('maintenance.amcDesc')}
             </p>
           </div>
@@ -167,7 +167,7 @@ export const MaintenancePage: React.FC = () => {
                 <div className="font-body text-xs tracking-wider uppercase text-navy font-bold mb-3">
                   {t('maintenance.amcModalityLabel')}
                 </div>
-                <h3 className="font-heading text-xl font-bold text-orange-accent mb-2.5">
+                <h3 className="font-heading text-xl font-bold text-navy mb-2.5">
                   {sys.title}
                 </h3>
                 <p className="font-body text-base leading-relaxed text-navy">
@@ -190,10 +190,10 @@ export const MaintenancePage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-start">
             <div>
               <div className="section-label">{t('maintenance.trackRecordLabel')}</div>
-              <h2 className="font-heading text-[clamp(1.85rem,3vw,2.5rem)] font-bold text-orange-accent tracking-tight leading-tight mb-5">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight leading-tight mb-5">
                 {t('maintenance.trackRecordTitle')}
               </h2>
-              <p className="font-body text-[1.0625rem] leading-[1.7] text-navy">
+              <p className="font-body text-base leading-[1.7] text-navy">
                 {t('maintenance.trackRecordDesc')}
               </p>
             </div>
@@ -209,10 +209,10 @@ export const MaintenancePage: React.FC = () => {
                     transitionDelay: `${i * 0.1}s`,
                   }}
                 >
-                  <span className="font-heading text-xl text-orange-accent font-bold mb-1">
+                  <span className="font-heading text-xl text-navy font-bold mb-1">
                     {stat.label}
                   </span>
-                  <span className="font-body text-[1.0625rem] text-navy">
+                  <span className="font-body text-base text-navy">
                     {stat.description}
                   </span>
                 </div>
@@ -235,7 +235,7 @@ export const MaintenancePage: React.FC = () => {
               <div className="section-label mb-5">
                 {t('maintenance.partsLabel')}
               </div>
-              <h2 className="font-heading text-[clamp(1.85rem,3.2vw,2.625rem)] font-bold text-orange-accent leading-tight tracking-tight mb-4">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy leading-tight tracking-tight mb-4">
                 {t('maintenance.partsTitle')}
               </h2>
               <div className="font-body text-sm tracking-wider uppercase text-navy font-bold mb-8">
@@ -244,10 +244,10 @@ export const MaintenancePage: React.FC = () => {
             </div>
 
             <div>
-              <h3 className="font-heading text-xl md:text-2xl font-bold text-orange-accent tracking-tight leading-snug mb-5">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-tight leading-snug mb-5">
                 {t('maintenance.partsHeading')}
               </h3>
-              <p className="font-body text-[1.0625rem] leading-[1.7] text-navy mb-8">
+              <p className="font-body text-base leading-[1.7] text-navy mb-8">
                 {t('maintenance.partsDesc')}
               </p>
               <Link to="/contact" className="btn btn-primary gap-2">

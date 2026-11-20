@@ -48,10 +48,10 @@ export const ContactPage: React.FC = () => {
           <div className="section-label">
             {t('contact.heroBadge')}
           </div>
-          <h1 className="font-heading text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-orange-accent tracking-tight leading-[1.08] max-w-[850px] mb-8">
+          <h1 className="font-heading text-[clamp(2.25rem,3.6vw,3.375rem)] font-bold text-navy tracking-tight leading-[1.16] max-w-[1040px] mb-6">
             {t('contact.title')}
           </h1>
-          <p className="font-body text-xl md:text-2xl leading-[1.7] text-navy max-w-[650px]">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy max-w-[860px]">
             {t('contact.subtitle')}
           </p>
         </div>
@@ -67,19 +67,19 @@ export const ContactPage: React.FC = () => {
 
               <div className="flex flex-col gap-8">
                 <div>
-                  <div className="font-mono text-sm tracking-widest uppercase text-orange-accent font-bold mb-2.5">
+                  <div className="font-mono text-sm tracking-widest uppercase text-navy font-bold mb-2.5">
                     {t('contact.headOffice')}
                   </div>
                   <div className="flex gap-3 items-start">
                     <MapPin size={18} className="text-orange-accent shrink-0 mt-1" />
-                    <span className="font-body text-lg text-navy leading-relaxed">
+                    <span className="font-body text-base text-navy leading-relaxed">
                       {t('contact.address')}
                     </span>
                   </div>
                 </div>
 
                 <div>
-                  <div className="font-mono text-sm tracking-widest uppercase text-orange-accent font-bold mb-2.5">
+                  <div className="font-mono text-sm tracking-widest uppercase text-navy font-bold mb-2.5">
                     {t('contact.telephone')}
                   </div>
                   {COMPANY_CONTACT.phone.map((ph) => (
@@ -87,7 +87,7 @@ export const ContactPage: React.FC = () => {
                       <Phone size={16} className="text-orange-accent shrink-0" />
                       <a
                         href={`tel:${ph.replace(/\s/g, '')}`}
-                        className="hover-underline font-body text-lg text-navy no-underline"
+                        className="hover-underline font-body text-base text-navy no-underline"
                       >
                         {ph}
                       </a>
@@ -96,7 +96,7 @@ export const ContactPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <div className="font-mono text-sm tracking-widest uppercase text-orange-accent font-bold mb-2.5">
+                  <div className="font-mono text-sm tracking-widest uppercase text-navy font-bold mb-2.5">
                     {t('contact.mobile')}
                   </div>
                   {COMPANY_CONTACT.mobile.map((m) => (
@@ -104,7 +104,7 @@ export const ContactPage: React.FC = () => {
                       <Smartphone size={16} className="text-orange-accent shrink-0" />
                       <a
                         href={`tel:${m.replace(/\s/g, '')}`}
-                        className="hover-underline font-body text-lg text-navy no-underline"
+                        className="hover-underline font-body text-base text-navy no-underline"
                       >
                         {m}
                       </a>
@@ -113,26 +113,26 @@ export const ContactPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <div className="font-mono text-sm tracking-widest uppercase text-orange-accent font-bold mb-2.5">
+                  <div className="font-mono text-sm tracking-widest uppercase text-navy font-bold mb-2.5">
                     {t('contact.fax')}
                   </div>
                   <div className="flex gap-3 items-center">
                     <Printer size={16} className="text-orange-accent shrink-0" />
-                    <span className="font-body text-lg text-navy">
+                    <span className="font-body text-base text-navy">
                       {COMPANY_CONTACT.fax}
                     </span>
                   </div>
                 </div>
 
                 <div>
-                  <div className="font-mono text-sm tracking-widest uppercase text-orange-accent font-bold mb-2.5">
+                  <div className="font-mono text-sm tracking-widest uppercase text-navy font-bold mb-2.5">
                     {t('contact.email')}
                   </div>
                   <div className="flex gap-3 items-center">
                     <Mail size={16} className="text-orange-accent shrink-0" />
                     <a
                       href={`mailto:${COMPANY_CONTACT.email}`}
-                      className="hover-underline font-body text-lg text-navy no-underline"
+                      className="hover-underline font-body text-base text-navy no-underline"
                     >
                       {COMPANY_CONTACT.email}
                     </a>
@@ -150,10 +150,10 @@ export const ContactPage: React.FC = () => {
                   <div className="w-12 h-12 rounded-full bg-orange-subtle flex items-center justify-center mx-auto mb-5 text-orange-accent text-2xl font-bold">
                     ✓
                   </div>
-                  <h3 className="font-heading text-2xl md:text-3xl font-bold text-orange-accent mb-3">
+                  <h3 className="font-heading text-2xl font-bold text-navy mb-3">
                     {t('contact.successTitle')}
                   </h3>
-                  <p className="font-body text-lg text-navy leading-relaxed">
+                  <p className="font-body text-base text-navy leading-relaxed">
                     {t('contact.successMessage')}
                   </p>
                 </div>

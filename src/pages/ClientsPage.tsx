@@ -68,7 +68,7 @@ const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => 
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-transparent to-slate-900/85 pointer-events-none" />
 
       {/* Slide Counter Badge */}
-      <div className="absolute top-4 left-4 bg-slate-900/75 backdrop-blur-md text-white font-mono text-[0.6875rem] tracking-widest px-2.5 py-1 rounded border border-white/15">
+      <div className="absolute top-4 left-4 bg-slate-900/75 backdrop-blur-md text-white font-mono text-xs tracking-widest px-2.5 py-1 rounded border border-white/15">
         {currentIndex + 1} / {images.length}
       </div>
 
@@ -197,12 +197,12 @@ export const ClientsPage: React.FC = () => {
             {t('clients.sectionLabel')}
           </div>
 
-          <h1 className="font-heading text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-orange-accent tracking-tight leading-[1.08] max-w-[920px] mb-6">
+          <h1 className="font-heading text-[clamp(2.25rem,3.6vw,3.375rem)] font-bold text-navy tracking-tight leading-[1.16] max-w-[1040px] mb-6">
             {t('clients.heroTitle')}{' '}
-            <span className="text-orange-accent">{t('clients.heroTitleHighlight')}</span>
+            <span className="text-navy">{t('clients.heroTitleHighlight')}</span>
           </h1>
 
-          <p className="font-body text-xl md:text-2xl leading-[1.65] text-navy max-w-[720px]">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy max-w-[880px]">
             {t('clients.heroSubtitle')}
           </p>
         </div>
@@ -311,7 +311,7 @@ export const ClientsPage: React.FC = () => {
                           {displayFacilityType}
                         </div>
 
-                        <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-tight mb-3 leading-snug">
+                        <h3 className="font-heading text-xl font-bold text-navy tracking-tight mb-3 leading-snug">
                           {displayName}
                         </h3>
 
@@ -392,12 +392,12 @@ export const ClientsPage: React.FC = () => {
                 </div>
 
                 {/* Title */}
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-orange-accent tracking-tight mb-5 leading-snug">
+                <h2 className="font-heading text-2xl md:text-3xl font-bold text-navy tracking-tight mb-5 leading-snug">
                   {isAr && activeClient.nameAr ? activeClient.nameAr : activeClient.name}
                 </h2>
 
                 <div className="border-b border-gray-light pb-4 mb-6">
-                  <div className="section-label text-orange-accent mb-1.5">
+                  <div className="section-label text-navy mb-1.5">
                     {t('clients.modalScopeTitle')}
                   </div>
                   <p className="text-base text-navy">
@@ -419,7 +419,7 @@ export const ClientsPage: React.FC = () => {
                         className="bg-warm-white border border-gray-light rounded-lg p-4 px-5"
                       >
                         <div className="flex justify-between items-start gap-2.5 mb-2">
-                          <h4 className="font-heading text-lg font-bold text-orange-accent">
+                          <h4 className="font-heading text-lg font-bold text-navy">
                             {devName}
                           </h4>
                           <span className="font-mono text-xs text-navy border border-orange-accent px-2.5 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1 font-semibold">

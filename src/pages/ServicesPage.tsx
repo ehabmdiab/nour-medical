@@ -146,10 +146,10 @@ export const ServicesPage: React.FC = () => {
           <div className="section-label">
             {t('services.heroBadge')}
           </div>
-          <h1 className="font-heading text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-orange-accent tracking-tight leading-[1.1] max-w-[880px] mb-8">
+          <h1 className="font-heading text-[clamp(2.25rem,3.6vw,3.375rem)] font-bold text-navy tracking-tight leading-[1.16] max-w-[1040px] mb-6">
             {t('services.heroTitle')}
           </h1>
-          <p className="font-body text-xl md:text-2xl leading-[1.7] text-navy max-w-[680px]">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy max-w-[860px]">
             {t('services.subtitle')}
           </p>
 
@@ -183,19 +183,19 @@ export const ServicesPage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="mb-14">
+          <div className="mb-12">
             <div className="section-label">{t('services.pillarsLabel')}</div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-orange-accent tracking-tight leading-tight">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight leading-tight">
               {t('services.pillarsTitle')}
             </h2>
           </div>
 
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-14">
             {servicesData.map((svc, i) => (
               <div
                 key={svc.id}
                 id={svc.id}
-                className={`grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 lg:gap-16 items-start pb-16 ${
+                className={`grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 lg:gap-16 items-start pb-14 ${
                   i < servicesData.length - 1 ? 'border-b border-gray-light' : ''
                 } transition-all duration-500 ${
                   overviewVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
@@ -205,13 +205,13 @@ export const ServicesPage: React.FC = () => {
                 }}
               >
                 <div>
-                  <div className="font-heading text-5xl font-bold text-orange-accent leading-none mb-4">
+                  <div className="font-heading text-3xl md:text-4xl font-bold text-navy leading-none mb-4">
                     {svc.number}
                   </div>
-                  <h3 className="font-heading text-2xl md:text-3xl font-bold text-orange-accent tracking-tight mb-2">
+                  <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-tight mb-2">
                     {svc.title}
                   </h3>
-                  <div className="font-body text-xs tracking-widest uppercase text-navy font-bold mb-4">
+                  <div className="font-body text-xs tracking-widest uppercase text-navy/80 font-bold mb-4">
                     {svc.tag}
                   </div>
                   <span className="inline-block px-3.5 py-1.5 bg-warm-neutral text-navy font-body text-xs rounded font-semibold">
@@ -220,10 +220,10 @@ export const ServicesPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <h4 className="font-heading text-xl md:text-2xl font-bold text-orange-accent tracking-tight mb-4">
+                  <h4 className="font-heading text-xl font-bold text-navy tracking-tight mb-3">
                     {svc.headline}
                   </h4>
-                  <p className="font-body text-lg leading-[1.7] text-navy mb-8 max-w-[640px]">
+                  <p className="font-body text-base leading-[1.7] text-navy mb-7 max-w-[820px]">
                     {svc.description}
                   </p>
 
@@ -233,7 +233,7 @@ export const ServicesPage: React.FC = () => {
                         key={h.title}
                         className="p-5 bg-warm-white rounded-xl border border-warm-neutral"
                       >
-                        <h5 className="font-heading text-lg font-bold text-orange-accent mb-2">
+                        <h5 className="font-heading text-base font-bold text-navy mb-2">
                           {h.title}
                         </h5>
                         <p className="font-body text-base leading-relaxed text-navy m-0">
@@ -268,7 +268,7 @@ export const ServicesPage: React.FC = () => {
         <div className="container">
           <div className="mb-12">
             <div className="section-label">{t('services.navMaintenance')}</div>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-orange-accent tracking-tight mb-4">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight mb-4">
               {t('services.commitHeading')}
             </h2>
           </div>
@@ -280,10 +280,10 @@ export const ServicesPage: React.FC = () => {
                 <Wrench size={14} />
                 {t('maintenance.commit1Badge')}
               </div>
-              <h3 className="font-heading text-2xl md:text-3xl font-bold text-orange-accent mb-3 leading-snug">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy mb-3 leading-snug">
                 {t('maintenance.commit1Title')}
               </h3>
-              <p className="font-body text-lg leading-[1.65] text-navy mb-4">
+              <p className="font-body text-base leading-[1.65] text-navy mb-4">
                 {t('maintenance.commit1Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-sm font-body">
@@ -298,10 +298,10 @@ export const ServicesPage: React.FC = () => {
                 <Package size={14} />
                 {t('maintenance.commit2Badge')}
               </div>
-              <h3 className="font-heading text-2xl md:text-3xl font-bold text-orange-accent mb-3 leading-snug">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy mb-3 leading-snug">
                 {t('maintenance.commit2Title')}
               </h3>
-              <p className="font-body text-lg leading-[1.65] text-navy mb-4">
+              <p className="font-body text-base leading-[1.65] text-navy mb-4">
                 {t('maintenance.commit2Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-sm font-body">
@@ -324,10 +324,10 @@ export const ServicesPage: React.FC = () => {
         <div className="container">
           <div className="mb-12">
             <div className="section-label">{t('services.amcSectionLabel')}</div>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-orange-accent tracking-tight mb-4">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight mb-4">
               {t('services.amcSectionTitle')}
             </h2>
-            <p className="font-body text-lg leading-[1.7] text-navy max-w-[580px]">
+            <p className="font-body text-base leading-[1.7] text-navy max-w-[780px]">
               {t('services.amcSectionDesc')}
             </p>
           </div>
@@ -346,7 +346,7 @@ export const ServicesPage: React.FC = () => {
                 <div className="font-body text-xs tracking-widest uppercase text-navy font-bold mb-3">
                   {sys.badge}
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-orange-accent mb-2.5 leading-snug">
+                <h3 className="font-heading text-xl font-bold text-navy mb-2.5 leading-snug">
                   {sys.title}
                 </h3>
                 <p className="font-body text-base leading-relaxed text-navy m-0">
@@ -368,13 +368,13 @@ export const ServicesPage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-start">
             <div>
               <div className="section-label">{t('services.installTrackLabel')}</div>
-              <h2 className="font-heading text-4xl md:text-5xl font-bold text-orange-accent tracking-tight leading-tight mb-5">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight leading-tight mb-5">
                 {t('services.installTrackTitle')}
               </h2>
-              <p className="font-body text-lg leading-[1.7] text-navy mb-6">
+              <p className="font-body text-base leading-[1.7] text-navy mb-6">
                 {t('services.installTrackP1')}
               </p>
-              <p className="font-body text-lg leading-[1.7] text-navy">
+              <p className="font-body text-base leading-[1.7] text-navy">
                 {t('services.installTrackP2')}
               </p>
             </div>
@@ -390,10 +390,10 @@ export const ServicesPage: React.FC = () => {
                     transitionDelay: `${i * 0.1}s`,
                   }}
                 >
-                  <span className="font-heading text-2xl text-orange-accent font-bold mb-1">
+                  <span className="font-heading text-xl text-navy font-bold mb-1">
                     {stat.label}
                   </span>
-                  <span className="font-body text-lg text-navy">
+                  <span className="font-body text-base text-navy">
                     {stat.description}
                   </span>
                 </div>
@@ -415,7 +415,7 @@ export const ServicesPage: React.FC = () => {
               <div className="section-label mb-6">
                 {t('services.infraSectionLabel')}
               </div>
-              <h2 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-orange-accent leading-tight tracking-tight mb-4">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy leading-tight tracking-tight mb-4">
                 {t('services.infraSectionTitle')}
               </h2>
               <div className="font-body text-sm tracking-widest uppercase text-navy font-bold mb-8">
@@ -424,10 +424,10 @@ export const ServicesPage: React.FC = () => {
             </div>
 
             <div>
-              <h3 className="font-heading text-2xl md:text-3xl font-bold text-orange-accent tracking-tight leading-snug mb-5">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-tight leading-snug mb-5">
                 {t('services.infraHeading')}
               </h3>
-              <p className="font-body text-lg leading-[1.7] text-navy mb-8">
+              <p className="font-body text-base leading-[1.7] text-navy mb-8">
                 {t('services.infraDesc')}
               </p>
               <div className="flex flex-wrap gap-4">
@@ -451,15 +451,15 @@ export const ServicesPage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-center">
             <div>
               <div className="section-label">{t('services.philosophyLabel')}</div>
-              <h2 className="font-heading text-4xl md:text-5xl font-bold text-orange-accent tracking-tight leading-tight">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight leading-tight">
                 {t('services.philosophyTitle')}
               </h2>
             </div>
             <div>
-              <blockquote className="font-heading text-xl md:text-2xl text-navy leading-snug border-l-[3px] border-orange-accent pl-7 rtl:border-l-0 rtl:border-r-[3px] rtl:pl-0 rtl:pr-7 mb-6">
+              <blockquote className="font-heading text-lg md:text-xl text-navy leading-snug border-l-[3px] border-orange-accent pl-7 rtl:border-l-0 rtl:border-r-[3px] rtl:pl-0 rtl:pr-7 mb-6">
                 {t('services.philosophyQuote')}
               </blockquote>
-              <p className="font-body text-lg leading-[1.7] text-navy">
+              <p className="font-body text-base leading-[1.7] text-navy">
                 {t('services.philosophyDesc')}
               </p>
             </div>
@@ -471,10 +471,10 @@ export const ServicesPage: React.FC = () => {
       <section className="py-20 bg-navy">
         <div className="container flex justify-between items-center flex-wrap gap-8">
           <div>
-            <div className="section-label text-orange-accent mb-4">
+            <div className="section-label text-white/80 mb-4">
               {t('services.bannerLabel')}
             </div>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-orange-accent tracking-tight max-w-[560px]">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-white tracking-tight max-w-[720px]">
               {t('services.bannerTitle')}
             </h2>
           </div>

@@ -90,21 +90,20 @@ export const HomePage: React.FC = () => {
           className="absolute right-[12%] top-[18%] w-[480px] h-[480px] rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.035)_0%,transparent_70%)] pointer-events-none"
         />
 
-        <div className="container relative z-10 flex-1 flex flex-col justify-start pt-1 pb-8 lg:pb-12 max-w-[1440px]">
-          {/* Label Badge */}
-          <div className="section-label mb-4 animate-hero-est">
-            {t('hero.est')}
-          </div>
+        <div className="container relative z-10 flex-1 flex flex-col justify-center pt-2 sm:pt-3 lg:pt-4 pb-6 sm:pb-8 lg:pb-10">
+          {/* Hero Content Grid: Text & Circular 3D Scanner Viewport */}
+          <div className="hero-content-grid items-start">
+            {/* Primary Text & CTA Column */}
+            <div className="w-full lg:w-fit lg:max-w-[940px] pt-1 sm:pt-2 lg:pt-28">
+              <div className="section-label mb-5 animate-hero-est">
+                {t('hero.badge')}
+              </div>
 
-          {/* Hero Content Grid: Text Left, Circular 3D Scanner Viewport Right */}
-          <div className="hero-content-grid items-center">
-            {/* Left: Text & CTA - Takes the full left column space */}
-            <div className="w-full max-w-[760px]">
               <h1
-                className="font-heading text-[clamp(2.15rem,4.3vw,4.35rem)] font-extrabold text-orange-accent leading-[1.1] tracking-[-0.03em] mb-7 lg:mb-9 animate-hero-title"
+                className="font-heading text-[clamp(2.375rem,3.6vw,3.625rem)] font-extrabold text-navy leading-[1.16] tracking-[-0.025em] [text-wrap:normal] mb-8 animate-hero-title"
               >
-                {t('hero.title')}{' '}
-                <span className="text-orange-accent block">
+                <span className="block">{t('hero.title')}</span>
+                <span className="block font-semibold text-navy/90 mt-2">
                   {t('hero.titleHighlight')}
                 </span>
               </h1>
@@ -112,19 +111,19 @@ export const HomePage: React.FC = () => {
               <div
                 className="flex gap-4 flex-wrap items-center animate-hero-cta"
               >
-                <Link to="/products" className="btn btn-blue gap-2 shadow-[0_4px_16px_rgba(27,79,216,0.25)]">
+                <Link to="/products" className="btn btn-blue gap-2.5 shadow-[0_6px_20px_rgba(27,79,216,0.22)]">
                   {t('hero.exploreProducts')}
-                  <ArrowRight size={16} />
+                  <ArrowRight size={17} className={locale === 'ar' ? 'rotate-180' : ''} />
                 </Link>
-                <Link to="/contact" className="btn btn-outline">
+                <Link to="/contact" className="btn btn-outline bg-white/80 backdrop-blur-xs">
                   {t('hero.contactTeam')}
                 </Link>
               </div>
             </div>
 
-            {/* Right: Complete Circular 3D MRI Scanner Viewport */}
+            {/* Circular 3D MRI Scanner Viewport */}
             <div
-              className="relative w-[min(320px,80vw)] sm:w-[min(420px,60vw)] lg:w-[min(460px,46vh,100%)] aspect-square flex justify-center items-center mx-auto animate-hero-3d shrink-0"
+              className="relative w-[min(320px,80vw)] sm:w-[min(420px,65vw)] lg:w-[min(640px,62vh,40vw)] aspect-square flex justify-center items-center mx-auto lg:mx-0 animate-hero-3d shrink-0"
             >
               <div
                 className="absolute inset-4 rounded-full bg-[radial-gradient(circle,rgba(27,79,216,0.09)_0%,rgba(0,168,181,0.05)_50%,transparent_72%)] pointer-events-none"
@@ -138,8 +137,8 @@ export const HomePage: React.FC = () => {
         <div
           className="relative z-10 border-t border-gray-light bg-white/85 backdrop-blur-sm animate-hero-stats"
         >
-          <div className="container">
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-0 py-6">
+          <div className="container py-4 sm:py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-0">
               {[
                 { value: t('stats.personnelValue'), label: t('stats.personnel') },
                 { value: t('stats.cathLabInstallsValue'), label: t('stats.cathLabInstalls') },
@@ -148,16 +147,16 @@ export const HomePage: React.FC = () => {
               ].map((stat, i) => (
                 <div
                   key={stat.label}
-                  className={`py-3 px-6 ${
+                  className={`rounded-2xl bg-white/95 p-3.5 sm:p-4 border border-gray-light/90 shadow-[0_2px_10px_rgba(10,22,40,0.04)] flex flex-col justify-center transition-all md:rounded-none md:bg-transparent md:border-0 md:shadow-none md:py-3 md:px-6 ${
                     locale === "ar"
-                      ? i < 3 ? "border-l border-gray-light" : ""
-                      : i < 3 ? "border-r border-gray-light" : ""
+                      ? i < 3 ? "md:border-l md:border-gray-light" : ""
+                      : i < 3 ? "md:border-r md:border-gray-light" : ""
                   }`}
                 >
-                  <div className="font-heading text-3xl font-bold text-orange-accent tracking-[-0.02em] leading-none mb-2">
+                  <div className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-navy tracking-[-0.02em] leading-none mb-1.5 md:mb-2">
                     {stat.value}
                   </div>
-                  <div className="font-mono text-sm tracking-[0.1em] uppercase text-navy font-semibold">
+                  <div className="font-mono text-xs sm:text-sm tracking-[0.04em] sm:tracking-[0.08em] uppercase text-navy font-semibold leading-snug">
                     {stat.label}
                   </div>
                 </div>
@@ -178,7 +177,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-center">
             <div>
               <div className="section-label">{t('home.aboutLabel')}</div>
-              <h2 className="font-heading text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold text-orange-accent tracking-[-0.02em] leading-[1.1] mb-7">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.15] mb-6">
                 {t('home.aboutTitle')}
               </h2>
               <Link to="/about" className="btn btn-outline mt-2">
@@ -186,10 +185,10 @@ export const HomePage: React.FC = () => {
               </Link>
             </div>
             <div>
-              <p className="font-body text-lg md:text-xl leading-[1.75] text-navy mb-6">
+              <p className="font-body text-base leading-[1.75] text-navy mb-5">
                 {t('home.aboutP1')}
               </p>
-              <p className="font-body text-lg md:text-xl leading-[1.75] text-navy">
+              <p className="font-body text-base leading-[1.75] text-navy">
                 {t('home.aboutP2')}
               </p>
             </div>
@@ -205,9 +204,9 @@ export const HomePage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="mb-15">
+          <div className="mb-12">
             <div className="section-label">{t('home.capLabel')}</div>
-            <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-orange-accent tracking-[-0.02em]">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em]">
               {t('home.capTitle')}
             </h2>
           </div>
@@ -215,18 +214,18 @@ export const HomePage: React.FC = () => {
             {KEY_CAPABILITIES.map((cap, i) => (
               <div
                 key={cap.id}
-                className={`p-9 px-7 bg-white border border-gray-light rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 ease-[var(--ease-smooth)] hover:border-orange-accent hover:shadow-[0_12px_28px_rgba(249,115,22,0.1)] hover:-translate-y-1 ${
+                className={`p-8 px-6 bg-white border border-gray-light rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 ease-[var(--ease-smooth)] hover:border-orange-accent hover:shadow-[0_12px_28px_rgba(249,115,22,0.1)] hover:-translate-y-1 ${
                   capVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
                 style={{ transitionDelay: `${i * 0.08}s` }}
               >
-                <div className="font-heading text-sm tracking-[0.18em] uppercase text-orange-accent font-bold mb-4">
+                <div className="font-heading text-sm tracking-[0.16em] uppercase text-orange-accent font-bold mb-3.5">
                   0{i + 1}
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-[-0.01em] mb-2.5">
+                <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2">
                   {t(cap.titleKey) || cap.title}
                 </h3>
-                <p className="font-body text-lg leading-[1.65] text-navy">
+                <p className="font-body text-base leading-[1.65] text-navy">
                   {t(cap.descKey) || cap.description}
                 </p>
               </div>
@@ -252,10 +251,10 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-start">
             <div className="sticky top-[100px]">
               <div className="section-label">{t('home.whyLabel')}</div>
-              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-orange-accent tracking-[-0.02em] leading-[1.1] mb-5">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.15] mb-5">
                 {t('home.whyTitle')}
               </h2>
-              <p className="font-body text-lg leading-[1.7] text-navy mb-8">
+              <p className="font-body text-base leading-[1.7] text-navy mb-8">
                 {t('home.whyDesc')}
               </p>
               <Link to="/services" className="btn btn-primary">
@@ -267,17 +266,17 @@ export const HomePage: React.FC = () => {
               {whyItems.map((item, i) => (
                 <div
                   key={item.title}
-                  className={`py-7 border-b border-warm-neutral transition-all duration-600 ease-[var(--ease-smooth)] ${
+                  className={`py-6 border-b border-warm-neutral transition-all duration-600 ease-[var(--ease-smooth)] ${
                     whyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                   style={{ transitionDelay: `${i * 0.08}s` }}
                 >
                   <div className="flex justify-between items-start gap-4">
                     <div>
-                      <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-[-0.01em] mb-2">
+                      <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-1.5">
                         {item.title}
                       </h3>
-                      <p className="font-body text-lg leading-[1.65] text-navy">
+                      <p className="font-body text-base leading-[1.65] text-navy">
                         {item.description}
                       </p>
                     </div>
@@ -301,37 +300,37 @@ export const HomePage: React.FC = () => {
       >
         <div className="container">
           {/* Vision */}
-          <div className="mb-20 max-w-[760px]">
-            <div className="section-label section-label-light text-orange-accent mb-6">
+          <div className="mb-16 max-w-[960px]">
+            <div className="section-label section-label-light text-white mb-5">
               {t('home.visionTitle')}
             </div>
-            <blockquote className="font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold text-white leading-[1.3] tracking-[-0.02em]">
+            <blockquote className="font-heading text-[clamp(1.75rem,2.5vw,2.625rem)] font-semibold text-white leading-[1.4] tracking-[-0.015em]">
               "{locale === 'ar' ? t('home.visionDesc') : COMPANY_INFO.vision}"
             </blockquote>
           </div>
 
-          <div className="rule-dark mb-20" />
+          <div className="rule-dark mb-16" />
 
           {/* Mission Pillars */}
-          <div className="section-label section-label-light text-orange-accent mb-12">
+          <div className="section-label section-label-light text-white mb-10">
             {t('home.missionTitlePillar')}
           </div>
           <div className="grid-3">
             {missionPillars.map((pillar, i) => (
               <div
                 key={pillar.title}
-                className={`p-9 bg-white/[0.04] border border-white/[0.1] rounded transition-all duration-300 hover:border-orange-accent/50 hover:-translate-y-0.5 ${
+                className={`p-8 bg-white/[0.04] border border-white/[0.1] rounded transition-all duration-300 hover:border-orange-accent/50 hover:-translate-y-0.5 ${
                   missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                <div className="font-heading text-sm tracking-[0.15em] text-orange-accent font-bold mb-4">
+                <div className="font-heading text-sm tracking-[0.15em] text-orange-accent font-bold mb-3.5">
                   0{i + 1}
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-[-0.01em] mb-2.5">
+                <h3 className="font-heading text-xl font-bold text-white tracking-[-0.01em] mb-2">
                   {pillar.title}
                 </h3>
-                <p className="font-body text-lg leading-[1.65] text-white/90">
+                <p className="font-body text-base leading-[1.65] text-white/90">
                   {pillar.description}
                 </p>
               </div>
@@ -348,10 +347,10 @@ export const HomePage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="flex justify-between items-end flex-wrap gap-6 mb-15">
+          <div className="flex justify-between items-end flex-wrap gap-6 mb-12">
             <div>
               <div className="section-label">{t('nav.suppliers')}</div>
-              <h2 className="font-heading text-[clamp(2.25rem,4vw,3.25rem)] font-bold text-orange-accent tracking-[-0.02em]">
+              <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em]">
                 {t('suppliers.title')}
               </h2>
             </div>
@@ -369,13 +368,13 @@ export const HomePage: React.FC = () => {
               return (
                 <div
                   key={partner.id}
-                  className="p-9 bg-white border border-gray-light rounded-xl"
+                  className="p-8 bg-white border border-gray-light rounded-xl"
                 >
                   <div className="text-3xl mb-4">{partner.countryFlag}</div>
-                  <h3 className="font-heading text-2xl font-bold text-orange-accent tracking-[-0.01em] mb-2">
+                  <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2">
                     {name}
                   </h3>
-                  <p className="font-body text-xs tracking-[0.1em] uppercase text-navy font-bold mb-4">
+                  <p className="font-body text-sm tracking-[0.06em] uppercase text-navy/80 font-bold mb-4">
                     {tagline}
                   </p>
                   <ul className="flex flex-col gap-2 list-none m-0 p-0">
@@ -402,14 +401,14 @@ export const HomePage: React.FC = () => {
           ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
       >
-        <div className="container max-w-[720px]">
+        <div className="container max-w-[900px]">
           <div className="section-label justify-center">
             {t('common.contactUs')}
           </div>
-          <h2 className="font-heading text-[clamp(2rem,4.5vw,4rem)] font-bold text-orange-accent tracking-[-0.025em] leading-[1.08] mb-6">
+          <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.16] mb-5">
             {t('home.ctaTitle')}
           </h2>
-          <p className="font-body text-xl leading-[1.7] text-navy mb-10">
+          <p className="font-body text-base md:text-lg leading-[1.7] text-navy mb-8">
             {t('home.ctaDesc')}
           </p>
           <div className="flex gap-4 justify-center flex-wrap">

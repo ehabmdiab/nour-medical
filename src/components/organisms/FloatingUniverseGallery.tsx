@@ -270,10 +270,10 @@ export const FloatingUniverseGallery: React.FC = () => {
             <div className="section-label mb-3">
               {t('home.archiveLabel')}
             </div>
-            <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-orange-accent tracking-tight mb-4">
+            <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-extrabold text-navy tracking-tight mb-3">
               {t('home.archiveTitle')}
             </h2>
-            <p className="font-body text-navy text-lg md:text-xl leading-relaxed">
+            <p className="font-body text-navy text-base md:text-lg leading-relaxed">
               {t('home.archiveSubtitle')}
             </p>
           </div>
@@ -443,7 +443,7 @@ export const FloatingUniverseGallery: React.FC = () => {
                 {getCategoryLabel(selectedItem.category)}
               </div>
 
-              <h3 className="font-heading text-2xl md:text-3xl font-bold text-orange-accent leading-tight mb-4">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy leading-tight mb-4">
                 {isAr && selectedItem.titleAr ? selectedItem.titleAr : selectedItem.title}
               </h3>
 
