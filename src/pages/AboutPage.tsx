@@ -1,22 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, ShieldCheck, Quote } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
+import { useReveal } from '../hooks/useReveal';
 import { useLanguage } from '../i18n';
-
-function useReveal(threshold = 0.15) {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
 
 const BASE = import.meta.env.BASE_URL || '/';
 
@@ -84,8 +71,8 @@ export const AboutPage: React.FC = () => {
 
       {/* Three Pillars */}
       <section
-        ref={pillarsRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+        ref={pillarsRef}
+        className={`py-[var(--section-gap)] bg-warm-white motion-safe:transition-opacity motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           pillarsVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -122,8 +109,8 @@ export const AboutPage: React.FC = () => {
 
       {/* Leadership Profile — Eng. Sayed Awad */}
       <section
-        ref={leaderRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-navy text-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+        ref={leaderRef}
+        className={`py-[var(--section-gap)] bg-navy text-white motion-safe:transition-opacity motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           leaderVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -194,8 +181,8 @@ export const AboutPage: React.FC = () => {
 
       {/* Human Resources & Infrastructure */}
       <section
-        ref={infraRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-neutral transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+        ref={infraRef}
+        className={`py-[var(--section-gap)] bg-warm-neutral motion-safe:transition-opacity motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           infraVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >

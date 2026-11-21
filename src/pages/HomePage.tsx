@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
@@ -11,27 +11,8 @@ import {
   SUPPLIER_PARTNERS,
   COMPANY_INFO,
 } from '../data/companyData';
+import { useReveal } from '../hooks/useReveal';
 import { useLanguage } from '../i18n';
-
-// ── Reveal Hook ──────────────────────────────────────────────────
-function useReveal(threshold = 0.15) {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
 
 export const HomePage: React.FC = () => {
   const { locale, t } = useLanguage();
@@ -168,8 +149,8 @@ export const HomePage: React.FC = () => {
 
       {/* ── 2. COMPANY INTRODUCTION ──────────────────────────── */}
       <section
-        ref={introRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-all duration-700 ease-[var(--ease-smooth)] ${
+        ref={introRef}
+        className={`py-[var(--section-gap)] bg-white motion-safe:transition-all motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           introVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
       >
@@ -198,8 +179,8 @@ export const HomePage: React.FC = () => {
 
       {/* ── 3. KEY CAPABILITIES ──────────────────────────────── */}
       <section
-        ref={capRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+        ref={capRef}
+        className={`py-[var(--section-gap)] bg-warm-white motion-safe:transition-opacity motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           capVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -242,8 +223,8 @@ export const HomePage: React.FC = () => {
 
       {/* ── 6. WHY NOUR MEDICAL ──────────────────────────────── */}
       <section
-        ref={whyRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+        ref={whyRef}
+        className={`py-[var(--section-gap)] bg-white motion-safe:transition-opacity motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           whyVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -293,8 +274,8 @@ export const HomePage: React.FC = () => {
 
       {/* ── 7. VISION & MISSION ──────────────────────────────── */}
       <section
-        ref={missionRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-navy transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+        ref={missionRef}
+        className={`py-[var(--section-gap)] bg-navy motion-safe:transition-opacity motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           missionVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -319,7 +300,7 @@ export const HomePage: React.FC = () => {
             {missionPillars.map((pillar, i) => (
               <div
                 key={pillar.title}
-                className={`p-8 bg-white/[0.04] border border-white/[0.1] rounded transition-all duration-300 hover:border-orange-accent/50 hover:-translate-y-0.5 ${
+                className={`p-8 bg-white/[0.04] border border-white/[0.1] rounded motion-safe:transition-all motion-safe:duration-300 hover:border-orange-accent/50 hover:-translate-y-0.5 ${
                   missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{ transitionDelay: `${i * 0.12}s` }}
@@ -341,8 +322,8 @@ export const HomePage: React.FC = () => {
 
       {/* ── 8. SUPPLIER NETWORK OVERVIEW ─────────────────────── */}
       <section
-        ref={partnersRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-[var(--ease-smooth)] ${
+        ref={partnersRef}
+        className={`py-[var(--section-gap)] bg-warm-white motion-safe:transition-opacity motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           partnersVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -396,8 +377,8 @@ export const HomePage: React.FC = () => {
 
       {/* ── 9. FINAL CTA ─────────────────────────────────────── */}
       <section
-        ref={ctaRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white border-t border-gray-light text-center transition-all duration-700 ease-[var(--ease-smooth)] ${
+        ref={ctaRef}
+        className={`py-[var(--section-gap)] bg-white border-t border-gray-light text-center motion-safe:transition-all motion-safe:duration-700 ease-[var(--ease-smooth)] ${
           ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
       >

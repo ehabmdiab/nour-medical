@@ -1,26 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Wrench, Package, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { useReveal } from '../hooks/useReveal';
 import { useLanguage } from '../i18n';
-
-function useReveal(threshold = 0.1) {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
 
 export const MaintenancePage: React.FC = () => {
   const { t } = useLanguage();
@@ -89,8 +71,8 @@ export const MaintenancePage: React.FC = () => {
 
       {/* Core Maintenance Commitments */}
       <section
-        ref={commitmentRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-out ${
+        ref={commitmentRef}
+        className={`py-[var(--section-gap)] bg-warm-white motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           commitmentVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -137,8 +119,8 @@ export const MaintenancePage: React.FC = () => {
 
       {/* AMC Portfolio */}
       <section
-        ref={portfolioRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${
+        ref={portfolioRef}
+        className={`py-[var(--section-gap)] bg-white motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           portfolioVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -181,8 +163,8 @@ export const MaintenancePage: React.FC = () => {
 
       {/* Installation Track Record */}
       <section
-        ref={installRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-out ${
+        ref={installRef}
+        className={`py-[var(--section-gap)] bg-warm-white motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           installVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -202,7 +184,7 @@ export const MaintenancePage: React.FC = () => {
               {INSTALLATION_MODALITIES.map((stat, i) => (
                 <div
                   key={stat.label}
-                  className={`flex flex-col py-6 border-b border-gray-light transition-all duration-500 ${
+                  className={`flex flex-col py-6 border-b border-gray-light motion-safe:transition-all motion-safe:duration-500 ${
                     installVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
                   }`}
                   style={{
@@ -224,8 +206,8 @@ export const MaintenancePage: React.FC = () => {
 
       {/* Parts Infrastructure */}
       <section
-        ref={infraRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-neutral transition-opacity duration-700 ease-out ${
+        ref={infraRef}
+        className={`py-[var(--section-gap)] bg-warm-neutral motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           infraVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >

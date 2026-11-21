@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Building2,
@@ -14,26 +14,8 @@ import {
 import { ClientMarquee } from '../components/organisms/ClientMarquee';
 import { DETAILED_CLIENTS } from '../data/clientsData';
 import type { ClientFacility, InstalledDevice } from '../data/clientsData';
+import { useReveal } from '../hooks/useReveal';
 import { useLanguage } from '../i18n';
-
-function useReveal(threshold = 0.1) {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
 
 // ── IMAGE CAROUSEL SUB-COMPONENT ──────────────────────────────────
 interface ModalCarouselProps {
@@ -213,8 +195,8 @@ export const ClientsPage: React.FC = () => {
 
       {/* ── 3. FILTER TOOLBAR & MAIN CLIENT GRID ─────────────── */}
       <section
-        ref={gridRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-out ${
+        ref={gridRef}
+        className={`py-[var(--section-gap)] bg-warm-white motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           gridVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -242,12 +224,14 @@ export const ClientsPage: React.FC = () => {
             </div>
 
             {/* Search Input */}
-            <div className="relative min-w-[280px] flex-[0_1_340px]">
+            <div className="relative w-full sm:w-auto sm:min-w-[280px] sm:flex-[0_1_340px]">
               <Search
                 size={16}
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-navy rtl:left-auto rtl:right-4"
               />
               <input
+                id="clients-search"
+                name="clients-search"
                 type="text"
                 placeholder={t('clients.searchPlaceholder')}
                 value={searchQuery}

@@ -33,4 +33,22 @@ describe('ClientsPage Component', () => {
     expect(alTayseer?.images.some((img) => img.includes('images/clients/al-tayseer-team-work.jpg'))).toBe(true);
     expect(alTayseer?.images.some((img) => img.includes('images/clients/al-tayseer-ramadan-event.jpg'))).toBe(true);
   });
+
+  it('renders all 18 client facility cards with visible grid classes and accessible search input', () => {
+    const html = renderToString(
+      <LanguageProvider defaultLocale="en">
+        <MemoryRouter initialEntries={['/clients']}>
+          <ClientsPage />
+        </MemoryRouter>
+      </LanguageProvider>
+    );
+
+    expect(DETAILED_CLIENTS).toHaveLength(18);
+    expect(html).toContain('opacity-100');
+    expect(html).not.toContain('opacity-0');
+    expect(html).toContain('id="clients-search"');
+    for (const client of DETAILED_CLIENTS) {
+      expect(html).toContain(client.name.replace(/&/g, '&amp;'));
+    }
+  });
 });

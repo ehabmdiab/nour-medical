@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   ArrowRight,
@@ -9,26 +9,8 @@ import {
   PhoneCall,
 } from 'lucide-react';
 import { COMPANY_CONTACT } from '../data/companyData';
+import { useReveal } from '../hooks/useReveal';
 import { useLanguage } from '../i18n';
-
-function useReveal(threshold = 0.1) {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
 
 export const ServicesPage: React.FC = () => {
   const { t } = useLanguage();
@@ -177,8 +159,8 @@ export const ServicesPage: React.FC = () => {
       {/* Overview — Core Capabilities */}
       <section
         id="overview"
-        ref={overviewRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${
+        ref={overviewRef}
+        className={`py-[var(--section-gap)] bg-white motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           overviewVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -260,8 +242,8 @@ export const ServicesPage: React.FC = () => {
       {/* Universal Multi-Vendor Maintenance Section */}
       <section
         id="maintenance"
-        ref={maintenanceRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white border-t border-gray-light transition-opacity duration-700 ease-out ${
+        ref={maintenanceRef}
+        className={`py-[var(--section-gap)] bg-warm-white border-t border-gray-light motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           maintenanceVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -316,8 +298,8 @@ export const ServicesPage: React.FC = () => {
       {/* AMC Portfolio */}
       <section
         id="amc"
-        ref={amcRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${
+        ref={amcRef}
+        className={`py-[var(--section-gap)] bg-white motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           amcVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -361,8 +343,8 @@ export const ServicesPage: React.FC = () => {
       {/* System Installation Track Record */}
       <section
         id="installation-records"
-        ref={installRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white border-t border-gray-light transition-opacity duration-700 ease-out ${installVisible ? 'opacity-100' : 'opacity-0'}`}
+        ref={installRef}
+        className={`py-[var(--section-gap)] bg-warm-white border-t border-gray-light motion-safe:transition-opacity motion-safe:duration-700 ease-out ${installVisible ? 'opacity-100' : 'opacity-0'}`}
       >
         <div className="container">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-start">
@@ -383,7 +365,7 @@ export const ServicesPage: React.FC = () => {
               {INSTALLATION_MODALITIES.map((stat, i) => (
                 <div
                   key={stat.label}
-                  className={`flex flex-col py-6 border-b border-gray-light transition-all duration-500 ${
+                  className={`flex flex-col py-6 border-b border-gray-light motion-safe:transition-all motion-safe:duration-500 ${
                     installVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
                   }`}
                   style={{
@@ -406,8 +388,8 @@ export const ServicesPage: React.FC = () => {
       {/* Parts Infrastructure — 1,000 m² Maadi Facility */}
       <section
         id="parts-infrastructure"
-        ref={infraRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-neutral transition-opacity duration-700 ease-out ${infraVisible ? 'opacity-100' : 'opacity-0'}`}
+        ref={infraRef}
+        className={`py-[var(--section-gap)] bg-warm-neutral motion-safe:transition-opacity motion-safe:duration-700 ease-out ${infraVisible ? 'opacity-100' : 'opacity-0'}`}
       >
         <div className="container">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-center">
@@ -444,8 +426,8 @@ export const ServicesPage: React.FC = () => {
       {/* Service Philosophy */}
       <section
         id="philosophy"
-        ref={philosophyRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-warm-white transition-opacity duration-700 ease-out ${philosophyVisible ? 'opacity-100' : 'opacity-0'}`}
+        ref={philosophyRef}
+        className={`py-[var(--section-gap)] bg-warm-white motion-safe:transition-opacity motion-safe:duration-700 ease-out ${philosophyVisible ? 'opacity-100' : 'opacity-0'}`}
       >
         <div className="container">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-center">

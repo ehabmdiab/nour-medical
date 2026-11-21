@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { useReveal } from '../../hooks/useReveal';
 
 interface MetricItem {
   number: string;
@@ -14,29 +15,14 @@ const FEATURED_CAPABILITIES: MetricItem[] = [
 ];
 
 export const StatsSection: React.FC = () => {
-  const [visible, setVisible] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, visible } = useReveal<HTMLDivElement>();
 
   return (
     <section className="bg-warm-white py-[var(--section-gap)]">
       <div className="container">
         <div
           ref={ref}
-          className={`flex justify-between items-end flex-wrap gap-6 transition-all duration-700 ${
+          className={`flex justify-between items-end flex-wrap gap-6 motion-safe:transition-all motion-safe:duration-700 ${
             visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
@@ -52,7 +38,7 @@ export const StatsSection: React.FC = () => {
           {FEATURED_CAPABILITIES.map((m, i) => (
             <div
               key={m.label}
-              className={`py-8 border-t border-gray-light transition-all duration-500 ${
+              className={`py-8 border-t border-gray-light motion-safe:transition-all motion-safe:duration-500 ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
               }`}
               style={{

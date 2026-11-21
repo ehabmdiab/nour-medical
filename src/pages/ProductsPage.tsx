@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -9,6 +9,7 @@ import {
   Activity,
   ShieldCheck,
 } from "lucide-react";
+import { useReveal } from "../hooks/useReveal";
 import { useLanguage } from "../i18n";
 import {
   PRODUCTS_DATA,
@@ -44,25 +45,6 @@ function groupGalleryByAgency(gallery: ProductGalleryImage[]): AgencyGalleryGrou
     }
   });
   return groups;
-}
-
-function useReveal(threshold = 0.1) {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
 }
 
 export const ProductsPage: React.FC = () => {
@@ -187,8 +169,8 @@ export const ProductsPage: React.FC = () => {
 
       {/* ── PRODUCT SHOWCASE GRID ──────────────────────────────── */}
       <section
-        ref={gridRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-opacity duration-600 ease-[var(--ease-smooth)] ${
+        ref={gridRef}
+        className={`py-[var(--section-gap)] bg-white motion-safe:transition-opacity motion-safe:duration-600 ease-[var(--ease-smooth)] ${
           gridVisible ? "opacity-100" : "opacity-0"
         }`}
       >

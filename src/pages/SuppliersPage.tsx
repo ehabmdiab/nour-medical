@@ -4,26 +4,8 @@ import {
   SupplierDeviceCarousel,
 } from '../components/organisms/SupplierDeviceCarousel';
 import { SUPPLIER_PARTNERS, type SupplierDevice, type SupplierPartner } from '../data/companyData';
+import { useReveal } from '../hooks/useReveal';
 import { useLanguage } from '../i18n';
-
-function useReveal(threshold = 0.1) {
-  const ref = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
 
 export const SuppliersPage: React.FC = () => {
   const { locale, t } = useLanguage();
@@ -124,8 +106,8 @@ export const SuppliersPage: React.FC = () => {
 
       {/* Suppliers Grid */}
       <section
-        ref={suppliersRef as React.RefObject<HTMLElement>}
-        className={`py-[var(--section-gap)] bg-white transition-opacity duration-700 ease-out ${
+        ref={suppliersRef}
+        className={`py-[var(--section-gap)] bg-white motion-safe:transition-opacity motion-safe:duration-700 ease-out ${
           suppliersVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
@@ -146,7 +128,7 @@ export const SuppliersPage: React.FC = () => {
                   key={group.country}
                   className={`grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-12 items-start py-16 ${
                     groupIdx < countryGroups.length - 1 ? 'border-b border-gray-light' : ''
-                  } transition-all duration-500 ${
+                  } motion-safe:transition-all motion-safe:duration-500 ${
                     suppliersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                   }`}
                   style={{
