@@ -154,23 +154,23 @@ export const SuppliersPage: React.FC = () => {
                       const specialties = isAr && partner.specialtiesAr ? partner.specialtiesAr : partner.specialties;
 
                       return (
-                        <div key={partner.id} className="flex flex-col gap-6">
+                        <div key={partner.id} className="flex flex-col gap-6 min-w-0">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
                             {/* Center: Name + Tagline + Description */}
-                            <div>
-                              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-tight mb-2">
+                            <div className="min-w-0">
+                              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-tight mb-2 break-words">
                                 {name}
                               </h3>
-                              <p className="font-body text-sm tracking-wide uppercase text-navy/80 font-bold mb-4">
+                              <p className="font-body text-sm tracking-wide uppercase text-navy/80 font-bold mb-4 break-words">
                                 {tagline}
                               </p>
-                              <p className="font-body text-base leading-[1.7] text-navy">
+                              <p className="font-body text-base leading-[1.7] text-navy break-words">
                                 {description}
                               </p>
                             </div>
 
                             {/* Right: Specialties */}
-                            <div>
+                            <div className="min-w-0">
                               <p className="font-heading text-sm tracking-widest uppercase text-navy font-bold mb-4">
                                 {t('suppliers.specialtiesLabel')}
                               </p>
@@ -254,14 +254,14 @@ export const SuppliersPage: React.FC = () => {
         {selectedDevice && (
           <div className="flex flex-col">
             <div className="flex items-start justify-between gap-4 border-b border-gray-light px-6 py-5 bg-warm-white">
-              <div>
-                <p className="font-body text-xs font-bold uppercase tracking-widest text-navy/75 mb-1">
+              <div className="min-w-0">
+                <p className="font-body text-xs font-bold uppercase tracking-widest text-navy/75 mb-1 break-words">
                   {selectedDevice.supplierName} ·{' '}
                   {isAr ? selectedDevice.device.categoryAr : selectedDevice.device.category}
                 </p>
                 <h2
                   id="supplier-device-dialog-title"
-                  className="font-heading text-xl md:text-2xl font-bold text-navy leading-snug"
+                  className="font-heading text-xl md:text-2xl font-bold text-navy leading-snug break-words"
                 >
                   {isAr ? selectedDevice.device.nameAr : selectedDevice.device.name}
                 </h2>

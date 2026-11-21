@@ -60,9 +60,9 @@ export const ContactPage: React.FC = () => {
       {/* Contact Layout */}
       <section className="py-[var(--section-gap)] bg-white">
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-12 lg:gap-24 items-start">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-12 lg:gap-24 items-start">
             {/* Contact Details Column */}
-            <div>
+            <div className="min-w-0">
               <div className="section-label mb-10">{t('contact.detailsLabel')}</div>
 
               <div className="flex flex-col gap-8">
@@ -132,7 +132,7 @@ export const ContactPage: React.FC = () => {
                     <Mail size={16} className="text-orange-accent shrink-0" />
                     <a
                       href={`mailto:${COMPANY_CONTACT.email}`}
-                      className="hover-underline font-body text-base text-navy no-underline"
+                      className="hover-underline font-body text-base text-navy no-underline break-all"
                     >
                       {COMPANY_CONTACT.email}
                     </a>
@@ -142,7 +142,7 @@ export const ContactPage: React.FC = () => {
             </div>
 
             {/* Contact Form Column */}
-            <div>
+            <div className="min-w-0">
               <div className="section-label mb-10">{t('contact.formTitle')}</div>
 
               {submitted ? (

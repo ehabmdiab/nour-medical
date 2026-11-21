@@ -127,9 +127,6 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
     featured: true,
     images: [
       `${BASE}images/clients/al-tayseer-building.jpeg`,
-      `${BASE}images/clients/al-tayseer-main-doctors.jpg`,
-      `${BASE}images/clients/al-tayseer-team-work.jpg`,
-      `${BASE}images/clients/al-tayseer-ramadan-event.jpg`,
     ],
     primaryCategories: ['Cath-Lab', 'MRI', 'DR X-Ray'],
     devices: [
@@ -234,7 +231,6 @@ export const DETAILED_CLIENTS: ClientFacility[] = [
       `${BASE}images/clients/al-zahraa-building.jpeg`,
       `${BASE}images/clients/al-zahraa-cathlab.jpeg`,
       `${BASE}images/clients/el-nokhba-logo.png`,
-      `${BASE}images/clients/al-zahraa-dr-mohamed-salama.jpg`,
     ],
     primaryCategories: ['Cath-Lab'],
     devices: [

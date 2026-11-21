@@ -79,37 +79,37 @@ export const MaintenancePage: React.FC = () => {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             {/* Commitment 1: Multi-Vendor Service */}
-            <div className="bg-white border border-warm-neutral rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-orange-accent hover:shadow-[0_12px_30px_rgba(249,115,22,0.08)] transition-all duration-300">
+            <div className="bg-white border border-warm-neutral rounded-[20px] p-6 sm:p-8 md:p-[30px] min-w-0 flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-orange-accent hover:shadow-[0_12px_30px_rgba(249,115,22,0.08)] transition-all duration-300">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-subtle text-orange-accent font-body text-xs font-bold tracking-wide mb-4.5 w-fit">
                 <Wrench size={14} />
                 {t('maintenance.commit1Badge')}
               </div>
-              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy mb-3 leading-snug">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy mb-3 leading-snug break-words">
                 {t('maintenance.commit1Title')}
               </h3>
-              <p className="font-body text-base leading-[1.65] text-navy mb-4">
+              <p className="font-body text-base leading-[1.65] text-navy mb-4 break-words">
                 {t('maintenance.commit1Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-sm font-body">
-                <CheckCircle2 size={16} className="text-orange-accent" />
+                <CheckCircle2 size={16} className="text-orange-accent shrink-0" />
                 {t('maintenance.commit1Foot')}
               </div>
             </div>
 
             {/* Commitment 2: Spare Parts for All Supported Modalities */}
-            <div className="bg-white border border-warm-neutral rounded-[20px] p-9 md:p-[30px] flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-orange-accent hover:shadow-[0_12px_30px_rgba(249,115,22,0.08)] transition-all duration-300">
+            <div className="bg-white border border-warm-neutral rounded-[20px] p-6 sm:p-8 md:p-[30px] min-w-0 flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-orange-accent hover:shadow-[0_12px_30px_rgba(249,115,22,0.08)] transition-all duration-300">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-subtle text-orange-accent font-body text-xs font-bold tracking-wide mb-4.5 w-fit">
                 <Package size={14} />
                 {t('maintenance.commit2Badge')}
               </div>
-              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy mb-3 leading-snug">
+              <h3 className="font-heading text-xl md:text-2xl font-bold text-navy mb-3 leading-snug break-words">
                 {t('maintenance.commit2Title')}
               </h3>
-              <p className="font-body text-base leading-[1.65] text-navy mb-4">
+              <p className="font-body text-base leading-[1.65] text-navy mb-4 break-words">
                 {t('maintenance.commit2Desc')}
               </p>
               <div className="flex items-center gap-2 mt-auto text-navy font-semibold text-sm font-body">
-                <ShieldCheck size={16} className="text-orange-accent" />
+                <ShieldCheck size={16} className="text-orange-accent shrink-0" />
                 {t('maintenance.commit2Foot')}
               </div>
             </div>
@@ -135,11 +135,11 @@ export const MaintenancePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-6">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(220px,100%),1fr))] gap-6">
             {AMC_SYSTEMS.map((sys, i) => (
               <div
                 key={sys.title}
-                className={`p-8 px-7 bg-warm-white rounded-2xl border border-warm-neutral flex flex-col transition-all duration-500 hover:border-orange-accent hover:shadow-[0_10px_25px_rgba(249,115,22,0.08)] ${
+                className={`p-6 sm:p-8 sm:px-7 bg-warm-white rounded-2xl border border-warm-neutral min-w-0 flex flex-col transition-all duration-500 hover:border-orange-accent hover:shadow-[0_10px_25px_rgba(249,115,22,0.08)] ${
                   portfolioVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{
@@ -149,10 +149,10 @@ export const MaintenancePage: React.FC = () => {
                 <div className="font-body text-xs tracking-wider uppercase text-navy font-bold mb-3">
                   {t('maintenance.amcModalityLabel')}
                 </div>
-                <h3 className="font-heading text-xl font-bold text-navy mb-2.5">
+                <h3 className="font-heading text-xl font-bold text-navy mb-2.5 break-words">
                   {sys.title}
                 </h3>
-                <p className="font-body text-base leading-relaxed text-navy">
+                <p className="font-body text-base leading-relaxed text-navy break-words">
                   {sys.description}
                 </p>
               </div>
@@ -169,8 +169,8 @@ export const MaintenancePage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-start">
-            <div>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-10 lg:gap-24 items-start">
+            <div className="min-w-0">
               <div className="section-label">{t('maintenance.trackRecordLabel')}</div>
               <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-tight leading-tight mb-5">
                 {t('maintenance.trackRecordTitle')}
@@ -180,12 +180,12 @@ export const MaintenancePage: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col min-w-0">
               {INSTALLATION_MODALITIES.map((stat, i) => (
                 <div
                   key={stat.label}
                   className={`flex flex-col py-6 border-b border-gray-light motion-safe:transition-all motion-safe:duration-500 ${
-                    installVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                    installVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                   }`}
                   style={{
                     transitionDelay: `${i * 0.1}s`,
@@ -212,8 +212,8 @@ export const MaintenancePage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10 lg:gap-24 items-center">
-            <div>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-10 lg:gap-24 items-center">
+            <div className="min-w-0">
               <div className="section-label mb-5">
                 {t('maintenance.partsLabel')}
               </div>

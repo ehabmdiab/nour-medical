@@ -114,6 +114,8 @@ describe('SupplierDeviceCarousel Component', () => {
       expect(cardHtml).not.toMatch(/hover:scale-\[0\./);
       expect(cardHtml).not.toMatch(/hover:scale-9/);
     }
+
+    expect(gridCardHtml).toContain('flex-col items-start sm:flex-row');
   });
 });
 

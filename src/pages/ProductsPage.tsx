@@ -205,7 +205,7 @@ export const ProductsPage: React.FC = () => {
               return (
                 <div
                   key={product.id}
-                  className="bg-white border border-gray-light rounded-[20px] overflow-hidden flex flex-col transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_4px_20px_rgba(10,22,40,0.04)] hover:-translate-y-1.5 hover:border-orange-accent hover:shadow-[0_20px_40px_rgba(10,22,40,0.08)] relative"
+                  className="min-w-0 bg-white border border-gray-light rounded-[20px] overflow-hidden flex flex-col transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-[0_4px_20px_rgba(10,22,40,0.04)] hover:-translate-y-1.5 hover:border-orange-accent hover:shadow-[0_20px_40px_rgba(10,22,40,0.08)] relative"
                 >
                   {/* Equipment Photography */}
                   <div
@@ -223,24 +223,22 @@ export const ProductsPage: React.FC = () => {
                         hasGallery ? "object-contain p-5" : "object-cover"
                       }`}
                     />
-                    <span
-                      className={`absolute top-3.5 ${isAr ? "right-3.5" : "left-3.5"} py-1.5 px-3.5 rounded-full bg-navy/90 backdrop-blur-md text-white font-mono text-xs font-semibold uppercase tracking-wider border border-white/15`}
-                    >
-                      {categoryName}
-                    </span>
-
-                    {activeGalleryItem && (
-                      <span
-                        className={`absolute top-3.5 ${isAr ? "left-3.5" : "right-3.5"} py-1.5 px-3 rounded-full bg-orange-accent text-white font-body text-xs font-bold shadow-sm flex items-center gap-1.5`}
-                      >
-                        <span>{activeGalleryItem.countryFlag}</span>
-                        <span>
-                          {isAr
-                            ? activeGalleryItem.agencyAr
-                            : activeGalleryItem.agency}
-                        </span>
+                    <div className="absolute inset-x-3 top-3 flex flex-wrap items-start justify-between gap-2 pointer-events-none">
+                      <span className="py-1.5 px-3.5 rounded-full bg-navy/90 backdrop-blur-md text-white font-mono text-xs font-semibold uppercase tracking-wider border border-white/15 max-w-full">
+                        {categoryName}
                       </span>
-                    )}
+
+                      {activeGalleryItem && (
+                        <span className="py-1.5 px-3 rounded-full bg-orange-accent text-white font-body text-xs font-bold shadow-sm flex items-center gap-1.5 max-w-full">
+                          <span>{activeGalleryItem.countryFlag}</span>
+                          <span>
+                            {isAr
+                              ? activeGalleryItem.agencyAr
+                              : activeGalleryItem.agency}
+                          </span>
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {/* Supplier Source Pills & Multi-Image Thumbnail Switcher */}
@@ -313,39 +311,39 @@ export const ProductsPage: React.FC = () => {
                   )}
 
                   {/* Card Content */}
-                  <div className="p-7 flex-1 flex flex-col">
+                  <div className="p-5 sm:p-7 flex-1 flex flex-col min-w-0">
                     {/* Subtitle / Tagline */}
-                    <span className="font-mono text-xs text-navy font-bold uppercase tracking-wider mb-2">
+                    <span className="font-mono text-xs text-navy font-bold uppercase tracking-wider mb-2 break-words">
                       {productTagline}
                     </span>
 
                     {/* Machine Name */}
-                    <h3 className="font-heading text-xl font-bold text-navy mb-3 leading-[1.3]">
+                    <h3 className="font-heading text-xl font-bold text-navy mb-3 leading-[1.3] break-words">
                       {productName}
                     </h3>
 
                     {/* Machine Overview (نبذة عن الجهاز) */}
-                    <div className="p-4 rounded-xl bg-warm-white border border-gray-light mb-5">
+                    <div className="p-4 rounded-xl bg-warm-white border border-gray-light mb-5 min-w-0">
                       <div className="font-mono text-xs font-bold text-navy uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                        <FileText size={14} className="text-orange-accent" />
+                        <FileText size={14} className="text-orange-accent shrink-0" />
                         {t("products.systemOverviewLabel")}
                       </div>
-                      <p className="font-body text-base leading-relaxed text-navy m-0 line-clamp-3">
+                      <p className="font-body text-base leading-relaxed text-navy m-0 line-clamp-3 break-words">
                         {productOverview}
                       </p>
                     </div>
 
                     {/* Key Specs Pills */}
-                    <div className="grid grid-cols-2 gap-2.5 mb-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
                       {product.specs.slice(0, 4).map((spec, idx) => (
                         <div
                           key={idx}
-                          className="p-2.5 px-3 bg-slate-50 rounded-lg border border-gray-light"
+                          className="p-2.5 px-3 bg-slate-50 rounded-lg border border-gray-light min-w-0"
                         >
-                          <span className="block font-mono text-xs text-navy/80 font-semibold uppercase mb-0.5">
+                          <span className="block font-mono text-xs text-navy/80 font-semibold uppercase mb-0.5 break-words">
                             {isAr && spec.labelAr ? spec.labelAr : spec.label}
                           </span>
-                          <strong className="block text-sm text-navy font-bold truncate">
+                          <strong className="block text-sm text-navy font-bold leading-snug break-words">
                             {isAr && spec.valueAr ? spec.valueAr : spec.value}
                           </strong>
                         </div>
@@ -356,10 +354,10 @@ export const ProductsPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleOpenModal(product)}
-                      className="mt-auto w-full py-3.5 px-5 rounded-xl border border-navy bg-transparent text-navy font-body text-base font-bold inline-flex items-center justify-center gap-2 cursor-pointer transition-colors hover:bg-navy hover:text-white"
+                      className="mt-auto w-full py-3.5 px-4 sm:px-5 rounded-xl border border-navy bg-transparent text-navy font-body text-sm sm:text-base font-bold inline-flex items-center justify-center gap-2 text-center cursor-pointer transition-colors hover:bg-navy hover:text-white"
                     >
                       {t("products.viewFullSpecs")}
-                      <ArrowRight size={16} />
+                      <ArrowRight size={16} className="shrink-0 rtl:rotate-180" />
                     </button>
                   </div>
                 </div>
@@ -386,14 +384,14 @@ export const ProductsPage: React.FC = () => {
             className="w-full max-w-[860px] max-h-[86vh] bg-white rounded-[20px] shadow-[0_25px_60px_rgba(0,0,0,0.25)] border border-gray-light flex flex-col overflow-hidden relative animate-[fadeInUp_0.3s_cubic-bezier(0.16,1,0.3,1)]"
           >
             {/* Modal Header Bar with Close Button */}
-            <div className="shrink-0 z-20 bg-white/95 backdrop-blur-md px-6 py-4 border-b border-gray-light flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2.5 flex-wrap">
+            <div className="shrink-0 z-20 bg-white/95 backdrop-blur-md px-4 sm:px-6 py-4 border-b border-gray-light flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5 flex-wrap min-w-0">
                 <span className="py-1 px-3 rounded-xl bg-orange-subtle text-orange-accent font-mono text-xs font-bold uppercase">
                   {isAr
                     ? selectedProduct.modalityLabelAr
                     : selectedProduct.modalityLabel}
                 </span>
-                <span className="font-heading text-lg font-bold text-navy">
+                <span className="font-heading text-lg font-bold text-navy break-words">
                   {isAr ? selectedProduct.nameAr : selectedProduct.name}
                 </span>
               </div>
@@ -411,7 +409,7 @@ export const ProductsPage: React.FC = () => {
             {/* Modal Scrollable Body */}
             <div
               data-lenis-prevent
-              className="p-6 md:p-7 flex-1 min-h-0 overflow-y-auto overscroll-contain"
+              className="p-4 sm:p-6 md:p-7 flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain"
             >
               {/* Product Hero Image */}
               {selectedProduct.gallery && selectedProduct.gallery.length > 0 ? (
@@ -422,7 +420,7 @@ export const ProductsPage: React.FC = () => {
                       selectedProduct.gallery[0];
                     return (
                       <>
-                        <div className="relative w-full h-[300px] rounded-2xl overflow-hidden bg-white mb-4 border border-gray-light flex items-center justify-center p-6">
+                        <div className="relative w-full h-[220px] sm:h-[300px] rounded-2xl overflow-hidden bg-white mb-4 border border-gray-light flex items-center justify-center p-4 sm:p-6">
                           <img
                             src={activeModalItem.src}
                             alt={
@@ -449,7 +447,7 @@ export const ProductsPage: React.FC = () => {
                           <div className="flex flex-wrap gap-5 p-4 rounded-xl bg-slate-50 border border-gray-light">
                             {groupGalleryByAgency(selectedProduct.gallery).map(
                               (group) => (
-                                <div key={group.agencyKey} className="min-w-[140px]">
+                                <div key={group.agencyKey} className="min-w-0 flex-1 sm:min-w-[140px]">
                                   <div className="font-body text-xs font-bold text-navy mb-2 flex items-center gap-1.5">
                                     <span>{group.countryFlag}</span>
                                     <span>
@@ -491,7 +489,7 @@ export const ProductsPage: React.FC = () => {
                   })()}
                 </div>
               ) : (
-                <div className="w-full h-[280px] rounded-2xl overflow-hidden bg-slate-100 mb-7 border border-gray-light">
+                <div className="w-full h-[220px] sm:h-[280px] rounded-2xl overflow-hidden bg-slate-100 mb-7 border border-gray-light">
                   <img
                     src={selectedProduct.image}
                     alt={isAr ? selectedProduct.nameAr : selectedProduct.name}
@@ -505,24 +503,24 @@ export const ProductsPage: React.FC = () => {
                 <span className="font-mono text-sm font-bold text-navy uppercase tracking-wider block mb-1.5">
                   {isAr ? selectedProduct.taglineAr : selectedProduct.tagline}
                 </span>
-                <h2 className="font-heading text-[clamp(1.75rem,2.4vw,2.5rem)] font-bold text-navy leading-[1.2]">
+                <h2 className="font-heading text-[clamp(1.75rem,2.4vw,2.5rem)] font-bold text-navy leading-[1.2] break-words">
                   {isAr ? selectedProduct.nameAr : selectedProduct.name}
                 </h2>
               </div>
 
               {/* SECTION: Overview (نبذة عن الجهاز) */}
               <div
-                className={`p-6 rounded-2xl bg-warm-white border border-gray-light ${
+                className={`p-5 sm:p-6 rounded-2xl bg-warm-white border border-gray-light ${
                   isAr
                     ? "border-r-4 border-r-orange-accent"
                     : "border-l-4 border-l-orange-accent"
                 } mb-8`}
               >
                 <h3 className="font-heading text-lg font-bold text-navy mb-2.5 flex items-center gap-2">
-                  <FileText size={18} className="text-orange-accent" />
+                  <FileText size={18} className="text-orange-accent shrink-0" />
                   {t("products.modalOverviewHeading")}
                 </h3>
-                <p className="font-body text-base leading-relaxed text-navy m-0">
+                <p className="font-body text-base leading-relaxed text-navy m-0 break-words">
                   {isAr ? selectedProduct.overviewAr : selectedProduct.overview}
                 </p>
               </div>
@@ -530,21 +528,21 @@ export const ProductsPage: React.FC = () => {
               {/* SECTION: Technical Specifications Table (المواصفات الفنية) */}
               <div className="mb-8">
                 <h3 className="font-heading text-lg font-bold text-navy mb-4 flex items-center gap-2">
-                  <Activity size={18} className="text-orange-accent" />
+                  <Activity size={18} className="text-orange-accent shrink-0" />
                   {t("products.modalSpecsHeading")}
                 </h3>
                 <div className="border border-gray-light rounded-xl overflow-hidden">
                   {selectedProduct.specs.map((spec, idx) => (
                     <div
                       key={idx}
-                      className={`grid grid-cols-[1fr_1.5fr] py-3.5 px-5 ${
+                      className={`grid grid-cols-1 sm:grid-cols-[1fr_1.5fr] gap-1 sm:gap-4 py-3.5 px-4 sm:px-5 ${
                         idx % 2 === 0 ? "bg-white" : "bg-warm-white"
                       } ${idx === selectedProduct.specs.length - 1 ? "" : "border-b border-gray-light"}`}
                     >
-                      <span className="font-mono text-sm text-navy font-semibold">
+                      <span className="font-mono text-sm text-navy font-semibold min-w-0 break-words">
                         {isAr && spec.labelAr ? spec.labelAr : spec.label}
                       </span>
-                      <strong className="font-body text-base text-navy font-bold">
+                      <strong className="font-body text-base text-navy font-bold min-w-0 break-words">
                         {isAr && spec.valueAr ? spec.valueAr : spec.value}
                       </strong>
                     </div>

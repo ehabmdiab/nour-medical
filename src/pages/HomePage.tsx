@@ -155,8 +155,8 @@ export const HomePage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-center">
-            <div>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-[clamp(40px,6vw,100px)] items-center">
+            <div className="min-w-0">
               <div className="section-label">{t('home.aboutLabel')}</div>
               <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.15] mb-6">
                 {t('home.aboutTitle')}
@@ -165,7 +165,7 @@ export const HomePage: React.FC = () => {
                 {t('home.aboutBtn')}
               </Link>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-body text-base leading-[1.75] text-navy mb-5">
                 {t('home.aboutP1')}
               </p>
@@ -191,11 +191,11 @@ export const HomePage: React.FC = () => {
               {t('home.capTitle')}
             </h2>
           </div>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-5">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(220px,100%),1fr))] gap-5">
             {KEY_CAPABILITIES.map((cap, i) => (
               <div
                 key={cap.id}
-                className={`p-8 px-6 bg-white border border-gray-light rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 ease-[var(--ease-smooth)] hover:border-orange-accent hover:shadow-[0_12px_28px_rgba(249,115,22,0.1)] hover:-translate-y-1 ${
+                className={`p-6 sm:p-8 sm:px-6 bg-white border border-gray-light rounded-xl min-w-0 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-all duration-300 ease-[var(--ease-smooth)] hover:border-orange-accent hover:shadow-[0_12px_28px_rgba(249,115,22,0.1)] hover:-translate-y-1 ${
                   capVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
                 style={{ transitionDelay: `${i * 0.08}s` }}
@@ -203,10 +203,10 @@ export const HomePage: React.FC = () => {
                 <div className="font-heading text-sm tracking-[0.16em] uppercase text-orange-accent font-bold mb-3.5">
                   0{i + 1}
                 </div>
-                <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2">
+                <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2 break-words">
                   {t(cap.titleKey) || cap.title}
                 </h3>
-                <p className="font-body text-base leading-[1.65] text-navy">
+                <p className="font-body text-base leading-[1.65] text-navy break-words">
                   {t(cap.descKey) || cap.description}
                 </p>
               </div>
@@ -229,8 +229,8 @@ export const HomePage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-start">
-            <div className="sticky top-[100px]">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-[clamp(40px,6vw,100px)] items-start">
+            <div className="sticky top-[100px] min-w-0">
               <div className="section-label">{t('home.whyLabel')}</div>
               <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.15] mb-5">
                 {t('home.whyTitle')}
@@ -243,7 +243,7 @@ export const HomePage: React.FC = () => {
               </Link>
             </div>
 
-            <div>
+            <div className="min-w-0">
               {whyItems.map((item, i) => (
                 <div
                   key={item.title}
@@ -253,11 +253,11 @@ export const HomePage: React.FC = () => {
                   style={{ transitionDelay: `${i * 0.08}s` }}
                 >
                   <div className="flex justify-between items-start gap-4">
-                    <div>
-                      <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-1.5">
+                    <div className="min-w-0">
+                      <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-1.5 break-words">
                         {item.title}
                       </h3>
-                      <p className="font-body text-base leading-[1.65] text-navy">
+                      <p className="font-body text-base leading-[1.65] text-navy break-words">
                         {item.description}
                       </p>
                     </div>
@@ -300,7 +300,7 @@ export const HomePage: React.FC = () => {
             {missionPillars.map((pillar, i) => (
               <div
                 key={pillar.title}
-                className={`p-8 bg-white/[0.04] border border-white/[0.1] rounded motion-safe:transition-all motion-safe:duration-300 hover:border-orange-accent/50 hover:-translate-y-0.5 ${
+                className={`p-6 sm:p-8 bg-white/[0.04] border border-white/[0.1] rounded min-w-0 motion-safe:transition-all motion-safe:duration-300 hover:border-orange-accent/50 hover:-translate-y-0.5 ${
                   missionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{ transitionDelay: `${i * 0.12}s` }}
@@ -308,10 +308,10 @@ export const HomePage: React.FC = () => {
                 <div className="font-heading text-sm tracking-[0.15em] text-orange-accent font-bold mb-3.5">
                   0{i + 1}
                 </div>
-                <h3 className="font-heading text-xl font-bold text-white tracking-[-0.01em] mb-2">
+                <h3 className="font-heading text-xl font-bold text-white tracking-[-0.01em] mb-2 break-words">
                   {pillar.title}
                 </h3>
-                <p className="font-body text-base leading-[1.65] text-white/90">
+                <p className="font-body text-base leading-[1.65] text-white/90 break-words">
                   {pillar.description}
                 </p>
               </div>
@@ -340,7 +340,7 @@ export const HomePage: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-6">
             {SUPPLIER_PARTNERS.slice(0, 3).map((partner) => {
               const name = locale === 'ar' && partner.nameAr ? partner.nameAr : partner.name;
               const tagline = locale === 'ar' && partner.taglineAr ? partner.taglineAr : partner.tagline;
@@ -349,20 +349,20 @@ export const HomePage: React.FC = () => {
               return (
                 <div
                   key={partner.id}
-                  className="p-8 bg-white border border-gray-light rounded-xl"
+                  className="p-6 sm:p-8 bg-white border border-gray-light rounded-xl min-w-0"
                 >
                   <div className="text-3xl mb-4">{partner.countryFlag}</div>
-                  <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2">
+                  <h3 className="font-heading text-xl font-bold text-navy tracking-[-0.01em] mb-2 break-words">
                     {name}
                   </h3>
-                  <p className="font-body text-sm tracking-[0.06em] uppercase text-navy/80 font-bold mb-4">
+                  <p className="font-body text-sm tracking-[0.06em] uppercase text-navy/80 font-bold mb-4 break-words">
                     {tagline}
                   </p>
                   <ul className="flex flex-col gap-2 list-none m-0 p-0">
                     {specialties.slice(0, 3).map((s) => (
-                      <li key={s} className="flex items-center gap-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-orange-accent shrink-0" />
-                        <span className="font-body text-base text-navy">
+                      <li key={s} className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-accent shrink-0 mt-2.5" />
+                        <span className="font-body text-base text-navy break-words">
                           {s}
                         </span>
                       </li>

@@ -22,6 +22,10 @@ describe('GalleryPage Component', () => {
 
     // Verify no standalone machine category exists
     expect(html).not.toContain('Radiology Systems &amp; Machines');
+
+    // Verify responsive gallery card grid avoids fixed 360px track overflow on mobile
+    expect(html).toContain('minmax(min(340px,100%),1fr)');
+    expect(html).not.toContain('minmax(360px,1fr)');
   });
 
   it('renders GalleryPage with categories Team and Exhibitions in Arabic', () => {

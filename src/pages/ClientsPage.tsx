@@ -38,7 +38,7 @@ const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => 
   if (!images || images.length === 0) return null;
 
   return (
-    <div className="relative w-full h-full min-h-[340px] bg-slate-900 flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-full min-h-[240px] sm:min-h-[300px] md:min-h-[340px] bg-slate-900 flex items-center justify-center overflow-hidden">
       {/* Current Slide Image */}
       <img
         src={images[currentIndex]}
@@ -266,7 +266,7 @@ export const ClientsPage: React.FC = () => {
                   <div
                     key={client.id}
                     onClick={() => setActiveClient(client)}
-                    className="group bg-white rounded-xl border border-gray-light overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:border-orange-accent hover:shadow-[0_12px_30px_rgba(249,115,22,0.1)] hover:-translate-y-1"
+                    className="group min-w-0 bg-white rounded-xl border border-gray-light overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:border-orange-accent hover:shadow-[0_12px_30px_rgba(249,115,22,0.1)] hover:-translate-y-1"
                   >
                     {/* Card Thumbnail Box with Count Indicator */}
                     <div className="relative h-[210px] w-full overflow-hidden bg-slate-900">
@@ -282,20 +282,20 @@ export const ClientsPage: React.FC = () => {
                         📷 {t('clients.photoCount', { count: client.images.length })}
                       </div>
 
-                      <div className="absolute bottom-3 left-4 rtl:left-auto rtl:right-4 flex items-center gap-1.5 text-white">
-                        <MapPin size={15} className="text-orange-accent" />
-                        <span className="font-mono text-sm font-medium">{displayLocation}</span>
+                      <div className="absolute bottom-3 inset-x-4 flex items-center gap-1.5 text-white min-w-0">
+                        <MapPin size={15} className="text-orange-accent shrink-0" />
+                        <span className="font-mono text-sm font-medium break-words min-w-0">{displayLocation}</span>
                       </div>
                     </div>
 
                     {/* Card Info Content */}
-                    <div className="p-6 flex-1 flex flex-col justify-between">
-                      <div>
-                        <div className="font-mono text-xs tracking-wider uppercase text-navy font-bold mb-2">
+                    <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between min-w-0">
+                      <div className="min-w-0">
+                        <div className="font-mono text-xs tracking-wider uppercase text-navy font-bold mb-2 break-words">
                           {displayFacilityType}
                         </div>
 
-                        <h3 className="font-heading text-xl font-bold text-navy tracking-tight mb-3 leading-snug">
+                        <h3 className="font-heading text-xl font-bold text-navy tracking-tight mb-3 leading-snug break-words">
                           {displayName}
                         </h3>
 
@@ -304,13 +304,13 @@ export const ClientsPage: React.FC = () => {
                           {client.devices.slice(0, 2).map((dev, i) => (
                             <span
                               key={i}
-                              className="font-mono text-xs px-3 py-1 rounded bg-orange-subtle text-navy font-semibold"
+                              className="font-mono text-xs px-3 py-1 rounded bg-orange-subtle text-navy font-semibold max-w-full break-words"
                             >
                               {(isAr && dev.nameAr ? dev.nameAr : dev.name).split('–')[0].trim()}
                             </span>
                           ))}
                           {client.devices.length > 2 && (
-                            <span className="font-mono text-xs px-2.5 py-1 rounded bg-warm-neutral text-navy font-semibold">
+                            <span className="font-mono text-xs px-2.5 py-1 rounded bg-warm-neutral text-navy font-semibold max-w-full break-words">
                               {t('clients.moreCount', { count: client.devices.length - 2 })}
                             </span>
                           )}
@@ -318,11 +318,11 @@ export const ClientsPage: React.FC = () => {
                       </div>
 
                       {/* Footer Row */}
-                      <div className="pt-3 border-t border-gray-light flex items-center justify-between font-mono text-sm text-navy font-semibold">
-                        <span className="flex items-center gap-1 text-navy group-hover:text-orange-accent group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-all duration-200">
-                          {t('clients.viewProfile')} <ChevronRight size={15} className="rtl:rotate-180" />
+                      <div className="pt-3 border-t border-gray-light flex items-center justify-between gap-2 font-mono text-sm text-navy font-semibold">
+                        <span className="flex items-center gap-1 min-w-0 text-navy group-hover:text-orange-accent group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-all duration-200">
+                          {t('clients.viewProfile')} <ChevronRight size={15} className="shrink-0 rtl:rotate-180" />
                         </span>
-                        <ArrowUpRight size={17} className="text-navy group-hover:text-orange-accent transition-colors duration-200 rtl:rotate-[-90deg]" />
+                        <ArrowUpRight size={17} className="shrink-0 text-navy group-hover:text-orange-accent transition-colors duration-200 rtl:rotate-[-90deg]" />
                       </div>
                     </div>
                   </div>
@@ -342,7 +342,7 @@ export const ClientsPage: React.FC = () => {
         >
           <div
             data-lenis-prevent
-            className="relative w-full max-w-[1080px] bg-white rounded-2xl overflow-y-auto md:overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.5)] border border-gray-light grid grid-cols-1 md:grid-cols-[1.1fr_1fr] max-h-[90vh]"
+            className="relative w-full max-w-[1080px] bg-white rounded-2xl overflow-y-auto overflow-x-hidden md:overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.5)] border border-gray-light grid grid-cols-1 md:grid-cols-[1.1fr_1fr] max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -355,7 +355,7 @@ export const ClientsPage: React.FC = () => {
             </button>
 
             {/* LEFT COLUMN: IMAGE CAROUSEL */}
-            <div className="h-full min-h-[380px] relative">
+            <div className="h-full min-h-[240px] sm:min-h-[300px] md:min-h-[380px] min-w-0 relative">
               <ModalCarousel
                 images={activeClient.images}
                 clientName={isAr && activeClient.nameAr ? activeClient.nameAr : activeClient.name}
@@ -363,20 +363,20 @@ export const ClientsPage: React.FC = () => {
             </div>
 
             {/* RIGHT COLUMN: TEXT DETAILS BESIDE THE IMAGE */}
-            <div className="p-9 flex flex-col justify-between overflow-y-auto max-h-[90vh] bg-white">
-              <div>
+            <div className="p-5 sm:p-7 md:p-9 flex flex-col justify-between md:overflow-y-auto md:max-h-[90vh] bg-white min-w-0">
+              <div className="min-w-0">
                 {/* Header Tag & Location */}
-                <div className="flex items-center gap-2.5 mb-3 flex-wrap">
-                  <span className="font-mono text-xs tracking-widest uppercase text-orange-accent bg-orange-subtle px-3 py-1 rounded inline-flex items-center gap-1.5 font-bold">
-                    <Building2 size={13} /> {isAr && activeClient.facilityTypeAr ? activeClient.facilityTypeAr : activeClient.facilityType}
+                <div className="flex items-center gap-2.5 mb-3 flex-wrap min-w-0">
+                  <span className="font-mono text-xs tracking-widest uppercase text-orange-accent bg-orange-subtle px-3 py-1 rounded inline-flex items-center gap-1.5 font-bold max-w-full break-words">
+                    <Building2 size={13} className="shrink-0" /> {isAr && activeClient.facilityTypeAr ? activeClient.facilityTypeAr : activeClient.facilityType}
                   </span>
-                  <span className="inline-flex items-center gap-1 text-sm text-navy font-medium">
-                    <MapPin size={15} className="text-orange-accent" /> {isAr && activeClient.locationAr ? activeClient.locationAr : activeClient.location}
+                  <span className="inline-flex items-center gap-1 text-sm text-navy font-medium min-w-0 break-words">
+                    <MapPin size={15} className="text-orange-accent shrink-0" /> {isAr && activeClient.locationAr ? activeClient.locationAr : activeClient.location}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h2 className="font-heading text-2xl md:text-3xl font-bold text-navy tracking-tight mb-5 leading-snug">
+                <h2 className="font-heading text-2xl md:text-3xl font-bold text-navy tracking-tight mb-5 leading-snug break-words">
                   {isAr && activeClient.nameAr ? activeClient.nameAr : activeClient.name}
                 </h2>
 
@@ -384,7 +384,7 @@ export const ClientsPage: React.FC = () => {
                   <div className="section-label text-navy mb-1.5">
                     {t('clients.modalScopeTitle')}
                   </div>
-                  <p className="text-base text-navy">
+                  <p className="text-base text-navy break-words">
                     {t('clients.modalScopeDesc')}
                   </p>
                 </div>
@@ -400,24 +400,24 @@ export const ClientsPage: React.FC = () => {
                     return (
                       <div
                         key={i}
-                        className="bg-warm-white border border-gray-light rounded-lg p-4 px-5"
+                        className="bg-warm-white border border-gray-light rounded-lg p-4 sm:px-5 min-w-0"
                       >
-                        <div className="flex justify-between items-start gap-2.5 mb-2">
-                          <h4 className="font-heading text-lg font-bold text-navy">
+                        <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
+                          <h4 className="font-heading text-lg font-bold text-navy min-w-0 break-words">
                             {devName}
                           </h4>
-                          <span className="font-mono text-xs text-navy border border-orange-accent px-2.5 py-0.5 rounded whitespace-nowrap inline-flex items-center gap-1 font-semibold">
-                            <ShieldCheck size={12} className="text-orange-accent" /> {devStatus}
+                          <span className="font-mono text-xs text-navy border border-orange-accent px-2.5 py-0.5 rounded max-w-full inline-flex items-center gap-1 font-semibold break-words">
+                            <ShieldCheck size={12} className="text-orange-accent shrink-0" /> {devStatus}
                           </span>
                         </div>
 
-                        <p className="text-base leading-normal text-navy mb-2.5">
+                        <p className="text-base leading-normal text-navy mb-2.5 break-words">
                           {devDesc}
                         </p>
 
-                        <div className="flex items-center gap-1.5 text-sm text-navy font-mono font-semibold">
-                          <Wrench size={14} className="text-orange-accent" />
-                          <span>{t('clients.scopeLabel')} {devScope}</span>
+                        <div className="flex items-center gap-1.5 text-sm text-navy font-mono font-semibold min-w-0 break-words">
+                          <Wrench size={14} className="text-orange-accent shrink-0" />
+                          <span className="min-w-0 break-words">{t('clients.scopeLabel')} {devScope}</span>
                         </div>
                       </div>
                     );
@@ -426,19 +426,19 @@ export const ClientsPage: React.FC = () => {
               </div>
 
               {/* Action Footer */}
-              <div className="pt-5 border-t border-gray-light flex justify-between items-center gap-4">
+              <div className="pt-5 border-t border-gray-light flex flex-wrap justify-between items-center gap-3">
                 <button
                   onClick={() => setActiveClient(null)}
-                  className="btn btn-outline py-2.5 px-5 text-sm"
+                  className="btn btn-outline py-2.5 px-5 text-sm flex-1 sm:flex-initial justify-center"
                 >
                   {t('common.close')}
                 </button>
                 <Link
                   to="/contact"
-                  className="btn btn-primary py-2.5 px-5 text-sm inline-flex items-center gap-1.5 rounded-md font-semibold no-underline"
+                  className="btn btn-primary py-2.5 px-5 text-sm flex-1 sm:flex-initial justify-center inline-flex items-center gap-1.5 rounded-md font-semibold no-underline"
                 >
                   <span>{t('clients.inquireNow')}</span>
-                  <ChevronRight size={15} className="rtl:rotate-180" />
+                  <ChevronRight size={15} className="shrink-0 rtl:rotate-180" />
                 </Link>
               </div>
             </div>

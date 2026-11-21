@@ -47,14 +47,14 @@ export const AboutPage: React.FC = () => {
       {/* Company Story */}
       <section className="py-[var(--section-gap)] bg-white">
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(40px,6vw,100px)] items-start">
-            <div>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-[clamp(40px,6vw,100px)] items-start">
+            <div className="min-w-0">
               <div className="section-label">{t('about.storyLabel')}</div>
               <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.15] mb-6">
                 {t('about.storyTitle')}
               </h2>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-body text-base leading-[1.75] text-navy mb-5">
                 {t('about.storyP1')}
               </p>
@@ -87,7 +87,7 @@ export const AboutPage: React.FC = () => {
             {pillars.map((pillar, i) => (
               <div
                 key={pillar.id}
-                className={`p-9 px-7 border-l-2 border-orange-accent transition-all duration-600 ease-[var(--ease-smooth)] ${
+                className={`p-6 sm:p-9 sm:px-7 border-l-2 border-orange-accent min-w-0 transition-all duration-600 ease-[var(--ease-smooth)] ${
                   pillarsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{ transitionDelay: `${i * 0.12}s` }}
@@ -95,10 +95,10 @@ export const AboutPage: React.FC = () => {
                 <div className="font-heading text-sm tracking-[0.16em] uppercase text-orange-accent font-bold mb-4">
                   {String(i + 1).padStart(2, '0')} — {pillar.id.toUpperCase()}
                 </div>
-                <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-[-0.015em] mb-3">
+                <h3 className="font-heading text-xl md:text-2xl font-bold text-navy tracking-[-0.015em] mb-3 break-words">
                   {pillar.title}
                 </h3>
-                <p className="font-body text-base leading-[1.7] text-navy">
+                <p className="font-body text-base leading-[1.7] text-navy break-words">
                   {pillar.description}
                 </p>
               </div>
@@ -115,13 +115,13 @@ export const AboutPage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="p-12 md:p-14 bg-white/[0.04] rounded-3xl border border-white/10 relative overflow-hidden backdrop-blur-sm">
+          <div className="p-6 sm:p-10 md:p-14 bg-white/[0.04] rounded-3xl border border-white/10 relative overflow-hidden backdrop-blur-sm">
             {/* Ambient Background Accent Glow */}
             <div className="absolute -right-20 -bottom-20 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.12)_0%,transparent_70%)] pointer-events-none" />
 
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-14 items-center">
               {/* Left Column: Chairman Visual Card & Bio Info */}
-              <div className="flex flex-col sm:flex-row gap-7 items-start sm:items-center">
+              <div className="flex flex-col sm:flex-row gap-7 items-start sm:items-center min-w-0">
                 {/* Chairman Portrait */}
                 <div className="relative shrink-0">
                   <div className="w-[140px] h-[170px] sm:w-[170px] sm:h-[210px] rounded-2xl overflow-hidden border-2 border-orange-accent/40 shadow-[0_12px_32px_rgba(0,0,0,0.4)] bg-navy-dark">
@@ -136,15 +136,15 @@ export const AboutPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex-1 min-w-[240px]">
-                  <div className="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-[20px] bg-orange-subtle border border-orange-accent/30 mb-4">
-                    <Award size={16} className="text-orange-accent" />
-                    <span className="font-mono text-sm sm:text-base tracking-[0.1em] uppercase text-orange-accent font-bold leading-[1.4]">
+                <div className="flex-1 min-w-0 w-full">
+                  <div className="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-[20px] bg-orange-subtle border border-orange-accent/30 mb-4 max-w-full">
+                    <Award size={16} className="text-orange-accent shrink-0" />
+                    <span className="font-mono text-sm sm:text-base tracking-[0.1em] uppercase text-orange-accent font-bold leading-[1.4] break-words">
                       {t('about.chairmanTitle')}
                     </span>
                   </div>
 
-                  <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-white tracking-[-0.02em] leading-[1.15] mb-3">
+                  <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-white tracking-[-0.02em] leading-[1.15] mb-3 break-words">
                     {t('about.chairman')}
                   </h2>
 
@@ -154,9 +154,9 @@ export const AboutPage: React.FC = () => {
                     {[t('about.leaderTag1'), t('about.leaderTag2'), t('about.leaderTag3')].map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center gap-1.5 text-sm font-mono text-white/90 bg-white/[0.08] py-1.5 px-3 rounded border border-white/[0.12]"
+                        className="inline-flex items-center gap-1.5 text-sm font-mono text-white/90 bg-white/[0.08] py-1.5 px-3 rounded border border-white/[0.12] max-w-full break-words"
                       >
-                        <ShieldCheck size={14} className="text-orange-accent" />
+                        <ShieldCheck size={14} className="text-orange-accent shrink-0" />
                         {tag}
                       </span>
                     ))}
@@ -165,9 +165,9 @@ export const AboutPage: React.FC = () => {
               </div>
 
               {/* Right Column: Executive Quote / Vision Statement */}
-              <div className="relative ltr:pl-[clamp(0px,3vw,24px)] rtl:pr-[clamp(0px,3vw,24px)] ltr:border-l rtl:border-r border-white/10">
+              <div className="relative min-w-0 ltr:pl-[clamp(0px,3vw,24px)] rtl:pr-[clamp(0px,3vw,24px)] ltr:border-l rtl:border-r border-white/10">
                 <Quote size={32} className="text-orange-accent opacity-60 mb-4" />
-                <p className="font-body text-base md:text-lg leading-[1.65] text-white/95 font-normal mb-5">
+                <p className="font-body text-base md:text-lg leading-[1.65] text-white/95 font-normal mb-5 break-words">
                   "{t('about.quoteText')}"
                 </p>
                 <div className="font-heading text-sm tracking-[0.1em] uppercase text-white/80 font-bold">
@@ -189,7 +189,7 @@ export const AboutPage: React.FC = () => {
         <div className="container">
           <div className="grid-2">
             {/* HR */}
-            <div>
+            <div className="min-w-0">
               <div className="section-label section-label-light mb-6">
                 {t('about.hrLabel')}
               </div>
@@ -206,25 +206,25 @@ export const AboutPage: React.FC = () => {
               {/* Executive Management Cards */}
               <div className="flex flex-col gap-4">
                 {/* Dr. Gehan Awad — Director of Fin. & Admin */}
-                <div className="flex gap-[18px] items-center p-5 sm:p-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-orange-accent shadow-[0_4px_16px_rgba(10,22,40,0.04)]">
+                <div className="flex gap-[18px] items-center p-5 sm:p-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-orange-accent shadow-[0_4px_16px_rgba(10,22,40,0.04)] min-w-0">
                   <div className="w-[48px] h-[48px] rounded-[10px] bg-orange-subtle flex items-center justify-center text-orange-accent shrink-0 font-heading font-bold text-base tracking-wider">
                     GA
                   </div>
-                  <div>
-                    <h4 className="font-heading text-xl font-bold text-navy mb-1">
+                  <div className="min-w-0">
+                    <h4 className="font-heading text-xl font-bold text-navy mb-1 break-words">
                       {t('about.directorName')}
                     </h4>
-                    <p className="font-mono text-base text-navy uppercase tracking-[0.05em] font-bold leading-[1.4]">
+                    <p className="font-mono text-base text-navy uppercase tracking-[0.05em] font-bold leading-[1.4] break-words">
                       {t('about.directorTitle')}
                     </p>
-                    <p className="text-base text-navy mt-1.5 leading-[1.5]">
+                    <p className="text-base text-navy mt-1.5 leading-[1.5] break-words">
                       {t('about.directorDesc')}
                     </p>
                   </div>
                 </div>
 
                 {/* Eng. Ahmed Hafez — General Manager */}
-                <div className="flex gap-[18px] items-center p-5 sm:p-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-orange-accent shadow-[0_4px_16px_rgba(10,22,40,0.04)]">
+                <div className="flex gap-[18px] items-center p-5 sm:p-6 bg-white rounded-[14px] border border-gray-light border-l-4 border-l-orange-accent shadow-[0_4px_16px_rgba(10,22,40,0.04)] min-w-0">
                   <div className="w-[76px] h-[94px] sm:w-[88px] sm:h-[108px] rounded-[12px] overflow-hidden border-2 border-orange-accent/35 shadow-sm shrink-0 bg-navy-dark">
                     <img
                       src={COMPANY_INFO.generalManagerImage}
@@ -232,14 +232,14 @@ export const AboutPage: React.FC = () => {
                       className="w-full h-full object-cover object-[center_18%]"
                     />
                   </div>
-                  <div>
-                    <h4 className="font-heading text-xl font-bold text-navy mb-1">
+                  <div className="min-w-0">
+                    <h4 className="font-heading text-xl font-bold text-navy mb-1 break-words">
                       {t('about.gmName')}
                     </h4>
-                    <p className="font-mono text-base text-navy uppercase tracking-[0.05em] font-bold leading-[1.4]">
+                    <p className="font-mono text-base text-navy uppercase tracking-[0.05em] font-bold leading-[1.4] break-words">
                       {t('about.gmTitle')}
                     </p>
-                    <p className="text-base text-navy mt-1.5 leading-[1.5]">
+                    <p className="text-base text-navy mt-1.5 leading-[1.5] break-words">
                       {t('about.gmDesc')}
                     </p>
                   </div>
@@ -248,7 +248,7 @@ export const AboutPage: React.FC = () => {
             </div>
 
             {/* Infrastructure */}
-            <div className="border-l border-gray-light ltr:pl-[clamp(32px,5vw,60px)] rtl:pr-[clamp(32px,5vw,60px)]">
+            <div className="min-w-0 md:border-s md:border-gray-light md:ps-[clamp(32px,5vw,60px)]">
               <div className="section-label section-label-light mb-6">
                 {t('about.infraLabel')}
               </div>
@@ -266,7 +266,7 @@ export const AboutPage: React.FC = () => {
 
           {/* Engineering Team Photographic Strip */}
           <div className="mt-12">
-            <div className="flex items-center justify-between mb-4.5">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-4.5">
               <span className="font-mono text-sm tracking-[0.12em] uppercase text-navy font-bold">
                 {t('about.teamStripLabel')}
               </span>
@@ -274,7 +274,7 @@ export const AboutPage: React.FC = () => {
                 {t('about.viewGallery')}
               </Link>
             </div>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-4">
               <div className="h-[180px] rounded-xl overflow-hidden border border-gray-light shadow-[0_4px_12px_rgba(10,22,40,0.06)]">
                 <img src={`${BASE}images/team/team-dsc00636.jpg`} alt="Nour Medical Technical Team" className="w-full h-full object-cover" />
               </div>

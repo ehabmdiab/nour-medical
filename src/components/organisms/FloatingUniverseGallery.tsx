@@ -279,15 +279,15 @@ export const FloatingUniverseGallery: React.FC = () => {
           </div>
 
           {/* Controls Bar */}
-          <div className="inline-flex items-center justify-between gap-2 sm:gap-3 bg-white/95 backdrop-blur-md border border-gray-light/80 shadow-[0_4px_20px_rgba(10,22,40,0.06)] rounded-full p-2 max-w-full sm:max-w-fit">
+          <div className="flex flex-wrap sm:inline-flex items-center justify-between gap-2 sm:gap-3 bg-white/95 backdrop-blur-md border border-gray-light/80 shadow-[0_4px_20px_rgba(10,22,40,0.06)] rounded-2xl sm:rounded-full p-2 w-full sm:w-fit max-w-full">
             {/* Category Filter Pills */}
-            <div className="flex items-center gap-1.5 overflow-x-auto py-0.5 px-1 scrollbar-none flex-1 sm:flex-initial">
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 py-0.5 px-1 flex-1 sm:flex-initial min-w-0">
               {GALLERY_CATEGORIES_FILTER.map((cat) => {
                 const isActive = activeCategory === cat.id;
                 return (
                   <button
                     key={cat.id}
-                    className={`px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer whitespace-nowrap ${
+                    className={`px-3.5 sm:px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
                       isActive
                         ? 'bg-orange-accent text-white shadow-[0_2px_10px_rgba(249,115,22,0.35)]'
                         : 'text-navy hover:text-orange-accent hover:bg-slate-100'

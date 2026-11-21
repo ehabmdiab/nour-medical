@@ -110,7 +110,7 @@ export const GalleryPage: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-6 py-3 rounded-[30px] font-mono text-sm font-semibold tracking-wide uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                  className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-[30px] font-mono text-sm font-semibold tracking-wide uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                     isActive
                       ? 'border-[1.5px] border-orange-accent bg-orange-accent text-white shadow-[0_4px_14px_rgba(249,115,22,0.25)]'
                       : 'border border-gray-light bg-white text-navy hover:border-orange-accent/50'
@@ -124,7 +124,7 @@ export const GalleryPage: React.FC = () => {
           </div>
 
           {/* Media Grid of Topic Cards */}
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-8">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(min(340px,100%),1fr))] gap-6 sm:gap-8">
             {filteredItems.map((item) => (
               <GalleryCard
                 key={item.id}

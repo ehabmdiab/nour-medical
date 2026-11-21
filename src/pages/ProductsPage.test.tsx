@@ -78,6 +78,11 @@ describe('ProductsPage Component', () => {
     expect(html).toContain('dr-innocare-taiwan-2.png');
     expect(html).toContain('dr-innocare-taiwan-3.png');
     expect(html).toContain('dr-innocare-taiwan-4.png');
+
+    // Mobile-safe specs layout: single column on narrow mobile & wrapped spec values
+    expect(html).toContain('grid-cols-1 sm:grid-cols-2');
+    expect(html).toContain('leading-snug break-words');
+    expect(html).not.toContain('font-bold truncate');
   });
 
   it('renders ProductsPage with all 5 core modalities in Arabic', () => {

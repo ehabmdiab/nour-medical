@@ -38,15 +38,15 @@ export const SupplierDeviceCard: React.FC<SupplierDeviceCardProps> = ({
             className="max-h-full max-w-full object-contain transition-transform duration-300 ease-out motion-safe:group-hover:scale-[1.03]"
           />
         </div>
-        <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between gap-4">
-          <div>
-            <p className="font-body text-xs font-semibold uppercase tracking-wider text-navy/70 mb-1.5">
+        <div className="p-5 sm:p-6 flex-1 min-w-0 flex flex-col justify-between gap-4">
+          <div className="min-w-0">
+            <p className="font-body text-xs font-semibold uppercase tracking-wider text-navy/70 mb-1.5 break-words">
               {deviceCategory}
             </p>
-            <h4 className="font-heading text-lg md:text-xl font-bold text-navy leading-snug mb-2.5">
+            <h4 className="font-heading text-lg md:text-xl font-bold text-navy leading-snug mb-2.5 break-words">
               {deviceName}
             </h4>
-            <p className="font-body text-sm leading-[1.65] text-navy/85 line-clamp-3">
+            <p className="font-body text-sm leading-[1.65] text-navy/85 line-clamp-3 break-words">
               {deviceSummary}
             </p>
           </div>
@@ -64,7 +64,7 @@ export const SupplierDeviceCard: React.FC<SupplierDeviceCardProps> = ({
     <button
       type="button"
       onClick={() => onSelect(device, supplierName)}
-      className="w-full h-full flex flex-col justify-between group text-start bg-warm-white border border-gray-light rounded-md overflow-hidden transition-[border-color,box-shadow] duration-200 ease-out hover:border-navy/45 hover:shadow-[0_8px_20px_rgba(10,22,40,0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy cursor-pointer"
+      className="w-full h-full min-w-0 flex flex-col justify-between group text-start bg-warm-white border border-gray-light rounded-md overflow-hidden transition-[border-color,box-shadow] duration-200 ease-out hover:border-navy/45 hover:shadow-[0_8px_20px_rgba(10,22,40,0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy cursor-pointer"
     >
       <div className="h-52 w-full bg-white flex items-center justify-center p-4 overflow-hidden border-b border-gray-light/70">
         <img
@@ -74,12 +74,12 @@ export const SupplierDeviceCard: React.FC<SupplierDeviceCardProps> = ({
           className="max-h-full max-w-full object-contain transition-transform duration-300 ease-out motion-safe:group-hover:scale-[1.03]"
         />
       </div>
-      <div className="p-4 w-full flex items-center justify-between gap-3">
-        <div className="min-w-0">
-          <p className="font-body text-xs font-semibold uppercase tracking-wider text-navy/70 mb-1 truncate">
+      <div className="p-4 w-full flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="w-full min-w-0 flex-1">
+          <p className="font-body text-xs font-semibold uppercase tracking-wider text-navy/70 mb-1 break-words">
             {deviceCategory}
           </p>
-          <p className="font-heading text-base md:text-lg font-bold text-navy leading-snug line-clamp-2">
+          <p className="font-heading text-base md:text-lg font-bold text-navy leading-snug line-clamp-2 break-words">
             {deviceName}
           </p>
         </div>
