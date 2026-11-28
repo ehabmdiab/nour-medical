@@ -20,6 +20,7 @@ import {
 
 interface AgencyGalleryGroup {
   agencyKey: string;
+  hasAgency: boolean;
   label: string;
   labelAr: string;
   countryFlag: string;
@@ -30,15 +31,18 @@ interface AgencyGalleryGroup {
 function groupGalleryByAgency(gallery: ProductGalleryImage[]): AgencyGalleryGroup[] {
   const groups: AgencyGalleryGroup[] = [];
   gallery.forEach((item, index) => {
-    const existing = groups.find((g) => g.agencyKey === item.agency);
+    const hasAgency = Boolean(item.agency);
+    const key = item.agency ?? "__unbranded__";
+    const existing = groups.find((g) => g.agencyKey === key);
     if (existing) {
       existing.items.push({ item, index });
     } else {
       groups.push({
-        agencyKey: item.agency,
-        label: item.agency,
-        labelAr: item.agencyAr,
-        countryFlag: item.countryFlag,
+        agencyKey: key,
+        hasAgency,
+        label: item.agency ?? "",
+        labelAr: item.agencyAr ?? "",
+        countryFlag: item.countryFlag ?? "",
         firstIndex: index,
         items: [{ item, index }],
       });
@@ -228,9 +232,11 @@ export const ProductsPage: React.FC = () => {
                         {categoryName}
                       </span>
 
-                      {activeGalleryItem && (
+                      {activeGalleryItem?.agency && (
                         <span className="py-1.5 px-3 rounded-full bg-orange-accent text-white font-body text-xs font-bold shadow-sm flex items-center gap-1.5 max-w-full">
-                          <span>{activeGalleryItem.countryFlag}</span>
+                          {activeGalleryItem.countryFlag && (
+                            <span>{activeGalleryItem.countryFlag}</span>
+                          )}
                           <span>
                             {isAr
                               ? activeGalleryItem.agencyAr
@@ -242,73 +248,87 @@ export const ProductsPage: React.FC = () => {
                   </div>
 
                   {/* Supplier Source Pills & Multi-Image Thumbnail Switcher */}
-                  {product.gallery && product.gallery.length > 0 && (
-                    <div className="bg-slate-50 border-b border-gray-light px-4 py-3 flex flex-col gap-2.5">
-                      {/* Agency Selector Pills */}
-                      <div className="flex flex-wrap items-center gap-2">
-                        {groupGalleryByAgency(product.gallery).map((group) => {
-                          const isGroupActive =
-                            activeGalleryItem?.agency === group.agencyKey;
-                          return (
-                            <button
-                              key={group.agencyKey}
-                              type="button"
-                              onClick={() =>
-                                setCardImageIndices((prev) => ({
-                                  ...prev,
-                                  [product.id]: group.firstIndex,
-                                }))
-                              }
-                              className={`px-3 py-1 rounded-full text-xs font-body font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                                isGroupActive
-                                  ? "bg-navy text-white shadow-xs"
-                                  : "bg-white text-navy border border-gray-light hover:border-orange-accent"
-                              }`}
-                            >
-                              <span>{group.countryFlag}</span>
-                              <span>{isAr ? group.labelAr : group.label}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
+                  {product.gallery && product.gallery.length > 0 && (() => {
+                    const agencyGroups = groupGalleryByAgency(product.gallery).filter(
+                      (g) => g.hasAgency,
+                    );
+                    if (agencyGroups.length === 0 && product.gallery.length <= 1) {
+                      return null;
+                    }
+                    return (
+                      <div className="bg-slate-50 border-b border-gray-light px-4 py-3 flex flex-col gap-2.5">
+                        {/* Agency Selector Pills */}
+                        {agencyGroups.length > 0 && (
+                          <div className="flex flex-wrap items-center gap-2">
+                            {agencyGroups.map((group) => {
+                              const isGroupActive =
+                                activeGalleryItem?.agency === group.agencyKey;
+                              return (
+                                <button
+                                  key={group.agencyKey}
+                                  type="button"
+                                  onClick={() =>
+                                    setCardImageIndices((prev) => ({
+                                      ...prev,
+                                      [product.id]: group.firstIndex,
+                                    }))
+                                  }
+                                  className={`px-3 py-1 rounded-full text-xs font-body font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                                    isGroupActive
+                                      ? "bg-navy text-white shadow-xs"
+                                      : "bg-white text-navy border border-gray-light hover:border-orange-accent"
+                                  }`}
+                                >
+                                  {group.countryFlag && (
+                                    <span>{group.countryFlag}</span>
+                                  )}
+                                  <span>{isAr ? group.labelAr : group.label}</span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
 
-                      {/* Thumbnails Row (shown when supplier gallery has multiple photos) */}
-                      {product.gallery.length > 1 && (
-                        <div className="flex flex-wrap gap-2">
-                          {product.gallery.map((item, idx) => {
-                            const isThumbActive = activeImgIdx === idx;
-                            return (
-                              <button
-                                key={item.src}
-                                type="button"
-                                aria-label={isAr ? item.altAr : item.alt}
-                                onClick={() =>
-                                  setCardImageIndices((prev) => ({
-                                    ...prev,
-                                    [product.id]: idx,
-                                  }))
-                                }
-                                className={`relative w-14 h-12 rounded-lg overflow-hidden bg-white p-1 border transition-all cursor-pointer ${
-                                  isThumbActive
-                                    ? "border-orange-accent ring-2 ring-orange-accent/30 shadow-xs"
-                                    : "border-gray-light opacity-75 hover:opacity-100 hover:border-navy/40"
-                                }`}
-                              >
-                                <img
-                                  src={item.src}
-                                  alt={isAr ? item.altAr : item.alt}
-                                  className="w-full h-full object-contain"
-                                />
-                                <span className="absolute bottom-0.5 right-1 text-[12px] leading-none">
-                                  {item.countryFlag}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  )}
+                        {/* Thumbnails Row (shown when supplier gallery has multiple photos) */}
+                        {product.gallery.length > 1 && (
+                          <div className="flex flex-wrap gap-2">
+                            {product.gallery.map((item, idx) => {
+                              const isThumbActive = activeImgIdx === idx;
+                              return (
+                                <button
+                                  key={item.src}
+                                  type="button"
+                                  aria-label={isAr ? item.altAr : item.alt}
+                                  onClick={() =>
+                                    setCardImageIndices((prev) => ({
+                                      ...prev,
+                                      [product.id]: idx,
+                                    }))
+                                  }
+                                  className={`relative w-14 h-12 rounded-lg overflow-hidden bg-white p-1 border transition-all cursor-pointer ${
+                                    isThumbActive
+                                      ? "border-orange-accent ring-2 ring-orange-accent/30 shadow-xs"
+                                      : "border-gray-light opacity-75 hover:opacity-100 hover:border-navy/40"
+                                  }`}
+                                >
+                                  <img
+                                    src={item.src}
+                                    alt={isAr ? item.altAr : item.alt}
+                                    className="w-full h-full object-contain"
+                                  />
+                                  {item.countryFlag && (
+                                    <span className="absolute bottom-0.5 right-1 text-[12px] leading-none">
+                                      {item.countryFlag}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
 
                   {/* Card Content */}
                   <div className="p-5 sm:p-7 flex-1 flex flex-col min-w-0">
@@ -430,16 +450,20 @@ export const ProductsPage: React.FC = () => {
                             }
                             className="w-full h-full object-contain"
                           />
-                          <span
-                            className={`absolute top-4 ${isAr ? "left-4" : "right-4"} py-1.5 px-3.5 rounded-full bg-orange-accent text-white font-body text-xs font-bold shadow-sm flex items-center gap-1.5`}
-                          >
-                            <span>{activeModalItem.countryFlag}</span>
-                            <span>
-                              {isAr
-                                ? activeModalItem.agencyAr
-                                : activeModalItem.agency}
+                          {activeModalItem.agency && (
+                            <span
+                              className={`absolute top-4 ${isAr ? "left-4" : "right-4"} py-1.5 px-3.5 rounded-full bg-orange-accent text-white font-body text-xs font-bold shadow-sm flex items-center gap-1.5`}
+                            >
+                              {activeModalItem.countryFlag && (
+                                <span>{activeModalItem.countryFlag}</span>
+                              )}
+                              <span>
+                                {isAr
+                                  ? activeModalItem.agencyAr
+                                  : activeModalItem.agency}
+                              </span>
                             </span>
-                          </span>
+                          )}
                         </div>
 
                         {/* Dynamic Grouped Agency Gallery in Modal */}
@@ -448,12 +472,16 @@ export const ProductsPage: React.FC = () => {
                             {groupGalleryByAgency(selectedProduct.gallery).map(
                               (group) => (
                                 <div key={group.agencyKey} className="min-w-0 flex-1 sm:min-w-[140px]">
-                                  <div className="font-body text-xs font-bold text-navy mb-2 flex items-center gap-1.5">
-                                    <span>{group.countryFlag}</span>
-                                    <span>
-                                      {isAr ? group.labelAr : group.label}
-                                    </span>
-                                  </div>
+                                  {group.hasAgency && (
+                                    <div className="font-body text-xs font-bold text-navy mb-2 flex items-center gap-1.5">
+                                      {group.countryFlag && (
+                                        <span>{group.countryFlag}</span>
+                                      )}
+                                      <span>
+                                        {isAr ? group.labelAr : group.label}
+                                      </span>
+                                    </div>
+                                  )}
                                   <div className="flex flex-wrap gap-2">
                                     {group.items.map(({ item, index }) => (
                                       <button

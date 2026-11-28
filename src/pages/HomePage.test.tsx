@@ -78,6 +78,11 @@ describe('HomePage Component', () => {
     expect(html).not.toContain('Hospital Furniture');
     expect(html).toContain('Maintenance');
     expect(html).toContain('Capital Care Hospital');
+
+    // Why Nour Medical intro column must only be sticky on multi-column lg+ viewports (never mobile single-column)
+    expect(html).toContain('grid-cols-1 lg:grid-cols-2');
+    expect(html).toContain('lg:sticky lg:top-[100px]');
+    expect(html).not.toContain('"sticky top-[100px]');
   });
 
   it('renders home page in arabic with localized content', () => {

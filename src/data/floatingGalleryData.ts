@@ -201,7 +201,7 @@ export const FLOATING_GALLERY_DATA: FloatingGalleryItem[] = [
     categoryLabel: "Nour Medical Team",
     year: "2024",
     location: "Cairo Headquarters",
-    imageUrl: `${BASE}images/team/team-dsc00636.jpg`,
+    imageUrl: `${BASE}images/team/team-dsc00616.jpg`,
     aspectRatio: "16/9",
     size: "lg",
     depthLayer: 2,

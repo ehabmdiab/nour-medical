@@ -74,7 +74,7 @@ const ModalCarousel: React.FC<ModalCarouselProps> = ({ images, clientName }) => 
           </button>
 
           {/* Dots Indicator */}
-          <div className="absolute bottom-4 flex gap-1.5 z-[2]">
+          <div className="absolute inset-x-4 bottom-4 flex flex-wrap justify-center gap-1.5 z-[2]">
             {images.map((_, idx) => (
               <button
                 key={idx}
@@ -152,7 +152,11 @@ export const ClientsPage: React.FC = () => {
     return DETAILED_CLIENTS.filter((client) => {
       const matchesCategory =
         selectedCategory === 'All' ||
-        client.primaryCategories.some((cat) => cat.toLowerCase().includes(selectedCategory.toLowerCase()));
+        client.primaryCategories.some((cat) => {
+          const c = cat.toLowerCase();
+          const sel = selectedCategory.toLowerCase();
+          return c.includes(sel) || sel.includes(c);
+        });
       const q = searchQuery.toLowerCase().trim();
       const matchesSearch =
         q === '' ||

@@ -26,9 +26,10 @@ describe('AboutPage Component', () => {
       </LanguageProvider>
     );
 
-    // Verify established 2015 is present without "established in 2015"
-    expect(html).toContain('established 2015');
-    expect(html).not.toContain('established in 2015');
+    // Verify company profile Our Story text and header metadata
+    expect(html).toContain('Nour Medical Company was established in 2015, and the Healthcare Sector is our core business.');
+    expect(html).toContain('cradle-to-cradle life cycle');
+    expect(html).toContain('USA, China, Taiwan among others.');
     expect(html).toContain('Est. 2015 · Maadi, Cairo, Egypt');
 
     // Verify Eng. El Sayed Awad portrait and title are present
@@ -47,6 +48,14 @@ describe('AboutPage Component', () => {
     expect(html).toContain('Eng. Ahmed Hafez');
     expect(html).toContain('General Manager');
     expect(html).toContain('eng-ahmed-hafez.jpg');
+
+    // Verify team strip excludes mixed clients/friends photo (team-dsc00636.jpg) and keeps compact h-[180px] strip height with top-adjusted object-position
+    expect(html).not.toContain('team-dsc00636.jpg');
+    expect(html).toContain('h-[180px]');
+    expect(html).toContain('object-[center_32%]');
+    expect(html).toContain('object-[center_35%]');
+    expect(html).toContain('team-dsc00614.jpg');
+    expect(html).toContain('team-gathering-1.jpeg');
   });
 
   it('renders AboutPage executive titles in Arabic', () => {

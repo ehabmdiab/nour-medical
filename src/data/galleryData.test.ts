@@ -3,8 +3,8 @@ import { GALLERY_DATA, GALLERY_CATEGORIES } from './galleryData';
 import type { GalleryCategoryType } from './galleryData';
 
 describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
-  it('consolidates gallery items into 9 authentic field cards (excluding relocated client hospital photos)', () => {
-    expect(GALLERY_DATA.length).toBe(9);
+  it('consolidates gallery items into 10 authentic field cards (excluding relocated client hospital photos)', () => {
+    expect(GALLERY_DATA.length).toBe(10);
   });
 
   it('eliminates standalone equipment brochure cards from gallery', () => {
@@ -45,31 +45,48 @@ describe('Gallery Data - Team, Exhibitions, and Events Categorization', () => {
   });
 
   it('groups key events, conferences, and teams with correct image counts', () => {
-    const seminar = GALLERY_DATA.find((c) => c.title === 'Nour Medical Annual Scientific Seminar — 10 July 2025');
+    const seminar = GALLERY_DATA.find((c) => c.id === 'gal-seminar-73');
     expect(seminar).toBeDefined();
+    expect(seminar?.title).toBe('Nour Medical Company Scientific Seminar — 10 July 2025');
+    expect(seminar?.titleAr).toBe('الندوة العلمية لشركة / نور للهندسة الطبية — ١٠ يوليو ٢٠٢٥');
+    expect(seminar?.descriptionAr).toContain('الحدث العلمى الدورى لشركة / نور للهندسة الطبية');
     expect(seminar?.category).toBe('exhibitions');
-    expect(seminar?.images.length).toBe(22);
+    expect(seminar?.images.length).toBe(21);
+
+    const guests = GALLERY_DATA.find((c) => c.id === 'gal-seminar-guests');
+    expect(guests).toBeDefined();
+    expect(guests?.category).toBe('exhibitions');
+    expect(guests?.image).toContain('seminar-dsc00636.jpg');
 
     const symposium = GALLERY_DATA.find(
       (c) => c.title === 'VIP Clinical Leadership & Radiology Symposium'
     );
     expect(symposium).toBeDefined();
     expect(symposium?.category).toBe('exhibitions');
-    expect(symposium?.images.length).toBe(18);
+    expect(symposium?.image).toContain('symposium-dsc00652.jpg');
+    expect(symposium?.images[1]).toContain('seminar-dsc00346.jpg');
+    expect(symposium?.images[2]).toContain('symposium-session-02.jpg');
+    expect(symposium?.images[15]).toContain('symposium-session-15.jpg');
+    expect(symposium?.images[16]).toContain('symposium-session-16.jpg');
+    expect(symposium?.images[27]).toContain('seminar-dsc00791.jpg');
+    expect(symposium?.images.some((src) => src.includes('doctor-session-dsc00442.jpg'))).toBe(false);
+    expect(new Set(symposium?.images).size).toBe(symposium?.images.length);
+    expect(symposium?.images.length).toBe(42);
 
     const techTeam = GALLERY_DATA.find(
       (c) => c.title === 'Nour Medical Engineering & Technical Team'
     );
     expect(techTeam).toBeDefined();
     expect(techTeam?.category).toBe('team');
-    expect(techTeam?.images.length).toBe(12);
+    expect(techTeam?.images.length).toBe(11);
+    expect(techTeam?.images.some((src) => src.includes('dsc00636'))).toBe(false);
   });
 
   it('filters by category matching category labels and counts', () => {
     const categoryCounts: Record<GalleryCategoryType, number> = {
-      all: 9,
+      all: 10,
       team: 4,
-      exhibitions: 5,
+      exhibitions: 6,
     };
 
     for (const cat of GALLERY_CATEGORIES) {

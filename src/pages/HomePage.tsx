@@ -229,8 +229,8 @@ export const HomePage: React.FC = () => {
         }`}
       >
         <div className="container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-[clamp(40px,6vw,100px)] items-start">
-            <div className="sticky top-[100px] min-w-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(40px,6vw,100px)] items-start">
+            <div className="lg:sticky lg:top-[100px] min-w-0">
               <div className="section-label">{t('home.whyLabel')}</div>
               <h2 className="font-heading text-[clamp(1.875rem,2.7vw,2.75rem)] font-bold text-navy tracking-[-0.02em] leading-[1.15] mb-5">
                 {t('home.whyTitle')}

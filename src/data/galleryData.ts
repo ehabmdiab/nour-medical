@@ -101,7 +101,6 @@ export const GALLERY_DATA: GalleryItem[] = [
       `${BASE}images/team/team-dsc00614.jpg`,
       `${BASE}images/team/team-dsc00616.jpg`,
       `${BASE}images/team/team-dsc00634.jpg`,
-      `${BASE}images/team/team-dsc00636.jpg`,
       `${BASE}images/team/team-dsc00642.jpg`,
       `${BASE}images/team/team-dsc00645.jpg`,
       `${BASE}images/team/team-dsc00652.jpg`,
@@ -123,10 +122,6 @@ export const GALLERY_DATA: GalleryItem[] = [
       {
         src: `${BASE}images/team/team-dsc00634.jpg`,
         caption: "Nour Medical Engineering & Technical Team (DSC00634)",
-      },
-      {
-        src: `${BASE}images/team/team-dsc00636.jpg`,
-        caption: "Nour Medical Engineering & Technical Team (DSC00636)",
       },
       {
         src: `${BASE}images/team/team-dsc00642.jpg`,
@@ -301,19 +296,43 @@ export const GALLERY_DATA: GalleryItem[] = [
     categoryLabel: "Exhibitions & Conferences",
     location: "Cairo, Egypt",
     description: "Clinical consultations, scientific symposia, and diagnostic case discussions with top radiologists across Egypt.",
-    image: `${BASE}images/doctors/doctor-session-dsc00442.jpg`,
+    image: `${BASE}images/doctors/symposium-dsc00652.jpg`,
     images: [
-      `${BASE}images/doctors/doctor-session-dsc00442.jpg`,
+      `${BASE}images/doctors/symposium-dsc00652.jpg`,
+      `${BASE}images/seminar/seminar-dsc00346.jpg`,
+      `${BASE}images/doctors/symposium-session-02.jpg`,
+      `${BASE}images/seminar/seminar-dsc00370.jpg`,
+      `${BASE}images/doctors/symposium-session-04.jpg`,
+      `${BASE}images/doctors/symposium-session-05.jpg`,
+      `${BASE}images/doctors/symposium-session-06.jpg`,
+      `${BASE}images/doctors/symposium-session-07.jpg`,
+      `${BASE}images/seminar/seminar-dsc00435.jpg`,
+      `${BASE}images/doctors/symposium-session-09.jpg`,
+      `${BASE}images/doctors/doctor-session-dsc00470.jpg`,
+      `${BASE}images/doctors/doctor-session-dsc00485.jpg`,
+      `${BASE}images/doctors/doctor-session-dsc00505.jpg`,
+      `${BASE}images/doctors/symposium-session-13.jpg`,
+      `${BASE}images/doctors/symposium-session-14.jpg`,
+      `${BASE}images/doctors/symposium-session-15.jpg`,
+      `${BASE}images/doctors/symposium-session-16.jpg`,
+      `${BASE}images/doctors/symposium-session-17.jpg`,
+      `${BASE}images/doctors/symposium-session-18.jpg`,
+      `${BASE}images/seminar/seminar-dsc00636.jpg`,
+      `${BASE}images/doctors/symposium-session-20.jpg`,
+      `${BASE}images/gallery/lonwin/lonwin-dsc00736.jpg`,
+      `${BASE}images/gallery/lonwin/lonwin-dsc00739.jpg`,
+      `${BASE}images/gallery/angel/angel-dsc00762.jpg`,
+      `${BASE}images/gallery/angel/angel-dsc00766.jpg`,
+      `${BASE}images/gallery/angel/angel-dsc00784.jpg`,
+      `${BASE}images/seminar/seminar-dsc00786.jpg`,
+      `${BASE}images/seminar/seminar-dsc00791.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00443.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00447.jpg`,
-      `${BASE}images/doctors/doctor-session-dsc00470.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00471.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00472.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00476.jpg`,
-      `${BASE}images/doctors/doctor-session-dsc00485.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00487.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00501.jpg`,
-      `${BASE}images/doctors/doctor-session-dsc00505.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00513.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00515.jpg`,
       `${BASE}images/doctors/doctor-session-dsc00524.jpg`,
@@ -324,8 +343,116 @@ export const GALLERY_DATA: GalleryItem[] = [
     ],
     imageDetails: [
       {
-        src: `${BASE}images/doctors/doctor-session-dsc00442.jpg`,
-        caption: "VIP Clinical Leadership & Radiology Symposium (DSC00442)",
+        src: `${BASE}images/doctors/symposium-dsc00652.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium",
+      },
+      {
+        src: `${BASE}images/seminar/seminar-dsc00346.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Opening Keynote",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-02.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — International Supplier Delegation",
+      },
+      {
+        src: `${BASE}images/seminar/seminar-dsc00370.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Clinical Presentation",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-04.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Participating Specialists",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-05.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Hospital & Radiology Leaders",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-06.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Distinguished Medical Guests",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-07.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Diagnostic Case Review",
+      },
+      {
+        src: `${BASE}images/seminar/seminar-dsc00435.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Imaging Modalities Lecture",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-09.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Scientific Hall",
+      },
+      {
+        src: `${BASE}images/doctors/doctor-session-dsc00470.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium (DSC00470)",
+      },
+      {
+        src: `${BASE}images/doctors/doctor-session-dsc00485.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium (DSC00485)",
+      },
+      {
+        src: `${BASE}images/doctors/doctor-session-dsc00505.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium (DSC00505)",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-13.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Spine MRI Case Discussion",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-14.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Scientific Q&A",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-15.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Interactive Panel Discussion",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-16.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Floor Discussion with Physicians",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-17.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Executive & Academic Dialogue",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-18.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Keynote Speakers & Organizers",
+      },
+      {
+        src: `${BASE}images/seminar/seminar-dsc00636.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Leadership, Clients & Guests",
+      },
+      {
+        src: `${BASE}images/doctors/symposium-session-20.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Scientific Program Introduction",
+      },
+      {
+        src: `${BASE}images/gallery/lonwin/lonwin-dsc00736.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Lonwin Medical Vision & Mission",
+      },
+      {
+        src: `${BASE}images/gallery/lonwin/lonwin-dsc00739.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Integrated Science Research Collaboration",
+      },
+      {
+        src: `${BASE}images/gallery/angel/angel-dsc00762.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Supplier Technology Showcase",
+      },
+      {
+        src: `${BASE}images/gallery/angel/angel-dsc00766.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Global Manufacturing Overview",
+      },
+      {
+        src: `${BASE}images/gallery/angel/angel-dsc00784.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Low-Dose 3D Imaging Protocol Analysis",
+      },
+      {
+        src: `${BASE}images/seminar/seminar-dsc00786.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — Partner Keynote Address",
+      },
+      {
+        src: `${BASE}images/seminar/seminar-dsc00791.jpg`,
+        caption: "VIP Clinical Leadership & Radiology Symposium — CT Innovation Timeline",
       },
       {
         src: `${BASE}images/doctors/doctor-session-dsc00443.jpg`,
@@ -334,10 +461,6 @@ export const GALLERY_DATA: GalleryItem[] = [
       {
         src: `${BASE}images/doctors/doctor-session-dsc00447.jpg`,
         caption: "VIP Clinical Leadership & Radiology Symposium (DSC00447)",
-      },
-      {
-        src: `${BASE}images/doctors/doctor-session-dsc00470.jpg`,
-        caption: "VIP Clinical Leadership & Radiology Symposium (DSC00470)",
       },
       {
         src: `${BASE}images/doctors/doctor-session-dsc00471.jpg`,
@@ -352,20 +475,12 @@ export const GALLERY_DATA: GalleryItem[] = [
         caption: "VIP Clinical Leadership & Radiology Symposium (DSC00476)",
       },
       {
-        src: `${BASE}images/doctors/doctor-session-dsc00485.jpg`,
-        caption: "VIP Clinical Leadership & Radiology Symposium (DSC00485)",
-      },
-      {
         src: `${BASE}images/doctors/doctor-session-dsc00487.jpg`,
         caption: "VIP Clinical Leadership & Radiology Symposium (DSC00487)",
       },
       {
         src: `${BASE}images/doctors/doctor-session-dsc00501.jpg`,
         caption: "VIP Clinical Leadership & Radiology Symposium (DSC00501)",
-      },
-      {
-        src: `${BASE}images/doctors/doctor-session-dsc00505.jpg`,
-        caption: "VIP Clinical Leadership & Radiology Symposium (DSC00505)",
       },
       {
         src: `${BASE}images/doctors/doctor-session-dsc00513.jpg`,
@@ -401,15 +516,15 @@ export const GALLERY_DATA: GalleryItem[] = [
   },
   {
     id: "gal-seminar-73",
-    title: "Nour Medical Annual Scientific Seminar — 10 July 2025",
-    titleAr: "الندوة العلمية السنوية لنور للهندسة الطبية — ١٠ يوليو ٢٠٢٥",
+    title: "Nour Medical Company Scientific Seminar — 10 July 2025",
+    titleAr: "الندوة العلمية لشركة / نور للهندسة الطبية — ١٠ يوليو ٢٠٢٥",
     locationAr: "القاهرة، مصر",
-    descriptionAr: "الحدث السنوي الأكبر لنور للهندسة الطبية لاستعراض أحدث الأجهزة التشخيصية وتكريم المستشفيات والشركاء المتميزين.",
-    specsAr: "الندوة العلمية السنوية وتكريم الشركاء",
+    descriptionAr: "الحدث العلمى الدورى لشركة / نور للهندسة الطبية - بحضور بعض موردى الشركة ، ونخبة من الأطباء المتخصصين فى أهم المجالات للحديث عن أهمية الآشعة التشخيصية المختلفة ، وتكريم بعض عملاء الشركة المتميزين.",
+    specsAr: "الندوة العلمية الدورية وتكريم العملاء المتميزين",
     category: "exhibitions",
     categoryLabel: "Exhibitions & Conferences",
     location: "Grand Nile Tower / Cairo Conference Center",
-    description: "Nour Medical Annual Scientific Seminar bringing together over 300 radiologists, hospital directors, and international medical OEM partners.",
+    description: "The periodic scientific seminar of Nour Medical Company — attended by several of the company's international suppliers and an elite group of specialist physicians across key medical fields to discuss the importance of various diagnostic imaging modalities, alongside honoring distinguished company clients.",
     image: `${BASE}images/seminar/seminar-dsc00346.jpg`,
     images: [
       `${BASE}images/seminar/seminar-dsc00346.jpg`,
@@ -418,7 +533,6 @@ export const GALLERY_DATA: GalleryItem[] = [
       `${BASE}images/seminar/seminar-dsc00476.jpg`,
       `${BASE}images/seminar/seminar-dsc00532.jpg`,
       `${BASE}images/seminar/seminar-dsc00611.jpg`,
-      `${BASE}images/seminar/seminar-dsc00636.jpg`,
       `${BASE}images/seminar/seminar-dsc00659.jpg`,
       `${BASE}images/seminar/seminar-dsc00684.jpg`,
       `${BASE}images/seminar/seminar-dsc00737.jpg`,
@@ -438,94 +552,114 @@ export const GALLERY_DATA: GalleryItem[] = [
     imageDetails: [
       {
         src: `${BASE}images/seminar/seminar-dsc00346.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00346)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00346)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00370.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00370)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00370)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00435.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00435)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00435)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00476.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00476)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00476)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00532.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00532)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00532)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00611.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00611)",
-      },
-      {
-        src: `${BASE}images/seminar/seminar-dsc00636.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00636)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00611)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00659.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00659)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00659)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00684.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00684)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00684)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00737.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00737)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00737)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00740.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00740)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00740)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00749.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00749)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00749)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00751.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00751)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00751)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00754.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00754)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00754)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00760.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00760)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00760)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00766.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00766)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00766)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00779.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00779)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00779)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00781.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00781)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00781)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00784.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00784)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00784)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00786.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00786)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00786)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00790.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00790)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00790)",
       },
       {
         src: `${BASE}images/seminar/seminar-dsc00791.jpg`,
-        caption: "Nour Medical Annual Scientific Seminar — 10 July 2025 (DSC00791)",
+        caption: "Nour Medical Company Scientific Seminar — 10 July 2025 (DSC00791)",
       },
     ],
     date: "10 July 2025",
     specs: "Keynote Addresses, Live Modality Showcases & Academic Panels",
+  },
+  {
+    id: "gal-seminar-guests",
+    title: "Nour Medical Gathering — Team, Clients & Distinguished Guests",
+    titleAr: "ملتقى نور للهندسة الطبية — فريق العمل والعملاء والأصدقاء",
+    locationAr: "القاهرة، مصر",
+    descriptionAr: "صورة تذكارية تجمع فريق عمل نور للهندسة الطبية مع نخبة من العملاء والأصدقاء وشركاء النجاح خلال الفعاليات العلمية السنوية.",
+    specsAr: "ملتقى العملاء والشركاء والفعاليات",
+    category: "exhibitions",
+    categoryLabel: "Exhibitions & Conferences",
+    location: "Cairo, Egypt",
+    description: "Commemorative group photo bringing together Nour Medical leadership and staff alongside valued healthcare clients, partners, and friends during the annual scientific seminar.",
+    image: `${BASE}images/seminar/seminar-dsc00636.jpg`,
+    images: [
+      `${BASE}images/seminar/seminar-dsc00636.jpg`,
+    ],
+    imageDetails: [
+      {
+        src: `${BASE}images/seminar/seminar-dsc00636.jpg`,
+        caption: "Nour Medical Team, Clients & Guests — Annual Scientific Seminar",
+      },
+    ],
+    date: "10 July 2025",
+    specs: "Annual Seminar Guests & Healthcare Partners",
   }
 ];

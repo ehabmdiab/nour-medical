@@ -11,9 +11,9 @@ export interface ProductGalleryImage {
   src: string;
   alt: string;
   altAr: string;
-  agency: string;
-  agencyAr: string;
-  countryFlag: string;
+  agency?: string;
+  agencyAr?: string;
+  countryFlag?: string;
 }
 
 export interface ProductItem {
@@ -109,10 +109,10 @@ export const PRODUCTS_DATA: ProductItem[] = [
       "الباطنة والحوض: تصوير الكبد الديناميكي، قنوات المرارة MRCP، وأورام البروستاتا",
       "القلب: كفاءة عضلة القلب، قياس التدفقات الحجمية، والتقييم الحركي السينمائي",
     ],
-    image: `${BASE}images/products/lonwin-supervan-15t-1.png`,
+    image: `${BASE}images/products/lonwin-supervan-15t-1.png?v=2`,
     gallery: [
       {
-        src: `${BASE}images/products/lonwin-supervan-15t-1.png`,
+        src: `${BASE}images/products/lonwin-supervan-15t-1.png?v=2`,
         alt: "Lonwin SuperVan 1.5T Superconducting MRI System — Full Gantry View",
         altAr: "جهاز الرنين المغناطيسي فائق التوصيل SuperVan 1.5T — الصين Lonwin",
         agency: "China — Lonwin",
@@ -149,8 +149,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
     descriptionAr: "جهاز مقطعية تشخيصي عالي السرعة يوفر دقة متناهية وبروتوكولات متطورة لخفض الجرعة الإشعاعية ومسح حجمي فوري.",
     mainTask: "Cardiovascular angiography, acute trauma evaluation, oncology, and whole-body CT.",
     mainTaskAr: "تصوير الشرايين والقلب، تقييم الطوارئ والحوادث، الأورام، والمسح الحجمي الكامل للجسم.",
-    supplier: "SinoVision (China) / Siemens (Germany) / Philips (Netherlands) / Angel (China)",
-    country: "China, Germany & Netherlands",
+    supplier: "SinoVision (China) / Angel (China)",
+    country: "China",
     specs: [
       { label: "Slice Acquisition", value: "64 / 128 / 256 Slices per Gantry Rotation", labelAr: "عدد المقاطع", valueAr: "64 / 128 / 256 شريحة في الدورة الواحدة" },
       { label: "Rotation Speed", value: "0.28 to 0.35 Seconds 360° Full Rotation", labelAr: "سرعة الدوران", valueAr: "0.28 إلى 0.35 ثانية لدورة كاملة 360 درجة" },
@@ -211,19 +211,13 @@ export const PRODUCTS_DATA: ProductItem[] = [
       },
       {
         src: `${BASE}images/products/siemens-somatom-go-top-128-ct.jpg`,
-        alt: "Siemens Healthineers SOMATOM go.Top 128-Slice CT Scanner",
-        altAr: "جهاز الأشعة المقطعية Siemens SOMATOM go.Top (128 شريحة) — ألمانيا Siemens",
-        agency: "Germany — Siemens",
-        agencyAr: "ألمانيا — Siemens",
-        countryFlag: "🇩🇪",
+        alt: "128-Slice High-Speed Diagnostic CT Scanner",
+        altAr: "جهاز الأشعة المقطعية التشخيصي عالي السرعة (128 شريحة)",
       },
       {
         src: `${BASE}images/products/philips-incisive-ct.jpg`,
-        alt: "Philips Incisive 64 / 128-Slice Multi-Slice CT Scanner",
-        altAr: "جهاز الأشعة المقطعية Philips Incisive (64 / 128 شريحة) — هولندا Philips",
-        agency: "Netherlands — Philips",
-        agencyAr: "هولندا — Philips",
-        countryFlag: "🇳🇱",
+        alt: "64 / 128-Slice Multi-Slice Volumetric CT Scanner",
+        altAr: "جهاز الأشعة المقطعية متعدد المقاطع (64 / 128 شريحة)",
       },
       {
         src: `${BASE}images/products/angel-wr-3d-system.jpg`,
@@ -353,8 +347,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
     descriptionAr: "وحدة قسطرة قلبية وأوعية دموية متطورة، توفر تصويرًا فلوروسكوبيًا فائق الوضوح وتقنيات إظهار الدعامات اللحظية.",
     mainTask: "Coronary angioplasty, stenting, pacemaker implantation, and peripheral vascular interventions.",
     mainTaskAr: "توسيع وتركيب دعامات الشرايين التاجية، زراعة منظمات ضربات القلب، وقسطرة الأوعية الطرفية.",
-    supplier: "Philips Healthcare (Netherlands) / Siemens Healthineers (Germany)",
-    country: "Netherlands & Germany",
+    supplier: "Global Interventional Partners",
+    country: "International Technology",
     specs: [
       { label: "Flat Panel Detector", value: "30 x 30 cm / 20 x 20 cm Solid-State Dynamic Panel", labelAr: "الكاشف الديناميكي", valueAr: "30 × 30 سم / 20 × 20 سم كاشف ديناميكي فائق الوضوح" },
       { label: "High-Power Generator", value: "100 kW Constant Potential High-Frequency", labelAr: "مولد الطاقة", valueAr: "100 كيلوواط عالي التردد بجهد مستمر فائق الاستقرار" },
@@ -364,13 +358,13 @@ export const PRODUCTS_DATA: ProductItem[] = [
       { label: "Catheterization Table", value: "Floating Carbon-Fiber Table with 4-Way Power Float", labelAr: "طاولة القسطرة", valueAr: "طاولة كربون فايبر طافية في 4 اتجاهات بحمولة 250 كجم" },
     ],
     features: [
-      "Live StentBoost / ClearStent visualization during coronary deployment",
+      "Live stent enhancement visualization during coronary deployment",
       "Real-time roadmapping and vessel overlay for navigation through complex tortuous arteries",
       "Sub-second emergency gantry park and CPR table quick-release safety mechanisms",
       "Comprehensive radiation protection shielding package including ceiling and under-table lead aprons",
     ],
     featuresAr: [
-      "تقنية StentBoost لتوضيح وتأكيد فتح الدعامات في الشرايين التاجية لحظياً",
+      "تقنية إظهار وتأكيد فتح الدعامات في الشرايين التاجية لحظياً",
       "رسم خرائط الأوعية الحية (Roadmapping) لتسهيل توجيه القساطر في الشرايين الصعبة",
       "وضع الطوارئ السريع للإخلاء ونظام تحرير الطاولة الفوري للإنعاش القلبي CPR",
       "حزمة متكاملة للحماية من الإشعاع تشمل الستائر الرصاصية العلوية والسفلية",
@@ -391,51 +385,23 @@ export const PRODUCTS_DATA: ProductItem[] = [
     gallery: [
       {
         src: `${BASE}images/products/philips-azurion-5-cathlab.jpg`,
-        alt: "Philips Azurion 5 M20 Single-Plane Cardiovascular Cath-Lab Suite",
-        altAr: "وحدة قسطرة القلب والأوعية الدموية Philips Azurion 5 M20 — هولندا Philips",
-        agency: "Netherlands — Philips",
-        agencyAr: "هولندا — Philips",
-        countryFlag: "🇳🇱",
+        alt: "Single-Plane Cardiovascular Cath-Lab Suite",
+        altAr: "وحدة قسطرة القلب والأوعية الدموية أحادية المستوى",
       },
       {
         src: `${BASE}images/products/philips-azurion-7-biplane-cathlab.jpg`,
-        alt: "Philips Azurion 7 Biplane Image-Guided Therapy Cath-Lab Suite",
-        altAr: "وحدة قسطرة القلب ثنائية المستوى Philips Azurion 7 Biplane — هولندا Philips",
-        agency: "Netherlands — Philips",
-        agencyAr: "هولندا — Philips",
-        countryFlag: "🇳🇱",
+        alt: "Biplane Image-Guided Therapy Cath-Lab Suite",
+        altAr: "وحدة قسطرة القلب والأوعية الدموية ثنائية المستوى",
       },
       {
         src: `${BASE}images/products/philips-azurion-flexarm-cathlab.jpg`,
-        alt: "Philips Azurion 7 with FlexArm Interventional Angiography Suite",
-        altAr: "وحدة قسطرة الأوعية التداخلية Philips Azurion FlexArm — هولندا Philips",
-        agency: "Netherlands — Philips",
-        agencyAr: "هولندا — Philips",
-        countryFlag: "🇳🇱",
+        alt: "Ceiling-Mounted Flex-Arm Interventional Angiography Suite",
+        altAr: "وحدة قسطرة الأوعية التداخلية بذراع مرن معلق بالسقف",
       },
       {
         src: `${BASE}images/products/siemens-artis-icono-ceiling-cathlab.jpg`,
-        alt: "Siemens Healthineers ARTIS icono Ceiling Angiography Cath-Lab Suite",
-        altAr: "وحدة قسطرة القلب والأوعية الدموية Siemens ARTIS icono Ceiling — ألمانيا Siemens",
-        agency: "Germany — Siemens",
-        agencyAr: "ألمانيا — Siemens",
-        countryFlag: "🇩🇪",
-      },
-      {
-        src: `${BASE}images/products/siemens-artis-q-cathlab.jpg`,
-        alt: "Siemens Healthineers ARTIS Q Biplane Interventional Angiography System",
-        altAr: "جهاز قسطرة القلب والأوعية Siemens ARTIS Q — ألمانيا Siemens",
-        agency: "Germany — Siemens",
-        agencyAr: "ألمانيا — Siemens",
-        countryFlag: "🇩🇪",
-      },
-      {
-        src: `${BASE}images/products/siemens-artis-zee-cathlab.jpg`,
-        alt: "Siemens Healthineers ARTIS zee Floor-Mounted Angiography System",
-        altAr: "جهاز قسطرة القلب والأوعية Siemens ARTIS zee — ألمانيا Siemens",
-        agency: "Germany — Siemens",
-        agencyAr: "ألمانيا — Siemens",
-        countryFlag: "🇩🇪",
+        alt: "Ceiling-Suspended Angiography Cath-Lab Suite",
+        altAr: "وحدة قسطرة القلب والأوعية الدموية المعلقة بالسقف",
       },
     ],
     featured: true,
@@ -459,8 +425,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
     descriptionAr: "جهاز سي-آرم جراحي متنقل عالي الدقة مزود بكاشف مسطح ودوران محوري سلس لتوفير رؤية إشعاعية دقيقة داخل العمليات.",
     mainTask: "Intraoperative fluoroscopy for orthopedics, spine surgery, pain therapy, and vascular procedures.",
     mainTaskAr: "التصوير الإشعاعي المباشر أثناء العمليات لجراحات العظام، العمود الفقري، وعلاج الألم.",
-    supplier: "Angel (China) / Siemens (Germany)",
-    country: "China & Germany",
+    supplier: "Angel (China)",
+    country: "China",
     specs: [
       { label: "Detector Type", value: "CMOS / Amorphous Silicon Flat Panel Detector", labelAr: "نوع الكاشف", valueAr: "كاشف رقمي مسطح CMOS / a-Si عالي الحساسية" },
       { label: "Orbital Rotation", value: "135° to 165° Extended Orbital Arc Travel", labelAr: "حركة القوس", valueAr: "دوران قوسي واسع من 135° إلى 165° لسهولة التوجيه" },
@@ -505,11 +471,8 @@ export const PRODUCTS_DATA: ProductItem[] = [
       },
       {
         src: `${BASE}images/products/surgical-c-arm.jpeg`,
-        alt: "Siemens Siremobil Mobile Surgical C-Arm Fluoroscopy System",
-        altAr: "جهاز الأشعة الجراحي المتنقل Siemens Siremobil — ألمانيا Siemens",
-        agency: "Germany — Siemens",
-        agencyAr: "ألمانيا — Siemens",
-        countryFlag: "🇩🇪",
+        alt: "Mobile Surgical C-Arm Fluoroscopy System",
+        altAr: "جهاز الأشعة الجراحي المتنقل C-Arm لغرف العمليات",
       },
     ],
     featured: true,

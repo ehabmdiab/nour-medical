@@ -323,7 +323,7 @@ export const SUPPLIER_PARTNERS: SupplierPartner[] = [
         nameAr: 'جهاز الرنين المغناطيسي فائق التوصيل SuperVan 1.5T',
         category: '1.5T MRI System',
         categoryAr: 'نظام رنين مغناطيسي ١.٥ تسلا',
-        image: `${BASE}images/products/lonwin-supervan-15t-1.png`,
+        image: `${BASE}images/products/lonwin-supervan-15t-1.png?v=2`,
         shortDescription:
           'Flagship SuperVan 1.5T superconducting MRI built on Lonwin MUSIC technology for high clinical flexibility, precision, and scan speed across whole-spine, neuro, and body imaging.',
         shortDescriptionAr:

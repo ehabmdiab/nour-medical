@@ -7,7 +7,7 @@ describe('GalleryCard - Carousel Logic', () => {
     expect(seminar).toBeDefined();
     const images = seminar.images;
     const total = images.length;
-    expect(total).toBe(22);
+    expect(total).toBe(21);
 
     let currentIndex = 0;
     // Next should go to 1
@@ -18,11 +18,11 @@ describe('GalleryCard - Carousel Logic', () => {
     currentIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
     expect(currentIndex).toBe(0);
 
-    // Prev from 0 should wrap to last (21)
+    // Prev from 0 should wrap to last (20)
     currentIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
-    expect(currentIndex).toBe(21);
+    expect(currentIndex).toBe(20);
 
-    // Next from 21 should wrap to 0
+    // Next from 20 should wrap to 0
     currentIndex = currentIndex === total - 1 ? 0 : currentIndex + 1;
     expect(currentIndex).toBe(0);
   });

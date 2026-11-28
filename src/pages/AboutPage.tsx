@@ -274,15 +274,12 @@ export const AboutPage: React.FC = () => {
                 {t('about.viewGallery')}
               </Link>
             </div>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="h-[180px] rounded-xl overflow-hidden border border-gray-light shadow-[0_4px_12px_rgba(10,22,40,0.06)]">
-                <img src={`${BASE}images/team/team-dsc00636.jpg`} alt="Nour Medical Technical Team" className="w-full h-full object-cover" />
+                <img src={`${BASE}images/team/team-dsc00614.jpg`} alt="Nour Medical Field Engineering" className="w-full h-full object-cover object-[center_32%]" />
               </div>
               <div className="h-[180px] rounded-xl overflow-hidden border border-gray-light shadow-[0_4px_12px_rgba(10,22,40,0.06)]">
-                <img src={`${BASE}images/team/team-dsc00614.jpg`} alt="Nour Medical Field Engineering" className="w-full h-full object-cover" />
-              </div>
-              <div className="h-[180px] rounded-xl overflow-hidden border border-gray-light shadow-[0_4px_12px_rgba(10,22,40,0.06)]">
-                <img src={`${BASE}images/team/team-gathering-1.jpeg`} alt="Nour Medical Annual Gathering" className="w-full h-full object-cover" />
+                <img src={`${BASE}images/team/team-gathering-1.jpeg`} alt="Nour Medical Annual Gathering" className="w-full h-full object-cover object-[center_35%]" />
               </div>
             </div>
           </div>
